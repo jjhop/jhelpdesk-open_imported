@@ -15,9 +15,8 @@
  */
 package de.berlios.jhelpdesk.web.manager;
 
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +44,7 @@ import de.berlios.jhelpdesk.web.tools.AnnouncementValidator;
 @Controller
 public class AnnouncementController {
 
-    private static Log log = LogFactory.getLog(AnnouncementController.class);
+    private static Logger log = LoggerFactory.getLogger(AnnouncementController.class);
 
     @Autowired
     private AnnouncementValidator validator;
@@ -65,7 +64,7 @@ public class AnnouncementController {
         try {
             map.addAttribute("announcement", announcementDAO.getById(infoId));
         } catch (Exception e) {
-            log.error(e);
+            log.error(e.getMessage());
             map.addAttribute("errorInfo", e.getMessage());
         }
         return "announcement/show";
@@ -95,7 +94,7 @@ public class AnnouncementController {
         try {
             announcementDAO.delete(annId);
         } catch (Exception e) {
-            log.error(e);
+            log.error(e.getMessage());
         }
         return "redirect:/announcements/list.html";
     }

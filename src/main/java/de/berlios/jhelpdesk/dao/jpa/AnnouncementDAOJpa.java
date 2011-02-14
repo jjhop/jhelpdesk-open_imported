@@ -23,8 +23,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
@@ -43,7 +43,7 @@ import de.berlios.jhelpdesk.model.Announcement;
 @Transactional(readOnly = true)
 public class AnnouncementDAOJpa implements AnnouncementDAO {
 
-    private static final Log log = LogFactory.getLog(AnnouncementDAOJpa.class);
+    private static final Logger log = LoggerFactory.getLogger(AnnouncementDAOJpa.class);
 
     private final JpaTemplate jpaTemplate;
 
@@ -56,7 +56,7 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
         try {
             return this.jpaTemplate.find(Announcement.class, announcementId);
         } catch(Exception ex) {
-            log.error(ex);
+            log.error(ex.getMessage());
             return null;
         }
     }
@@ -95,7 +95,7 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
             Announcement toDelete = this.jpaTemplate.find(Announcement.class, announcementId);
             this.jpaTemplate.remove(toDelete);
         } catch(Exception ex) {
-            log.error(ex);
+            log.error(ex.getMessage());
         }
     }
 
