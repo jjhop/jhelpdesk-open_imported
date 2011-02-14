@@ -169,7 +169,7 @@
                     </script>
                 </td>
                 <td class="leftcells">
-                    <div id="pagecontentsubheader"><h3>Wprowadził</h3></div>
+                    <div id="pagecontentsubheader"><h3>Wprowadził <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -198,7 +198,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Zgłosił</h3></div>
+                    <div id="pagecontentsubheader"><h3>Zgłosił <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -227,7 +227,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Rozwiązuje</h3></div>
+                    <div id="pagecontentsubheader"><h3>Rozwiązuje <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
