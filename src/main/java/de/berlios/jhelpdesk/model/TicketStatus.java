@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * TODO: dodać jakąą maszynę stanów, która kontrolowałaby w logiczny
@@ -59,7 +59,7 @@ public enum TicketStatus {
      */
     UNKNOWN(6, "NIEZNANY", "desc", "228664", true); // TODO: tymczasowe...
 
-    private static final Log log = LogFactory.getLog(TicketStatus.class);
+    private static final Logger log = LoggerFactory.getLogger(TicketStatus.class);
 
     /**
      *

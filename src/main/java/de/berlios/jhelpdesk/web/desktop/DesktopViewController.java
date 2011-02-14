@@ -15,8 +15,6 @@
  */
 package de.berlios.jhelpdesk.web.desktop;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -77,11 +75,51 @@ public class DesktopViewController  {
      * @throws Exception
      */
     @RequestMapping("/desktop/main.html")
-    public String showDesktop(ModelMap map, HttpSession sess) throws Exception {
-        map.addAttribute("lastTickets", ticketDAO.getTicketsByStatus(TicketStatus.NOTIFIED, NUMBER_OF_NONASSIGNED_TICKETS));
-        map.addAttribute("lastEvents", eventDAO.getLastEvents(NUMBER_OF_EVENTS_IN_DESKTOP));
-        map.addAttribute("lastArticles", articleDAO.getLastArticles(NUMBER_OF_LAST_ADDED_ARTICLES));
-        map.addAttribute("lastAnnouncements", announcementDAO.getLastAnnouncements(NUMBER_OF_LAST_ANNOUNCEMENTS));
+    public String showDesktop(ModelMap map) throws Exception {
+        fillLastTickets(map);
+        fillLastEvent(map);
+        fillLastArticles(map);
+        fillLastAnnouncemenets(map);
         return "desktop/main";
+    }
+
+    @RequestMapping("/desktop/lastTickets.html")
+    public String lastTickets(ModelMap map) throws Exception {
+        fillLastTickets(map);
+        return "/desktop/lastTickets";
+    }
+
+    @RequestMapping("/desktop/lastEvents.html")
+    public String lastEvents(ModelMap map) throws Exception {
+        fillLastEvent(map);
+        return "/desktop/lastEvents";
+    }
+
+    @RequestMapping("/desktop/lastArticles.html")
+    public String lastArticles(ModelMap map) throws Exception {
+        fillLastArticles(map);
+        return "/desktop/lastArticles";
+    }
+
+    @RequestMapping("/desktop/lastAnnouncements.html")
+    public String lastAnnouncements(ModelMap map) throws Exception {
+        fillLastAnnouncemenets(map);
+        return "/desktop/lastAnnouncements";
+    }
+
+    private void fillLastArticles(ModelMap map) throws Exception {
+        map.addAttribute("lastArticles", articleDAO.getLastArticles(NUMBER_OF_LAST_ADDED_ARTICLES));
+    }
+
+    private void fillLastAnnouncemenets(ModelMap map) throws Exception {
+        map.addAttribute("lastAnnouncements", announcementDAO.getLastAnnouncements(NUMBER_OF_LAST_ANNOUNCEMENTS));
+    }
+
+    private void fillLastEvent(ModelMap map) throws Exception {
+        map.addAttribute("lastEvents", eventDAO.getLastEvents(NUMBER_OF_EVENTS_IN_DESKTOP));
+    }
+
+    private void fillLastTickets(ModelMap map) throws Exception {
+        map.addAttribute("lastTickets", ticketDAO.getTicketsByStatus(TicketStatus.NOTIFIED, NUMBER_OF_NONASSIGNED_TICKETS));
     }
 }
