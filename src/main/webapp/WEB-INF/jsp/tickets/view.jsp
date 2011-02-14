@@ -169,7 +169,7 @@
                     </script>
                 </td>
                 <td class="leftcells">
-                    <div id="pagecontentsubheader"><h3>Wprowadził <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
+                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -178,12 +178,12 @@
                                 <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.login}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Imie:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.firstName}"/></td>
+                                <td class="tabtitle">Użytkownik:</td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.firstName}"/> <c:out value="${ticket.inputer.lastName}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Nazwisko: </td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.lastName}"/></td>
+                                <td class="tabtitle">Email:</td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.email}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Tel:</td>
@@ -191,14 +191,10 @@
                                 <td class="tabtitle">Kom:</td>
                                 <td class="lastcol" style="width: 110px;"><c:out value="${ticket.inputer.mobile}"/></td>
                             </tr>
-                            <tr>
-                                <td class="tabtitle">Email:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.email}"/></td>
-                            </tr>
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Zgłosił <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
+                    <div id="pagecontentsubheader"><h3>Zgłosił <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -207,12 +203,12 @@
                                 <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.login}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Imie:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.firstName}"/></td>
+                                <td class="tabtitle">Użytkownik:</td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.firstName}"/> <c:out value="${ticket.notifier.lastName}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Nazwisko: </td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.lastName}"/></td>
+                                <td class="tabtitle">Email:</td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.email}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Tel:</td>
@@ -220,14 +216,10 @@
                                 <td class="tabtitle">Kom:</td>
                                 <td class="lastcol" style="width: 110px;"><c:out value="${ticket.notifier.mobile}"/></td>
                             </tr>
-                            <tr>
-                                <td class="tabtitle">Email:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.email}"/></td>
-                            </tr>
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Rozwiązuje <span class="imagePlaceholder"><img src="<c:url value="/avatars/jjhop.jpg"/>" alt="Rafał Kotusiewicz" width="96" height="96" /></span></h3></div>
+                    <div id="pagecontentsubheader"><h3>Rozwiązuje <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -236,22 +228,18 @@
                                 <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.login}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Imie:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.firstName}"/></td>
+                                <td class="tabtitle">Użytkownik: </td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.firstName}"/> <c:out value="${ticket.saviour.lastName}"/></td>
                             </tr>
                             <tr>
-                                <td class="tabtitle">Nazwisko: </td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.lastName}"/></td>
+                                <td class="tabtitle">Email:</td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.email}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Tel:</td>
                                 <td style="width: 110px;"><c:out value="${ticket.saviour.phone}"/></td>
                                 <td class="tabtitle">Kom:</td>
                                 <td class="lastcol" style="width: 110px;"><c:out value="${ticket.saviour.mobile}"/></td>
-                            </tr>
-                            <tr>
-                                <td class="tabtitle">Email:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.email}"/></td>
                             </tr>
                         </table>
                     </div>

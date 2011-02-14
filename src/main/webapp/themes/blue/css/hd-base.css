@@ -97,13 +97,13 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     font-size: 18px;
     position: relative;
 }
-#pagecontentsubheader h3 span {
+#pagecontentsubheader h3 span, #pagecontentsubheader h3 img.avatar {
     position: absolute;
-    top: 10px;
+    top: -10px;
     right: 10px;
     display: block;
-    width: 96px;
-    height: 96px;
+    width: 76px;
+    height: 76px;
     background: #677498;
     border: 3px solid #677498;
     -moz-border-radius: 5px;
