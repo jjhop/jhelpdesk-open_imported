@@ -18,8 +18,8 @@ package de.berlios.jhelpdesk.web.taglib;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.User;
@@ -27,7 +27,7 @@ import de.berlios.jhelpdesk.model.User;
 public class AuthorizeTag extends TagSupport {
 
     private static final long serialVersionUID = 2870805082059648632L;
-    private static Log log = LogFactory.getLog(AuthorizeTag.class);
+    private static Logger log = LoggerFactory.getLogger(AuthorizeTag.class);
     private Role userRole;
 
     @Override

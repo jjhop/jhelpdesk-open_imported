@@ -22,8 +22,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
@@ -42,7 +42,7 @@ import de.berlios.jhelpdesk.model.ArticleCategory;
 @Transactional(readOnly = true)
 public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
 
-    private static final Log log = LogFactory.getLog(ArticleCategoryDAOJpa.class);
+    private static final Logger log = LoggerFactory.getLogger(ArticleCategoryDAOJpa.class);
     
     private final JpaTemplate jpaTemplate;
 

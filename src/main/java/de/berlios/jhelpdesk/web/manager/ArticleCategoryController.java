@@ -15,8 +15,8 @@
  */
 package de.berlios.jhelpdesk.web.manager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ import de.berlios.jhelpdesk.web.tools.ArticleCategoryValidator;
 @Controller
 public class ArticleCategoryController {
 
-    private static final Log log = LogFactory.getLog(ArticleCategoryController.class);
+    private static final Logger log = LoggerFactory.getLogger(ArticleCategoryController.class);
 
     private final static String MANAGE_KB_CATEGORY_LIST_RDR = "redirect:/manage/kb/categories/all.html";
     private final static String MANAGE_KB_CATEGORY_LIST = "manager/knowledge/category/showAll";
@@ -77,7 +77,7 @@ public class ArticleCategoryController {
                 categoryDAO.delete(categoryId);
             }
         } catch (Exception ex) {
-            log.error(ex);
+            log.error(ex.getMessage());
         }
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }
@@ -87,7 +87,7 @@ public class ArticleCategoryController {
         try {
             categoryDAO.moveUp(categoryId);
         } catch (Exception ex) {
-            log.error(ex);
+            log.error(ex.getMessage());
         }
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }
@@ -97,7 +97,7 @@ public class ArticleCategoryController {
         try {
             categoryDAO.moveDown(categoryId);
         } catch (Exception ex) {
-            log.error(ex);
+            log.error(ex.getMessage());
         }
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }

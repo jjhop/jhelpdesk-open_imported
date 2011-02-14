@@ -15,8 +15,8 @@
  */
 package de.berlios.jhelpdesk.web.preferences;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +38,7 @@ import de.berlios.jhelpdesk.web.tools.NotifyFrequencyEditor;
 @Controller
 public class NotifyEditController {
 
-    private final static Log log = LogFactory.getLog(NotifyEditController.class);
+    private final static Logger log = LoggerFactory.getLogger(NotifyEditController.class);
 
     @Autowired
     private NotifyFrequencyEditor notifyFrequencyEditor;
