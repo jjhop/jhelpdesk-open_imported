@@ -5,18 +5,22 @@ body { background: #f3f3f3;}
 #loginpage form {margin: 0;}
 #loginpage table {width: 300px; margin: 0 auto 0;}
 #loginpage td {font-size: 14px;background: #D0DBFB; padding: 5px 0 10px 0; }
-#loginpage td label { display: block; padding: 5px 0; font-weight: bold; }
+#loginpage td label { display: block; padding:0 0 5px 0; font-weight: bold; }
 #loginpage td.inputs {text-align: left;}
 #loginpage td.images {background: transparent url(../i/icons/64/gnome-xterm.png) no-repeat 50%;}
 
 #loginpage td input {
     font-size: 14px;
-    padding: 6px 3px 8px 3px;
-    border: 3px solid #677498;
-    width: 300px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
+    padding: 6px 5px 8px 5px;
+    border: 2px solid #677498;
+    width: 290px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+
+input::-moz-focus-inner {
+    border: 0;
 }
 
 #loginpage td.right {
@@ -24,8 +28,8 @@ body { background: #f3f3f3;}
 }
 
 #loginpage td input.btn {
-    width: 100px;
-    padding: 2px 3px;
+    width: auto;
+    padding: 3px 30px;
     color: #fff;
     background: url("../i/buttonBgNavy.jpg") 0 0 no-repeat;
     font-weight: bold;
