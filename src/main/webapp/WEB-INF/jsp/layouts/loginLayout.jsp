@@ -13,13 +13,13 @@
     <body>
 
         <div id="loginpage">
-
+            <c:if test="${badLogin}">
             <div class="infobox1">
                 <div class="infobox2">
-                    <p class="error">{Error message placeholder}</p>
+                    <p class="error"><fmt:message key="prompt.error"/></p>
                 </div>
             </div>
-
+            </c:if>
             <div class="infobox1">
                 <div class="infobox2">
                     <h2><fmt:message key="prompt.title"/></h2>
