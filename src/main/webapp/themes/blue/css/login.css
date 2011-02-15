@@ -37,3 +37,8 @@ input::-moz-focus-inner {
     cursor: pointer;
     border: 2px solid #677498;
 }
+
+#loginpage p.error {
+    color: #9e0b0f;
+    font-weight: bold;
+}

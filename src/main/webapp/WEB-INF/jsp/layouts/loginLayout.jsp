@@ -13,6 +13,13 @@
     <body>
 
         <div id="loginpage">
+
+            <div class="infobox1">
+                <div class="infobox2">
+                    <p class="error">{Error message placeholder}</p>
+                </div>
+            </div>
+
             <div class="infobox1">
                 <div class="infobox2">
                     <h2><fmt:message key="prompt.title"/></h2>
