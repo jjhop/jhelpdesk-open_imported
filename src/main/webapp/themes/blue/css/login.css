@@ -3,8 +3,33 @@ body { background: #f3f3f3;}
 #loginpage div.infobox1 {background: #D0DBFB url(../i/boxTop440.jpg) no-repeat 0 0;}
 #loginpage div.infobox2 {background: transparent url(../i/boxBottom440.jpg) no-repeat 0 100%;}
 #loginpage form {margin: 0;}
-#loginpage table {width: 100%;margin: 0;}
-#loginpage td {font-size: 11px;background: #D0DBFB;}
-#loginpage td.labels {text-align: left;width: 10%;}
-#loginpage td.inputs {text-align: left;width: 40%;}
+#loginpage table {width: 300px; margin: 0 auto 0;}
+#loginpage td {font-size: 14px;background: #D0DBFB; padding: 5px 0 10px 0; }
+#loginpage td label { display: block; padding: 5px 0; font-weight: bold; }
+#loginpage td.inputs {text-align: left;}
 #loginpage td.images {background: transparent url(../i/icons/64/gnome-xterm.png) no-repeat 50%;}
+
+#loginpage td input {
+    font-size: 14px;
+    padding: 6px 3px 8px 3px;
+    border: 3px solid #677498;
+    width: 300px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#loginpage td.right {
+    text-align: right;
+}
+
+#loginpage td input.btn {
+    width: 100px;
+    padding: 2px 3px;
+    color: #fff;
+    background: url("../i/buttonBgNavy.jpg") 0 0 no-repeat;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    border: 2px solid #677498;
+}

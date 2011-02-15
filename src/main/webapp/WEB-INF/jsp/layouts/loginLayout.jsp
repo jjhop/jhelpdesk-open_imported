@@ -21,27 +21,26 @@
             <div class="infobox1">
                 <div class="infobox2">
                     <form name="loginForm" action="<c:url value="/login.html"/>" method="post">
-                        <table cellspacing="0">
+                        <table id="loginForm" cellspacing="0">
                             <tr>
-                                <td class="labels"><b><fmt:message key="prompt.login"/></b></td>
                                 <td class="inputs">
+                                    <label><fmt:message key="prompt.login"/></label>
                                     <spring:bind path="user.login">
                                         <input type="text" name="<c:out value="${status.expression}"/>" value="" size="23"/>
                                     </spring:bind>
                                 </td>
-                                <td class="images" rowspan="3">&nbsp;</td>
+                                <!-- <td class="images" rowspan="3">&nbsp;</td>-->
                             </tr>
                             <tr>
-                                <td class="left"><b><fmt:message key="prompt.passw"/></b></td>
                                 <td>
+                                    <label><fmt:message key="prompt.passw"/></label>
                                     <spring:bind path="user.password">
                                         <input type="password" name="<c:out value="${status.expression}"/>" size="23"/>
                                     </spring:bind>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="left">&nbsp;</td>
-                                <td><input type="submit" value="<fmt:message key="prompt.logon"/>"/></td>
+                                <td class="right"><input type="submit" class="btn" value="<fmt:message key="prompt.logon"/>"/></td>
                             </tr>
                         </table>
                     </form>
