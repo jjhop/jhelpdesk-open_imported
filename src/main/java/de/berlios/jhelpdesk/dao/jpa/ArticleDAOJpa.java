@@ -34,6 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
+import de.berlios.jhelpdesk.model.ArticleCategory;
 
 /**
  *
@@ -55,7 +56,7 @@ public class ArticleDAOJpa implements ArticleDAO {
     @Transactional(readOnly = false)
     public void delete(Article article) {
         try {
-            this.jpaTemplate.remove(article);
+            this.delete(article.getArticleId());
         } catch (Exception ex) {
             log.error("Nie można usunąć artykułu o identyfikatorze [" + article.getArticleId() + "]", ex);
         }
@@ -65,6 +66,12 @@ public class ArticleDAOJpa implements ArticleDAO {
     public void delete(Long articleId) {
         try {
             Article toDelete = this.jpaTemplate.find(Article.class, articleId);
+            ArticleCategory category = 
+                    this.jpaTemplate.find(ArticleCategory.class,
+                                          toDelete.getCategory().getArticleCategoryId());
+            category.setArticlesCount(category.getArticlesCount() - 1);
+
+            this.jpaTemplate.merge(category);
             this.jpaTemplate.remove(toDelete);
         } catch (Exception ex) {
             log.error("Nie można usunąć artykułu o identyfikatorze [" + articleId + "]", ex);
@@ -107,6 +114,10 @@ public class ArticleDAOJpa implements ArticleDAO {
     @Transactional(readOnly = false)
     public void saveOrUpdate(Article article) {
         if (article.getArticleId() == null) {
+            ArticleCategory category = article.getCategory();
+            int numOfArticlesInCategory = category.getArticlesCount();
+            category.setArticlesCount(numOfArticlesInCategory + 1);
+            this.jpaTemplate.merge(category);
             this.jpaTemplate.persist(article);
         } else {
             this.jpaTemplate.merge(article);
