@@ -12,7 +12,7 @@ input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-se
 .btn {
     min-width: auto;
     padding: 2px 15px 5px 15px;
-    background: transparent url(../i/buttonBgNavy.png) no-repeat 50% 75%;
+    background: url("../i/buttonBgNavy.png") -10px -10px no-repeat;
     color: #FFFFFF;
     border: 2px solid #677498;
     -moz-border-radius: 7px;
@@ -21,6 +21,11 @@ input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-se
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.btn:hover {
+    background: url("../i/buttonBgNavy.png") -260px -2px no-repeat;
+    border: 2px solid #32415d;
 }
 * html .btn {width: auto;}
 a.btn {display: block;padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
