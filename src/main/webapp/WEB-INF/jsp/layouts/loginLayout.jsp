@@ -11,14 +11,13 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="${loginCss}"/>" />
     </head>
     <body>
-
         <div id="loginpage">
             <c:if test="${badLogin}">
-            <div class="infobox1">
-                <div class="infobox2">
-                    <p class="error"><fmt:message key="prompt.error"/></p>
+                <div class="infobox1">
+                    <div class="infobox2">
+                        <p class="error"><fmt:message key="prompt.error"/></p>
+                    </div>
                 </div>
-            </div>
             </c:if>
             <div class="infobox1">
                 <div class="infobox2">
@@ -36,7 +35,6 @@
                                         <input type="text" name="<c:out value="${status.expression}"/>" value="" size="23"/>
                                     </spring:bind>
                                 </td>
-                                <!-- <td class="images" rowspan="3">&nbsp;</td>-->
                             </tr>
                             <tr>
                                 <td>
@@ -54,5 +52,6 @@
                 </div>
             </div>
         </div>
+        <tiles:insertDefinition name="javascripts" flush="true"/>
     </body>
 </html>
