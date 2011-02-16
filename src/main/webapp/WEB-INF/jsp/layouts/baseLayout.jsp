@@ -6,15 +6,7 @@
     <head>
         <title><tiles:getAsString name="title"/></title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-        <script type="text/javascript" src="<c:url value="/js/tiny_mce/tiny_mce.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/tiny_init.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/calendar.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/lang/calendar-en.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/calendar-setup.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/script.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/tabview.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/borders.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/hint.js"/>"></script>
+        <tiles:insertDefinition name="javascripts" flush="true"/>
         <spring:theme code="base.css" var="baseCss"/>
         <spring:theme code="calendar.css" var="calendarCss"/>
         <spring:theme code="nav.css" var="navCss"/>
@@ -32,6 +24,5 @@
             <div id="pagefooter"><tiles:insertAttribute name="footer" /></div>
         </div>
         <div id="filterbox"><tiles:insertAttribute name="filterForm" ignore="true"/></div>
-        <tiles:insertDefinition name="javascripts" flush="true"/>
     </body>
 </html>

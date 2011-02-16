@@ -124,7 +124,6 @@ public class ArticleCategory implements Serializable {
     /**
      * @return the articlesCount
      */
-    //todo: trochę to bez sensu, że się articlesCount nie zgadza z articles.size()
     public int getArticlesCount() {
         return articlesCount;
     }

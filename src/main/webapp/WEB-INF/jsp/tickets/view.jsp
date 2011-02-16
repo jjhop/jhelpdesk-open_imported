@@ -169,7 +169,7 @@
                     </script>
                 </td>
                 <td class="leftcells">
-                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
+                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="<c:url value="/avatars/jjhop.jpg"/>" alt="avatar" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">

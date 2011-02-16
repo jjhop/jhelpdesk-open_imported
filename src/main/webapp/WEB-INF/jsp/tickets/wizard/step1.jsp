@@ -38,10 +38,7 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <input class="textinput" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
-                                                           <c:if test="${not empty status.errorMessage}">
-                                                               class="hintanchor" onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                           </c:if>
-                                                           />
+                                                           <c:if test="${not empty status.errorMessage}"> class="hintanchor"</c:if> />
                                                     <input type="image" name="_checkLogin" alt="Znajdź" value="true" src="<c:url value="/themes/blue/i/find.gif"/>" style="border: 0" align="top" />
                                                 </c:otherwise>
                                             </c:choose>

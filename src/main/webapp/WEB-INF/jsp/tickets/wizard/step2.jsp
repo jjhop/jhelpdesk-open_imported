@@ -31,8 +31,7 @@
                                 <tr><td colspan="2">Przyczyna zgłoszenia (max. 255 znaków):</td></tr>
                                 <tr>
                                     <td colspan="2" id="reasonarea">
-                                        <form:textarea id="treasonarea" cssClass="textinput" rows="5" path="subject"
-                                                       onfocus="borderFocus(this.id)" onblur="borderBlur(this.id)"/>
+                                        <form:textarea id="treasonarea" cssClass="textinput" rows="5" path="subject"/>
                                         <form:errors path="subject" cssStyle="color: red"/>
                                     </td>
                                 </tr>
