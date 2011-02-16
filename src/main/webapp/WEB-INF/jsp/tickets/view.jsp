@@ -100,33 +100,33 @@
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
                                 <div class="Tabs">
-                                    <a><span>Lista komentarzy</span></a>
-                                    <a><span>Historia zgłoszenia</span></a>
+                                    <a href="#first" id="tab_first" class="tab"><span>Lista komentarzy</span></a>
+                                    <a href="#second" id="tab_second" class="tab"><span>Historia zgłoszenia</span></a>
                                 </div>
                                 <div class="contenttop"></div>
                                 <div class="Pages">
-                                    <div class="Page">
+                                    <div id="panel_first" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
                                             <tr>
                                                 <td>
                                                     <c:if test="${not empty ticket.comments}">
-                                                    <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
-                                                        <tr>
-                                                            <th>Autor</th>
-                                                            <th>Data</th>
-                                                            <th class="lastcol">Treść</th>
-                                                        </tr>
-                                                        <c:forEach var="comment" items="${ticket.comments}" varStatus="status">
-                                                        <tr>
-                                                            <td class="tit"><c:out value="${comment.commentAuthor}"/></td>
-                                                            <td><fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                                            <td class="bod"><c:out value="${comment.commentText}" escapeXml="false"/></td>
-                                                        </tr>
-                                                        </c:forEach>
-                                                    </table>
+                                                        <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
+                                                            <tr>
+                                                                <th>Autor</th>
+                                                                <th>Data</th>
+                                                                <th class="lastcol">Treść</th>
+                                                            </tr>
+                                                            <c:forEach var="comment" items="${ticket.comments}" varStatus="status">
+                                                                <tr>
+                                                                    <td class="tit"><c:out value="${comment.commentAuthor}"/></td>
+                                                                    <td><fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                                                    <td class="bod"><c:out value="${comment.commentText}" escapeXml="false"/></td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </table>
                                                     </c:if>
-                                                    <form action="<c:url value="/ticketDetails.html?ticketId=${param.ticketId}"/>" method="POST">
-                                                        <textarea id="addComm" name="addComm" rows="3" cols="40" class="mceEditor addcomment" style="height: 120px;"></textarea>
+                                                    <form action="<c:url value="/ticketDetails.html?ticketId=${param.ticketId}"/>" method="post">
+                                                        <textarea id="addComm" name="addComm" rows="3" cols="40" class="addcomment" style="height: 120px;"></textarea>
                                                         <br/>
                                                         <input type="checkbox" name="notForPlainUser" value="true"/> - tylko dla pracowników helpdesku
                                                         <br/><br/>
@@ -136,7 +136,7 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="Page">
+                                    <div id="panel_second" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
                                             <tr>
                                                 <td>
@@ -165,7 +165,28 @@
                         </div>
                     </div>
                     <script type="text/javascript">
-                        tabview_initialize('currentWeekTabView');
+                        // tabview_initialize('_currentWeekTabView');
+                    </script>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        Event.observe(window, 'load', loadTabs, false);
+                        function loadTabs() {
+                            var tabs = new tabset('currentWeekTabView', {
+                                classNames: {
+                                    tab:        'tab',    // class name used to identify the tabs
+                                    panel:      'Page',   // class name used to identify the tab content
+                                    tabActive:  'Active'  // class name added to the active tab
+                                },
+                                ids: {
+                                    tab:        'tab_',   // what to strip off the tab id to get the tab name
+                                    panel:      'panel_'  // what to strip off the tab content id to get the tab name
+                                },
+                                onEvent:        'click',    // perhaps you want to activate on mouseover? not recommended
+                                effects:        true        // set this to false if you do not want to include effects.js
+                            }); // name of div to crawl for tabs and panels
+                            tabs.autoActivate($('tab_first')); // name of tab to auto-select if none exists in the url
+                        }
+                        //]]>
                     </script>
                 </td>
                 <td class="leftcells">
