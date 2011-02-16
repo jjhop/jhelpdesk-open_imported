@@ -12,7 +12,7 @@ input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-se
 .btn {
     min-width: auto;
     padding: 2px 15px 5px 15px;
-    background: transparent url(../i/buttonBgNavy.png) no-repeat 50% 0;
+    background: transparent url(../i/buttonBgNavy.png) no-repeat 50% 75%;
     color: #FFFFFF;
     border: 2px solid #677498;
     -moz-border-radius: 7px;

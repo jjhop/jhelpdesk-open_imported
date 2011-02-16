@@ -31,7 +31,7 @@ input::-moz-focus-inner {
     width: auto;
     padding: 2px 30px 4px 30px;
     color: #fff;
-    background: url("../i/buttonBgNavy.png") 0 0 no-repeat;
+    background: url("../i/buttonBgNavy.png") 50% 75% no-repeat;
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
