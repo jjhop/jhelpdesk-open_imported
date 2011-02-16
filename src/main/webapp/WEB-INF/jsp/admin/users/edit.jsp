@@ -18,11 +18,11 @@
                             </c:if>
                             <table cellspacing="0" class="standardtable">
                                 <spring:hasBindErrors name="user">
-                                <tr>
-                                    <td colspan="2" style="color: red" class="lastcol">
-                                        <form:errors path="*" />
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="2" style="color: red" class="lastcol">
+                                            <form:errors path="*" />
+                                        </td>
+                                    </tr>
                                 </spring:hasBindErrors>
                                 <tr>
                                     <td>Imię</td>
@@ -61,6 +61,17 @@
                                 <tr>
                                     <td><label for="active1">Aktywny</label></td>
                                     <td class="lastcol"><form:checkbox id="active1" path="active"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="avatar">Avatar</label></td>
+                                    <td class="lastcol">
+                                        <input type="file"/>
+                                        <ul>
+                                            <li>96x96px, lub wytniemy ze środka obrazka</li>
+                                            <li>jeśli nie dodasz awataru, spróbujemy skorzystać z Gravatara</li>
+                                            <li>możesz także <a>usunąć</a> awatar</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </table>
                             <br />

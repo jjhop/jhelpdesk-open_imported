@@ -31,7 +31,7 @@ import de.berlios.jhelpdesk.model.TicketStatus;
  * @author jjhop
  */
 @Controller
-public class DesktopViewController  {
+public class DesktopViewController {
 
     /**
      * Stała określająca liczbę wyświetlanych na biurku zdarzeń.
@@ -80,7 +80,7 @@ public class DesktopViewController  {
         fillLastEvent(map);
         fillLastArticles(map);
         fillLastAnnouncemenets(map);
-        return "desktop/main";
+        return "/desktop/main";
     }
 
     @RequestMapping("/desktop/lastTickets.html")

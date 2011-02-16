@@ -32,5 +32,6 @@
             <div id="pagefooter"><tiles:insertAttribute name="footer" /></div>
         </div>
         <div id="filterbox"><tiles:insertAttribute name="filterForm" ignore="true"/></div>
+        <tiles:insertDefinition name="javascripts" flush="true"/>
     </body>
 </html>

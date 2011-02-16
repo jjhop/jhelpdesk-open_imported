@@ -3,6 +3,9 @@
     "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
     "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
+
+    <definition name="javascripts" template="/WEB-INF/jsp/inc/javascripts.jsp"/>
+
     <definition name="baseLayout" template="/WEB-INF/jsp/layouts/baseLayout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="displayFilterLink" value="none"/>
@@ -14,10 +17,16 @@
         <put-attribute name="title" value="Logowanie do systemu"/>
     </definition>
 
-    <definition name="desktop/main" extends="baseLayout">
+    <definition name="/desktop/main" extends="baseLayout">
         <put-attribute name="title" value="Biurko"/>
         <put-attribute name="content" value="/WEB-INF/jsp/desktop/main.jsp"/>
     </definition>
+
+    <definition name="/desktop/lastEvents" template="/WEB-INF/jsp/desktop/lastEvents.jsp"/>
+    <definition name="/desktop/lastTickets" template="/WEB-INF/jsp/desktop/lastTickets.jsp"/>
+    <definition name="/desktop/lastArticles" template="/WEB-INF/jsp/desktop/lastArticles.jsp"/>
+    <definition name="/desktop/lastAnnouncements" template="/WEB-INF/jsp/desktop/lastAnnouncements.jsp"/>
+    
     
     <!-- Kreator zgłoszenia -->
     <definition name="ticketWizard/step1" extends="baseLayout">
