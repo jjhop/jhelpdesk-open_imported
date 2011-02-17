@@ -1,3 +1,10 @@
+// nowe funkcje
+
+function updateDiv(divId, sourceUrl) {
+    new Ajax.Updater(divId, sourceUrl);
+}
+
+// stare funkcje
 function clearForm(f) {
     for (var i = 0; i < f.notifiers.length; i++) {
         f.notifiers.options[i].selected = false;

@@ -16,8 +16,16 @@
     <div id="desktoppanels">
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">
-                <td class="leftcells lastEvents"><div id="pagecontentsubheader"><h3>Ostatnie zdarzenia <a href="/tutaj/moze/byc/url/przekazany/do/ajaxa"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3></div></td>
-                <td class="rightcells lastTickets"><div id="pagecontentsubheader"><h3>Ostatnie nieprzypisane zgłoszenia <a href="/tutaj/moze/byc/url/przekazany/do/ajaxa"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3></div></td>
+                <td class="leftcells lastEvents">
+                    <div id="pagecontentsubheader">
+                        <h3>Ostatnie zdarzenia <a href="javascript:updateDiv('lastEvents', '<c:url value="/desktop/lastEvents.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                    </div>
+                </td>
+                <td class="rightcells lastTickets">
+                    <div id="pagecontentsubheader">
+                        <h3>Ostatnie nieprzypisane zgłoszenia <a href="javascript:updateDiv('lastTickets', '<c:url value="/desktop/lastTickets.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                    </div>
+                </td>
             </tr>
             <tr class="desktoppanelstabledata">
                 <td class="leftcells lastEvents">
@@ -35,10 +43,15 @@
             </tr>
             <tr class="desktoppanelstableheader">
                 <td class="leftcells lastArticles">
-                    <div id="pagecontentsubheader"><h3>Ostatnie artykuły <a href="/tutaj/moze/byc/url/przekazany/do/ajaxa"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3></div>
+                    <div id="pagecontentsubheader">
+                        <h3>Ostatnie artykuły <a href="javascript:updateDiv('lastArticles', '<c:url value="/desktop/lastArticles.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                    </div>
                 </td>
                 <td class="rightcells lastInfo">
-                    <div id="pagecontentsubheader"><h3>Ostatnie informacje <a href="/tutaj/moze/byc/url/przekazany/do/ajaxa"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3></div>
+                    <div id="pagecontentsubheader">
+                        <h3>Ostatnie informacje <a href="javascript:updateDiv('lastAnnouncements', '<c:url value="/desktop/lastAnnouncements.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a>
+                        </h3>
+                    </div>
                 </td>
             </tr>
             <tr class="desktoppanelstabledata">
