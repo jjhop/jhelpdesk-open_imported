@@ -116,7 +116,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     width: 16px;
     height: 16px;
     padding: 1px 3px;
-    border: 2px solid #cedcfc;
+    border: 1px solid #cedcfc;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -124,7 +124,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 }
 
 #pagecontentsubheader h3 .refresh:hover {
-    border: 2px solid #614261;
+    border: 1px solid #614261;
 }
 
 #pagecontentsubheader h3 .refresh img {
