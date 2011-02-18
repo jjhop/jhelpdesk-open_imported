@@ -1,7 +1,7 @@
 // nowe funkcje
 
 function updateDiv(divId, sourceUrl) {
-    new Ajax.Updater(divId, sourceUrl);
+    new Ajax.Updater(divId, sourceUrl, { method: 'get' });
 }
 
 // stare funkcje
