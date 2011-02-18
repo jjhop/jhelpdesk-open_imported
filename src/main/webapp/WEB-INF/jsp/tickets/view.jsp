@@ -124,6 +124,22 @@
                                                                 </tr>
                                                             </c:forEach>
                                                         </table>
+                                                        
+                                                        <ul class="panelPager">
+                                                            <li>
+                                                                <a href="#">&laquo; poprzednia</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">1</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">2</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">następna &raquo;</a>
+                                                            </li>
+                                                        </ul>
+
                                                     </c:if>
                                                     <form action="<c:url value="/ticketDetails.html?ticketId=${param.ticketId}"/>" method="post">
                                                         <textarea id="addComm" name="addComm" rows="3" cols="40" class="addcomment" style="height: 120px;"></textarea>
@@ -135,6 +151,7 @@
                                                 </td>
                                             </tr>
                                         </table>
+
                                     </div>
                                     <div id="panel_second" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
