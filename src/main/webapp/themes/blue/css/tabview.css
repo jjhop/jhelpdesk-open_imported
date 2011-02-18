@@ -57,7 +57,9 @@
 }
 
 .TabView .Pages {
-    overflow: hidden;
+/*    overflow: hidden; */
+    min-height: 280px;
+    height: auto !important;
     height: 280px;
     background: #D0DBFB;
 }

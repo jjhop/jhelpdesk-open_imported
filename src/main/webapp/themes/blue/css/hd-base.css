@@ -594,7 +594,7 @@ div.buttons input {margin: 0 5px;}
     margin-top: 0;
 }
 #ticketdetails .TabView .Pages {
-    height: 200px;
+/*    height: 200px;*/
 }
 * html #ticketdetails .rightcells .TabView .Page {
     width: 560px;
@@ -1028,3 +1028,21 @@ td.artnumber {
 .w250 {width: 250px;}
 .w255 {width: 255px;}
 .w275 {width: 275px;}
+
+.panelPager {
+    margin: 0 0 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.panelPager li {
+    display: inline;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.panelPager li a {
+    text-decoration: none;
+    padding: 0 1px;
+}
