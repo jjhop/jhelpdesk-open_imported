@@ -47,7 +47,9 @@ import javax.persistence.TemporalType;
 })
 public class Announcement implements Serializable {
 
-    /**
+    private static final long serialVersionUID = 7847414108796364163L;
+
+	/**
      *
      */
     @Id

@@ -66,7 +66,9 @@ import org.apache.commons.codec.digest.DigestUtils;
 })
 public class User implements Serializable {
 
-    private final static int DEFAULT_LIST_SIZE = 10;
+    private static final long serialVersionUID = -5603167935887639792L;
+
+	private final static int DEFAULT_LIST_SIZE = 10;
 
     /**
      * Identyfikator bazodanowy użytkownika.

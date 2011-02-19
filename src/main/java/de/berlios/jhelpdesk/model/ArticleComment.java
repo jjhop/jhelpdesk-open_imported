@@ -37,7 +37,9 @@ import javax.persistence.TemporalType;
 @Table(name = "article_comment")
 public class ArticleComment implements Serializable {
 
-    /**
+    private static final long serialVersionUID = 79900385694404381L;
+
+	/**
      *
      */
     @Id
