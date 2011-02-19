@@ -36,7 +36,9 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "ticket_category_sequence", sequenceName = "ticket_category_id_seq", allocationSize = 1)
 public class TicketCategory implements Serializable, Comparable<TicketCategory> {
 
-    /**
+    private static final long serialVersionUID = -8116103471359194082L;
+
+	/**
      * 
      */
     @Id

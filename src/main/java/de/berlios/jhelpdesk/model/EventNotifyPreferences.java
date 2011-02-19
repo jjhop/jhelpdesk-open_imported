@@ -32,7 +32,9 @@ import javax.persistence.Table;
                    sequenceName = "en_preferences_id_seq", allocationSize = 1)
 public class EventNotifyPreferences implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = 6401040955951423851L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="en_preferences_sequence")
     @Column(name = "en_preferences_id")
     private Long id;
