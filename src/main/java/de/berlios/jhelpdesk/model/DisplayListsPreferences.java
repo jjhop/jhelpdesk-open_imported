@@ -36,7 +36,9 @@ import javax.persistence.Table;
                    sequenceName = "dl_preferences_id_seq", allocationSize = 1)
 public class DisplayListsPreferences implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = -1450533908288568298L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dl_preferences_sequence")
     @Column(name = "dl_preferences_id")
     private Long id;

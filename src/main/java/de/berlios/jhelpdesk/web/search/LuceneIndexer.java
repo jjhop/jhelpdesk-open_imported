@@ -13,7 +13,7 @@
  *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.utils;
+package de.berlios.jhelpdesk.web.search;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class LuceneIndexer {
     
     private QueryParser parser = new QueryParser(Version.LUCENE_30, "body", new SimpleAnalyzer());
 
-    public List<Article> search(String searchQuery) {
+    public List<Article> search(String searchQuery) throws SearchException {
         try {
             Query query = parser.parse(searchQuery);
             Directory directory = FSDirectory.open(new File(indexDirectory));
@@ -77,8 +77,8 @@ public class LuceneIndexer {
             indexSearcher.close();
             return result;
         } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
-            throw new RuntimeException(ex);
+            log.error(ex.getMessage());
+            throw new SearchException(ex);
         }
     }
 

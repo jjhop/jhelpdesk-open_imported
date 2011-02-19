@@ -25,7 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
-import de.berlios.jhelpdesk.utils.LuceneIndexer;
+import de.berlios.jhelpdesk.web.search.LuceneIndexer;
+import de.berlios.jhelpdesk.web.search.SearchException;
 
 /**
  * Obsługa funkcji znajdujących się w menu "Pomoc" programu (w tym obsługa
@@ -88,7 +89,12 @@ public class HelpViewController {
 
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
     public String knowledgeBaseSearch(@RequestParam("query") String query, ModelMap map) {
-        map.addAttribute("result", luceneIndexer.search(query));
+        try {
+            map.addAttribute("result", luceneIndexer.search(query));
+        } catch(SearchException se) {
+            map.addAttribute("msg", "Niewłaściwy format łańucha wyszukiwania.");
+            return HELP_INDEX;
+        }
         return HELP_KB_SEARCH_RESULT;
     }
 

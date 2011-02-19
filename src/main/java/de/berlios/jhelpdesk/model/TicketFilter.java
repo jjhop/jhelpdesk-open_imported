@@ -54,7 +54,9 @@ import de.berlios.jhelpdesk.utils.StampUtils;
 })
 public class TicketFilter implements Serializable {
 
-    /**
+    private static final long serialVersionUID = -6052976877756819182L;
+
+	/**
      * Identyfikator filtra.
      */
     @Id

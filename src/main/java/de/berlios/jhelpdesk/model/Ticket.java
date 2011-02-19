@@ -71,7 +71,9 @@ import javax.persistence.Transient;
 })
 public class Ticket implements Serializable {
 
-    /**
+    private static final long serialVersionUID = 6816226302847553453L;
+
+	/**
      * Identyfikator zgłoszenia w bazie danych.
      */
     @Id
