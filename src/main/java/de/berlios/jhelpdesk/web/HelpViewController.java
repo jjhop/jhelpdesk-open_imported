@@ -93,7 +93,7 @@ public class HelpViewController {
             map.addAttribute("result", luceneIndexer.search(query));
         } catch(SearchException se) {
             map.addAttribute("msg", "Niewłaściwy format łańucha wyszukiwania.");
-            return HELP_INDEX;
+            return HELP_KB_INDEX;
         }
         return HELP_KB_SEARCH_RESULT;
     }
