@@ -24,7 +24,7 @@
                                     <td class="t1"><label for="f_date_start">Od:</label></td>
                                     <td class="t2"><form:input id="f_date_start" path="beginDate" readonly="1"/></td>
                                     <td>
-                                        <img alt="" src="<c:url value="/themes/hd/i/cal.gif"/>" id="f_trigger_c"
+                                        <img alt="" src="<c:url value="/themes/blue/i/cal.gif"/>" id="f_trigger_c"
                                              style="cursor: pointer; border: 0px;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
@@ -39,7 +39,7 @@
                                     <td class="t1"><label for="f_date_end">Do:</label></td>
                                     <td class="t2"><form:input id="f_date_end" path="endDate" readonly="1"/></td>
                                     <td>
-                                        <img alt="" src="<c:url value="/themes/hd/i/cal.gif"/>" id="f_trigger_d"
+                                        <img alt="" src="<c:url value="/themes/blueó/i/cal.gif"/>" id="f_trigger_d"
                                              style="cursor: pointer; border: 0px;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
@@ -135,7 +135,8 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <input type="button" onClick="clearForm('filterForm');" value="Wyczyść wszystko"/> <!-- document.forms[0] -->
+                    <input type="reset" value="Przywróć"/>
+                    <input type="button" onclick="clearForm('filterForm');" value="Wyczyść wszystko"/>
                     <input type="submit" value="Zastosuj filtr"/>
                 </div>
             </div>
