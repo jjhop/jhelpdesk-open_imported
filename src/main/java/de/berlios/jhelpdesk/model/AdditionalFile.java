@@ -44,7 +44,9 @@ import org.apache.commons.io.FileUtils;
     sequenceName= "ticket_add_files_id_seq", allocationSize = 1)
 public class AdditionalFile implements Serializable {
 
-    /**
+    private static final long serialVersionUID = -8228381982146548515L;
+
+	/**
      * Identyfikator pliku
      */
     @Id

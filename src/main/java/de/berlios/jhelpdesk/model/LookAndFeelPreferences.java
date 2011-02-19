@@ -37,7 +37,9 @@ import javax.persistence.Table;
                    sequenceName = "laf_preferences_id_seq", allocationSize = 1)
 public class LookAndFeelPreferences implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = 7120658431650439152L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="laf_preferences_sequence")
     @Column(name = "laf_preferences_id")
     private Long id;

@@ -38,7 +38,9 @@ import javax.persistence.TemporalType;
 @SequenceGenerator(name = "ticket_comment_sequence", sequenceName = "ticket_comment_id_seq", allocationSize = 1)
 public class TicketComment implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = -29584625086517989L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_comment_sequence")
     @Column(name = "comment_id")
     private Long ticketCommentId;

@@ -52,7 +52,9 @@ import javax.persistence.TemporalType;
 })
 public class Article implements Serializable {
 
-    /**
+    private static final long serialVersionUID = 6398694944488620526L;
+
+	/**
      *
      */
     @Id

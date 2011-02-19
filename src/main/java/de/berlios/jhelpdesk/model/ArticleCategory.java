@@ -43,7 +43,9 @@ import javax.persistence.Table;
 })
 public class ArticleCategory implements Serializable {
 
-    /**
+    private static final long serialVersionUID = 7805731164520429416L;
+
+	/**
      *
      */
     @Id
