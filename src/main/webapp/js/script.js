@@ -16,7 +16,8 @@ function updateDiv(triggerId, sourceUrl) {
 }
 
 // stare funkcje
-function clearForm(f) {
+function clearForm(formId) {
+    var f = $(formId);
     for (var i = 0; i < f.notifiers.length; i++) {
         f.notifiers.options[i].selected = false;
     }
