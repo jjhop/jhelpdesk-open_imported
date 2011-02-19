@@ -9,6 +9,9 @@ a {color: #4C609E;}
 a:hover {color: #344579;}
 img {border: none;behavior: url(iepngfix.htc);}
 input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-serif;}
+.txtKB {
+width: 345px;
+}
 .btn {
     min-width: auto;
     padding: 2px 15px 5px 15px;
@@ -177,6 +180,9 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 }
 .standardtable {
     width: 100%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     border: 3px solid #677498;
 }
 .standardtable th {
@@ -207,9 +213,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 
 #desktop table {
     width: 100%;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+
 }
 #pagecontentheader td {
     padding: 0;
@@ -556,7 +560,7 @@ div.buttons input {margin: 0 5px;}
     background: #F3F3F3 url(../i/hd-contentbottomdesktopr.jpg) no-repeat 0 0;
     font-size: 1%;
 }
-#ticketdetails .leftcells {
+#ticketdetails .leftcells, .colNarrowRight {
     padding-bottom: 30px;
     border-left: 20px solid #F3F3F3;
     border-right: none;
@@ -918,10 +922,43 @@ td.artnumber {
     margin: 5px 0 0;
     padding: 0 24px 3px 12px;
 }
+
 #knowledgebase li {
     margin-bottom: 3px;
 }
 
+#knowledgebase ul.kbList {
+    margin: 0;
+    padding: 10px 10px 5px 10px;
+    list-style: none;
+    background: #F3F3F3;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 3px solid #677498;
+}
+
+#knowledgebase ul.kbList li {
+    margin-bottom: 10px;
+    min-height: 15px;
+}
+
+#knowledgebase ul.kbList li a {
+    text-decoration: none;
+}
+
+#knowledgebase ul.kbList li .catCount {
+    float: left;
+}
+
+#knowledgebase ul.kbList li .catName {
+    
+}
+
+#knowledgebase ul.kbList li .catCount {
+    float: right;
+    color: #666;
+}
 
 #ticketsIterator td a {
 }

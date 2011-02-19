@@ -4,7 +4,7 @@
 
 <div id="knowledgebase" class="management">
     <div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
-    <table cellspacing="0">
+    <table  cellspacing="0">
         <tr>
             <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>a co tutaj?</h3></div>
@@ -18,7 +18,7 @@
                                 </tr>
                                 <tr>
                                     <td>Szukana fraza</td>
-                                    <td colspan="2"><input type="text" name="query" size="70" /></td>
+                                    <td colspan="2"><input type="text" name="query" class="txtKB" size="70" /></td>
                                     <td class="lastcol"><input type="submit" value="Szukaj" class="btn" /></td>
                                 </tr>
                             </table>
@@ -51,6 +51,28 @@
                     </div>
                     <div class="contentbottom"></div>
                 </div>
+            </td>
+            <td class="leftcells colNarrowRight">
+
+                <div id="pagecontentsubheader"><h3>Kategorie</h3></div>
+
+                <div class="contenttop"></div>
+                <div class="contentmiddle">
+
+                    <ul class="kbList">
+                        <li><a href="#" class="catName">Phasellus quis</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Sed nec diam eu</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Morbi euismod</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Vestibulum</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Lorem ipsum</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Praesent id metus</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Quisque eget</a><span class="catCount">(1)</span></li>
+                        <li><a href="#" class="catName">Vivamus id</a><span class="catCount">(1)</span></li>
+                    </ul>
+
+                </div>
+                <div class="contentbottom"></div>
+
             </td>
         </tr>
     </table>
