@@ -957,7 +957,15 @@ td.artnumber {
 
 #knowledgebase ul.kbList li .catCount {
     float: right;
+}
+
+#knowledgebase ul.kbList li .catCount, #knowledgebase ul.kbList li .eventInfo {
     color: #666;
+    font-size: 11px;
+}
+
+#knowledgebase ul.kbList li .eventInfo {
+    display: block;
 }
 
 #ticketsIterator td a {
