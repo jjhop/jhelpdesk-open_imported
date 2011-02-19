@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form:form modelAttribute="filter" action="list.html" method="post">
+<form:form modelAttribute="filter" action="list.html" method="post" id="filterForm">
     <div id="boxShadow" class="shadow">
         <div id="box">
             <div class="links" style="padding-top: 2px">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <input type="button" onClick="clearForm(document.forms[0])" value="Wyczyść wszystko"/>
+                    <input type="button" onClick="clearForm('filterForm');" value="Wyczyść wszystko"/> <!-- document.forms[0] -->
                     <input type="submit" value="Zastosuj filtr"/>
                 </div>
             </div>
