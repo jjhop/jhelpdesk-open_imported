@@ -1,7 +1,19 @@
 // nowe funkcje
 
-function updateDiv(divId, sourceUrl) {
-    new Ajax.Updater(divId, sourceUrl, { method: 'get' });
+function updateDiv(triggerId, sourceUrl) {
+    var targetDiv  = triggerId.substr(0, triggerId.length-3);
+    var imgElement = $(triggerId).firstDescendant();
+    new Ajax.Updater(targetDiv, sourceUrl, {
+        method: 'get',
+        onCreate: function() {
+            imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh_loader.gif');
+        },
+        onComplete: function() {
+            setTimeout(function () {
+                imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh.png');
+            }, 1000);
+        }
+    });
 }
 
 // stare funkcje
