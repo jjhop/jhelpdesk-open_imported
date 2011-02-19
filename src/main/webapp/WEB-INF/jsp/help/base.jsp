@@ -2,6 +2,14 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<c:if test="${msg != null}">
+    <!--
+        to jest komunikat o błędzie podczas wyszukiwania
+        możemy go scriptaculusem chować po pare sekundach
+    -->
+    <font color="red">${msg}</font>
+</c:if>
+    
 <div id="knowledgebase" class="management">
     <div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
     <table  cellspacing="0">
