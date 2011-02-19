@@ -36,7 +36,7 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleCategory;
 import de.berlios.jhelpdesk.model.User;
-import de.berlios.jhelpdesk.utils.LuceneIndexer;
+import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.tools.ArticleCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.ArticleValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
