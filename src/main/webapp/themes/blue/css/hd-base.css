@@ -203,10 +203,19 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     background: #F3F3F3;
     border-right: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
-    font-size: 11px;
 }
 .standardtable .lastcol {
     border-right: 0;
+}
+
+.contentmiddle p.msg {
+    padding: 5px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 3px solid #B26191;
+    background: #af086a;
+    color: #fff;
 }
 
 /* BIURKO */
