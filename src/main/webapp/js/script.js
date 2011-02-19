@@ -17,24 +17,15 @@ function updateDiv(triggerId, sourceUrl) {
 
 // stare funkcje
 function clearForm(formId) {
-    var f = $(formId);
-    for (var i = 0; i < f.notifiers.length; i++) {
-        f.notifiers.options[i].selected = false;
+    var form = $(formId);
+    $A(form.select('select')).each(clearSelection);
+    form.getInputs('text').invoke('clear');
+}
+
+function clearSelection(select) {
+    for (i = 0; i < select.length; i++) {
+        select.options[i].selected = false;
     }
-    for (i = 0; i < f.saviours.length; i++) {
-        f.saviours.options[i].selected = false;
-    }
-    for (i = 0; i < f.ticketPriorities.length; i++) {
-        f.ticketPriorities.options[i].selected = false;
-    }
-    for (i = 0; i < f.ticketStatuses.length; i++) {
-        f.ticketStatuses.options[i].selected = false;
-    }
-    for (i = 0; i < f.ticketCategories.length; i++) {
-        f.ticketCategories.options[i].selected = false;
-    }
-    f.beginDate.value = "";
-    f.endDate.value = "";
 }
 
 function toggleForm() {
