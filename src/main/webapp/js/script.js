@@ -1,5 +1,4 @@
 // nowe funkcje
-
 function updateDiv(triggerId, sourceUrl) {
     var targetDiv  = triggerId.substr(0, triggerId.length-3);
     var imgElement = $(triggerId).firstDescendant();
@@ -37,69 +36,12 @@ function clearForm(f) {
     f.endDate.value = "";
 }
 
-function getXYForDesc( eventHD ) {
-    var wspolrzedne = {
-        left: 15,
-        top: 10
-    };
-    if(eventHD.pageX) {
-        wspolrzedne.left += eventHD.pageX;
-        wspolrzedne.top  += eventHD.pageY;
-    } else if( eventHD.clientX) {
-        wspolrzedne.left += eventHD.clientX + document.body.scrollLeft - document.body.clientLeft;
-        wspolrzedne.top  += eventHD.clientY + document.body.scrollTop  - document.body.clientTop;
-        if(document.body.parentElement && document.body.parentElement.clientLeft) {
-            var rodzicBody = document.body.parentElement;
-            wspolrzedne.left += rodzicBody.scrollLeft - rodzicBody.clientLeft;
-            wspolrzedne.top  += rodzicBody.scrollTop  - rodzicBody.clientTop;
-        }
-    }
-    return wspolrzedne;
-
+function toggleForm() {
+    $('filterbox').toggle();
+    $('filterbutton').blur();
 }
 
-function showDesc( eventHD, descId ) {
-    var wsp = getXYForDesc( eventHD );
-    document.getElementById( descId ).style.position = "absolute";
-    document.getElementById( descId ).style.top = wsp.top;
-    document.getElementById( descId ).style.left = wsp.left;
-    document.getElementById( descId ).style.display = "block";
-}
-function hideDesc( eventHD, hideId ) {
-    document.getElementById( hideId ).style.display = "none";
-}
-
-function showForm() {
-    var el = document.getElementById('filterbox');
-    var bt = document.getElementById('filterbutton');
-    if( el.style.display != 'block' ) {
-        el.style.display = 'block';
-    } else {
-        el.style.display = 'none';
-    }
-    bt.blur();
-}
-function hideForm() {
-    var el = document.getElementById('filterbox');
-    if( el.style.display != 'none' ) {
-        el.style.display = 'none';
-    } else {
-        el.style.display = 'block';
-    }
-    bt.blur();
-}
-
-function blank() {}
 function none() {}
-function show(id) {
-    var el = document.getElementById( id );
-    if( el.style.display != 'block' ) {
-        el.style.display = 'block';
-    } else {
-        el.style.display = 'none';
-    }
-}
-
 
 /***********************************************
  * Switch Content script II- © Dynamic Drive (www.dynamicdrive.com)
@@ -146,8 +88,9 @@ function expandcontent(curobj, cid) {
 function revivecontent() {
     selectedItem = getselectedItem();
     selectedComponents = selectedItem.split("|");
-    for (i = 0; i < selectedComponents.length - 1; i++)
+    for (i = 0; i < selectedComponents.length - 1; i++) {
         document.getElementById(selectedComponents[i]).style.display = "none";
+    }
 }
 
 function revivestatus(){
@@ -161,7 +104,7 @@ function revivestatus(){
     }
 }
 
-function get_cookie(Name) { 
+function get_cookie(Name) {
     var search = Name + "="
     var returnvalue = "";
     if (document.cookie.length > 0) {
@@ -177,22 +120,20 @@ function get_cookie(Name) {
 }
 
 function getselectedItem(){
-    if (get_cookie(window.location.pathname) != ""){
-        selectedItem=get_cookie(window.location.pathname)
-        return selectedItem
-    }
-    else
-        return ""
+    return (get_cookie(window.location.pathname) != "")
+        ? get_cookie(window.location.pathname)
+        : '';
 }
 
 function saveswitchstate(){
-    var inc=0, selectedItem=""
+    var inc=0, selectedItem="";
     while (ccollect[inc]){
-        if (ccollect[inc].style.display=="none")
-            selectedItem+=ccollect[inc].id+"|"
+        if (ccollect[inc].style.display == "none"){
+            selectedItem += ccollect[inc].id + "|";
+        }
         inc++
     }
-    if (get_cookie(window.location.pathname)!=selectedItem){ //only update cookie if current states differ from cookie's
+    if (get_cookie(window.location.pathname) != selectedItem){ //only update cookie if current states differ from cookie's
         var expireDate = new Date()
         expireDate.setDate(expireDate.getDate()+parseInt(memoryduration))
         document.cookie = window.location.pathname+"="+selectedItem+";path=/;expires=" + expireDate.toGMTString()

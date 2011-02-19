@@ -10,7 +10,7 @@
     <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
     <div id="pagecontentsubheader">
         <h3>Lista wszystkich (<c:out value="${filter.name}"/>)</h3>
-        <a id="filterbutton" class="btn" href="javascript:blank()" onclick="showForm();">Filtr</a>
+        <a id="filterbutton" class="btn" href="javascript:toggleForm();">Filtr</a>
     </div>
     <div id="content">
         <div class="contenttop"></div>

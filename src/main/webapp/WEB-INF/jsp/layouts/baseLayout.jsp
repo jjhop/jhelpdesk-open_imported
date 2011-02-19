@@ -23,6 +23,6 @@
             <div id="pagecontent"><tiles:insertAttribute name="content" /></div>
             <div id="pagefooter"><tiles:insertAttribute name="footer" /></div>
         </div>
-        <div id="filterbox"><tiles:insertAttribute name="filterForm" ignore="true"/></div>
+        <div id="filterbox" style="display:none;"><tiles:insertAttribute name="filterForm" ignore="true"/></div>
     </body>
 </html>
