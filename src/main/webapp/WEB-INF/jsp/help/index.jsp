@@ -1,6 +1,14 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
+<c:if test="${msg != null}">
+    <!--
+        to jest komunikat o błędzie podczas wyszukiwania
+        możemy go scriptaculusem chować po pare sekundach
+    -->
+    <font color="red">${msg}</font>
+</c:if>
+
 <div id="tableofcontent" class="management">
     <div id="pagecontentheader"><h2>Pomoc</h2></div>
     <table cellspacing="0">
