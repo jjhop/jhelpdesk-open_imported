@@ -18,12 +18,12 @@
             <tr class="desktoppanelstableheader">
                 <td class="leftcells lastEvents">
                     <div id="pagecontentsubheader">
-                        <h3>Ostatnie zdarzenia <a href="javascript:updateDiv('lastEvents', '<c:url value="/desktop/lastEvents.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                        <h3>Ostatnie zdarzenia <a id="lastEventsBtn" href="javascript:updateDiv('lastEventsBtn','<c:url value="/desktop/lastEvents.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
                     </div>
                 </td>
                 <td class="rightcells lastTickets">
                     <div id="pagecontentsubheader">
-                        <h3>Ostatnie nieprzypisane zgłoszenia <a href="javascript:updateDiv('lastTickets', '<c:url value="/desktop/lastTickets.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                        <h3>Ostatnie nieprzypisane zgłoszenia <a id="lastTicketsBtn" href="javascript:updateDiv('lastTicketsBtn', '<c:url value="/desktop/lastTickets.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
                     </div>
                 </td>
             </tr>
@@ -44,12 +44,12 @@
             <tr class="desktoppanelstableheader">
                 <td class="leftcells lastArticles">
                     <div id="pagecontentsubheader">
-                        <h3>Ostatnie artykuły <a href="javascript:updateDiv('lastArticles', '<c:url value="/desktop/lastArticles.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
+                        <h3>Ostatnie artykuły <a id="lastArticlesBtn" href="javascript:updateDiv('lastArticlesBtn', '<c:url value="/desktop/lastArticles.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a></h3>
                     </div>
                 </td>
                 <td class="rightcells lastInfo">
                     <div id="pagecontentsubheader">
-                        <h3>Ostatnie informacje <a href="javascript:updateDiv('lastAnnouncements', '<c:url value="/desktop/lastAnnouncements.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a>
+                        <h3>Ostatnie informacje <a id="lastAnnouncementsBtn" href="javascript:updateDiv('lastAnnouncementsBtn', '<c:url value="/desktop/lastAnnouncements.html"/>');"><img src="<c:url value="/themes/blue/i/btn_refresh.png"/>" class="refresh" alt="" /></a>
                         </h3>
                     </div>
                 </td>
