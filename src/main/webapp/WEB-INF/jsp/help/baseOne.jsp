@@ -48,7 +48,7 @@
                                             <form action="" method="post">
                                                 <input type="hidden" name="articleId" value="${article.articleId}">
                                                 <textarea rows="4" cols="40"></textarea><br/>
-                                                <input type="submit" value="Dodaj komentarz"/>
+                                                <input type="submit" class="btn" value="Dodaj komentarz"/>
                                             </form>
                                         </c:when>
                                         <c:otherwise>${message}</c:otherwise>
