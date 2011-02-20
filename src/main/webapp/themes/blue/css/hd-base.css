@@ -208,7 +208,10 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     border-right: 0;
 }
 
-.contentmiddle p.msg {
+.contentmiddle .msg {
+    position: relative;
+    height: 17px;
+    overflow: hidden;
     padding: 5px 10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -216,6 +219,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     border: 3px solid #B26191;
     background: #af086a;
     color: #fff;
+    
 }
 
 /* BIURKO */
