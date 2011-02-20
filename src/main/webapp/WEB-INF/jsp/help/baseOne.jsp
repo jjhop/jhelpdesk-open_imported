@@ -19,23 +19,13 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-
                         <table cellspacing="0" class="standardtable">
                             <tr>
                                 <td class="lastcol">
                                     <c:choose>
                                         <c:when test="${article != null}">
-
                                             ${article.lead}
                                             ${article.body}
-                                            <hr/>
-                                            <h3>Powiązane zgłoszenia</h3>
-                                            <ol>
-                                                <c:forEach items="${article.associatedTickets}" var="ticket">
-                                                    <li><a href="<c:url value="/ticketDetails.html?ticketId=${ticket.ticketId}"/>"><c:out
-                                                            value="${ticket.subject}"/></a></li>
-                                                </c:forEach>
-                                            </ol>
                                             <hr/>
                                             <h3>Komentarze</h3>
                                             <c:forEach items="${article.comments}" var="comment">
@@ -44,7 +34,6 @@
                                             </c:forEach>
                                             <hr/>
                                             <h4>Dodaj komentarz</h4>
-
                                             <form action="" method="post">
                                                 <input type="hidden" name="articleId" value="${article.articleId}">
                                                 <textarea rows="4" cols="40"></textarea><br/>
@@ -61,26 +50,20 @@
                 </div>
             </td>
             <td class="leftcells colNarrowRight">
-
                 <div id="pagecontentsubheader"><h3>Powiązane zdarzenia</h3></div>
-
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
-
                     <ul class="kbList">
-                        <li><a href="#">Proin quis tortor orci. Etiam at risus et justo dignissim congue.</a><span class="eventInfo">2011.01.09 / Lorem ipsum</span></li>
-                        <li><a href="#">Etiam at risus et justo dignissim congue.</a><span class="eventInfo">2011.01.09 / Lorem ipsum</span></li>
-                        <li><a href="#">Vestibulum morbi euismod</a><span class="eventInfo">2011.01.09 / Lorem ipsum</span></li>
-                        <li><a href="#">Lorem ipsum praesent id metus</a><span class="eventInfo">2011.01.09 / Lorem ipsum</span></li>
+                        <c:forEach items="${article.associatedTickets}" var="ticket">
+                            <li>
+                                <a href="<c:url value="/ticketDetails.html?ticketId=${ticket.ticketId}"/>"><c:out value="${ticket.subject}"/></a>
+                                <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
+                            </li>
+                        </c:forEach>
                     </ul>
-
                 </div>
                 <div class="contentbottom"></div>
-
             </td>
         </tr>
     </table>
 </div>
-
-
-
