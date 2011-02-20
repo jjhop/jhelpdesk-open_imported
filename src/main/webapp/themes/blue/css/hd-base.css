@@ -989,12 +989,20 @@ td.artnumber {
 .kbComments dt {
     font-weight: bold;
     margin: 0;
-    padding: 0 0 5px 0;
+    padding: 0 0 10px 0;
+}
+
+.kbComments dt .kbCommentsMeta {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: #666;
+    padding-bottom: 2px;
 }
 
 .kbComments dd {
     margin: 0;
-    padding: 0 0 10px 0;
+    padding: 0 0 20px 0;
 }
 
 #ticketsIterator td a {
@@ -1161,3 +1169,4 @@ ul.formContainer li label {
     font-weight: bold;
     padding: 5px 0;
 }
+
