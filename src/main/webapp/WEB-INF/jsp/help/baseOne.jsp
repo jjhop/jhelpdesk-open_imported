@@ -16,7 +16,7 @@
                         </c:choose>
                     </h3>
                 </div>
-                <div id="content">
+                <div class="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -47,7 +47,32 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
+
                 </div>
+
+                <div id="pagecontentsubheader">
+                    <h3>
+                        Komentarze
+                    </h3>
+                </div>
+
+                <div class="content">
+
+                    <div class="contenttop"></div>
+                    <div class="contentmiddle">
+                        
+                        <table cellspacing="0" class="standardtable">
+                            <tr>
+                                <td class="lastcol">
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="contentbottom"></div>
+
+                </div>
+
             </td>
             <td class="leftcells colNarrowRight">
                 <div id="pagecontentsubheader"><h3>Powiązane zdarzenia</h3></div>
@@ -60,6 +85,9 @@
                                 <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
                             </li>
                         </c:forEach>
+                            <li>
+                                Brak powiązanych zdarzeń.
+                            </li>
                     </ul>
                 </div>
                 <div class="contentbottom"></div>
