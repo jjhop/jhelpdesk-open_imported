@@ -10,7 +10,7 @@ a:hover {color: #344579;}
 img {border: none;behavior: url(iepngfix.htc);}
 input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-serif;}
 .txtKB {
-width: 345px;
+width: 340px;
 }
 .btn {
     min-width: auto;
@@ -979,6 +979,22 @@ td.artnumber {
 
 #knowledgebase ul.kbList li .eventInfo {
     display: block;
+}
+
+.kbComments {
+    margin: 0;
+    padding: 0;
+}
+
+.kbComments dt {
+    font-weight: bold;
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+.kbComments dd {
+    margin: 0;
+    padding: 0 0 10px 0;
 }
 
 #ticketsIterator td a {

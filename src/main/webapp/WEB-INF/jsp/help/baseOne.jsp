@@ -46,12 +46,6 @@
                 </div>
                 <div id="pagecontentsubheader">
                     <h3>Komentarze</h3>
-                    <dl>
-                    <c:forEach items="${article.comments}" var="comment">
-                        <dt><c:out value="${comment.title}"/></dt>
-                        <dd><c:out value="${comment.body}"/></dd>
-                    </c:forEach>
-                    </dl>
                 </div>
                 <div class="content">
                     <div class="contenttop"></div>
@@ -59,7 +53,18 @@
                         <table cellspacing="0" class="standardtable">
                             <tr>
                                 <td class="lastcol">
-                                    a to?
+                                    
+                                    <dl class="kbComments">
+                                    <c:forEach items="${article.comments}" var="comment">
+                                        <dt><c:out value="${comment.title}"/></dt>
+                                        <dd><c:out value="${comment.body}"/></dd>
+                                    </c:forEach>
+                                        <dt>lorem ipsum er dolor sit maet</dt>
+                                        <dd>Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis.</dd>
+                                        <dt>lorem ipsum er dolor sit maet</dt>
+                                        <dd>Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis.</dd>
+                                    </dl>
+
                                 </td>
                             </tr>
                         </table>
