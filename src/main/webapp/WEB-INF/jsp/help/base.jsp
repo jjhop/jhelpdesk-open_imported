@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-    
 <div id="knowledgebase" class="management">
     <div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
     <table  cellspacing="0">
@@ -24,15 +23,13 @@
                                 </tr>
                             </table>
                         </form>
-                        <br />
                         <c:if test="${msg != null}">
-                            <!--
-                                to jest komunikat o błędzie podczas wyszukiwania
-                                możemy go scriptaculusem chować po pare sekundach
-                            -->
-                            <p class="msg">${msg}</p>
+                            <p id="msg2Hide" class="msg">${msg}</p>
+                            <script type="text/javascript">
+                                hideMe('msg2Hide');
+                            </script>
                         </c:if>
-                        <br />
+                        <br/>
                         <table cellspacing="0" class="standardtable">
                             <tr>
                                 <th colspan="2" class="lastcol">Ostatnie artykuły</th>
@@ -62,26 +59,19 @@
                 </div>
             </td>
             <td class="leftcells colNarrowRight">
-
                 <div id="pagecontentsubheader"><h3>Kategorie</h3></div>
-
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
-
                     <ul class="kbList">
-                        <li><a href="#" class="catName">Phasellus quis</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Sed nec diam eu</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Morbi euismod</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Vestibulum</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Lorem ipsum</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Praesent id metus</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Quisque eget</a><span class="catCount">(1)</span></li>
-                        <li><a href="#" class="catName">Vivamus id</a><span class="catCount">(1)</span></li>
+                        <c:forEach items="${categories}" var="c">
+                            <li><a href="<c:url value="/help/base/category/${c.articleCategoryId}/show.html"/>"
+                                   class="catName"><c:out value="${c.categoryName}"/></a>
+                                <span class="catCount">(${fn:length(c.articles)})</span>
+                            </li>
+                        </c:forEach>
                     </ul>
-
                 </div>
                 <div class="contentbottom"></div>
-
             </td>
         </tr>
     </table>

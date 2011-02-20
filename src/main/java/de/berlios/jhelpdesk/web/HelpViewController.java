@@ -92,7 +92,9 @@ public class HelpViewController {
         try {
             map.addAttribute("result", luceneIndexer.search(query));
         } catch(SearchException se) {
-            map.addAttribute("msg", "Niewłaściwy format łańucha wyszukiwania.");
+            map.addAttribute("categories", articleCategoryDAO.getAllCategories());
+            map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
+            map.addAttribute("msg", "Niewłaściwy format łańucha wyszukiwania."); // TODO: i18n
             return HELP_KB_INDEX;
         }
         return HELP_KB_SEARCH_RESULT;
