@@ -47,12 +47,21 @@
                                     
                                     <dl class="kbComments">
                                     <c:forEach items="${article.comments}" var="comment">
-                                        <dt><c:out value="${comment.title}"/></dt>
+                                        <dt>
+                                            <span class="kbCommentsMeta">Autor: asdsadasdasd; Dodano: 2011.01.30</span>
+                                            <c:out value="${comment.title}"/>
+                                        </dt>
                                         <dd><c:out value="${comment.body}"/></dd>
                                     </c:forEach>
                                     </dl>
 
-                                    <hr />
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <table cellspacing="0" class="standardtable">
+                            <tr>
+                                <td class="lastcol">
                                     <h3>Dodaj komentarz</h3>
                                     <form action="<c:url value="/help/base/comment.html"/>" method="post">
                                         <input type="hidden" name="articleId" value="${article.articleId}">
@@ -71,7 +80,6 @@
 
                                         </ul>
                                     </form>
-
                                 </td>
                             </tr>
                         </table>
