@@ -18,6 +18,7 @@ package de.berlios.jhelpdesk.dao;
 import java.util.List;
 
 import de.berlios.jhelpdesk.model.Article;
+import de.berlios.jhelpdesk.model.ArticleComment;
 
 /**
  * Interfejs DAO dla obiektów Article. Nieco rozszerzony ponad standardowe
@@ -91,4 +92,6 @@ public interface ArticleDAO {
      * @see Article#getCreateDate()
      */
     List<Article> getLastArticles(int howMuch);
+
+    void saveArticleComment(ArticleComment comment) throws DAOException;
 }

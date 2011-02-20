@@ -29,9 +29,10 @@
                                             
                                             <hr/>
                                             <h4>Dodaj komentarz</h4>
-                                            <form action="" method="post">
+                                            <form action="<c:url value="/help/base/comment.html"/>" method="post">
                                                 <input type="hidden" name="articleId" value="${article.articleId}">
-                                                <textarea rows="4" cols="40"></textarea><br/>
+                                                <input type="text" name="title" size="50"/><br/>
+                                                <textarea rows="4" cols="40" name="comment"></textarea><br/>
                                                 <input type="submit" class="btn" value="Dodaj komentarz"/>
                                             </form>
                                         </c:when>

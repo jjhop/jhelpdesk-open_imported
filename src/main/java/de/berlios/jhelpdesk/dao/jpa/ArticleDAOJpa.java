@@ -33,7 +33,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.berlios.jhelpdesk.dao.ArticleDAO;
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.model.Article;
+import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.ArticleCategory;
 
 /**
@@ -121,6 +123,15 @@ public class ArticleDAOJpa implements ArticleDAO {
             this.jpaTemplate.persist(article);
         } else {
             this.jpaTemplate.merge(article);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void saveArticleComment(ArticleComment comment) throws DAOException {
+        try {
+            this.jpaTemplate.persist(comment);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 }

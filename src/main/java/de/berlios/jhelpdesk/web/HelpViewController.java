@@ -15,6 +15,9 @@
  */
 package de.berlios.jhelpdesk.web;
 
+import de.berlios.jhelpdesk.model.User;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,8 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
+import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
+import java.util.Date;
 
 /**
  * Obsługa funkcji znajdujących się w menu "Pomoc" programu (w tym obsługa
@@ -116,5 +121,20 @@ public class HelpViewController {
             map.addAttribute("message", "Nie znaleziono");
         }
         return HELP_KB_ARTICLE;
+    }
+
+    @RequestMapping(value = "/help/base/comment.html", method = RequestMethod.POST)
+    public String knowledgeBaseAddComment(@RequestParam("articleId") Long articleId,
+                                          @RequestParam("title") String title,
+                                          @RequestParam("comment") String body,
+                                          HttpSession session) throws Exception {
+        ArticleComment comment = new ArticleComment();
+        comment.setCreateDate(new Date());
+        comment.setArticle(articleDAO.getById(articleId));
+        comment.setTitle(title);
+        comment.setBody(body);
+        comment.setAuthorId((User) session.getAttribute("user"));
+        articleDAO.saveArticleComment(comment);
+        return "redirect:/help/base/showOne.html?id=" + articleId;
     }
 }
