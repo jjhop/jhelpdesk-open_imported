@@ -26,15 +26,6 @@
                                         <c:when test="${article != null}">
                                             ${article.lead}
                                             ${article.body}
-                                            
-                                            <hr/>
-                                            <h4>Dodaj komentarz</h4>
-                                            <form action="<c:url value="/help/base/comment.html"/>" method="post">
-                                                <input type="hidden" name="articleId" value="${article.articleId}">
-                                                <input type="text" name="title" size="50"/><br/>
-                                                <textarea rows="4" cols="40" name="comment"></textarea><br/>
-                                                <input type="submit" class="btn" value="Dodaj komentarz"/>
-                                            </form>
                                         </c:when>
                                         <c:otherwise>${message}</c:otherwise>
                                     </c:choose>
@@ -59,11 +50,27 @@
                                         <dt><c:out value="${comment.title}"/></dt>
                                         <dd><c:out value="${comment.body}"/></dd>
                                     </c:forEach>
-                                        <dt>lorem ipsum er dolor sit maet</dt>
-                                        <dd>Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis.</dd>
-                                        <dt>lorem ipsum er dolor sit maet</dt>
-                                        <dd>Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis.</dd>
                                     </dl>
+
+                                    <hr />
+                                    <h3>Dodaj komentarz</h3>
+                                    <form action="<c:url value="/help/base/comment.html"/>" method="post">
+                                        <input type="hidden" name="articleId" value="${article.articleId}">
+                                        <ul class="formContainer">
+                                            <li>
+                                                <label for="title">Tytuł</label>
+                                                <input type="text" name="title" class="w99p" size="50"/>
+                                            </li>
+                                            <li>
+                                                <label for="comment">Komentarz</label>
+                                                <textarea rows="5" cols="40"  class="w99p" name="comment"></textarea>
+                                            </li>
+                                            <li class="right">
+                                                <input type="submit" class="btn" value="Dodaj komentarz"/>
+                                            </li>
+
+                                        </ul>
+                                    </form>
 
                                 </td>
                             </tr>

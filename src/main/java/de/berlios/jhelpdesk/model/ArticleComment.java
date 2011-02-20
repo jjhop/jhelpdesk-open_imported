@@ -44,7 +44,7 @@ public class ArticleComment implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "article_comment_id")
+    @Column(name = "id")
     private Long articleCommentId;
 
     /**
