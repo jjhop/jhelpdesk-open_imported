@@ -15,6 +15,11 @@ function updateDiv(triggerId, sourceUrl) {
     });
 }
 
+function  hideMe(element2Hide) {
+    new Effect.Highlight(element2Hide, { startcolor: '#B26191', endcolor: '#AF086A' });
+    new Effect.Puff(element2Hide, {queue: 'end'});
+}
+
 // stare funkcje
 function clearForm(formId) {
     var form = $(formId);
