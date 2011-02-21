@@ -3,16 +3,16 @@
 
 <div id="showallarticles" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table class="w100p" cellspacing="0">
         <tr>
-            <td class="rightcells">
+            <td class="">
                 <div id="pagecontentsubheader"><h3>Baza wiedzy - artykuły</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
+                        <table cellspacing="0" class="spacing">
                             <tr>
-                                <td>
+                                <td class="right">
                                     <a href="<c:url value="/manage/kb/category/${categoryId}/articles/new.html"/>"
                                        class="btn">Dodaj nowy artykuł</a>
                                 </td>

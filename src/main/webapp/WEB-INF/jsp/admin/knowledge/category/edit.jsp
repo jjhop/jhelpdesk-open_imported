@@ -3,9 +3,9 @@
 
 <div id="editsection" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table class="" cellspacing="0">
         <tr>
-            <td class="leftcells">
+            <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>Edycja sekcji</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
@@ -18,10 +18,10 @@
                             </c:if>
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <td>Nazwa sekcji</td>
+                                    <td class="w125">Nazwa sekcji</td>
                                     <td class="lastcol">
                                         <spring:bind path="category.categoryName">
-                                            <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
+                                            <input class="w98p" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
                                                    <c:if test="${not empty status.errorMessage}">class="hintanchor"
                                                        onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
                                                    </c:if>/>

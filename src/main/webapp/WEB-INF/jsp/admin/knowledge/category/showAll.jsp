@@ -3,9 +3,9 @@
 
 <div id="showallsections" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table class="w100p" cellspacing="0">
         <tr>
-            <td class="rightcells">
+            <td class="">
                 <div id="pagecontentsubheader"><h3>Baza wiedzy - sekcje</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
@@ -35,19 +35,19 @@
                                         <td><c:out value="${c.categoryName}"/></td>
                                         <td class="artnumber"><c:out value="${c.articlesCount}"/></td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${c.articleCategoryId}/articles.html"/>">Art</a>
+                                            <a class="actionNew" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/articles.html"/>">Art</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${c.articleCategoryId}/edit.html"/>">Edit</a>
+                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/edit.html"/>">Edit</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${c.articleCategoryId}/remove.html"/>">Del</a>
+                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/remove.html"/>">Del</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${c.articleCategoryId}/up.html"/>">Up</a>
+                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/up.html"/>">Up</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${c.articleCategoryId}/down.html"/>">Down</a>
+                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/down.html"/>">Down</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -4,9 +4,9 @@
 
 <div id="editsection" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table class="w100p" cellspacing="0">
         <tr>
-            <td class="leftcells">
+            <td class="">
                 <div id="pagecontentsubheader"><h3>Edycja artykułu</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
@@ -20,10 +20,10 @@
                             <form:hidden path="author"/>
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <td>Tytuł</td>
+                                    <td class="w125">Tytuł</td>
                                     <td class="lastcol">
                                         <spring:bind path="article.title">
-                                            <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
+                                            <input class="w99p" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
                                                    <c:if test="${not empty status.errorMessage}">class="hintanchor"
                                                        onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
                                                    </c:if>/>
@@ -35,9 +35,9 @@
                                     <td>Wstęp</td>
                                     <td class="lastcol">
                                         <spring:bind path="article.lead">
-                                            <textarea
+                                            <textarea class="hintanchor w99p"
                                                 name="<c:out value="${status.expression}"/>" rows="4" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">class="hintanchor"
+                                                <c:if test="${not empty status.errorMessage}">
                                                     onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
                                                 </c:if>><c:out value="${status.value}"/></textarea>
                                         </spring:bind>
@@ -48,9 +48,9 @@
                                     <td>Treść główna</td>
                                     <td class="lastcol">
                                         <spring:bind path="article.body">
-                                            <textarea
-                                                name="<c:out value="${status.expression}"/>" rows="4" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">class="hintanchor"
+                                            <textarea class="hintanchor w99p"
+                                                name="<c:out value="${status.expression}"/>" rows="8" cols="30"
+                                                <c:if test="${not empty status.errorMessage}">
                                                     onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
                                                 </c:if>><c:out value="${status.value}"/></textarea>
                                         </spring:bind>

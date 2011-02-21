@@ -178,6 +178,11 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 #pagefooter a {
     color: #FFFFFF;
 }
+
+.spacing {
+    margin: 0 0 10px 0;
+}
+
 .standardtable {
     width: 100%;
     -moz-border-radius: 5px;
@@ -909,6 +914,26 @@ th.ticketView, th.ticketEdit, th.ticketDrop {
 td.ticketView, td.ticketEdit, td.ticketDrop {
     text-align: center;
 }
+.ticketEdit a {
+    padding: 1px 0 1px 20px;
+    text-decoration: none;
+    background: url(../i/icons_grid.png) 0 0 no-repeat;
+}
+.ticketEdit a.actionNew {
+    background-position: 0 -93px;
+}
+.ticketEdit a.actionEdit {
+    background-position: 0 -67px;
+}
+.ticketEdit a.actionDel {
+    background-position: 0 -42px;
+}
+.ticketEdit a.actionUp {
+    background-position: 0 -18px;
+}
+.ticketEdit a.actionDown {
+    background-position: 0 4px;
+}
 .artnumber {
     width: 60px;
 }
@@ -1109,7 +1134,9 @@ td.artnumber {
 .w250 {width: 250px;}
 .w255 {width: 255px;}
 .w275 {width: 275px;}
+.w98p { width: 98% }
 .w99p { width: 99% }
+.w100p { width: 100% }
 
 hr {
     width: 95%;
