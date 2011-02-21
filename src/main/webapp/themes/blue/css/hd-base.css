@@ -168,7 +168,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 }
 .contentmiddle {
     /*	position: relative;*/
-    min-height: 260px;
+/*    min-height: 260px;*/
     padding: 0 10px;
     background: #D0DBFB;
 }
@@ -280,7 +280,7 @@ td.rightcells {
 }
 #desktop .contentmiddle {
     min-height: auto;
-    height: 200px;
+/*    height: 200px;*/
     overflow: auto;
 }
 * html #desktop .leftcells .contentmiddle {
