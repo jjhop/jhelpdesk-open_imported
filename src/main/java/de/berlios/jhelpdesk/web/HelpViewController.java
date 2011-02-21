@@ -15,12 +15,14 @@
  */
 package de.berlios.jhelpdesk.web;
 
-import de.berlios.jhelpdesk.model.User;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +31,10 @@ import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
+import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
-import java.util.Date;
+import de.berlios.jhelpdesk.web.tools.ArticleCommentValidator;
 
 /**
  * Obsługa funkcji znajdujących się w menu "Pomoc" programu (w tym obsługa
@@ -55,6 +58,9 @@ public class HelpViewController {
     
     @Autowired
     private ArticleCategoryDAO articleCategoryDAO;
+
+    @Autowired
+    private ArticleCommentValidator validator;
 
     @Autowired
     private LuceneIndexer luceneIndexer;
@@ -112,8 +118,8 @@ public class HelpViewController {
      * @param map model widoku
      * @return identyfikator widoku
      */
-    @RequestMapping(value = "/help/base/showOne.html", method = RequestMethod.GET)
-    public String knowledgeBaseItemView(@RequestParam("id") Long id, ModelMap map) {
+    @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.GET)
+    public String knowledgeBaseItemView(@PathVariable("aId") Long id, ModelMap map) {
         Article article = articleDAO.getById(id);
         if (article != null) {
             map.addAttribute("article", article);
@@ -123,18 +129,23 @@ public class HelpViewController {
         return HELP_KB_ARTICLE;
     }
 
-    @RequestMapping(value = "/help/base/comment.html", method = RequestMethod.POST)
-    public String knowledgeBaseAddComment(@RequestParam("articleId") Long articleId,
+    @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.POST)
+    public String knowledgeBaseAddComment(@PathVariable("aId") Long articleId,
                                           @RequestParam("title") String title,
                                           @RequestParam("comment") String body,
-                                          HttpSession session) throws Exception {
+                                          ModelMap map, HttpSession session) throws Exception {
+
+        // tutaj jeszcze walidacja i jak jest do dupy to HELP_KB_ARTICLE
+        // w przeciwnym wypadku redirect "/help/base/articles/" + articleId + "/show.html"
         ArticleComment comment = new ArticleComment();
         comment.setCreateDate(new Date());
         comment.setArticle(articleDAO.getById(articleId));
         comment.setTitle(title);
         comment.setBody(body);
         comment.setAuthorId((User) session.getAttribute("user"));
+//        validator.validate(comment, null);
         articleDAO.saveArticleComment(comment);
-        return "redirect:/help/base/showOne.html?id=" + articleId;
+        map.addAttribute("article", articleDAO.getById(articleId));
+        return HELP_KB_ARTICLE;
     }
 }

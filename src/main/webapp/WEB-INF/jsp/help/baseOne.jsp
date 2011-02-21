@@ -63,8 +63,7 @@
                             <tr>
                                 <td class="lastcol">
                                     <h3>Dodaj komentarz</h3>
-                                    <form action="<c:url value="/help/base/comment.html"/>" method="post">
-                                        <input type="hidden" name="articleId" value="${article.articleId}">
+                                    <form action="<c:url value="/help/base/articles/${article.articleId}/show.html"/>" method="post">
                                         <ul class="formContainer">
                                             <li>
                                                 <label for="title">Tytuł</label>
