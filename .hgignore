@@ -1,0 +1,11 @@
+\.orig$
+\.orig\..*$
+\.chg\..*$
+\.rej$
+\.conflict\~$
+target/*
+relre:nb-configuration.xml
+glob:*.iml
+glob:*.ipr
+glob:*.iws
+glob:target/**/*
