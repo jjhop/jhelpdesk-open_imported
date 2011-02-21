@@ -3,14 +3,12 @@
 
 <c:if test="${not empty lastArticles}">
     <table cellspacing="0" class="standardtable">
-        <tr>
-            <th>Tytuł</th>
-            <th class="lastcol">Data</th>
-        </tr>
         <c:forEach var="article" items="${lastArticles}">
             <tr>
-                <td><a href="<c:url value="/help/base/showOne.html?id=${article.articleId}"/>"><c:out value="${article.title}"/></a></td>
-                <td class="lastcol"><fmt:formatDate value="${article.createDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+                <td class="lastcol">
+                    <fmt:formatDate value="${article.createDate}" pattern="dd/MM/yyyy HH:mm"/><br/>
+                    <a href="<c:url value="/help/base/articles/${article.articleId}/show.html"/>"><c:out value="${article.title}"/></a>
+                </td>
             </tr>
         </c:forEach>
     </table>
