@@ -38,16 +38,16 @@
                                             <a class="actionNew" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/articles.html"/>">Art</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/edit.html"/>">Edit</a>
+                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/edit.html"/>">E</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/remove.html"/>">Del</a>
+                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/remove.html"/>">R</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/up.html"/>">Up</a>
+                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/up.html"/>">U</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/down.html"/>">Down</a>
+                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/down.html"/>">D</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
