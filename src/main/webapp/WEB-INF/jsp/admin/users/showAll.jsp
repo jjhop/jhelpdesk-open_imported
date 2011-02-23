@@ -3,14 +3,22 @@
 
 <div id="showallusers" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table cellspacing="0" class="w100p">
         <tr>
-            <td class="rightcells">
+            <td class="">
                 <div id="pagecontentsubheader"><h3>Użytkownicy</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <a href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a>
+                        
+                        <table cellspacing="0">
+                            <tr>
+                                <td>
+                                    <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a>
+                                </td>
+                            </tr>
+                        </table>
+
                         <display:table name="users" id="user" class="standardtable" cellspacing="0" export="false" pagesize="25" requestURI="">
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${user_rowNum}" />
@@ -18,14 +26,14 @@
                             <display:column title="Nazwisko" property="lastName" style="width: 200px;" />
                             <display:column title="Imię" property="firstName" />
                             <display:column title="Login" property="login" />
-                            <display:column title="" media="html" class="ticketView" headerClass="ticketView">
-                                <a href="<c:url value="/manage/users/${user.userId}/show.html"/>">View</a>
+                            <display:column title="" media="html" class="ticketEdit" headerClass="ticketView">
+                                <a class="actionView" href="<c:url value="/manage/users/${user.userId}/show.html"/>">View</a>
                             </display:column>
                             <display:column title="" media="html" class="ticketEdit" headerClass="ticketEdit">
-                                <a href="<c:url value="/manage/users/${user.userId}/edit.html"/>">Edit</a>
+                                <a class="actionEdit" href="<c:url value="/manage/users/${user.userId}/edit.html"/>">Edit</a>
                             </display:column>
-                            <display:column title="" media="html" class="lastcol ticketDrop" headerClass="lastcol ticketDrop">
-                                <a href="<c:url value="/manage/users/${user.userId}/remove.html"/>">Remove</a>
+                            <display:column title="" media="html" class="lastcol ticketEdit" headerClass="lastcol ticketDrop">
+                                <a  class="actionDel" href="<c:url value="/manage/users/${user.userId}/remove.html"/>">Remove</a>
                             </display:column>
                             <display:setProperty name="paging.banner.no_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">No {0} found.</td>" />
                             <display:setProperty name="paging.banner.one_item_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">One {0} found.</td>" />

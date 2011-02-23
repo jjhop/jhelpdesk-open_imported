@@ -6,7 +6,7 @@
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
     <table cellspacing="0">
         <tr>
-            <td class="leftcells">
+            <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>Edycja danych użytkownika</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
@@ -26,36 +26,36 @@
                                 </spring:hasBindErrors>
                                 <tr>
                                     <td>Imię</td>
-                                    <td class="lastcol"><form:input path="firstName"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="firstName"/></td>
                                 </tr>
                                 <tr>
                                     <td>Nazwisko</td>
-                                    <td class="lastcol"><form:input path="lastName"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="lastName"/></td>
                                 </tr>
                                 <tr>
                                     <td>Login</td>
-                                    <td class="lastcol"><form:input path="login"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="login"/></td>
                                 </tr>
                                 <tr>
                                     <td>Hasło</td>
-                                    <td class="lastcol"><form:password path="password"/></td>
+                                    <td class="lastcol"><form:password cssClass="w98p" path="password"/></td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td class="lastcol"><form:input path="email"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="email"/></td>
                                 </tr>
                                 <tr>
                                     <td>Telefon</td>
-                                    <td class="lastcol"><form:input path="phone"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="phone"/></td>
                                 </tr>
                                 <tr>
                                     <td>Mobile</td>
-                                    <td class="lastcol"><form:input path="mobile"/></td>
+                                    <td class="lastcol"><form:input cssClass="w98p" path="mobile"/></td>
                                 </tr>
                                 <tr>
                                     <td>Rola</td>
                                     <td class="lastcol">
-                                        <form:select id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
+                                        <form:select  cssClass="w98p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
                                     </td>
                                 </tr>
                                 <tr>
