@@ -915,8 +915,15 @@ td.ticketView, td.ticketEdit, td.ticketDrop {
     text-align: center;
 }
 .ticketEdit a {
-    padding: 1px 0 1px 20px;
+    display: block;
+    margin: 0 auto 0;
+    width: 16px;
+    height: 16px;
+    /*padding: 1px 0 1px 20px;*/
+    padding: 1px;
     text-decoration: none;
+    text-indent: -9999px;
+    overflow: hidden;
     background: url(../i/icons_grid.png) 0 0 no-repeat;
 }
 .ticketEdit a.actionNew {
