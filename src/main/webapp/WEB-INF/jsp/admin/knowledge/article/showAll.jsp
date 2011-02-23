@@ -29,10 +29,10 @@
                                 </tr>
                                 <c:forEach var="article" items="${articles}">
                                     <tr>
-                                        <td>.</td>
+                                        <td width="22">1</td>
                                         <td><c:out value="${article.title}"/></td>
-                                        <td><c:out value="${article.author}"/></td>
-                                        <td><c:out value="${article.createDate}"/></td>
+                                        <td width="150"><c:out value="${article.author}"/></td>
+                                        <td width="110"><fmt:formatDate value="${article.createDate}" pattern="dd/MM/yyyy HH:mm"/></td>
                                         <td class="ticketEdit">
                                             <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">E</a>
                                         </td>
