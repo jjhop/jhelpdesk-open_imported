@@ -34,16 +34,16 @@
                                         <td><c:out value="${article.author}"/></td>
                                         <td><c:out value="${article.createDate}"/></td>
                                         <td class="ticketEdit">
-                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">Edit</a>
+                                            <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">E</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/remove.html"/>">Del</a>
+                                            <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/remove.html"/>">R</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionUp" href="<c:url value="/manage/kb/article/up.html?articleId=${article.articleId}"/>">Up</a>
+                                            <a class="actionUp" title="Mowe up" href="<c:url value="/manage/kb/article/up.html?articleId=${article.articleId}"/>">U</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a class="actionDown" href="<c:url value="/manage/kb/article/down.html?articleId=${article.articleId}"/>">Down</a>
+                                            <a class="actionDown" title="Mowe down" href="<c:url value="/manage/kb/article/down.html?articleId=${article.articleId}"/>">D</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
