@@ -934,6 +934,9 @@ td.ticketView, td.ticketEdit, td.ticketDrop {
 .ticketEdit a.actionDown {
     background-position: 0 4px;
 }
+.ticketEdit a.actionView {
+    background-position: 0 -119px;
+}
 .artnumber {
     width: 60px;
 }

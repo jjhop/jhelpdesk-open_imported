@@ -34,16 +34,16 @@
                                         <td><c:out value="${article.author}"/></td>
                                         <td><c:out value="${article.createDate}"/></td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">Edit</a>
+                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">Edit</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/remove.html"/>">Del</a>
+                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/remove.html"/>">Del</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a href="<c:url value="/manage/kb/article/up.html?articleId=${article.articleId}"/>">Up</a>
+                                            <a class="actionUp" href="<c:url value="/manage/kb/article/up.html?articleId=${article.articleId}"/>">Up</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a href="<c:url value="/manage/kb/article/down.html?articleId=${article.articleId}"/>">Down</a>
+                                            <a class="actionDown" href="<c:url value="/manage/kb/article/down.html?articleId=${article.articleId}"/>">Down</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
