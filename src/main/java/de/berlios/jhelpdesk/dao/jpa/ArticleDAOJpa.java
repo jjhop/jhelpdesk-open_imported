@@ -58,9 +58,9 @@ public class ArticleDAOJpa implements ArticleDAO {
     @Transactional(readOnly = false)
     public void delete(Article article) {
         try {
-            this.delete(article.getArticleId());
+            this.delete(article.getId());
         } catch (Exception ex) {
-            log.error("Nie można usunąć artykułu o identyfikatorze [" + article.getArticleId() + "]", ex);
+            log.error("Nie można usunąć artykułu o identyfikatorze [" + article.getId() + "]", ex);
         }
     }
 
@@ -70,7 +70,7 @@ public class ArticleDAOJpa implements ArticleDAO {
             Article toDelete = this.jpaTemplate.find(Article.class, articleId);
             ArticleCategory category = 
                     this.jpaTemplate.find(ArticleCategory.class,
-                                          toDelete.getCategory().getArticleCategoryId());
+                                          toDelete.getCategory().getId());
             category.setArticlesCount(category.getArticlesCount() - 1);
 
             this.jpaTemplate.merge(category);
@@ -115,7 +115,7 @@ public class ArticleDAOJpa implements ArticleDAO {
 
     @Transactional(readOnly = false)
     public void saveOrUpdate(Article article) {
-        if (article.getArticleId() == null) {
+        if (article.getId() == null) {
             ArticleCategory category = article.getCategory();
             int numOfArticlesInCategory = category.getArticlesCount();
             category.setArticlesCount(numOfArticlesInCategory + 1);

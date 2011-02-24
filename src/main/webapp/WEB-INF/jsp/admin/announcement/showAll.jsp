@@ -27,10 +27,10 @@
                                 </tr>
                                 <c:forEach var="announcement" items="${announcements}">
                                     <tr>
-                                        <td><a href="<c:url value="/announcements/${announcement.announcementId}/show.html"/>"><c:out value="${announcement.title}"/></a></td>
+                                        <td><a href="<c:url value="/announcements/${announcement.id}/show.html"/>"><c:out value="${announcement.title}"/></a></td>
                                         <td><c:out value="${announcement.createDate}"/></td>
-                                        <td class="ticketEdit"><a href="<c:url value="/announcements/${announcement.announcementId}/edit.html"/>">Edit</a></td>
-                                        <td class="lastcol ticketDrop"><a href="<c:url value="/announcements/${announcement.announcementId}/remove.html"/>">Del</a></td>
+                                        <td class="ticketEdit"><a href="<c:url value="/announcements/${announcement.id}/edit.html"/>">E</a></td>
+                                        <td class="lastcol ticketDrop"><a href="<c:url value="/announcements/${announcement.id}/remove.html"/>">R</a></td>
                                     </tr>
                                 </c:forEach>
                             </table>

@@ -49,61 +49,61 @@ class QueryBuilder {
         boolean prioritiesExists = false;
         boolean statusesExists = false;
 
-        StringBuffer sb2 = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
 
-        sb2.append(
+        builder.append(
             countOnly
                 ? "SELECT COUNT(t) FROM Ticket AS t WHERE "
                 : "SELECT t FROM Ticket AS t WHERE "
         );
 
         if (ticketFilter.getBeginDate() != null) {
-            sb2.append(" t.createDate >= :startDate AND ");
+            builder.append(" t.createdAt >= :startDate AND ");
             startDateExists = true;
         }
 
         if (ticketFilter.getEndDate() != null) {
-            sb2.append(" t.createDate <= :endDate AND ");
+            builder.append(" t.createdAt <= :endDate AND ");
             endDateExists = true;
         }
 
         if (ticketFilter.getTicketCategories() != null
                 && ticketFilter.getTicketCategories().size() > 0) {
-            sb2.append(" t.ticketCategory IN (:ticketCategories) AND ");
+            builder.append(" t.ticketCategory IN (:ticketCategories) AND ");
             categoriesExists = true;
         }
 
         if (ticketFilter.getNotifiers() != null
                 && ticketFilter.getNotifiers().size() > 0) {
-            sb2.append(" t.notifier IN (:notifiers) AND ");
+            builder.append(" t.notifier IN (:notifiers) AND ");
             notifiersExists = true;
         }
 
         if (ticketFilter.getSaviours() != null
                 && ticketFilter.getSaviours().size() > 0) {
-            sb2.append(" t.saviour IN (:saviours) AND ");
+            builder.append(" t.saviour IN (:saviours) AND ");
             savioursExists = true;
         }
 
         if (ticketFilter.getTicketPriorities() != null
                 && ticketFilter.getTicketPriorities().size() > 0) {
-            sb2.append(" t.ticketPriorityAsInt IN (:priorities) AND ");
+            builder.append(" t.ticketPriorityAsInt IN (:priorities) AND ");
             prioritiesExists = true;
         }
 
         if (ticketFilter.getTicketStatuses() != null
                 && ticketFilter.getTicketStatuses().size() > 0) {
-            sb2.append(" t.ticketStatusAsInt IN (:statuses) AND ");
+            builder.append(" t.ticketStatusAsInt IN (:statuses) AND ");
             statusesExists = true;
         }
 
-        sb2.append(" t.ticketId IS NOT NULL ");
+        builder.append(" t.ticketId IS NOT NULL ");
 
         if (!countOnly) {
-            sb2.append(" ORDER BY t.createDate DESC");
+            builder.append(" ORDER BY t.createdAt DESC");
         }
 
-        Query q = em.createQuery(sb2.toString());
+        Query q = em.createQuery(builder.toString());
 
         if (startDateExists) {
             q.setParameter("startDate", ticketFilter.getBeginDate(), TemporalType.DATE);

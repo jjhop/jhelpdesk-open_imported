@@ -18,7 +18,7 @@
     </head>
     <body>
         <div id="pagecontainer">
-            <div id="pageheader"><a href="<c:url value="/"/>">jHelpdesk Management System</a></div>
+            <div id="pageheader"><a href="<c:url value="/"/>">jHelpDesk</a></div>
             <div id="pagemenu"><tiles:insertAttribute name="menuPanel" /></div>
             <div id="pagecontent"><tiles:insertAttribute name="content" /></div>
             <div id="pagefooter"><tiles:insertAttribute name="footer" /></div>

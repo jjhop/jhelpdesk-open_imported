@@ -62,14 +62,14 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
     }
 
     public List<Announcement> getAll() {
-        return this.jpaTemplate.findByNamedQuery("Announcement.allOrderByCreateDateDesc");
+        return this.jpaTemplate.findByNamedQuery("Announcement.allOrderByCreatedAtDesc");
     }
 
     public List<Announcement> getLastAnnouncements(final int howMuch) {
         try {
              return (List<Announcement>)this.jpaTemplate.executeFind(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNamedQuery("Announcement.allOrderByCreateDateDesc");
+                    Query q = em.createNamedQuery("Announcement.allOrderByCreatedAtDesc");
                     q.setMaxResults(howMuch);
                     return q.getResultList();
                 }
@@ -82,7 +82,7 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
 
     @Transactional(readOnly = false)
     public void save(Announcement announcement) {
-        if (announcement.getAnnouncementId() == null) {
+        if (announcement.getId() == null) {
             this.jpaTemplate.persist(announcement);
         } else {
             this.jpaTemplate.merge(announcement);

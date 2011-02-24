@@ -46,24 +46,21 @@ import javax.persistence.TemporalType;
 @Table(name = "article")
 @SequenceGenerator(name = "article_sequence", sequenceName = "article_id_seq", allocationSize = 1)
 @NamedQueries({
-    @NamedQuery(name = "Article.lastAdded", query = "SELECT a FROM Article a ORDER BY a.createDate DESC"),
+    @NamedQuery(name = "Article.lastAdded", query = "SELECT a FROM Article a ORDER BY a.createdAt DESC"),
     @NamedQuery(name = "Article.getForCategory", 
-        query = "SELECT a FROM Article a WHERE a.category.articleCategoryId=?1 ORDER BY a.createDate DESC")
+        query = "SELECT a FROM Article a WHERE a.category.id=?1 ORDER BY a.createdAt DESC")
 })
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 6398694944488620526L;
 
-	/**
-     *
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="article_sequence")
-    @Column(name = "article_id")
-    private Long articleId;
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "article_category_id")
+    @JoinColumn(name = "category_id")
     private ArticleCategory category;
 
     /**
@@ -77,8 +74,8 @@ public class Article implements Serializable {
      *
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
-    private Date createDate;
+    @Column(name = "created_at")
+    private Date createdAt;
 
     /**
      *
@@ -118,43 +115,43 @@ public class Article implements Serializable {
      */
     public Article() {
         this.comments = new HashSet<ArticleComment>();
-        this.createDate = new Date();
+        this.createdAt = new Date();
     }
 
     public Article(Long id, String title, String lead, Date createdAt) {
-        this.comments = new HashSet<ArticleComment>();
-        this.createDate = createdAt;
-        this.articleId = id;
+        this.id = id;
+        this.createdAt = createdAt;
         this.title = title;
         this.lead = lead;
+        this.comments = new HashSet<ArticleComment>();
     }
 
     /**
-     * @return Returns the createDate.
+     * @return returns createdAt.
      */
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     /**
-     * @param createDate The createDate to set.
+     * @param createdAt createdAt to set.
      */
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     /**
      * @return Returns the articleId.
      */
-    public Long getArticleId() {
-        return articleId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param articleId The articleId to set.
+     * @param setId The articleId to set.
      */
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

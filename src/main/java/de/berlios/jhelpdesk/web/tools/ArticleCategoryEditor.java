@@ -37,7 +37,7 @@ public class ArticleCategoryEditor extends PropertyEditorSupport {
     public String getAsText() {
         Object value = getValue();
         if (value != null) {
-            return String.valueOf(((ArticleCategory)value).getArticleCategoryId());
+            return String.valueOf(((ArticleCategory)value).getId());
         } else {
             return null;
         }

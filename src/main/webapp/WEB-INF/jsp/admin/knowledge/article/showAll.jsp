@@ -32,18 +32,18 @@
                                         <td width="22">1</td>
                                         <td><c:out value="${article.title}"/></td>
                                         <td width="150"><c:out value="${article.author}"/></td>
-                                        <td width="110"><fmt:formatDate value="${article.createDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                        <td width="110"><fmt:formatDate value="${article.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
                                         <td class="ticketEdit">
-                                            <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/edit.html"/>">E</a>
+                                            <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.id}/edit.html"/>">E</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.articleId}/remove.html"/>">R</a>
+                                            <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.id}/remove.html"/>">R</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionUp" title="Mowe up" href="<c:url value="/manage/kb/article/up.html?articleId=${article.articleId}"/>">U</a>
+                                            <a class="actionUp" title="Move up" href="<c:url value="/manage/kb/article/up.html?articleId=${article.id}"/>">U</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a class="actionDown" title="Mowe down" href="<c:url value="/manage/kb/article/down.html?articleId=${article.articleId}"/>">D</a>
+                                            <a class="actionDown" title="Move down" href="<c:url value="/manage/kb/article/down.html?articleId=${article.id}"/>">D</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

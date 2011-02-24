@@ -50,8 +50,8 @@ public class ArticleCategory implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="article_category_sequence")
-    @Column(name = "article_category_id")
-    private Long articleCategoryId;
+    @Column(name = "id")
+    private Long id;
 
     /**
      *
@@ -84,15 +84,15 @@ public class ArticleCategory implements Serializable {
     /**
      * @return Returns the articleCategoryId.
      */
-    public Long getArticleCategoryId() {
-        return articleCategoryId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param articleCategoryId The articleCategoryId to set.
+     * @param id The articleCategoryId to set.
      */
-    public void setArticleCategoryId(Long articleCategoryId) {
-        this.articleCategoryId = articleCategoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

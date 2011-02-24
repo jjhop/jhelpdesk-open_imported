@@ -125,7 +125,7 @@ public class LuceneIndexer {
             Document document = articleToDocument(article);
             indexWriter = getIndexWriter();
             indexWriter.updateDocument(
-                    new Term("id", String.valueOf(article.getArticleId())), document);
+                    new Term("id", String.valueOf(article.getId())), document);
             indexWriter.commit();
         } catch (Exception ex) {
             log.error(ex.getMessage(), ex);
@@ -151,7 +151,7 @@ public class LuceneIndexer {
 
     private Document articleToDocument(Article article) {
         Document doc = new Document();
-        doc.add(new Field("id", String.valueOf(article.getArticleId()),
+        doc.add(new Field("id", String.valueOf(article.getId()),
                           Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field("title", article.getTitle(),
                           Field.Store.YES, Field.Index.ANALYZED));
@@ -160,7 +160,7 @@ public class LuceneIndexer {
         doc.add(new Field("body", article.getBody(),
                           Field.Store.NO, Field.Index.ANALYZED));
         doc.add(new NumericField("createdAt", Field.Store.YES, false)
-                .setLongValue(article.getCreateDate().getTime()));
+                .setLongValue(article.getCreatedAt().getTime()));
         return doc;
     }
 
