@@ -15,16 +15,12 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
@@ -33,6 +29,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.berlios.jhelpdesk.dao.AnnouncementDAO;
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.model.Announcement;
 
 /**
@@ -43,8 +40,6 @@ import de.berlios.jhelpdesk.model.Announcement;
 @Transactional(readOnly = true)
 public class AnnouncementDAOJpa implements AnnouncementDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(AnnouncementDAOJpa.class);
-
     private final JpaTemplate jpaTemplate;
 
     @Autowired
@@ -52,20 +47,19 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
         this.jpaTemplate = new JpaTemplate(emf);
     }
 
-    public Announcement getById(Long announcementId) {
+    public Announcement getById(Long announcementId) throws DAOException {
         try {
             return this.jpaTemplate.find(Announcement.class, announcementId);
         } catch(Exception ex) {
-            log.error(ex.getMessage());
-            return null;
+            throw new DAOException(ex);
         }
     }
 
-    public List<Announcement> getAll() {
+    public List<Announcement> getAll() throws DAOException {
         return this.jpaTemplate.findByNamedQuery("Announcement.allOrderByCreatedAtDesc");
     }
 
-    public List<Announcement> getLastAnnouncements(final int howMuch) {
+    public List<Announcement> getLastAnnouncements(final int howMuch) throws DAOException {
         try {
              return (List<Announcement>)this.jpaTemplate.executeFind(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
@@ -75,13 +69,12 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
                 }
             });
          } catch(Exception ex) {
-            log.error("wystapil problem..", ex);
+             throw new DAOException(ex);
          }
-        return Collections.<Announcement>emptyList();
     }
 
     @Transactional(readOnly = false)
-    public void save(Announcement announcement) {
+    public void save(Announcement announcement) throws DAOException {
         if (announcement.getId() == null) {
             this.jpaTemplate.persist(announcement);
         } else {
@@ -90,17 +83,17 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
     }
 
     @Transactional(readOnly = false)
-    public void delete(final Long announcementId) {
+    public void delete(final Long announcementId) throws DAOException {
         try {
             Announcement toDelete = this.jpaTemplate.find(Announcement.class, announcementId);
             this.jpaTemplate.remove(toDelete);
         } catch(Exception ex) {
-            log.error(ex.getMessage());
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void delete(Announcement announcement) {
+    public void delete(Announcement announcement) throws DAOException {
         this.jpaTemplate.remove(announcement);
     }
 }

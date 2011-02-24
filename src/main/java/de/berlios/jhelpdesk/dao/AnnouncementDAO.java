@@ -30,36 +30,36 @@ public interface AnnouncementDAO {
      * @param announcementId
      * @return
      */
-    Announcement getById(Long announcementId);
+    Announcement getById(Long announcementId) throws DAOException;
 
     /**
      * 
      * @return
      */
-    List<Announcement> getAll();
+    List<Announcement> getAll() throws DAOException;
 
     /**
      * 
      * @param howMuch
      * @return
      */
-    List<Announcement> getLastAnnouncements(int howMuch);
+    List<Announcement> getLastAnnouncements(int howMuch) throws DAOException;
 
     /**
      * 
      * @param announcement
      */
-    void save(Announcement announcement);
+    void save(Announcement announcement) throws DAOException;
 
     /**
      * 
      * @param announcementId
      */
-    void delete(Long announcementId);
+    void delete(Long announcementId) throws DAOException;
 
     /**
      * 
      * @param announcement
      */
-    void delete(Announcement announcement);
+    void delete(Announcement announcement) throws DAOException;
 }

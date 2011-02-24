@@ -22,15 +22,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.model.ArticleCategory;
 
@@ -42,8 +40,6 @@ import de.berlios.jhelpdesk.model.ArticleCategory;
 @Transactional(readOnly = true)
 public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(ArticleCategoryDAOJpa.class);
-    
     private final JpaTemplate jpaTemplate;
 
     @Autowired
@@ -52,55 +48,78 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
     }
 
     @Transactional(readOnly = false)
-    public void delete(final Long categoryId) {
-        log.debug("--------------------- DELETE START ---------------------");
-        ArticleCategory categoryToRemove = this.getById(categoryId);
-        log.debug("--------------------- DELETE MIDDLE --------------------");
-        // TODO: tutaj nalezaloby jeszcze zmienic category_position dla wszystkich
-        //       rekordow powyzej category_position - odjac 1 dla kazdemu - może
-        //       to być zrealizowane za pomocą triggera w bazie danych
-        this.jpaTemplate.remove(categoryToRemove);
-        log.debug("--------------------- DELETE END -----------------------");
+    public void delete(final Long categoryId) throws DAOException {
+        try {
+            ArticleCategory categoryToRemove = this.getById(categoryId);
+            System.out.println("--------------------- DELETE MIDDLE --------------------");
+            // TODO: tutaj nalezaloby jeszcze zmienic category_position dla wszystkich
+            //       rekordow powyzej category_position - odjac 1 dla kazdemu - może
+            //       to być zrealizowane za pomocą triggera w bazie danych
+            this.jpaTemplate.remove(categoryToRemove);
+            System.out.println("--------------------- DELETE END -----------------------");
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public List<ArticleCategory> getAllCategories() {
-        return this.jpaTemplate.findByNamedQuery("ArticleCategory.getAllOrderByPositionASC");
+    public List<ArticleCategory> getAllCategories() throws DAOException {
+        try {
+            return this.jpaTemplate.findByNamedQuery("ArticleCategory.getAllOrderByPositionASC");
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public ArticleCategory getById(Long categoryId) {
-        return this.jpaTemplate.find(ArticleCategory.class, categoryId);
+    public ArticleCategory getById(Long categoryId) throws DAOException {
+        try {
+            return this.jpaTemplate.find(ArticleCategory.class, categoryId);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     @Transactional(readOnly = false)
-    public void moveDown(final Long categoryId) {
-        this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = em.createNativeQuery("SELECT category_move_down(?1)");
-                q.setParameter(1, categoryId);
-                q.getSingleResult();
-                return null;
+    public void moveDown(final Long categoryId) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("SELECT category_move_down(?1)");
+                    q.setParameter(1, categoryId);
+                    q.getSingleResult();
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void moveUp(final Long categoryId) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("SELECT category_move_up(?1)");
+                    q.setParameter(1, categoryId);
+                    q.getSingleResult();
+                    return null;
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void saveOrUpdate(ArticleCategory category) throws DAOException {
+        try {
+            if (category.getId() == null) {
+                this.jpaTemplate.persist(category);
+            } else {
+                this.jpaTemplate.merge(category);
             }
-        });
-    }
-
-    @Transactional(readOnly = false)
-    public void moveUp(final Long categoryId) {
-        this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = em.createNativeQuery("SELECT category_move_up(?1)");
-                q.setParameter(1, categoryId);
-                q.getSingleResult();
-                return null;
-            }
-        });
-    }
-
-    @Transactional(readOnly = false)
-    public void saveOrUpdate(ArticleCategory category) {
-        if (category.getId() == null) {
-            this.jpaTemplate.persist(category);
-        } else {
-            this.jpaTemplate.merge(category);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
         }
     }
 }

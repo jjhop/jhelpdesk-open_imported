@@ -46,8 +46,12 @@ public class TicketCategoryEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) {
-        Long ticketCategoryId = Long.valueOf(text);
-        TicketCategory category = ticketCategoryDAO.getById(ticketCategoryId);
-        setValue(category);
+        try {
+            Long ticketCategoryId = Long.valueOf(text);
+            TicketCategory category = ticketCategoryDAO.getById(ticketCategoryId);
+            setValue(category);
+        } catch(Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

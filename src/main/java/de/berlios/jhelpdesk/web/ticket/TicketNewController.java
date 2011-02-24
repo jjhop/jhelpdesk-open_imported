@@ -89,7 +89,7 @@ public class TicketNewController {
     }
 
     @ModelAttribute("categories")
-    public Collection<TicketCategory> populateTicketCategories() {
+    public Collection<TicketCategory> populateTicketCategories() throws Exception {
         return ticketCategoryDao.getAllCategoriesForView();
     }
 

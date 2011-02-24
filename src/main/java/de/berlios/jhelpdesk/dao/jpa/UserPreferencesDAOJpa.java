@@ -22,6 +22,7 @@ import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserPreferencesDAO;
 import de.berlios.jhelpdesk.model.DisplayListsPreferences;
 import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
@@ -42,20 +43,28 @@ public class UserPreferencesDAOJpa implements UserPreferencesDAO {
     }
 
     @Transactional(readOnly = false)
-    public void save(LookAndFeelPreferences lafPrefs) {
-        if (lafPrefs.getId() != null) {
-            this.jpaTemplate.merge(lafPrefs);
-        } else {
-            this.jpaTemplate.persist(lafPrefs);
+    public void save(LookAndFeelPreferences lafPrefs) throws DAOException {
+        try {
+            if (lafPrefs.getId() != null) {
+                this.jpaTemplate.merge(lafPrefs);
+            } else {
+                this.jpaTemplate.persist(lafPrefs);
+            }
+        } catch (Exception ex) {
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void save(DisplayListsPreferences dlPrefs) {
-        if (dlPrefs.getId() != null) {
-            this.jpaTemplate.merge(dlPrefs);
-        } else {
-            this.jpaTemplate.persist(dlPrefs);
+    public void save(DisplayListsPreferences dlPrefs) throws DAOException {
+        try {
+            if (dlPrefs.getId() != null) {
+                this.jpaTemplate.merge(dlPrefs);
+            } else {
+                this.jpaTemplate.persist(dlPrefs);
+            }
+        } catch (Exception ex) {
+            throw new DAOException(ex);
         }
     }
 }

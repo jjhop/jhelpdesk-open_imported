@@ -92,14 +92,14 @@ public class HelpViewController {
      * @return identyfikator widoku
      */
     @RequestMapping(value = "/help/kb/index.html", method = RequestMethod.GET)
-    public String knowledgeBaseView(ModelMap map) {
+    public String knowledgeBaseView(ModelMap map) throws Exception {
         map.addAttribute("categories", articleCategoryDAO.getAllCategories());
         map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
         return HELP_KB_INDEX;
     }
 
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
-    public String knowledgeBaseSearch(@RequestParam("query") String query, ModelMap map) {
+    public String knowledgeBaseSearch(@RequestParam("query") String query, ModelMap map) throws Exception {
         try {
             map.addAttribute("result", luceneIndexer.search(query));
         } catch(SearchException se) {
@@ -119,7 +119,7 @@ public class HelpViewController {
      * @return identyfikator widoku
      */
     @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.GET)
-    public String knowledgeBaseItemView(@PathVariable("aId") Long id, ModelMap map) {
+    public String knowledgeBaseItemView(@PathVariable("aId") Long id, ModelMap map) throws Exception {
         Article article = articleDAO.getById(id);
         if (article != null) {
             map.addAttribute("article", article);
