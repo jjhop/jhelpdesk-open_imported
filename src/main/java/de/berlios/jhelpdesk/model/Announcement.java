@@ -38,44 +38,40 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "announcement")
-@SequenceGenerator(name="announcement_sequence", sequenceName="announcement_id_seq")
-@SecondaryTable(name="announcement_body",
-    pkJoinColumns=@PrimaryKeyJoinColumn(name="announcement_id", referencedColumnName="announcement_id"))
+@SequenceGenerator(name = "announcement_sequence", sequenceName = "announcement_id_seq")
+@SecondaryTable(name = "announcement_body",
+pkJoinColumns =
+@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"))
 @NamedQueries({
-    @NamedQuery(name = "Announcement.allOrderByCreateDateDesc", query = "SELECT a FROM Announcement a ORDER BY a.createDate DESC"),
-    @NamedQuery(name = "Announcement.byId", query = "SELECT a FROM Announcement a WHERE a.announcementId=?1")
+    @NamedQuery(name = "Announcement.allOrderByCreatedAtDesc", query = "SELECT a FROM Announcement a ORDER BY a.createdAt DESC"),
+    @NamedQuery(name = "Announcement.byId", query = "SELECT a FROM Announcement a WHERE a.id=?1")
 })
 public class Announcement implements Serializable {
 
     private static final long serialVersionUID = 7847414108796364163L;
-
-	/**
+    /**
      *
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="announcement_sequence")
-    @Column(name = "announcement_id")
-    private Long announcementId;
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "announcement_sequence")
+    @Column(name = "id")
+    private Long id;
     /**
      *
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date", nullable = false)
-    private Date createDate;
-
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
     /**
      *
      */
     @Column(name = "title")
     private String title;
-
     /**
      *
      */
     @Column(name = "lead")
     private String lead;
-
     /**
      *
      */
@@ -83,50 +79,49 @@ public class Announcement implements Serializable {
     private String body;
 
     public Announcement() {
-        this.createDate = new Date();
-    }
-
-
-    /**
-     * @return the body
-     */
-    public String getBody() {
-        return body;
+        this.createdAt = new Date();
     }
 
     /**
-     * @param body the body to set
+     * @return id
      */
-    public void setBody(String body) {
-        this.body = body;
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
      * @return the createDate
      */
     public Date getCreateDate() {
-        return createDate;
+        return createdAt;
     }
 
     /**
      * @param createDate the createDate to set
      */
     public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+        this.createdAt = createDate;
     }
 
     /**
-     * @return the announcementId
+     * @return the title
      */
-    public Long getAnnouncementId() {
-        return announcementId;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * @param announcementId the announcementId to set
+     * @param title the title to set
      */
-    public void setAnnouncementId(Long announcementId) {
-        this.announcementId = announcementId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -144,16 +139,16 @@ public class Announcement implements Serializable {
     }
 
     /**
-     * @return the title
+     * @return the body
      */
-    public String getTitle() {
-        return title;
+    public String getBody() {
+        return body;
     }
 
     /**
-     * @param title the title to set
+     * @param body the body to set
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBody(String body) {
+        this.body = body;
     }
 }

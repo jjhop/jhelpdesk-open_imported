@@ -97,7 +97,7 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
 
     @Transactional(readOnly = false)
     public void saveOrUpdate(ArticleCategory category) {
-        if (category.getArticleCategoryId() == null) {
+        if (category.getId() == null) {
             this.jpaTemplate.persist(category);
         } else {
             this.jpaTemplate.merge(category);

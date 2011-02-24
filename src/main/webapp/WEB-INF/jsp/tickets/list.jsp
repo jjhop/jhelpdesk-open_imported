@@ -32,7 +32,7 @@
                 </display:column>
                 <display:column property="ticketCategory" title="Kategoria" class="category" headerClass="category" />
                 <display:column title="Data" class="createDate" headerClass="createDate">
-                    <fmt:formatDate value="${ticketsIterator.createDate}" pattern="yy/MM/dd HH:mm" />
+                    <fmt:formatDate value="${ticketsIterator.createdAt}" pattern="yy/MM/dd HH:mm" />
                 </display:column>
                 <display:column title="Status" class="status" headerClass="status">
                     <span style="font-weight: bold; color: <c:out value="\#${ticketsIterator.ticketStatus.bgColor}"/>">

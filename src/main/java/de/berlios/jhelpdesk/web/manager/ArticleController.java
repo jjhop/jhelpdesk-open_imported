@@ -141,8 +141,8 @@ public class ArticleController {
         }
         articleDAOJpa.saveOrUpdate(article);
         luceneIndexer.addToIndex(article);
-        System.out.println("artykul [" + article.getArticleId() + "] dodany do indeksu");
-        return "redirect:/manage/kb/category/" + article.getCategory().getArticleCategoryId() +
-                "/articles/" + article.getArticleId() + "/show.html";
+        System.out.println("artykul [" + article.getId() + "] dodany do indeksu");
+        return "redirect:/manage/kb/category/" + article.getCategory().getId() +
+                "/articles/" + article.getId() + "/show.html";
     }
 }

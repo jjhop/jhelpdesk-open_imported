@@ -35,19 +35,19 @@
                                         <td><c:out value="${c.categoryName}"/></td>
                                         <td class="artnumber"><c:out value="${c.articlesCount}"/></td>
                                         <td class="ticketEdit">
-                                            <a class="actionNew" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/articles.html"/>">Art</a>
+                                            <a class="actionNew" href="<c:url value="/manage/kb/category/${c.id}/articles.html"/>">Art</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/edit.html"/>">E</a>
+                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.id}/edit.html"/>">E</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/remove.html"/>">R</a>
+                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.id}/remove.html"/>">R</a>
                                         </td>
                                         <td class="ticketEdit">
-                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/up.html"/>">U</a>
+                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.id}/up.html"/>">U</a>
                                         </td>
                                         <td class="lastcol ticketEdit">
-                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.articleCategoryId}/down.html"/>">D</a>
+                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.id}/down.html"/>">D</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

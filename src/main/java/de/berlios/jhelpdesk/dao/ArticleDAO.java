@@ -93,5 +93,14 @@ public interface ArticleDAO {
      */
     List<Article> getLastArticles(int howMuch);
 
+    /**
+     * Zapisuje komentarze zakładając, że artykył z nim powiązany jest
+     * prawidłowo ustawiony w obiekcie.
+     * 
+     * @param comment
+     * @throws DAOException
+     *
+     * @see Article
+     */
     void saveArticleComment(ArticleComment comment) throws DAOException;
 }
