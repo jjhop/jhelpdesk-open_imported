@@ -37,7 +37,7 @@ public class ArticleCategoryEditor extends PropertyEditorSupport {
     public String getAsText() {
         Object value = getValue();
         if (value != null) {
-            return String.valueOf(((ArticleCategory)value).getId());
+            return String.valueOf(((ArticleCategory) value).getId());
         } else {
             return null;
         }
@@ -45,8 +45,12 @@ public class ArticleCategoryEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) {
-        Long articleCategoryId = Long.valueOf(text);
-        ArticleCategory articleCategory = articleCategoryDAO.getById(articleCategoryId);
-        setValue(articleCategory);
+        try {
+            Long articleCategoryId = Long.valueOf(text);
+            ArticleCategory articleCategory = articleCategoryDAO.getById(articleCategoryId);
+            setValue(articleCategory);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

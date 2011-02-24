@@ -101,7 +101,7 @@ public class TicketFromEmailProcessor implements Processor {
         return TicketPriority.NORMAL;
     }
 
-    private User extractUserEmail(Object from) {
+    private User extractUserEmail(Object from) throws Exception {
         String fromAsString = (String) from;
         int begin = fromAsString.indexOf("<") + 1;
         int end   = fromAsString.indexOf(">", begin);

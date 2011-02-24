@@ -40,7 +40,7 @@ public class DisplayListsPreferences implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dl_preferences_sequence")
-    @Column(name = "dl_preferences_id")
+    @Column(name = "id")
     private Long id;
 
     @OneToOne(mappedBy = "dlPreferences")

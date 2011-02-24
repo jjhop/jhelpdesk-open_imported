@@ -49,7 +49,7 @@ public interface UserDAO {
      * @see User
      * @see java.util.Collections#EMPTY_LIST
      */
-    List<User> getByRole(Role role);
+    List<User> getByRole(Role role) throws DAOException;
 
     /**
      * Zwraca użytkownika o podanym identyfikatorze lub {@code null} jeśli
@@ -69,7 +69,7 @@ public interface UserDAO {
      * @param login login poszukiwanego użytkownika
      * @return obiekt użytkownika o podanym identyfikatorze
      */
-    User getByLogin(String login);
+    User getByLogin(String login) throws DAOException;
 
     /**
      * Zwraca użytkownika o podanym loginie lub {@code null} jeśli
@@ -78,7 +78,7 @@ public interface UserDAO {
      * @param email poszukiwanego użytkownika
      * @return obiekt użytkownika o podanym emailu
      */
-    User getByEmail(String email);
+    User getByEmail(String email) throws DAOException;
 
     /**
      * Działa jak metoda {@link #getByLogin(java.lang.String)} jednak ignoruje
@@ -88,7 +88,7 @@ public interface UserDAO {
      * @param login login poszukiwanego użytkownika
      * @return obiekt użytkownika o podanym identyfikatorze
      */
-    User getByLoginFetchFilters(String login);
+    User getByLoginFetchFilters(String login) throws DAOException;
 
     /**
      * Sprawdza czy w systemie istnieje użytkownik z pasującą do podanych
@@ -108,7 +108,7 @@ public interface UserDAO {
      * @param login login uzytkownika (użytkownik o tym loginie musi istnieć w systemie)
      * @param date data logowanie
      */
-    void loginUser(String login, Date date);
+    void loginUser(String login, Date date) throws DAOException;
 
     /**
      * Zapisuje dane nowego użytkownika lub uaktualnie dane istniejącego. Wybór akcji odbywa się
@@ -120,7 +120,7 @@ public interface UserDAO {
      */
     void saveOrUpdate(User user) throws DAOException;
 
-    void refresh(User user);
+    void refresh(User user) throws DAOException;
 
-    void updatePasswordAndSalt(User currentUser, String password);
+    void updatePasswordAndSalt(User currentUser, String password) throws DAOException;
 }

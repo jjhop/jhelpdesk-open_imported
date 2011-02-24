@@ -26,13 +26,13 @@ import de.berlios.jhelpdesk.model.User;
  */
 public interface TicketFilterDAO {
 
-    void saveOrUpdate(TicketFilter ticketFilter);
+    void saveOrUpdate(TicketFilter ticketFilter) throws DAOException;
 
-    List<TicketFilter> getAllFiltersForUser(User user);
+    List<TicketFilter> getAllFiltersForUser(User user) throws DAOException;
 
-    TicketFilter getById(Long filterId);
+    TicketFilter getById(Long filterId) throws DAOException;
 
-    void delete(Long filterId);
-    
-    void delete(TicketFilter filter);
+    void delete(Long filterId) throws DAOException;
+
+    void delete(TicketFilter filter) throws DAOException;
 }

@@ -24,7 +24,7 @@ import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
  */
 public interface UserPreferencesDAO {
 
-    void save(LookAndFeelPreferences lafPrefs);
+    void save(LookAndFeelPreferences lafPrefs) throws DAOException;
 
-    void save(DisplayListsPreferences dlPrefs);
+    void save(DisplayListsPreferences dlPrefs) throws DAOException;
 }

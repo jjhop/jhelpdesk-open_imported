@@ -28,6 +28,7 @@ import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketFilterDAO;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.User;
@@ -51,56 +52,76 @@ public class TicketFilterDAOJpa implements TicketFilterDAO {
     }
 
     @Transactional(readOnly = false)
-    public void saveOrUpdate(final TicketFilter filter) {
-        if (filter.getId() == null) {
-            this.jpaTemplate.persist(filter);
-        } else {
-            this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
-                public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
-                    TicketFilterDAOJpa.this.deleteFilterItems(em, filter.getId());
-                    em.merge(filter);
-                    // WORKAROUND: Jest jakiś problem z zapisaniem do bazy pól z datą
-                    // ustawionych na null, jeśli wcześniej miały jakąś wartość... (OpenJPA 1.2.2)
-                    Query updateQuery = em.createNativeQuery(
-                        "UPDATE ticket_filters SET begin_date=?1, end_date=?2 WHERE id=?3");
-                    updateQuery.setParameter(1, filter.getBeginDate());
-                    updateQuery.setParameter(2, filter.getEndDate());
-                    updateQuery.setParameter(3, filter.getId());
-                    updateQuery.executeUpdate();
-                    return null;
-                }
-            });
+    public void saveOrUpdate(final TicketFilter filter) throws DAOException {
+        try {
+            if (filter.getId() == null) {
+                this.jpaTemplate.persist(filter);
+            } else {
+                this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
+                    public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
+                        TicketFilterDAOJpa.this.deleteFilterItems(em, filter.getId());
+                        em.merge(filter);
+                        // WORKAROUND: Jest jakiś problem z zapisaniem do bazy pól z datą
+                        // ustawionych na null, jeśli wcześniej miały jakąś wartość... (OpenJPA 1.2.2)
+                        Query updateQuery = em.createNativeQuery(
+                            "UPDATE ticket_filters SET begin_date=?1, end_date=?2 WHERE id=?3");
+                        updateQuery.setParameter(1, filter.getBeginDate());
+                        updateQuery.setParameter(2, filter.getEndDate());
+                        updateQuery.setParameter(3, filter.getId());
+                        updateQuery.executeUpdate();
+                        return null;
+                    }
+                });
+            }
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void delete(final Long filterId) {
-        this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
-            public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
-                Query q = em.createQuery("DELETE FROM TicketFilter f WHERE f.ticketFilterId = ?1");
-                q.setParameter(1, filterId);
-                q.executeUpdate();
-                return null;
-            }
-        });
+    public void delete(final Long filterId) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
+                public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("DELETE FROM TicketFilter f WHERE f.ticketFilterId = ?1");
+                    q.setParameter(1, filterId);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     @Transactional(readOnly = false)
-    public void delete(final TicketFilter filter) {
-        this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
-            public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
-                em.remove(filter);
-                return null;
-            }
-        });
+    public void delete(final TicketFilter filter) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<TicketFilter>() {
+                public TicketFilter doInJpa(EntityManager em) throws PersistenceException {
+                    em.remove(filter);
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public List<TicketFilter> getAllFiltersForUser(User user) {
-        return this.jpaTemplate.findByNamedQuery("TicketFilter.forUserOrderByNameASC", user);
+    public List<TicketFilter> getAllFiltersForUser(User user) throws DAOException {
+        try {
+            return this.jpaTemplate.findByNamedQuery("TicketFilter.forUserOrderByNameASC", user);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public TicketFilter getById(Long filterId) {
-        return this.jpaTemplate.find(TicketFilter.class, filterId);
+    public TicketFilter getById(Long filterId) throws DAOException {
+        try {
+            return this.jpaTemplate.find(TicketFilter.class, filterId);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     private void deleteFilterItems(EntityManager em, Long filterId) {

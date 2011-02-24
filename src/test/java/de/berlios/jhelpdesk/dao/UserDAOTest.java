@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -37,12 +36,12 @@ public class UserDAOTest {
     }
 
     @Test
-    public void testGetByLoginWithNonExistingUser() {
+    public void testGetByLoginWithNonExistingUser() throws Exception {
         Assert.assertNull(userDAO.getByLogin("non_existing_user"));
     }
 
     @Test
-    public void testGetByLoginWithExistingUser() {
+    public void testGetByLoginWithExistingUser() throws Exception {
         User user = userDAO.getByLogin("admin");
         Assert.assertNotNull(user);
         Assert.assertEquals(ADMIN_ID, user.getUserId());
@@ -50,13 +49,13 @@ public class UserDAOTest {
     }
 
     @Test
-    public void testGetByEmailWithNonExistingUser() {
+    public void testGetByEmailWithNonExistingUser() throws Exception {
         User user = userDAO.getByLogin("non_existing_user@non-existing-host.com");
         Assert.assertNull(user);
     }
 
     @Test
-    public void testGetByEmailWithExistingUser() {
+    public void testGetByEmailWithExistingUser() throws Exception {
         User user = userDAO.getByLogin("admin@localhost.localdomain");
         Assert.assertNotNull(user);
         Assert.assertEquals(ADMIN_ID, user.getUserId());

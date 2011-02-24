@@ -15,16 +15,12 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
@@ -46,8 +42,6 @@ import de.berlios.jhelpdesk.model.ArticleCategory;
 @Transactional(readOnly = true)
 public class ArticleDAOJpa implements ArticleDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(ArticleDAOJpa.class);
-    
     private final JpaTemplate jpaTemplate;
 
     @Autowired
@@ -56,16 +50,16 @@ public class ArticleDAOJpa implements ArticleDAO {
     }
 
     @Transactional(readOnly = false)
-    public void delete(Article article) {
+    public void delete(Article article) throws DAOException {
         try {
             this.delete(article.getId());
         } catch (Exception ex) {
-            log.error("Nie można usunąć artykułu o identyfikatorze [" + article.getId() + "]", ex);
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void delete(Long articleId) {
+    public void delete(Long articleId) throws DAOException {
         try {
             Article toDelete = this.jpaTemplate.find(Article.class, articleId);
             ArticleCategory category = 
@@ -76,29 +70,27 @@ public class ArticleDAOJpa implements ArticleDAO {
             this.jpaTemplate.merge(category);
             this.jpaTemplate.remove(toDelete);
         } catch (Exception ex) {
-            log.error("Nie można usunąć artykułu o identyfikatorze [" + articleId + "]", ex);
+            throw new DAOException(ex);
         }
     }
 
-    public Article getById(Long articleId) {
+    public Article getById(Long articleId) throws DAOException {
         try {
             return this.jpaTemplate.find(Article.class, articleId);
         } catch (Exception ex) {
-            log.error("Wystąpił problem z pobranie artykułu o identyfikatorze [" + articleId + "]", ex);
+            throw new DAOException(ex);
         }
-        return null;
     }
 
-    public List<Article> getForSection(Long categoryId) {
+    public List<Article> getForSection(Long categoryId) throws DAOException {
         try {
             return this.jpaTemplate.findByNamedQuery("Article.getForCategory", categoryId);
         } catch (Exception ex) {
-            log.error("Nie można pobrać artykułów dla wskazanej kategorii.", ex);
+            throw new DAOException(ex);
         }
-        return Collections.<Article>emptyList();
     }
 
-    public List<Article> getLastArticles(final int howMuch) {
+    public List<Article> getLastArticles(final int howMuch) throws DAOException {
         try {
             return (List<Article>) this.jpaTemplate.executeFind(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
@@ -108,21 +100,24 @@ public class ArticleDAOJpa implements ArticleDAO {
                 }
             });
         } catch (Exception ex) {
-            log.error("Nie można pobrać ostatnio dodanych artykułów.", ex);
+            throw new DAOException(ex);
         }
-        return Collections.<Article>emptyList();
     }
 
     @Transactional(readOnly = false)
-    public void saveOrUpdate(Article article) {
-        if (article.getId() == null) {
-            ArticleCategory category = article.getCategory();
-            int numOfArticlesInCategory = category.getArticlesCount();
-            category.setArticlesCount(numOfArticlesInCategory + 1);
-            this.jpaTemplate.merge(category);
-            this.jpaTemplate.persist(article);
-        } else {
-            this.jpaTemplate.merge(article);
+    public void saveOrUpdate(Article article) throws DAOException {
+        try {
+            if (article.getId() == null) {
+                ArticleCategory category = article.getCategory();
+                int numOfArticlesInCategory = category.getArticlesCount();
+                category.setArticlesCount(numOfArticlesInCategory + 1);
+                this.jpaTemplate.merge(category);
+                this.jpaTemplate.persist(article);
+            } else {
+                this.jpaTemplate.merge(article);
+            }
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 

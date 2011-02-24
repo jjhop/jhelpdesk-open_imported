@@ -39,7 +39,7 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/list.html")
-    public String showAllCategories(ModelMap map) {
+    public String showAllCategories(ModelMap map) throws Exception {
         map.addAttribute("categories", categoryDAO.getAllCategories());
         return "manager/category/showAll";
     }
@@ -51,7 +51,8 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/{id}/show.html")
-    public String showOneCategory(@PathVariable("id") Long categoryId, ModelMap map) {
+    public String showOneCategory(@PathVariable("id") Long categoryId,
+                                  ModelMap map) throws Exception {
         map.addAttribute("category", categoryDAO.getById(categoryId));
         return null;
     }
@@ -62,7 +63,7 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/{id}/remove.html")
-    public String removeCategory(@PathVariable("id") Long categoryId) {
+    public String removeCategory(@PathVariable("id") Long categoryId) throws Exception {
         categoryDAO.deleteCategory(categoryDAO.getById(categoryId));
         return "redirect:/manage/category/list.html";
     }

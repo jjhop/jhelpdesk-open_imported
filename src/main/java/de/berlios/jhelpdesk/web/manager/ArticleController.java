@@ -80,21 +80,21 @@ public class ArticleController {
     }
 
     @RequestMapping("/manage/kb/category/{id}/articles.html")
-    public String showAllArticles(@PathVariable("id") Long categoryId, ModelMap map) {
+    public String showAllArticles(@PathVariable("id") Long categoryId, ModelMap map) throws Exception {
         map.addAttribute("articles", articleDAOJpa.getForSection(categoryId));
         map.addAttribute("categoryId", categoryId);
         return MANAGE_KB_ARTICLE_LIST;
     }
 
     @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/show.html")
-    public String showArticle(@PathVariable("aId") Long articleId, ModelMap map) {
+    public String showArticle(@PathVariable("aId") Long articleId, ModelMap map) throws Exception {
         map.addAttribute("article", articleDAOJpa.getById(articleId));
         return MANAGE_KB_ARTICLE_SHOW;
     }
 
     @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/remove.html")
     public String remove(@PathVariable("cId") Long categoryId,
-                         @PathVariable("aId") Long articleId) {
+                         @PathVariable("aId") Long articleId) throws Exception {
         articleDAOJpa.delete(articleId);
         luceneIndexer.removeIndexedArticle(articleId);
         return "redirect:/manage/kb/category/" + categoryId + "/articles.html";
@@ -122,7 +122,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/manage/kb/category/{cId}/articles/new.html", method = RequestMethod.GET)
     public String prepareFormForNew(@PathVariable("cId") Long categoryId,
-                                    HttpSession session, ModelMap map) {
+                                    HttpSession session, ModelMap map) throws Exception {
         Article article = new Article();
         article.setCategory(articleCategoryDAO.getById(categoryId));
         article.setAuthor((User) session.getAttribute("user"));
@@ -133,7 +133,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/manage/kb/articles/save.html", method = RequestMethod.POST)
     public String processSubmitNew(@ModelAttribute("article") Article article,
-                                   BindingResult result, ModelMap map) {
+                                   BindingResult result, ModelMap map) throws Exception {
         articleValidator.validate(article, result);
         if (result.hasErrors()) {
             map.addAttribute("formAction", "save");

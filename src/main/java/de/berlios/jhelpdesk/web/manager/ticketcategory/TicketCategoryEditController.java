@@ -56,7 +56,7 @@ public class TicketCategoryEditController {
 
     @RequestMapping(value = "/manage/category/update.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("category") TicketCategory category,
-                                BindingResult result, SessionStatus status, ModelMap map) {
+                                BindingResult result, SessionStatus status, ModelMap map) throws Exception {
         validator.validate(category, result);
         if (result.hasErrors()) {
             return MANAGE_TICKET_CATEGORY_EDIT;
@@ -78,7 +78,7 @@ public class TicketCategoryEditController {
     }
 
     @RequestMapping(value = "/manage/category/{id}/edit.html", method = RequestMethod.GET)
-    public String prepareForm(@PathVariable("id") Long catId, ModelMap map) {
+    public String prepareForm(@PathVariable("id") Long catId, ModelMap map) throws Exception {
         map.addAttribute("category", categoryDAO.getById(catId));
         return MANAGE_TICKET_CATEGORY_EDIT;
     }

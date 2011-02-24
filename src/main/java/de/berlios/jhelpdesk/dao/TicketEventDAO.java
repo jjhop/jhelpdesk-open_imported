@@ -34,53 +34,53 @@ public interface TicketEventDAO {
      * @param eventId
      * @return
      */
-    TicketEvent getById(Long eventId);
+    TicketEvent getById(Long eventId) throws DAOException;
 
     /**
      *
      * @param user
      * @return
      */
-    List<TicketEvent> getByUser(User user);
+    List<TicketEvent> getByUser(User user) throws DAOException;
 
     /**
      *
      * @param userId
      * @return
      */
-    List<TicketEvent> getByUser(Long userId);
+    List<TicketEvent> getByUser(Long userId) throws DAOException;
 
     /**
      *
      * @param ticket
      * @return
      */
-    List<TicketEvent> getByTicket(Ticket ticket);
+    List<TicketEvent> getByTicket(Ticket ticket) throws DAOException;
 
     /**
      *
      * @param ticketId
      * @return
      */
-    List<TicketEvent> getByTicket(Long ticketId);
+    List<TicketEvent> getByTicket(Long ticketId) throws DAOException;
 
     /**
      *
      * @param type
      * @return
      */
-    List<EventType> getByType(EventType type);
+    List<EventType> getByType(EventType type) throws DAOException;
 
     /**
      *
      * @param howMuch
      * @return
      */
-    List<TicketEvent> getLastEvents(int howMuch);
+    List<TicketEvent> getLastEvents(int howMuch) throws DAOException;
 
     /**
      *
      * @param event
      */
-    void save(TicketEvent event);
+    void save(TicketEvent event) throws DAOException;
 }

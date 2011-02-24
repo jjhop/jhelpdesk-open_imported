@@ -40,7 +40,7 @@ public interface ArticleDAO {
      * 
      * @return obiekt Article lub {@code null} jeśli nie zostanie znaleziony
      */
-    Article getById(Long articleId);
+    Article getById(Long articleId) throws DAOException;
 
     /**
      * Zapisuje lub uaktualnie podany obiekt Article. Operacja wybierana jest na
@@ -52,21 +52,21 @@ public interface ArticleDAO {
      * 
      * @param article obiekt Article do zapisania (lub uaktualnienia)
      */
-    void saveOrUpdate(Article article);
+    void saveOrUpdate(Article article) throws DAOException;
 
     /**
      * Usuwa wskazany obiekt Article.
      * 
      * @param article obiekt Article do usunięcia
      */
-    void delete(Article article);
+    void delete(Article article) throws DAOException;
 
     /**
      * Usuwa obiekt Article o podanym identyfikatorze.
      * 
      * @param articleId id obiektu Article do usunięcia
      */
-    void delete(Long articleId);
+    void delete(Long articleId) throws DAOException;
 
     /**
      * Zwraca listę obiektów Article z sekcji o podanym identyfikatorze.
@@ -78,7 +78,7 @@ public interface ArticleDAO {
      * Article
      * @return lista obiektów Article (może być pusta)
      */
-    List<Article> getForSection(Long categoryId);
+    List<Article> getForSection(Long categoryId) throws DAOException;
 
     /**
      * Zwraca listę obiektów Article o rozmiarze co najwyżej {@code howMuch}.
@@ -91,7 +91,7 @@ public interface ArticleDAO {
      * @see Article
      * @see Article#getCreateDate()
      */
-    List<Article> getLastArticles(int howMuch);
+    List<Article> getLastArticles(int howMuch) throws DAOException;
 
     /**
      * Zapisuje komentarze zakładając, że artykył z nim powiązany jest

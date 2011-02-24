@@ -60,7 +60,7 @@ public class PersonalDataEditController {
     @RequestMapping(value = "/preferences/password/change.html", method = RequestMethod.POST)
     public String processPasswordChange(@RequestParam("password") String password,
                                         @RequestParam("repeated") String repeated,
-                                        HttpSession session, ModelMap map) {
+                                        HttpSession session, ModelMap map) throws Exception {
         User currentUser = getUserFromSession(session);
         map.addAttribute("personalData", currentUser);
 
