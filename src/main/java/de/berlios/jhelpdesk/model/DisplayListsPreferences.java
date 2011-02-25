@@ -52,6 +52,9 @@ public class DisplayListsPreferences implements Serializable {
     @Column(name = "announcements_list_size")
     private Integer announcementsListSize;
 
+    @Column(name = "articles_list_size")
+    private Integer articlesListSize;
+    
     @Column(name = "users_list_size")
     private Integer usersListSize;
 
@@ -104,6 +107,14 @@ public class DisplayListsPreferences implements Serializable {
 
     public void setUsersListSize(Integer usersListSize) {
         this.usersListSize = usersListSize;
+    }
+
+    public Integer getArticlesListSize() {
+        return this.articlesListSize;
+    }
+
+    public void setArticlesListSize(Integer articlesListSize) {
+        this.articlesListSize = articlesListSize;
     }
 
 }

@@ -192,6 +192,11 @@
         <put-attribute name="content" value="/WEB-INF/jsp/help/base.jsp"/>
     </definition>
 
+    <definition name="help/kb/category" extends="baseLayout">
+        <put-attribute name="title" value="Baza wiedzy :: Artykuły w kategorii"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/help/baseCategory.jsp"/>
+    </definition>
+
     <definition name="help/kb/searchResult" extends="baseLayout">
         <put-attribute name="title" value="Baza wiedzy - wyniki wyszukiwania"/>
         <put-attribute name="content" value="/WEB-INF/jsp/help/searchResult.jsp"/>

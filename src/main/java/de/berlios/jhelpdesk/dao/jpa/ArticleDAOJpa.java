@@ -82,9 +82,43 @@ public class ArticleDAOJpa implements ArticleDAO {
         }
     }
 
+    // TODO: do usunięcia, oznaczona jako @Deprecated w interfejsie
     public List<Article> getForSection(Long categoryId) throws DAOException {
         try {
             return this.jpaTemplate.findByNamedQuery("Article.getForCategory", categoryId);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public List<Article> getForSection(final Long cId, final int pageSize, final int page) throws DAOException {
+        try {
+            return this.jpaTemplate.executeFind(new JpaCallback<List<Article>>() {
+                public List<Article> doInJpa(EntityManager em) throws PersistenceException {
+                    int offset = (int) (pageSize * (page - 1));
+                    Query q = em.createQuery(
+                        "SELECT a FROM Article a WHERE a.category.id=?1 ORDER BY a.createdAt DESC");
+                    q.setParameter(1, cId);
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countForSection(final Long categoryId) throws DAOException {
+        try {
+            return ((Long)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT COUNT(a) FROM Article a WHERE a.category.id=?1");
+                    q.setParameter(1, categoryId);
+                    return q.getSingleResult();
+                }
+            })).intValue();
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
