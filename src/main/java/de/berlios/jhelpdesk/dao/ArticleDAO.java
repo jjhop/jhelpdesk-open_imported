@@ -74,11 +74,24 @@ public interface ArticleDAO {
      * znalezione żadne obiekty to lista będzie pusta ale nigdy nie będzie
      * {@code nullem}.
      * 
-     * @param categoryId identyfikator sekcji, z której mają pochodzić obiekty
-     * Article
+     * @param categoryId identyfikator sekcji, z której mają pochodzić obiekty Article
      * @return lista obiektów Article (może być pusta)
      */
+    @Deprecated
     List<Article> getForSection(Long categoryId) throws DAOException;
+
+    /**
+     * Zwraca stronicowaną listę arttykułów w sekcji.
+     *
+     * @param categoryId identyfikator sekcji, z której mają pochodzić obiekty Article
+     * @param count
+     * @param offset
+     * @return lista obiektów Article (może być pusta)
+     * @throws DAOException
+     */
+    List<Article> getForSection(Long categoryId, int count, int offset) throws DAOException;
+
+    int countForSection(Long categoryId) throws DAOException;
 
     /**
      * Zwraca listę obiektów Article o rozmiarze co najwyżej {@code howMuch}.

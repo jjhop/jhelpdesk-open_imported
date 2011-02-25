@@ -50,7 +50,8 @@ public class HelpViewController {
     private final static String HELP_INDEX = "help/index";
     private final static String HELP_ABOUT = "help/about";
     private final static String HELP_KB_INDEX = "help/base"; // zamienić na help/kb/index
-    private final static String HELP_KB_ARTICLE = "help/base/one";
+    private final static String HELP_KB_CATEGORY = "help/kb/category";
+    private final static String HELP_KB_ARTICLE = "help/base/one"; // zamienić na help/kb/one
     private final static String HELP_KB_SEARCH_RESULT = "help/kb/searchResult";
 
     @Autowired
@@ -92,14 +93,14 @@ public class HelpViewController {
      * @return identyfikator widoku
      */
     @RequestMapping(value = "/help/kb/index.html", method = RequestMethod.GET)
-    public String knowledgeBaseView(ModelMap map) throws Exception {
+    public String kBView(ModelMap map) throws Exception {
         map.addAttribute("categories", articleCategoryDAO.getAllCategories());
         map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
         return HELP_KB_INDEX;
     }
 
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
-    public String knowledgeBaseSearch(@RequestParam("query") String query, ModelMap map) throws Exception {
+    public String kBSearch(@RequestParam("query") String query, ModelMap map) throws Exception {
         try {
             map.addAttribute("result", luceneIndexer.search(query));
         } catch(SearchException se) {
@@ -111,6 +112,20 @@ public class HelpViewController {
         return HELP_KB_SEARCH_RESULT;
     }
 
+    @RequestMapping(value = "/help/base/category/{id}/show.html", method = RequestMethod.GET)
+    public String kBCategoryView(@RequestParam(value="p",required=false,defaultValue="1") int page,
+                                 @PathVariable("id") Long cId,  ModelMap map,
+                                 HttpSession session) throws Exception {
+        User currentUser = (User) session.getAttribute("user");
+        int pageSize = currentUser.getArticlesListSize();
+        map.addAttribute("category", cId);
+        map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
+        map.addAttribute("articlesInSection", articleDAO.countForSection(cId));
+        map.addAttribute("pageSize", pageSize);
+        map.addAttribute("offset", pageSize * (page-1));
+        return HELP_KB_CATEGORY;
+    }
+
     /**
      * Wyświetla artykuł oznaczony w bazie wiedzy identyfikatorem {@code id}
      * 
@@ -119,7 +134,7 @@ public class HelpViewController {
      * @return identyfikator widoku
      */
     @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.GET)
-    public String knowledgeBaseItemView(@PathVariable("aId") Long id, ModelMap map) throws Exception {
+    public String kBItemView(@PathVariable("aId") Long id, ModelMap map) throws Exception {
         Article article = articleDAO.getById(id);
         if (article != null) {
             map.addAttribute("article", article);
@@ -130,10 +145,10 @@ public class HelpViewController {
     }
 
     @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.POST)
-    public String knowledgeBaseAddComment(@PathVariable("aId") Long articleId,
-                                          @RequestParam("title") String title,
-                                          @RequestParam("comment") String body,
-                                          ModelMap map, HttpSession session) throws Exception {
+    public String kBAddComment(@PathVariable("aId") Long articleId,
+                               @RequestParam("title") String title,
+                               @RequestParam("comment") String body,
+                               ModelMap map, HttpSession session) throws Exception {
 
         // tutaj jeszcze walidacja i jak jest do dupy to HELP_KB_ARTICLE
         // w przeciwnym wypadku redirect "/help/base/articles/" + articleId + "/show.html"

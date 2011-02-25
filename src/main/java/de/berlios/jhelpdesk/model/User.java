@@ -520,6 +520,13 @@ public class User implements Serializable {
             : DEFAULT_LIST_SIZE;
     }
 
+    public Integer getArticlesListSize() {
+        DisplayListsPreferences dlPrefs = getDlPreferences();
+        return dlPrefs != null
+            ? dlPrefs.getArticlesListSize()
+            : DEFAULT_LIST_SIZE;
+    }
+
     public Integer getFiltersListSize() {
         DisplayListsPreferences dlPrefs = getDlPreferences();
         return dlPrefs != null
