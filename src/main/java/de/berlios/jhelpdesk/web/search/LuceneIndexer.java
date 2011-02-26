@@ -46,6 +46,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import de.berlios.jhelpdesk.model.Article;
+import de.berlios.jhelpdesk.model.User;
 
 /**
  * Klasa obsługująca wszystkie operacja na indeksie wyszukiwarki.
@@ -153,6 +154,14 @@ public class LuceneIndexer {
         Document doc = new Document();
         doc.add(new Field("id", String.valueOf(article.getId()),
                           Field.Store.YES, Field.Index.NOT_ANALYZED));
+        doc.add(new Field("authorId", String.valueOf(article.getAuthor().getUserId()),
+                          Field.Store.YES, Field.Index.NOT_ANALYZED));
+        doc.add(new Field("authorLogin", String.valueOf(article.getAuthor().getLogin()),
+                          Field.Store.YES, Field.Index.NOT_ANALYZED));
+        doc.add(new Field("authorFirstName", String.valueOf(article.getAuthor().getFirstName()),
+                          Field.Store.YES, Field.Index.NOT_ANALYZED));
+        doc.add(new Field("authorLastName", String.valueOf(article.getAuthor().getLastName()),
+                          Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field("title", article.getTitle(),
                           Field.Store.YES, Field.Index.ANALYZED));
         doc.add(new Field("lead", article.getLead(),
@@ -167,7 +176,14 @@ public class LuceneIndexer {
     private Article documentToArticle(Document doc) {
         Long articleId = Long.parseLong(doc.get("id"));
         Date createdAt = new Date(Long.parseLong(doc.get("createdAt")));
-        return new Article(articleId, doc.get("title"), doc.get("lead"), createdAt);
+        User author = new User(
+                Long.parseLong(doc.get("authorId")),
+                doc.get("authorLogin"),
+                doc.get("authorFirstName"),
+                doc.get("authorLastName"));
+        Article article = new Article(articleId, doc.get("title"), doc.get("lead"), createdAt);
+        article.setAuthor(author);
+        return article;
     }
 
     @PostConstruct

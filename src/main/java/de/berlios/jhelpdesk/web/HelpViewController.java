@@ -16,6 +16,7 @@
 package de.berlios.jhelpdesk.web;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -32,6 +33,7 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.utils.MarkdownTranslator;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
 import de.berlios.jhelpdesk.web.tools.ArticleCommentValidator;
@@ -65,6 +67,9 @@ public class HelpViewController {
 
     @Autowired
     private LuceneIndexer luceneIndexer;
+
+    @Autowired
+    private MarkdownTranslator translator;
 
     /**
      * Wyświetla pomoc do programu.
@@ -102,7 +107,14 @@ public class HelpViewController {
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
     public String kBSearch(@RequestParam("query") String query, ModelMap map) throws Exception {
         try {
-            map.addAttribute("result", luceneIndexer.search(query));
+            List<Article> result = luceneIndexer.search(query);
+            map.addAttribute("result", result);
+            if (result.size() < 1) {
+                map.addAttribute("categories", articleCategoryDAO.getAllCategories());
+                map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
+                map.addAttribute("msg", "Nic nie znaleziono..."); // TODO: i18n
+                return HELP_KB_INDEX;
+            }
         } catch(SearchException se) {
             map.addAttribute("categories", articleCategoryDAO.getAllCategories());
             map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
@@ -118,10 +130,11 @@ public class HelpViewController {
                                  HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         int pageSize = currentUser.getArticlesListSize();
+        int articlesInSection = articleDAO.countForSection(cId);
+
         map.addAttribute("category", cId);
         map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
-        map.addAttribute("articlesInSection", articleDAO.countForSection(cId));
-        map.addAttribute("pageSize", pageSize);
+        map.addAttribute("pages", articlesInSection / pageSize + articlesInSection % pageSize);
         map.addAttribute("offset", pageSize * (page-1));
         return HELP_KB_CATEGORY;
     }
@@ -137,6 +150,7 @@ public class HelpViewController {
     public String kBItemView(@PathVariable("aId") Long id, ModelMap map) throws Exception {
         Article article = articleDAO.getById(id);
         if (article != null) {
+            article.setBody(translator.processMarkdown(article.getBody()));
             map.addAttribute("article", article);
         } else {
             map.addAttribute("message", "Nie znaleziono");

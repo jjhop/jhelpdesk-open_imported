@@ -91,6 +91,13 @@ public interface ArticleDAO {
      */
     List<Article> getForSection(Long categoryId, int count, int offset) throws DAOException;
 
+    /**
+     * Zwraca ilość artykułów w podanej kategorii.
+     * 
+     * @param categoryId
+     * @return
+     * @throws DAOException
+     */
     int countForSection(Long categoryId) throws DAOException;
 
     /**
