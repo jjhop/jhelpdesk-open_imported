@@ -1129,8 +1129,14 @@ td.artnumber {
                          background: url(../i/formWideTop.jpg) 0 0 no-repeat;}
 #table1.wide #bottomcenter {width: 672px;height: 25px;
                             background: url(../i/formWideBottom.jpg)  no-repeat scroll left bottom transparent}
+
 #table1.wide #table2 input, #table1.wide #table2 textarea,  #table1.wide #table2 select  {padding: 2px;font-size: 12px;}
 #table1.wide #table2 input, #table1.wide #table2 textarea {border: 1px solid #999;}
+
+#table1.wide input.btn {
+    padding: 2px 15px 5px 15px;
+}
+
 .p10l {padding-left: 10px !important;}
 .p20l {padding-left: 20px !important;}
 .p10r {padding-right: 10px !important;}
