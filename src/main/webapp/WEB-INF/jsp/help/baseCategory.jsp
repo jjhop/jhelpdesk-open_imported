@@ -1,23 +1,34 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
-przeglądanie kategorii
+<div class="kbCategoryHeader">Artykuły w kategorii: <strong>${category.categoryName}</strong></div>
 
 <c:if test="${fn:length(articles) > 0}">
-    <ul>
-        <c:forEach var="article" items="${articles}" varStatus="idx">
-            <li>${idx.count + offset} => ${article.title} by ${article.author}</li>
-        </c:forEach>
-    </ul>
-    <hr/>
-    <ul>
-        <%
-            int pages = (Integer) request.getAttribute("pages");
-            for (int currentPage = 1; currentPage <= pages; ++currentPage) {
-        %>
-        <li><a href="<c:url value="/help/base/category/${category}/show.html?p="/><%=currentPage%>"><%=currentPage%></a></li>
-        <%
-            }
-        %>
-    </ul>
+    <c:forEach var="article" items="${articles}" varStatus="idx">
+        <div class="kbSearchItem">
+            <h2><a href="<c:url value="/help/base/articles/${article.id}/show.html"/>">${idx.count + offset}. <c:out value="${article.title}"/></a></h2>
+            <div class="kbSearchItemLead">
+                <c:out value="${article.lead}"/>
+            </div>
+            <p class="kbSearchItemMeta">
+                <c:out value="${article.author}"/>, Dodano: <fmt:formatDate value="${article.createdAt}" pattern="yyyy-MM-dd HH:mm" />
+            </p>
+        </div>
+    </c:forEach>
+    <c:if test="${pages > 1}">
+        <ul class="panelPager">
+            <c:if test="${currentPage > 1}">
+            <li><a href="?p=${currentPage-1}">&laquo; poprzednia</a></li>
+            </c:if>
+            <%
+                int pages = (Integer) request.getAttribute("pages");
+                for (int cPage = 1; cPage <= pages; ++cPage) {
+            %>
+            <li><a href="<c:url value="/help/base/category/${category.id}/show.html?p="/><%=cPage%>"><%=cPage%></a></li>
+            <%  }  %>
+            <c:if test="${currentPage < pages}">
+            <li><a href="?p=${currentPage+1}">następna &raquo;</a></li>
+            </c:if>
+        </ul>
+    </c:if>
 </c:if>
