@@ -13,28 +13,26 @@
  *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.web.tools;
+package de.berlios.jhelpdesk.utils;
+
+import org.pegdown.PegDownProcessor;
 
 import org.springframework.stereotype.Component;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
-
-import de.berlios.jhelpdesk.model.ArticleComment;
 
 /**
  *
  * @author jjhop
  */
 @Component
-public class ArticleCommentValidator implements Validator {
+public class MarkdownTranslator {
 
-    public boolean supports(Class<?> clazz) {
-        return ArticleComment.class.equals(clazz);
+    private PegDownProcessor markdownProcessor;
+
+    public MarkdownTranslator() {
+        markdownProcessor = new PegDownProcessor();
     }
 
-    public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "errors.kbase.articleCommentTitle");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "body", "errors.kbase.articleCommentBody");
+    public String processMarkdown(String source) {
+        return markdownProcessor.markdownToHtml(source);
     }
 }

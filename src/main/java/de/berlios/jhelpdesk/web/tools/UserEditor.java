@@ -40,7 +40,11 @@ public class UserEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) {
-        User user = userDAO.getByLogin(text);
-        setValue(user);
+        try {
+            User user = userDAO.getByLogin(text);
+            setValue(user);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

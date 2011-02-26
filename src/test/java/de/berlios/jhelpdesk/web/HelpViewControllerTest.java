@@ -69,7 +69,7 @@ public class HelpViewControllerTest {
         f2.set(controllerInstance, articleDAOMock);
 
         String expResult = "help/base";
-        String result = controllerInstance.knowledgeBaseView(map);
+        String result = controllerInstance.kBView(map);
         assertEquals(expResult, result);
         assertNotNull(map.get("categories"));
         assertNotNull(map.get("latest"));
@@ -85,7 +85,7 @@ public class HelpViewControllerTest {
         HelpViewController controllerInstance = new HelpViewController();
 
         Article toReturn = new Article();
-        toReturn.setArticleId(id);
+        toReturn.setId(id);
         toReturn.setTitle("Test article");
 
         ArticleDAO articleDAOMock = EasyMock.createMock(ArticleDAO.class);
@@ -97,10 +97,10 @@ public class HelpViewControllerTest {
         f.set(controllerInstance, articleDAOMock);
 
         String expResult = "help/base/one";
-        String result = controllerInstance.knowledgeBaseItemView(id, map);
+        String result = controllerInstance.kBItemView(id, map);
         assertEquals(expResult, result);
         assertNotNull(map.get("article"));
-        assertEquals(1L, ((Article)map.get("article")).getArticleId().longValue());
+        assertEquals(1L, ((Article)map.get("article")).getId().longValue());
     }
 
 }

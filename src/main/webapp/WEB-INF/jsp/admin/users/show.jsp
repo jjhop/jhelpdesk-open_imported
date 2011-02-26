@@ -47,7 +47,6 @@
                     </div>
                     <div class="contentbottom"></div>
                 </div>
-
             </td>
         </tr>
     </table>

@@ -112,7 +112,7 @@ public class DesktopViewController {
     }
 
     private void fillLastAnnouncemenets(ModelMap map) throws Exception {
-        map.addAttribute("lastAnnouncements", announcementDAO.getLastAnnouncements(NUMBER_OF_LAST_ANNOUNCEMENTS));
+        map.addAttribute("announcements", announcementDAO.getLastAnnouncements(NUMBER_OF_LAST_ANNOUNCEMENTS));
     }
 
     private void fillLastEvent(ModelMap map) throws Exception {

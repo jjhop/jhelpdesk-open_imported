@@ -12,8 +12,8 @@
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <form action="<c:url value="/announcements/save.html"/>" method="post">
-                            <c:if test="${announcement.announcementId != null}">
-                                <spring:bind path="announcement.announcementId">
+                            <c:if test="${announcement.id != null}">
+                                <spring:bind path="announcement.id">
                                     <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
                                 </spring:bind>
                             </c:if>

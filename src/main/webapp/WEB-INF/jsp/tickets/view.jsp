@@ -17,7 +17,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="width: 258px; font-weight: bold;"><c:out value="${ticket.ticketId}"/></td>
-                                <td colspan="3" class="lastcol" style="font-weight: bold;"><fmt:formatDate value="${ticket.createDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+                                <td colspan="3" class="lastcol" style="font-weight: bold;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                             </tr>
                             <tr>
                                 <th colspan="6" class="lastcol">Przyczyna</th>
@@ -181,9 +181,6 @@
                             </div>
                         </div>
                     </div>
-                    <script type="text/javascript">
-                        // tabview_initialize('_currentWeekTabView');
-                    </script>
                     <script type="text/javascript">
                         //<![CDATA[
                         Event.observe(window, 'load', loadTabs, false);

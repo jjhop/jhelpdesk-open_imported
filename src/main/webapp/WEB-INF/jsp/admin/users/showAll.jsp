@@ -10,15 +10,11 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        
                         <table cellspacing="0">
                             <tr>
-                                <td>
-                                    <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a>
-                                </td>
+                                <td><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></td>
                             </tr>
                         </table>
-
                         <display:table name="users" id="user" class="standardtable" cellspacing="0" export="false" pagesize="25" requestURI="">
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${user_rowNum}" />

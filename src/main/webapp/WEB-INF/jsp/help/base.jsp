@@ -42,7 +42,7 @@
                                                 <ul>
                                                     <c:forEach items="${itemSection.articles}" var="art">
                                                         <li>
-                                                            <a href="<c:url value="/help/base/articles/${art.articleId}/show.html"/>">
+                                                            <a href="<c:url value="/help/base/articles/${art.id}/show.html"/>">
                                                                 <c:out value="${art.title}"/>
                                                             </a>
                                                         </li>
@@ -64,7 +64,7 @@
                 <div class="contentmiddle">
                     <ul class="kbList">
                         <c:forEach items="${categories}" var="c">
-                            <li><a href="<c:url value="/help/base/category/${c.articleCategoryId}/show.html"/>"
+                            <li><a href="<c:url value="/help/base/category/${c.id}/show.html"/>"
                                    class="catName"><c:out value="${c.categoryName}"/></a>
                                 <span class="catCount">(${fn:length(c.articles)})</span>
                             </li>

@@ -52,7 +52,7 @@ public class DisplayListsEditController {
 
     @RequestMapping(value = "/preferences/displayLists.html", method = RequestMethod.POST)
     public String processForm(@ModelAttribute("dlPrefs") DisplayListsPreferences dlPreferences,
-                              HttpSession session, ModelMap map) {
+                              HttpSession session, ModelMap map) throws Exception {
 
         User currentUser = (User) session.getAttribute("user");
         if (isPrefsOwnedByUser(dlPreferences, currentUser)) {

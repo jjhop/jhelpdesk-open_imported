@@ -29,20 +29,20 @@ public interface TicketCategoryDAO {
      *
      * @return
      */
-    List<TicketCategory> getAllCategories();
+    List<TicketCategory> getAllCategories() throws DAOException;
 
     /**
      * 
      * @return
      */
-    List<TicketCategory> getAllCategoriesForView();
+    List<TicketCategory> getAllCategoriesForView() throws DAOException;
 
     /**
      *
      * @param id
      * @return
      */
-    TicketCategory getById(Long id);
+    TicketCategory getById(Long id) throws DAOException;
 
     /**
      * Zwraca domyślną kategorię dla zgłoszeń, który nie nadano jej wprost.
@@ -52,31 +52,30 @@ public interface TicketCategoryDAO {
      *
      * @return domyślna kategoria
      */
-    TicketCategory getDefault();
+    TicketCategory getDefault() throws DAOException;
 
     /**
      *
      * @param rootCategory
      */
-    void insertRootCategory(TicketCategory rootCategory);
+    void insertRootCategory(TicketCategory rootCategory) throws DAOException;
 
     /**
      *
      * @param category
      * @param parent
      */
-    void insertCategory(TicketCategory category, TicketCategory parent);
+    void insertCategory(TicketCategory category, TicketCategory parent) throws DAOException;
 
     /**
      *
      * @param category
      */
-    void deleteCategory(TicketCategory category);
+    void deleteCategory(TicketCategory category) throws DAOException;
 
     /**
      *
      * @param category
      */
-    void updateCategory(TicketCategory category);
-
+    void updateCategory(TicketCategory category) throws DAOException;
 }

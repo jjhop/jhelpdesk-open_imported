@@ -60,7 +60,8 @@ public class AnnouncementController {
      * @return identyfikator widoku prezentującego ogłoszenia
      */
     @RequestMapping("/announcements/{infoId}/show.html")
-    public String showAnnouncement(@PathVariable("infoId") Long infoId, ModelMap map) {
+    public String showAnnouncement(@PathVariable("infoId") Long infoId, 
+                                   ModelMap map) throws Exception {
         try {
             map.addAttribute("announcement", announcementDAO.getById(infoId));
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class AnnouncementController {
      * @return identyfikator widoku prezentującego listę ogłoszeń
      */
     @RequestMapping("/announcements/list.html")
-    public String showAllAnnouncements(ModelMap map) {
+    public String showAllAnnouncements(ModelMap map) throws Exception {
         map.addAttribute("announcements", announcementDAO.getAll());
         return "announcement/showAll";
     }
@@ -90,7 +91,7 @@ public class AnnouncementController {
      * @return widok do wyświetlania po usunięciu ogłoszenia
      */
     @RequestMapping("/announcements/{infoId}/remove.html")
-    public String removeAnnouncement(@PathVariable("infoId") Long annId) {
+    public String removeAnnouncement(@PathVariable("infoId") Long annId) throws Exception {
         try {
             announcementDAO.delete(annId);
         } catch (Exception e) {
@@ -110,7 +111,8 @@ public class AnnouncementController {
      * @return identyfikato widoku
      */
     @RequestMapping(value = "/announcements/{infoId}/edit.html", method = RequestMethod.GET)
-    protected String prepareEditForm(@PathVariable("infoId") Long infoId, ModelMap map) {
+    protected String prepareEditForm(@PathVariable("infoId") Long infoId, 
+                                     ModelMap map) throws Exception {
         map.addAttribute("announcement", announcementDAO.getById(infoId));
         return "announcement/edit";
     }
@@ -134,7 +136,7 @@ public class AnnouncementController {
      */
     @RequestMapping(value = "/announcements/save.html", method = RequestMethod.POST)
     protected String processSubmit(@ModelAttribute("announcement") Announcement announcement,
-                                   BindingResult result, SessionStatus status) {
+                                   BindingResult result, SessionStatus status) throws Exception {
 
         validator.validate(announcement, result);
         if (result.hasErrors()) {

@@ -1,4 +1,4 @@
-    /*
+/*
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, version 3 of the License.
@@ -28,6 +28,7 @@ import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.User;
@@ -47,68 +48,114 @@ public class UserDAOJpa implements UserDAO {
         this.jpaTemplate = new JpaTemplate(emf);
     }
 
-    public List<User> getAllUsers() {
-        return this.jpaTemplate.findByNamedQuery("User.allOrderByLastName");
+    public List<User> getAllUsers() throws DAOException {
+        try {
+            return this.jpaTemplate.findByNamedQuery("User.allOrderByLastName");
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public List<User> getByRole(Role role) {
-        return this.jpaTemplate.findByNamedQuery("User.allByRoleOrderByLastName", role.toInt());
+    public List<User> getByRole(Role role) throws DAOException {
+        try {
+            return this.jpaTemplate.findByNamedQuery("User.allByRoleOrderByLastName", role.toInt());
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public User getById(Long id) {
-        return this.jpaTemplate.find(User.class, id);
+    public User getById(Long id) throws DAOException {
+        try {
+            return this.jpaTemplate.find(User.class, id);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public User getByLoginFetchFilters(String login) {
-        List<User> users = this.jpaTemplate.findByNamedQuery("User.byLoginFetchFilters", login);
-        return users.isEmpty() ? null : users.get(0);
+    public User getByLoginFetchFilters(String login) throws DAOException {
+        try {
+            List<User> users = this.jpaTemplate.findByNamedQuery("User.byLoginFetchFilters", login);
+            return users.isEmpty() ? null : users.get(0);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public User getByLogin(String login) {
-        List<User> users = this.jpaTemplate.findByNamedQuery("User.byLogin", login);
-        return users.isEmpty() ? null : users.get(0);
+    public User getByLogin(String login) throws DAOException {
+        try {
+            List<User> users = this.jpaTemplate.findByNamedQuery("User.byLogin", login);
+            return users.isEmpty() ? null : users.get(0);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public User getByEmail(String email) {
-        List<User> users = this.jpaTemplate.findByNamedQuery("User.byEmail", email);
-        return users.isEmpty() ? null : users.get(0);
+    public User getByEmail(String email) throws DAOException {
+        try {
+            List<User> users = this.jpaTemplate.findByNamedQuery("User.byEmail", email);
+            return users.isEmpty() ? null : users.get(0);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public boolean authenticate(String login, String passw) {
-        List<User> users = this.jpaTemplate.findByNamedQuery("User.byLoginAndHashedPassoword", login, passw);
-        return users.isEmpty() ? false : true;
-    }
-
-    @Transactional(readOnly = false)
-    public void loginUser(String login, Date date) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Transactional(readOnly = false)
-    public void saveOrUpdate(User user) {
-        if (user.getUserId() == null) {
-            this.jpaTemplate.persist(user);
-        } else {
-            this.jpaTemplate.merge(user);
+    public boolean authenticate(String login, String passw) throws DAOException {
+        try {
+            List<User> users = this.jpaTemplate.findByNamedQuery(
+                    "User.byLoginAndHashedPassoword", login, passw);
+            return users.isEmpty() ? false : true;
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void updatePasswordAndSalt(final User user, final String password) {
-        this.jpaTemplate.execute(new JpaCallback<Object>() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                User u = em.find(User.class, user.getUserId());
-                if (u != null) {
-                    u.setPassword(password); // TODO: zbadać czy to ma sens (vide moppee)
-                    em.merge(u);
-                }
-                return null;
-            }
-        });
+    @Deprecated
+    public void loginUser(String login, Date date) throws DAOException {
+        try {
+            throw new UnsupportedOperationException("Not supported yet.");
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public void refresh(User user) {
-        this.jpaTemplate.refresh(user);
+    @Transactional(readOnly = false)
+    public void saveOrUpdate(User user) throws DAOException {
+        try {
+            if (user.getUserId() == null) {
+                this.jpaTemplate.persist(user);
+            } else {
+                this.jpaTemplate.merge(user);
+            }
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void updatePasswordAndSalt(final User user, final String password) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    User u = em.find(User.class, user.getUserId());
+                    if (u != null) {
+                        u.setPassword(password); // TODO: zbadać czy to ma sens (vide moppee)
+                        em.merge(u);
+                    }
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public void refresh(User user) throws DAOException {
+        try {
+            this.jpaTemplate.refresh(user);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
 }

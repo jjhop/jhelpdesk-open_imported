@@ -9,3 +9,4 @@ glob:*.iml
 glob:*.ipr
 glob:*.iws
 glob:target/**/*
+glob:**/*/Thumbs.db

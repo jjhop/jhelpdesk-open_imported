@@ -62,12 +62,12 @@ import javax.persistence.Transient;
 @Table(name = "ticket")
 @SequenceGenerator(name = "ticket_sequence", sequenceName = "ticket_id_seq", allocationSize = 1)
 @NamedQueries({
-    @NamedQuery(name = "Ticket.orderByCreateDateDESC", query = "SELECT t FROM Ticket t ORDER BY t.createDate DESC"),
-    @NamedQuery(name = "Ticket.byStatusOrderByCreateDateDESC", query = "SELECT t FROM Ticket t WHERE t.ticketStatusAsInt=?1 ORDER BY t.createDate DESC"),
-    @NamedQuery(name = "Ticket.allByCategory", query = "SELECT t FROM Ticket t WHERE t.ticketCategory=?1 ORDER BY t.createDate DESC"),
-    @NamedQuery(name = "Ticket.allByPriority", query = "SELECT t FROM Ticket t WHERE t.ticketPriorityAsInt=?1 ORDER BY t.createDate DESC"),
-    @NamedQuery(name = "Ticket.allByStatus", query = "SELECT t FROM Ticket t WHERE t.ticketStatusAsInt=?1 ORDER BY t.createDate DESC"),
-    @NamedQuery(name = "Ticket.allByNotifier", query = "SELECT t FROM Ticket t WHERE t.notifier=?1 ORDER BY t.createDate DESC")
+    @NamedQuery(name = "Ticket.orderByCreateDateDESC", query = "SELECT t FROM Ticket t ORDER BY t.createdAt DESC"),
+    @NamedQuery(name = "Ticket.byStatusOrderByCreateDateDESC", query = "SELECT t FROM Ticket t WHERE t.ticketStatusAsInt=?1 ORDER BY t.createdAt DESC"),
+    @NamedQuery(name = "Ticket.allByCategory", query = "SELECT t FROM Ticket t WHERE t.ticketCategory=?1 ORDER BY t.createdAt DESC"),
+    @NamedQuery(name = "Ticket.allByPriority", query = "SELECT t FROM Ticket t WHERE t.ticketPriorityAsInt=?1 ORDER BY t.createdAt DESC"),
+    @NamedQuery(name = "Ticket.allByStatus", query = "SELECT t FROM Ticket t WHERE t.ticketStatusAsInt=?1 ORDER BY t.createdAt DESC"),
+    @NamedQuery(name = "Ticket.allByNotifier", query = "SELECT t FROM Ticket t WHERE t.notifier=?1 ORDER BY t.createdAt DESC")
 })
 public class Ticket implements Serializable {
 
@@ -78,7 +78,7 @@ public class Ticket implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_sequence")
-    @Column(name = "ticket_id")
+    @Column(name = "id")
     private Long ticketId;
 
     @Transient
@@ -88,8 +88,8 @@ public class Ticket implements Serializable {
      * Data utworzenia zgłoszenia.
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
-    private Date createDate;
+    @Column(name = "created_at")
+    private Date createdAt;
 
     /**
      * Użytkownik, który zgłosił problem.
@@ -144,7 +144,7 @@ public class Ticket implements Serializable {
     private TicketStatus ticketStatus;
 
     @Basic
-    @Column(name = "ticket_status")
+    @Column(name = "status")
     @SuppressWarnings("unused")
     private int ticketStatusAsInt;
 
@@ -159,7 +159,7 @@ public class Ticket implements Serializable {
     private TicketPriority ticketPriority;
 
     @Basic
-    @Column(name = "ticket_priority")
+    @Column(name = "priority")
     @SuppressWarnings("unused")
     private int ticketPriorityAsInt;
 
@@ -209,7 +209,6 @@ public class Ticket implements Serializable {
         Ticket ticket = new Ticket();
         ticket.setTicketStatus(TicketStatus.NOTIFIED);
         ticket.setTicketPriority(priority);
-        ticket.setCreateDate(new Date());
         ticket.setNotifier(notifier);
         ticket.setInputer(inputer);
         ticket.setTicketCategory(category);
@@ -235,7 +234,7 @@ public class Ticket implements Serializable {
         this.articles = new HashSet<Article>();
         this.events = new HashSet<TicketEvent>();
         this.ticketStatus = TicketStatus.NOTIFIED;
-        this.createDate = new Date();
+        this.createdAt = new Date();
     }
 
     /**
@@ -304,8 +303,8 @@ public class Ticket implements Serializable {
      *
      * @return czas utworzenia zgłoszenia
      */
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -314,8 +313,8 @@ public class Ticket implements Serializable {
      *
      * @param ticketCreateDate czas utworzenia zgłoszenia
      */
-    public void setCreateDate(Date ticketCreateDate) {
-        this.createDate = ticketCreateDate;
+    public void setCreatedAt(Date ticketCreateDate) {
+        this.createdAt = ticketCreateDate;
     }
 
     /**
@@ -639,7 +638,7 @@ public class Ticket implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ID:       ").append(this.ticketId).append("\n");
-        sb.append("CREATED:  ").append(this.createDate).append("\n");
+        sb.append("CREATED:  ").append(this.createdAt).append("\n");
         sb.append("SUBJECT:  ").append(this.subject).append("\n");
         sb.append("PRIORITY: ").append(this.ticketPriority).append("\n");
         sb.append("STATUS:   ").append(this.ticketStatus).append("\n");

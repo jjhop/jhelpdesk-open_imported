@@ -25,7 +25,7 @@
                     </c:choose>
                 </td>
                 <td><c:out value="${ticket.ticketPriority}"/></td>
-                <td class="lastcol"><fmt:formatDate value="${ticket.createDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+                <td class="lastcol"><fmt:formatDate value="${ticket.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
             </tr>
         </c:forEach>
     </table>

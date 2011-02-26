@@ -45,7 +45,7 @@ public class ArticleComment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long articleCommentId;
+    private Long id;
 
     /**
      * // TODO: migrujemy do article, stąd też w mapowaniu to: insertable = false, updatable = false
@@ -88,16 +88,16 @@ public class ArticleComment implements Serializable {
      *
      * @return
      */
-    public Long getArticleCommentId() {
-        return articleCommentId;
+    public Long getId() {
+        return id;
     }
 
     /**
      *
-     * @param articleCommentId
+     * @param id
      */
-    public void setArticleCommentId(Long articleCommentId) {
-        this.articleCommentId = articleCommentId;
+    public void setArticleCommentId(Long id) {
+        this.id = id;
     }
 
     /**

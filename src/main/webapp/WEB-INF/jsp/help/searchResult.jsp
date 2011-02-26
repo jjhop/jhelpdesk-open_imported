@@ -3,10 +3,10 @@
 
 <c:forEach var="a" items="${result}">
     <%-- itemy to obiekty Article --%>
-    <c:out value="${a.articleId}"/><br/>
+    <c:out value="${a.id}"/><br/>
+    <c:out value="${a.author}"/><br/>
     <c:out value="${a.title}"/><br/>
     <c:out value="${a.lead}"/><br/>
-    <c:out value="${a.createDate}"/><br/>
-    <a href="<c:url value="/help/base/showOne.html?id=${a.articleId}"/>">Cały tekst</a>
-    <hr/>
+    <c:out value="${a.createdAt}"/><br/>
+    <a href="<c:url value="/help/base/articles/${a.id}/show.html"/>">Cały tekst</a>
 </c:forEach>
