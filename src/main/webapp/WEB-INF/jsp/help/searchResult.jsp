@@ -8,5 +8,5 @@
     <c:out value="${a.title}"/><br/>
     <c:out value="${a.lead}"/><br/>
     <c:out value="${a.createdAt}"/><br/>
-    <a href="<c:url value="/help/base/showOne.html?id=${a.id}"/>">Cały tekst</a>
+    <a href="<c:url value="/help/base/articles/${a.id}/show.html"/>">Cały tekst</a>
 </c:forEach>

@@ -11,7 +11,7 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <c:url var="url" value="/manage/kb/articles/${formAction}.html"/>
+                        <c:url var="url" value="/manage/kb/articles/save.html"/>
                         <form:form commandName="article" action="${url}">
                             <c:if test="${article.id != null}">
                                 <form:hidden path="id"/>

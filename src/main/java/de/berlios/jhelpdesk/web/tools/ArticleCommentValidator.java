@@ -34,8 +34,7 @@ public class ArticleCommentValidator implements Validator {
     }
 
     public void validate(Object target, Errors errors) {
-        // TODO: komunikaty o błędach
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "errors.kbase.articleTitleEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comment", "errors.kbase.articleLeadEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "errors.kbase.articleCommentTitle");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "body", "errors.kbase.articleCommentBody");
     }
 }
