@@ -42,20 +42,20 @@
                         <tr>
                             <td class="p20l">Przyczyna</td>
                             <td>
-                                <form:textarea path="subject" rows="6" cols="40"/>
+                                <form:textarea cssClass="w98p" path="subject" rows="6" cols="40"/>
                                 <font color="red"><form:errors path="subject"/></font>
                             </td>
                         </tr>
                         <tr>
                             <td class="p20l">Opis zgłoszenia</td>
                             <td>
-                                <form:textarea path="description" rows="6" cols="40"/>
+                                <form:textarea cssClass="w98p" path="description" rows="6" cols="40"/>
                                 <font color="red"><form:errors path="description"/></font>
                             </td>
                         </tr>
                         <tr>
                             <td class="p20l">Kroki by powtórzyć</td>
-                            <td><form:textarea id="step_by_step" path="stepByStep" rows="6" cols="40"/></td>
+                            <td><form:textarea cssClass="w98p" id="step_by_step" path="stepByStep" rows="6" cols="40"/></td>
                         </tr>
                         <tr>
                             <td class="p20l">Załączniki</td>
