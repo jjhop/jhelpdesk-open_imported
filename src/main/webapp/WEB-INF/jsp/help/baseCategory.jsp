@@ -7,18 +7,18 @@ przeglądanie kategorii
 <c:if test="${fn:length(articles) > 0}">
     <ul>
         <c:forEach var="article" items="${articles}" varStatus="idx">
-            <li>${idx.count + offset} => ${article.title}</li>
+            <li>${idx.count + offset} => ${article.title} by ${article.author}</li>
         </c:forEach>
     </ul>
     <hr/>
-    <%
-        int articlesInSection = (Integer) request.getAttribute("articlesInSection");
-        int pageSize = (Integer) request.getAttribute("pageSize");
-        int max = articlesInSection / pageSize + articlesInSection % pageSize;
-    %>
     <ul>
-    <% for (int i = 0; i < max; ++i) { %>
-        <li><a href="<c:url value="/help/base/category/${category}/show.html?p="/><%=i+1%>"><%=i+1%></a></li>
-    <% } %>
+        <%
+            int pages = (Integer) request.getAttribute("pages");
+            for (int currentPage = 1; currentPage <= pages; ++currentPage) {
+        %>
+        <li><a href="<c:url value="/help/base/category/${category}/show.html?p="/><%=currentPage%>"><%=currentPage%></a></li>
+        <%
+            }
+        %>
     </ul>
 </c:if>
