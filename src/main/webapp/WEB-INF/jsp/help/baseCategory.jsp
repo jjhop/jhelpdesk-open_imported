@@ -1,7 +1,10 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
-<div class="kbCategoryHeader">Artykuły w kategorii: <strong>${category.categoryName}</strong></div>
+<div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
+
+<div id="pagecontentsubheader"><h3>Artykuły w kategorii: <strong>${category.categoryName}</strong></h3></div>
+
 
 <c:if test="${fn:length(articles) > 0}">
     <c:forEach var="article" items="${articles}" varStatus="idx">
@@ -16,19 +19,21 @@
         </div>
     </c:forEach>
     <c:if test="${pages > 1}">
-        <ul class="panelPager">
-            <c:if test="${currentPage > 1}">
-            <li><a href="?p=${currentPage-1}">&laquo; poprzednia</a></li>
-            </c:if>
-            <%
-                int pages = (Integer) request.getAttribute("pages");
-                for (int cPage = 1; cPage <= pages; ++cPage) {
-            %>
-            <li><a href="<c:url value="/help/base/category/${category.id}/show.html?p="/><%=cPage%>"><%=cPage%></a></li>
-            <%  }  %>
-            <c:if test="${currentPage < pages}">
-            <li><a href="?p=${currentPage+1}">następna &raquo;</a></li>
-            </c:if>
-        </ul>
+        <div class="outerPanelPager">
+            <ul class="panelPager">
+                <c:if test="${currentPage > 1}">
+                <li><a href="?p=${currentPage-1}">&laquo; poprzednia</a></li>
+                </c:if>
+                <%
+                    int pages = (Integer) request.getAttribute("pages");
+                    for (int cPage = 1; cPage <= pages; ++cPage) {
+                %>
+                <li><a href="<c:url value="/help/base/category/${category.id}/show.html?p="/><%=cPage%>"><%=cPage%></a></li>
+                <%  }  %>
+                <c:if test="${currentPage < pages}">
+                <li><a href="?p=${currentPage+1}">następna &raquo;</a></li>
+                </c:if>
+            </ul>
+        </div>
     </c:if>
 </c:if>

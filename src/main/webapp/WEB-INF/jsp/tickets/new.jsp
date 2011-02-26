@@ -20,23 +20,25 @@
                     <table id="table2">
                         <tr>
                             <td class="w100 p20l">Zgłaszający:</td>
-                            <td><form:input path="notifier" cssClass="w250"/>
+                            <td><form:input path="notifier" cssClass="w320"/>
                                 <font color="red"><form:errors path="notifier"/></font>
                             </td>
                         </tr>
                         <tr>
-                            <td class="p20l">Kategoria</td>
+                            <td class="p20l"></td>
                             <td>
-                                <form:select path="ticketCategory" items="${categories}"
+                                <ul class="formContainer">
+                                    <li class="floatLeft">
+                                        <label>Kategoria</label><form:select cssClass="w325" path="ticketCategory" items="${categories}"
                                              itemValue="ticketCategoryId"
-                                             itemLabel="categoryName" cssClass="w250"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p20l">Ważność</td>
-                            <td>
-                                <form:select path="ticketPriority" items="${priorities}" itemValue="priorityId"
-                                             itemLabel="priorityName" cssClass="w250"/>
+                                             itemLabel="categoryName" />
+                                    </li>
+                                    <li class="floatRight">
+                                        <label>Ważność</label>
+                                <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
+                                             itemLabel="priorityName" />
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
                         <tr>

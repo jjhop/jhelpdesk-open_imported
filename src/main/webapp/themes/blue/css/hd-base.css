@@ -1149,6 +1149,10 @@ td.artnumber {
 .w250 {width: 250px;}
 .w255 {width: 255px;}
 .w275 {width: 275px;}
+.w300 {width: 300px;}
+.w320 {width: 320px;}
+.w325 {width: 325px;}
+.w350 {width: 350px;}
 .w98p { width: 98% }
 .w99p { width: 99% }
 .w100p { width: 100% }
@@ -1159,6 +1163,14 @@ hr {
     height: 1px;
     border: 0;
     background: #677498;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
 }
 
 .left {
@@ -1191,6 +1203,16 @@ hr {
     padding: 0 1px;
 }
 
+.outerPanelPager {
+    height: 15px;
+    padding: 3px 10px 4px 10px;
+    background: #D0DBFB;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 3px solid #D0DBFB;
+}
+
 #knowledgebase ul.formContainer {
     margin: 10px 0;
     padding: 0;    
@@ -1206,9 +1228,18 @@ ul.formContainer li {
     padding: 0 10px 10px 10px;
 }
 
+ul.formContainer li.floatLeft {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+ul.formContainer li.floatRight {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
 ul.formContainer li label {
     display: block;
-    font-weight: bold;
     padding: 5px 0;
 }
 
