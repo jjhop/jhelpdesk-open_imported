@@ -134,9 +134,14 @@ public class HelpViewController {
         int pageSize = currentUser.getArticlesListSize();
         int articlesInSection = articleDAO.countForSection(cId);
 
-        map.addAttribute("category", cId);
+        map.addAttribute("category", articleCategoryDAO.getById(cId));
         map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
-        map.addAttribute("pages", articlesInSection / pageSize + articlesInSection % pageSize);
+        map.addAttribute("currentPage", page);
+        map.addAttribute("pages",
+                articlesInSection > pageSize
+                    ? articlesInSection / pageSize + articlesInSection % pageSize
+                    : 1
+        );
         map.addAttribute("offset", pageSize * (page-1));
         return HELP_KB_CATEGORY;
     }
