@@ -167,7 +167,7 @@ public class LuceneIndexer {
         doc.add(new Field("lead", article.getLead(),
                           Field.Store.YES, Field.Index.ANALYZED));
         doc.add(new Field("body", article.getBody(),
-                          Field.Store.YES, Field.Index.ANALYZED));
+                          Field.Store.NO, Field.Index.ANALYZED));
         doc.add(new NumericField("createdAt", Field.Store.YES, false)
                 .setLongValue(article.getCreatedAt().getTime()));
         return doc;
