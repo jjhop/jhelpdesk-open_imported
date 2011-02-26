@@ -5,7 +5,7 @@
     <%-- itemy to obiekty Article --%>
 
     <div class="kbSearchItem">
-        <h2><c:out value="${a.title}"/></h2>
+        <h2><a href="<c:url value="/help/base/articles/${a.id}/show.html"/>"><c:out value="${a.title}"/></a></h2>
         <div class="kbSearchItemLead">
             <c:out value="${a.lead}"/>
         </div>

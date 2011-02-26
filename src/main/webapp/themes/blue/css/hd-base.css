@@ -1215,15 +1215,23 @@ ul.formContainer li label {
 
 .kbSearchItem {
     padding: 5px 10px;
-    margin: 10px 0;
+    margin: 10px 0 15px 0;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 3px solid #677498;
 }
 
+.kbSearchItem a {
+    text-decoration: none;
+}
+
 .kbSearchItem:nth-child(even) {
     background: #fff;
+}
+
+.kbSearchItem .kbSearchItemLead {
+    margin: 10px 0 0 0;
 }
 
 .kbSearchItem .kbSearchItemMeta {
