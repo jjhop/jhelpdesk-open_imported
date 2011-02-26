@@ -140,9 +140,13 @@ public class ArticleController {
             return MANAGE_KB_ARTICLE_EDIT;
         }
         articleDAOJpa.saveOrUpdate(article);
-        luceneIndexer.addToIndex(article);
+        if (article.getId() != null) {
+            luceneIndexer.updateIndexedArticle(article);
+        } else {
+            luceneIndexer.addToIndex(article);
+        }
         System.out.println("artykul [" + article.getId() + "] dodany do indeksu");
         return "redirect:/manage/kb/category/" + article.getCategory().getId() +
-                "/articles/" + article.getId() + "/show.html";
+                "/articles/" + article.getId() + "/edit.html";
     }
 }
