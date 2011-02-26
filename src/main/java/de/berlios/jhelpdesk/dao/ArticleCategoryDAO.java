@@ -38,7 +38,7 @@ public interface ArticleCategoryDAO {
      *
      * @see java.util.Collections#EMPTY_LIST
      */
-    List<ArticleCategory> getAllCategories();
+    List<ArticleCategory> getAllCategories() throws DAOException;
 
     /**
      * Zwraca obiekt ArticleCategory na podstawie dostarczonego identyfikatora
@@ -48,7 +48,7 @@ public interface ArticleCategoryDAO {
      * @return obiekt ArticleCategory lub {@code null} jeśli nie zostanie
      * znaleziony
      */
-    ArticleCategory getById(Long categoryId);
+    ArticleCategory getById(Long categoryId) throws DAOException;
 
     /**
      * Usuwa wskazany obiekt ArticleCategory na podstawie dostarczonego
@@ -62,7 +62,7 @@ public interface ArticleCategoryDAO {
      * @param categoryId identyfikator obiektu ArticleCategory do usunięcia
      * @param categoryId
      */
-    void delete(Long categoryId);
+    void delete(Long categoryId) throws DAOException;
 
     /**
      * Przenosi kategorię o podanym identyfikatorze o jedno miejsce w górę
@@ -72,7 +72,7 @@ public interface ArticleCategoryDAO {
      *
      * @see #moveDown(java.lang.Long)
      */
-    void moveUp(Long categoryId);
+    void moveUp(Long categoryId) throws DAOException;
 
     /**
      * Przenosi kategorię o podanym identyfikatorze o jedno miejsce w dół w
@@ -82,7 +82,7 @@ public interface ArticleCategoryDAO {
      *
      * @see #moveUp(java.lang.Long)
      */
-    void moveDown(Long categoryId);
+    void moveDown(Long categoryId) throws DAOException;
 
     /**
      * Zapisuje lub uaktualnia podany obiekt ArticleCategory. Operacja do
@@ -97,5 +97,5 @@ public interface ArticleCategoryDAO {
      *
      * @see ArticleCategory
      */
-    void saveOrUpdate(ArticleCategory category);
+    void saveOrUpdate(ArticleCategory category) throws DAOException;
 }

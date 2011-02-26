@@ -64,7 +64,7 @@ public class FileUtils {
 
     @Value("${tickets.attachments.tmpdir}")
     public void setAttachmentsTmpDirectory(String attachmentsTmpDir) {
-        log.info("Probuję utworzy katalog: " + attachmentsTmpDir);
+        log.info("Attempt to create directory: " + attachmentsTmpDir);
         try {
             attachmentsTmpDirectory = new File(attachmentsTmpDir);
             if (!attachmentsTmpDirectory.exists()) {

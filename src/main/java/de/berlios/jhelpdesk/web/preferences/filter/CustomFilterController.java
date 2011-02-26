@@ -50,7 +50,7 @@ public class CustomFilterController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/preferences/filters/list.html", method = RequestMethod.GET)
-    public String showAllFilters(ModelMap map, HttpSession session) {
+    public String showAllFilters(ModelMap map, HttpSession session) throws Exception {
 
         User currentUser = (User) session.getAttribute("user");
         map.addAttribute("filters", ticketFilterDAO.getAllFiltersForUser(currentUser));
@@ -60,7 +60,7 @@ public class CustomFilterController {
 
     @RequestMapping(value = "/preferences/filters/{filterId}/details.html", method = RequestMethod.GET)
     public String showFilter(@PathVariable("filterId") Long filterId, ModelMap map,
-                             Locale currentLocale, HttpSession session) {
+                             Locale currentLocale, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         TicketFilter filter = ticketFilterDAO.getById(filterId);
         if (filter != null && filter.isOwnedBy(currentUser)) {
@@ -75,7 +75,7 @@ public class CustomFilterController {
 
     @RequestMapping(value = "/preferences/filters/{filterId}/delete.html", method = RequestMethod.GET)
     public String deleteFilter(@PathVariable("filterId") Long filterId,  ModelMap map,
-                               HttpSession session) {
+                               HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         TicketFilter filter = ticketFilterDAO.getById(filterId);
         if (filter != null && filter.isOwnedBy(currentUser)) {

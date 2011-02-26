@@ -130,6 +130,6 @@ public interface TicketDAO {
      * 
      * @param filter
      */
-    List<Ticket> getTicketsWithFilter(TicketFilter filter);
+    List<Ticket> getTicketsWithFilter(TicketFilter filter) throws DAOException;
 
 }

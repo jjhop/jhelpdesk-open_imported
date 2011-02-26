@@ -22,9 +22,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.jpa.JpaCallback;
@@ -49,8 +46,6 @@ import de.berlios.jhelpdesk.model.User;
 @Transactional(readOnly = true)
 public class TicketDAOJpa implements TicketDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(TicketDAOJpa.class);
-
     private final JpaTemplate jpaTemplate;
 
     @Autowired
@@ -59,34 +54,58 @@ public class TicketDAOJpa implements TicketDAO {
     }
 
     public Long countTicketsWithFilter(final TicketFilter ticketFilter) throws DAOException {
-        return (Long) this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = new QueryBuilder(ticketFilter, em).getFilteredQuery(true);
-                return q.getSingleResult();
-            }
-        });
+        try {
+            return (Long) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = new QueryBuilder(ticketFilter, em).getFilteredQuery(true);
+                    return q.getSingleResult();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public List<Ticket> getAllTickets() throws DAOException {
-        return this.jpaTemplate.findByNamedQuery("Ticket.orderByCreateDateDESC");
+        try {
+            return this.jpaTemplate.findByNamedQuery("Ticket.orderByCreateDateDESC");
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public Ticket getTicketById(Long ticketId) throws DAOException {
-        return this.jpaTemplate.find(Ticket.class, ticketId);
+        try {
+            return this.jpaTemplate.find(Ticket.class, ticketId);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public List<Ticket> getTicketsByCategory(TicketCategory ticketCategory) throws DAOException {
-        return this.jpaTemplate.findByNamedQuery("Ticket.allByCategory", ticketCategory);
+        try {
+            return this.jpaTemplate.findByNamedQuery("Ticket.allByCategory", ticketCategory);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public List<Ticket> getTicketsByPriority(TicketPriority ticketPriority) throws DAOException {
-        // INFO: ticketPriority.toInt() musi być dlatego ze jest trick w encji...
-        return this.jpaTemplate.findByNamedQuery("Ticket.allByPriority", ticketPriority.toInt());
+        try {
+            // INFO: ticketPriority.toInt() musi być dlatego ze jest trick w encji...
+            return this.jpaTemplate.findByNamedQuery("Ticket.allByPriority", ticketPriority.toInt());
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public List<Ticket> getTicketsByStatus(TicketStatus ticketStatus) throws DAOException {
-        // INFO: ticketStatus.toInt() musi być dlatego ze jest trick w encji...
-        return this.jpaTemplate.findByNamedQuery("Ticket.allByStatus", ticketStatus.toInt());
+        try {
+            // INFO: ticketStatus.toInt() musi być dlatego ze jest trick w encji...
+            return this.jpaTemplate.findByNamedQuery("Ticket.allByStatus", ticketStatus.toInt());
+         } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     public List<Ticket> getTicketsByStatus(final TicketStatus ticketStatus, final int howMuch) throws DAOException {
@@ -105,27 +124,40 @@ public class TicketDAOJpa implements TicketDAO {
     }
 
     public List<Ticket> getTicketsNotifyiedByUser(User user) throws DAOException {
-        return this.jpaTemplate.findByNamedQuery("Ticket.allByNotifier", user);
+        try {
+            return this.jpaTemplate.findByNamedQuery("Ticket.allByNotifier", user);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public List<Ticket> getTicketsWithFilter(final TicketFilter ticketFilter, final int limit, final int offset) throws DAOException {
-        return (List<Ticket>) this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = new QueryBuilder(ticketFilter, em).getFilteredQuery(false);
-                q.setMaxResults(limit);
-                q.setFirstResult(offset);
-                return q.getResultList();
-            }
-        });
+    public List<Ticket> getTicketsWithFilter(final TicketFilter ticketFilter, final int limit,
+                                             final int offset) throws DAOException {
+        try {
+            return (List<Ticket>) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = new QueryBuilder(ticketFilter, em).getFilteredQuery(false);
+                    q.setMaxResults(limit);
+                    q.setFirstResult(offset);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
-    public List<Ticket> getTicketsWithFilter(final TicketFilter filter) {
-        return (List<Ticket>)this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = new QueryBuilder(filter, em).getFilteredQuery(false);
-                return q.getResultList();
-            }
-        });
+    public List<Ticket> getTicketsWithFilter(final TicketFilter filter) throws DAOException {
+        try {
+            return (List<Ticket>)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = new QueryBuilder(filter, em).getFilteredQuery(false);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     @Transactional(readOnly = false)
@@ -133,22 +165,30 @@ public class TicketDAOJpa implements TicketDAO {
         try {
             Ticket toDelete = this.jpaTemplate.find(Ticket.class, ticketId);
             this.jpaTemplate.remove(toDelete);
-        } catch (Exception ex) {
-            log.error("Nie można usunąć artykułu o identyfikatorze [" + ticketId + "]", ex);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
     public void removeTicket(Ticket ticket) throws DAOException {
-        this.jpaTemplate.remove(ticket);
+        try {
+            this.jpaTemplate.remove(ticket);
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
     }
 
     @Transactional(readOnly = false)
     public void save(Ticket ticket) throws DAOException {
-        if (ticket.getTicketId() == null) {
-            this.jpaTemplate.persist(ticket);
-        } else {
-            this.jpaTemplate.merge(ticket);
+        try {
+            if (ticket.getTicketId() == null) {
+                this.jpaTemplate.persist(ticket);
+            } else {
+                this.jpaTemplate.merge(ticket);
+            }
+        } catch(Exception ex) {
+            throw new DAOException(ex);
         }
     }
 }

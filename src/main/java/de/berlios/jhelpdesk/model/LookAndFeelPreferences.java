@@ -41,7 +41,7 @@ public class LookAndFeelPreferences implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="laf_preferences_sequence")
-    @Column(name = "laf_preferences_id")
+    @Column(name = "id")
     private Long id;
 
     @OneToOne(mappedBy = "lafPreferences")

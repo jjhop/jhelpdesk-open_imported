@@ -91,7 +91,7 @@ public class TicketsViewController {
     }
 
     @ModelAttribute("categories")
-    public List<TicketCategory> populateCategories() {
+    public List<TicketCategory> populateCategories() throws Exception {
         return ticketCategoryDAO.getAllCategoriesForView();
     }
 
@@ -106,7 +106,7 @@ public class TicketsViewController {
     }
 
     @ModelAttribute("saviours")
-    public List<User> populateSaviours() {
+    public List<User> populateSaviours() throws Exception {
         return userDAO.getByRole(Role.TICKETKILLER);
     }
 

@@ -112,11 +112,8 @@ $BODY$
 --- ### użytkownicy
 
 CREATE SEQUENCE user_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE users (
@@ -137,15 +134,12 @@ CREATE TABLE users (
 --- ### kategorie zgłoszeń
 
 CREATE SEQUENCE ticket_category_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE ticket_category (
-  category_id integer NOT NULL DEFAULT nextval(('public.ticket_category_id_seq'::text)::regclass),
+  id integer NOT NULL DEFAULT nextval(('public.ticket_category_id_seq'::text)::regclass),
   parent_category integer,
   category_name character varying(64) NOT NULL,
   category_desc character varying(255),
@@ -153,28 +147,25 @@ CREATE TABLE ticket_category (
   t_left bigint,
   t_right bigint,
   t_depth integer,
-  CONSTRAINT ticket_category_pkey PRIMARY KEY (category_id),
+  CONSTRAINT ticket_category_pkey PRIMARY KEY (id),
   CONSTRAINT ticket_category_parent_category_fkey FOREIGN KEY (parent_category)
-      REFERENCES ticket_category (category_id) MATCH SIMPLE
+      REFERENCES ticket_category (id) MATCH SIMPLE
       ON UPDATE RESTRICT ON DELETE RESTRICT
 ) WITH (OIDS=FALSE)
 ;
 
-INSERT INTO ticket_category (category_id, category_name, category_desc, t_left, t_right, t_depth) 
+INSERT INTO ticket_category (id, category_name, category_desc, t_left, t_right, t_depth) 
     VALUES (0, 'uncategorized', 'default category', 1, 2, 0);
 
 --- ### zgłoszenia
 
 CREATE SEQUENCE ticket_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE ticket (
-  ticket_id integer NOT NULL DEFAULT nextval(('public.ticket_id_seq'::text)::regclass),
+  id integer NOT NULL DEFAULT nextval(('public.ticket_id_seq'::text)::regclass),
   add_phone character varying(20),
   ticket_category integer NOT NULL DEFAULT 0, 
   ticket_priority smallint NOT NULL,
@@ -187,14 +178,14 @@ CREATE TABLE ticket (
   step_by_step text,
   subject character varying(255) NOT NULL,
   department character varying(30),
-  CONSTRAINT ticket_pkey PRIMARY KEY (ticket_id),
+  CONSTRAINT ticket_pkey PRIMARY KEY (id),
   CONSTRAINT ticket_category_id_fk FOREIGN KEY (ticket_category)
-    REFERENCES ticket_category (category_id) MATCH SIMPLE
+    REFERENCES ticket_category (id) MATCH SIMPLE
     ON UPDATE NO ACTION ON DELETE NO ACTION
 ) WITH (OIDS=FALSE);
 
 CREATE TABLE ticket_desc (
-  ticket_id bigint NOT NULL,
+  id bigint NOT NULL,
   description text NOT NULL,
   CONSTRAINT ticket_desc_pkey PRIMARY KEY (ticket_id)
 ) WITH (OIDS=FALSE);
@@ -202,11 +193,8 @@ CREATE TABLE ticket_desc (
 --- ### zdarzenia zgłoszeń
 
 CREATE SEQUENCE ticket_event_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE ticket_event (
@@ -222,11 +210,8 @@ CREATE TABLE ticket_event (
 
 --- ### komentarze do zgłoszeń
 CREATE SEQUENCE ticket_comment_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE ticket_comment (
@@ -248,30 +233,24 @@ CREATE TABLE ticket_comment (
 --- ### kategorie w bazie wiedzy
 
 CREATE SEQUENCE article_category_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE article_category (
+  id integer NOT NULL DEFAULT nextval(('public.article_category_id_seq'::text)::regclass),
   category_name character varying(255) NOT NULL,
   category_position integer NOT NULL,
-  article_category_id integer NOT NULL DEFAULT nextval(('public.article_category_id_seq'::text)::regclass),
   articles_count integer NOT NULL DEFAULT 0,
-  CONSTRAINT article_category_pk PRIMARY KEY (article_category_id)
+  CONSTRAINT article_category_pk PRIMARY KEY (id)
 ) WITH (OIDS=FALSE)
 ;
 
 --- ### artukuły w bazie wiedzy
 
 CREATE SEQUENCE article_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE article (
@@ -289,21 +268,18 @@ CREATE TABLE article (
 --- ### komentarze do artykułów
 
 CREATE SEQUENCE article_comment_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE article_comment (
-  article_comment_id integer NOT NULL DEFAULT nextval(('public.article_comment_id_seq'::text)::regclass),
+  id integer NOT NULL DEFAULT nextval(('public.article_comment_id_seq'::text)::regclass),
   article_id integer NOT NULL,
   author integer NOT NULL,
   create_date date NOT NULL,
   title character varying(255) NOT NULL,
   body text NOT NULL,
-  CONSTRAINT article_comment_pkey PRIMARY KEY (article_comment_id)
+  CONSTRAINT article_comment_pkey PRIMARY KEY (id)
 ) WITH (OIDS=FALSE)
 ;
 
@@ -315,10 +291,10 @@ CREATE TABLE article_ticket
   ticket_id integer NOT NULL,
   CONSTRAINT article_ticket_pkey PRIMARY KEY (article_id, ticket_id),
   CONSTRAINT article_ticket_article_id_fkey FOREIGN KEY (article_id)
-      REFERENCES article (article_id) MATCH SIMPLE
+      REFERENCES article (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT article_ticket_ticket_id_fkey FOREIGN KEY (ticket_id)
-      REFERENCES ticket (ticket_id) MATCH SIMPLE
+      REFERENCES ticket (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 ) WITH (OIDS=FALSE)
 ;
@@ -326,29 +302,26 @@ CREATE TABLE article_ticket
 --- ### informacje od działu helpdesk
 
 CREATE SEQUENCE announcement_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1
+  START 1 INCREMENT 1 CACHE 1
+  MINVALUE 1 MAXVALUE 9223372036854775807
 ;
 
 CREATE TABLE announcement (
-  announcement_id integer NOT NULL DEFAULT nextval(('public.announcement_id_seq'::text)::regclass),
+  id integer NOT NULL DEFAULT nextval(('public.announcement_id_seq'::text)::regclass),
   create_date date NOT NULL,
   title character varying(255) NOT NULL,
   lead text NOT NULL,
-  CONSTRAINT announcement_pkey PRIMARY KEY (announcement_id)
+  CONSTRAINT announcement_pkey PRIMARY KEY (id)
 ) WITH (OIDS=FALSE)
 ;
 
 CREATE TABLE announcement_body (
-  announcement_id integer NOT NULL,
+  id integer NOT NULL,
   body text NOT NULL,
   CONSTRAINT announcement_body_announcement_id_fkey FOREIGN KEY (announcement_id)
       REFERENCES announcement (announcement_id) MATCH SIMPLE
       ON UPDATE RESTRICT ON DELETE RESTRICT,
-  CONSTRAINT announcement_body_announcement_id_key UNIQUE (announcement_id)
+  CONSTRAINT announcement_body_announcement_id_key UNIQUE (id)
 ) WITH (OIDS=FALSE)
 ;
 
@@ -360,4 +333,3 @@ CREATE TRIGGER set_category_position_trg
   FOR EACH ROW
   EXECUTE PROCEDURE set_category_position()
 ;
-

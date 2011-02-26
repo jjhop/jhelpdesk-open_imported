@@ -88,7 +88,7 @@ public class CustomFilterEditController {
     }
 
     @ModelAttribute("ticketCategories")
-    public List<TicketCategory> populateTicketCategories() {
+    public List<TicketCategory> populateTicketCategories() throws Exception {
         return ticketCategoryDAO.getAllCategoriesForView();
     }
 
@@ -103,7 +103,7 @@ public class CustomFilterEditController {
     }
     
     @ModelAttribute("saviours")
-    public List<User> populateSaviuours() {
+    public List<User> populateSaviuours() throws Exception {
         return userDAO.getByRole(Role.TICKETKILLER);
     }
 
@@ -118,7 +118,7 @@ public class CustomFilterEditController {
 
     @RequestMapping(value = "/preferences/filters/{filterId}/edit.html", method = GET)
     public String prepareEditForm(@PathVariable("filterId") Long filterId,
-                                  ModelMap map, HttpSession session) {
+                                  ModelMap map, HttpSession session) throws Exception {
         map.addAttribute("filter", ticketFilterDAO.getById(filterId));
         return "preferences/filters/edit";
     }
@@ -135,7 +135,7 @@ public class CustomFilterEditController {
     @RequestMapping(value = "/preferences/filters/save.html", method = POST)
     public String processForm(@ModelAttribute("filter") TicketFilter filter,
                               BindingResult result, ModelMap map,
-                              HttpSession session) {
+                              HttpSession session) throws Exception {
         User currentUser = (User)session.getAttribute("user");
         ticketFilterValidator.validate(filter, result);
         if (!result.hasErrors()) {

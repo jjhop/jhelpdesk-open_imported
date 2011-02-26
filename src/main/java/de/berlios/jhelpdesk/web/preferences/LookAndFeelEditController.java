@@ -68,7 +68,7 @@ public class LookAndFeelEditController {
     public String processForm(@ModelAttribute("preferences") LookAndFeelPreferences lafPreferences,
                               @RequestParam(value = "filterId", required = false) Long filterId,
                               HttpServletRequest request, HttpServletResponse respone,
-                              ModelMap map, HttpSession session) {
+                              ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         if (isPrefsOwnedByUser(lafPreferences, currentUser)) {
             lafPreferences.setUser(currentUser);
