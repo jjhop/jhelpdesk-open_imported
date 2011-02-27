@@ -64,6 +64,10 @@ public class LuceneIndexer {
     
     private QueryParser parser = new QueryParser(Version.LUCENE_30, "body", new SimpleAnalyzer());
 
+    public List<Article> search(String searchQuery, int i) throws SearchException {
+        return new ArrayList<Article>();
+    }
+
     public List<Article> search(String searchQuery) throws SearchException {
         try {
             Query query = parser.parse(searchQuery);

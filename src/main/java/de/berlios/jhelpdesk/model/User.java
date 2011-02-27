@@ -541,6 +541,13 @@ public class User implements Serializable {
             : DEFAULT_LIST_SIZE;
     }
 
+    public int getSearchResultLimit() {
+        DisplayListsPreferences dlPrefs = getDlPreferences();
+        return dlPrefs != null
+            ? dlPrefs.getSearchResultLimit()
+            : DEFAULT_LIST_SIZE;
+    }
+
     public String getWelcomePage() {
         String welcomePage = getLafPreferences().getWelcomePage();
         if (welcomePage.equalsIgnoreCase("desktop")) {
