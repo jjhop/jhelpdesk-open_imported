@@ -32,26 +32,28 @@
                                 <tr>
                                     <td colspan="2" id="reasonarea">
                                         <form:textarea id="treasonarea" cssClass="w99p" rows="5" path="subject"/>
-                                        <form:errors path="subject" cssStyle="color: red"/>
+                                        <form:errors path="subject" cssClass="formError errorBottom" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left">Kategoria</td>
-                                    <td align="left" width="35%">Ważność</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <form:select id="kategoria" path="ticketCategory" items="${categories}" itemValue="ticketCategoryId" itemLabel="categoryName"/>
-                                    </td>
-                                    <td>
-                                        <form:select id="waznosc" path="ticketPriority" items="${priorities}" itemValue="priorityId" itemLabel="priorityName"/>
+                                    <td colspan="2">
+                                        <ul class="formContainer">
+                                            <li class="floatLeft">
+                                                <label>Kategoria</label>
+                                                <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="ticketCategoryId" itemLabel="categoryName"/>
+                                            </li>
+                                            <li class="floatRight">
+                                                <label>Ważność</label>
+                                                <form:select id="waznosc" path="ticketPriority" items="${priorities}" itemValue="priorityId" itemLabel="priorityName"/>
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
                                 <tr><td colspan="2">Opis zgłoszenia:</td></tr>
                                 <tr>
                                     <td id="descarea" colspan="2">
                                         <form:textarea id="tdescarea" cssClass="mceEditor w99p" rows="10" path="description"/>
-                                        <form:errors path="description" cssStyle="color: red"/>
+                                        <form:errors path="description" cssClass="formError errorBottom" />
                                     </td>
                                 </tr>
                                 <tr>
