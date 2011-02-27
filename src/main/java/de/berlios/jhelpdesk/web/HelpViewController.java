@@ -107,9 +107,11 @@ public class HelpViewController {
     }
 
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
-    public String kBSearch(@RequestParam("query") String query, ModelMap map) throws Exception {
+    public String kBSearch(@RequestParam("query") String query, ModelMap map,
+                           HttpSession session) throws Exception {
         try {
-            List<Article> result = luceneIndexer.search(query);
+            User currentUser = (User) session.getAttribute("user");
+            List<Article> result = luceneIndexer.search(query, currentUser.getSearchResultLimit());
             map.addAttribute("result", result);
             if (result.size() < 1) {
                 map.addAttribute("categories", articleCategoryDAO.getAllCategories());
@@ -137,13 +139,15 @@ public class HelpViewController {
         map.addAttribute("category", articleCategoryDAO.getById(cId));
         map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
         map.addAttribute("currentPage", page);
-        map.addAttribute("pages",
-                articlesInSection > pageSize
-                    ? articlesInSection / pageSize + articlesInSection % pageSize
-                    : 1
-        );
+        map.addAttribute("pages", calulatePages(articlesInSection, pageSize));
         map.addAttribute("offset", pageSize * (page-1));
         return HELP_KB_CATEGORY;
+    }
+
+    private int calulatePages(int count, int pageSize) {
+        return count > pageSize 
+            ? count / pageSize + count % pageSize
+            : 1;
     }
 
     /**

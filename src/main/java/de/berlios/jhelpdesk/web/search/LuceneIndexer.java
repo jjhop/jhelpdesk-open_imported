@@ -58,18 +58,16 @@ public class LuceneIndexer {
 
     private final static Logger log = LoggerFactory.getLogger(LuceneIndexer.class);
 
-    private final static int DEFAULT_SEARCH_RESULT_LIMIT = 25;
-
     private @Value("${lucene.dir}") String indexDirectory;
     
     private QueryParser parser = new QueryParser(Version.LUCENE_30, "body", new SimpleAnalyzer());
 
-    public List<Article> search(String searchQuery) throws SearchException {
+    public List<Article> search(String searchQuery, int maxResultSize) throws SearchException {
         try {
             Query query = parser.parse(searchQuery);
             Directory directory = FSDirectory.open(new File(indexDirectory));
             IndexSearcher indexSearcher = new IndexSearcher(directory);
-            TopDocs res = indexSearcher.search(query, DEFAULT_SEARCH_RESULT_LIMIT);
+            TopDocs res = indexSearcher.search(query, maxResultSize);
             List<Article> result = new ArrayList<Article>();
             for (ScoreDoc scoreDoc : res.scoreDocs) {
                 Document document = indexSearcher.doc(scoreDoc.doc);

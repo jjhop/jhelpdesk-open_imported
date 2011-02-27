@@ -49,6 +49,21 @@
                                     <td><form:radiobutton path="filtersListSize" value="50"/></td>
                                     <td class="lastcol"><form:radiobutton path="filtersListSize" value="100"/></td>
                                 </tr>
+                                <tr>
+                                    <td class="blank">Lista artykułów (baza wiedzy)</td>
+                                    <td><form:radiobutton path="articlesListSize" value="10"/></td>
+                                    <td><form:radiobutton path="articlesListSize" value="25"/></td>
+                                    <td><form:radiobutton path="articlesListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="articlesListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Maksymalna rozmiar wyników wyszukiwania</td>
+                                    <td><form:radiobutton path="searchResultLimit" value="10"/></td>
+                                    <td><form:radiobutton path="searchResultLimit" value="25"/></td>
+                                    <td><form:radiobutton path="searchResultLimit" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="searchResultLimit" value="100"/></td>
+                                </tr>
+
                             </table>
                             <br/>
                             <table cellspacing="0">
