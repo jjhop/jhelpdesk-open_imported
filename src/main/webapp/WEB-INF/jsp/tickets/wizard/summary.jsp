@@ -68,8 +68,10 @@
                                 </tr>
                                 <c:if test="${not empty hdticket.stepByStep}">
                                     <tr>
-                                        <td class="desc">Opis krok po kroku</td>
-                                        <td class="lastcol"><c:out value="${hdticket.stepByStep}" escapeXml="false"/></td>
+                                        <th class="lastcol" colspan="2">Krok po kroku</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="lastcol" colspan="2"><c:out value="${hdticket.stepByStep}" escapeXml="false"/></td>
                                     </tr>
                                 </c:if>
                                 <c:if test="${not empty hdticket.addFilesList}">
