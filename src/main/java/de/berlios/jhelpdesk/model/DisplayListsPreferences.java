@@ -61,6 +61,9 @@ public class DisplayListsPreferences implements Serializable {
     @Column(name = "filters_list_size")
     private Integer filtersListSize;
 
+    @Column(name = "search_result_limit")
+    private Integer searchResultLimit;
+
     public Integer getAnnouncementsListSize() {
         return announcementsListSize;
     }
@@ -115,6 +118,14 @@ public class DisplayListsPreferences implements Serializable {
 
     public void setArticlesListSize(Integer articlesListSize) {
         this.articlesListSize = articlesListSize;
+    }
+
+    public Integer getSearchResultLimit() {
+        return this.searchResultLimit;
+    }
+
+    public void setSearchResultLimit(Integer searchResultLimit) {
+        this.searchResultLimit = searchResultLimit;
     }
 
 }
