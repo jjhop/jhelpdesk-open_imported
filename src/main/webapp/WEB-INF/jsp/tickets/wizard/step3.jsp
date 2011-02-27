@@ -34,9 +34,7 @@
                                 <tr>
                                     <td>
                                         <spring:bind path="hdticket.stepByStep">
-                                            <textarea class="mceEditor" name="<c:out value="${status.expression}"/>" rows="15">
-                                                <c:out value="${status.value}" />
-                                            </textarea>
+                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="15"><c:out value="${status.value}" /></textarea>
                                         </spring:bind>
                                     </td>
                                 </tr>
