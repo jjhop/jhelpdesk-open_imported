@@ -31,7 +31,7 @@
                                 <tr><td colspan="2">Przyczyna zgłoszenia (max. 255 znaków):</td></tr>
                                 <tr>
                                     <td colspan="2" id="reasonarea">
-                                        <form:textarea id="treasonarea" cssClass="textinput" rows="5" path="subject"/>
+                                        <form:textarea id="treasonarea" cssClass="w99p" rows="5" path="subject"/>
                                         <form:errors path="subject" cssStyle="color: red"/>
                                     </td>
                                 </tr>
@@ -50,7 +50,7 @@
                                 <tr><td colspan="2">Opis zgłoszenia:</td></tr>
                                 <tr>
                                     <td id="descarea" colspan="2">
-                                        <form:textarea id="tdescarea" cssClass="mceEditor" rows="10" path="description"/>
+                                        <form:textarea id="tdescarea" cssClass="mceEditor w99p" rows="10" path="description"/>
                                         <form:errors path="description" cssStyle="color: red"/>
                                     </td>
                                 </tr>
