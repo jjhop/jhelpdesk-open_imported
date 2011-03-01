@@ -7,14 +7,11 @@
         <title><tiles:getAsString name="title"/></title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
         <tiles:insertDefinition name="javascripts" flush="true"/>
-        <spring:theme code="base.css" var="baseCss"/>
-        <spring:theme code="calendar.css" var="calendarCss"/>
-        <spring:theme code="nav.css" var="navCss"/>
-        <spring:theme code="tabview.css" var="tabviewCss"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="${baseCss}"/>" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="${calendarCss}"/>" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="${navCss}"/>" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="${tabviewCss}"/>" />
+        <!-- test -->
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/hd-base.css"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/calendar-hd.css"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/nav.css"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/tabview.css"/>" />
     </head>
     <body>
         <div id="pagecontainer">

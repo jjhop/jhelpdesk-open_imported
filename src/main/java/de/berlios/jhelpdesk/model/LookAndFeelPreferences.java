@@ -47,9 +47,6 @@ public class LookAndFeelPreferences implements Serializable {
     @OneToOne(mappedBy = "lafPreferences")
     private User user;
 
-    @Column(name = "theme")
-    private String theme;
-
     @Column(name = "welcome_page")
     private String welcomePage;
 
@@ -61,6 +58,26 @@ public class LookAndFeelPreferences implements Serializable {
 
     @Column(name = "new_ticket_form_view")
     private String newTicketFormView;
+
+    // nowe rzeczy
+
+    @Column(name = "tickest_list_size")
+    private Integer ticketsListSize;
+
+    @Column(name = "announcements_list_size")
+    private Integer announcementsListSize;
+
+    @Column(name = "articles_list_size")
+    private Integer articlesListSize;
+
+    @Column(name = "users_list_size")
+    private Integer usersListSize;
+
+    @Column(name = "filters_list_size")
+    private Integer filtersListSize;
+
+    @Column(name = "search_result_limit")
+    private Integer searchResultLimit;
 
     public Long getId() {
         return id;
@@ -86,14 +103,6 @@ public class LookAndFeelPreferences implements Serializable {
         this.preferredLocale = preferredLocale;
     }
 
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
     public String getWelcomePage() {
         return welcomePage;
     }
@@ -116,6 +125,53 @@ public class LookAndFeelPreferences implements Serializable {
 
     public String getNewTicketFormView() {
         return this.newTicketFormView;
+    }
+    public Integer getAnnouncementsListSize() {
+        return announcementsListSize;
+    }
+
+    public void setAnnouncementsListSize(Integer announcementsListSize) {
+        this.announcementsListSize = announcementsListSize;
+    }
+
+    public Integer getFiltersListSize() {
+        return filtersListSize;
+    }
+
+    public void setFiltersListSize(Integer filtersListSize) {
+        this.filtersListSize = filtersListSize;
+    }
+
+    public Integer getTicketsListSize() {
+        return ticketsListSize;
+    }
+
+    public void setTicketsListSize(Integer ticketsListSize) {
+        this.ticketsListSize = ticketsListSize;
+    }
+
+    public Integer getUsersListSize() {
+        return usersListSize;
+    }
+
+    public void setUsersListSize(Integer usersListSize) {
+        this.usersListSize = usersListSize;
+    }
+
+    public Integer getArticlesListSize() {
+        return this.articlesListSize;
+    }
+
+    public void setArticlesListSize(Integer articlesListSize) {
+        this.articlesListSize = articlesListSize;
+    }
+
+    public Integer getSearchResultLimit() {
+        return this.searchResultLimit;
+    }
+
+    public void setSearchResultLimit(Integer searchResultLimit) {
+        this.searchResultLimit = searchResultLimit;
     }
 
 }

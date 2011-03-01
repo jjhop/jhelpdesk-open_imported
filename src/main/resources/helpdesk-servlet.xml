@@ -29,8 +29,6 @@
     <!-- mapowanie kontrolerów -->
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
-    <!-- tematy springowe -->
-    <bean id="themeResolver" class="de.berlios.jhelpdesk.web.tools.ThemeCustomResolever"/>
     <!-- i18n -->
     <bean id="localeResolver" class="de.berlios.jhelpdesk.web.tools.LocaleCustomResolver"/>
     

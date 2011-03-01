@@ -5,10 +5,8 @@
     <head>
         <title><tiles:getAsString name="title"/> - (${pageContext.response.locale})</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <spring:theme code="login.css" var="loginCss"/>
-        <spring:theme code="style.css" var="styleCss"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="${styleCss}"/>" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="${loginCss}"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/style.css"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/login.css"/>" />
     </head>
     <body>
         <div id="loginpage">
