@@ -17,7 +17,7 @@
                                 </td>
                             </tr>
                             <c:if test="${message != null}">
-                                <tr><td style="color: #dc143c;"><c:out value="message"/>sdf</td></tr>
+                                <tr><td style="color: #dc143c;"><c:out value="message"/>${message}</td></tr>
                             </c:if>
                         </table>
                         <c:if test="${not empty categories}">

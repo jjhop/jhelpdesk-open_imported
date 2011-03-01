@@ -560,7 +560,7 @@ public class User implements Serializable {
                 ? "/tickets/new.html"
                 : "/tickets/wizzard.html";
         } else if (welcomePage.equalsIgnoreCase("kBase")) {
-            return "/help/base/showAll.html";
+            return "/help/kb/index.html";
         }
         throw new RuntimeException("*!*!@#");
     }
