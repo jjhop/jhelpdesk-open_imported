@@ -100,7 +100,10 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     position: relative;
     z-index: 2;
     margin-bottom: 4px;
-    background: #D0DBFB url(../i/hd-pagecontentsubheader.jpg) no-repeat 0 0;
+    background: #D0DBFB;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 #pagecontentsubheader h3 {
     padding: 10px 50px 12px;
@@ -136,7 +139,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 
 #pagecontentsubheader h3 span, #pagecontentsubheader h3 img.avatar {
     position: absolute;
-    top: -10px;
+    top: 10px;
     right: 10px;
     display: block;
     width: 76px;
@@ -149,28 +152,36 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 }
 #pagefooter {
     padding: 8px 20px;
-    background: #667CC0 url(../i/hd-pagefooterbottom.jpg) no-repeat 0 100%;;
+    background: #667CC0 url(../i/hd-pagefooterbottom.jpg) no-repeat 0 100%;
     color: #FFFFFF;
     text-align: center;
 }
-#content, .content {
-    background: #D0DBFB;
+
+.contenttop, .contentbottom {
+    display: none;
 }
-.contenttop {
-    height: 10px;
-    background: #F3F3F3 url(../i/hd-contenttop.jpg) no-repeat 0 0;
-    font-size: 1%;
-}
-.contentbottom {
-    height: 10px;
-    background: #F3F3F3 url(../i/hd-contentbottom.jpg) no-repeat 0 0;
-    font-size: 1%;
-}
+
 .contentmiddle {
     /*	position: relative;*/
 /*    min-height: 260px;*/
-    padding: 0 10px;
+    padding: 10px;
+    margin: 0 0 10px 0;
     background: #D0DBFB;
+
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
 }
 * html .contentmiddle {
     height: 260px;
@@ -253,23 +264,9 @@ td.rightcells {
 }
 .desktoppanelstabledata td.leftcells {
     padding-bottom: 30px;
-    background: #D0DBFB url(../i/hd-contentbottomdesktop.jpg) no-repeat 0 100%;
 }
 .desktoppanelstabledata td.rightcells {
     padding-bottom: 30px;
-    background: #D0DBFB url(../i/hd-contentbottomdesktopr.jpg) no-repeat 0 100%;
-}
-.leftcells .contenttop {
-    background: #F3F3F3 url(../i/hd-contenttopdesktop.jpg) no-repeat 0 0;
-}
-.leftcells #pagecontentsubheader {
-    background: #D0DBFB url(../i/hd-pagecontentsubheaderd.jpg) no-repeat 0 0;
-}
-.rightcells .contenttop {
-    background: #F3F3F3 url(../i/hd-contenttopdesktopr.jpg) no-repeat 0 0;
-}
-.rightcells #pagecontentsubheader {
-    background: #D0DBFB url(../i/hd-pagecontentsubheaderdr.jpg) no-repeat 0 0;
 }
 .lastTickets h3 {
     background: transparent url(../i/icons/gnome-help.png) no-repeat 10px 50%;
@@ -587,8 +584,7 @@ div.buttons input {margin: 0 5px;}
 #ticketdetails .contentmiddle {
     position: relative;
     min-height: 180px;
-    padding: 0 10px;
-    background: #D0DBFB;
+    margin-bottom: 10px;
 }
 * html #ticketdetails .contentmiddle {
     height: 200px;
@@ -879,16 +875,7 @@ div.buttons input {margin: 0 5px;}
 .management .rightcells {
     width: 560px;
 }
-.management .rightcells .contentbottom {
-    height: 30px;
-    background: #F3F3F3 url(../i/hd-contentbottomdesktopr.jpg) no-repeat 0 0;
-    font-size: 1%;
-}
-.management .leftcells .contentbottom {
-    height: 30px;
-    background: #F3F3F3 url(../i/hd-contentbottomdesktop.jpg) no-repeat 0 0;
-    font-size: 1%;
-}
+
 #showallusers .standardtable {
     margin-top: 5px;
 }

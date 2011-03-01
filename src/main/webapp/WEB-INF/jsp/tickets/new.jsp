@@ -89,8 +89,6 @@
                             </td>
                         </tr>
                     </table>
-
-
                 </td>
                 <td id="middleright">&nbsp;</td>
             </tr>
@@ -102,7 +100,6 @@
             </tr>
             </tbody>
         </table>
-        
     </div>
 </form:form>
 <div class="contentbottom"></div>
