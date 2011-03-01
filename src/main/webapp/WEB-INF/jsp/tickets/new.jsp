@@ -9,60 +9,47 @@
     <div class="contentmiddle">
         <table cellspacing="0" id="table1" class="wide">
             <tbody>
-            <tr class="top">
-                <td id="topcenter">&nbsp;</td>
-                <td id="topright">
-                    <div>&nbsp;</div>
-                </td>
-            </tr>
-            <tr class="middle">
-                <td id="middlecenter">
-                    <table id="table2">
-                        <tr>
-                            <td class="w100 p20l">Zgłaszający:</td>
-                            <td><form:input path="notifier" cssClass="w320"/>
-                               <form:errors path="notifier" cssClass="formError errorBottom" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p20l"></td>
-                            <td>
-                                <ul class="formContainer">
-                                    <li class="floatLeft">
-                                        <label>Kategoria</label>
-                                        <form:select cssClass="w325" path="ticketCategory" items="${categories}"
-                                                     itemValue="ticketCategoryId"
-                                                     itemLabel="categoryName" />
-                                    </li>
-                                    <li class="floatRight">
-                                        <label>Ważność</label>
-                                        <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
-                                                     itemLabel="priorityName" />
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p20l">Przyczyna</td>
-                            <td>
-                                <form:textarea cssClass="w98p" path="subject" rows="6" cols="40"/>
+                <tr class="top">
+                    <td id="topcenter">&nbsp;</td>
+                    <td id="topright">
+                        <div>&nbsp;</div>
+                    </td>
+                </tr>
+                <tr class="middle">
+                    <td id="middlecenter">
+                        <ul class="formContainer">
+                            <li>
+                                <label>Zgłaszający</label>
+                                <form:input path="notifier" cssClass="w320"/>
+                                <form:errors path="notifier" cssClass="formError errorBottom" />
+                            </li>
+                            <li class="floatLeft">
+                                <label>Kategoria</label>
+                                <form:select cssClass="w400" path="ticketCategory" items="${categories}"
+                                             itemValue="ticketCategoryId"
+                                             itemLabel="categoryName" />
+                            </li>
+                            <li class="floatRight">
+                                <label>Ważność</label>
+                                <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
+                                             itemLabel="priorityName" />
+                            </li>
+                            <li class="clearFloat">
+                                <label>Przyczyna</label>
+                                <form:input cssClass="w99p" path="subject"/>
                                 <form:errors path="subject" cssClass="formError errorBottom" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p20l">Opis zgłoszenia</td>
-                            <td>
-                                <form:textarea cssClass="w98p" path="description" rows="6" cols="40"/>
+                            </li>
+                            <li>
+                                <label>Opis zgłoszenia</label>
+                                <form:textarea cssClass="w99p" path="description" rows="6" cols="40"/>
                                 <form:errors path="description" cssClass="formError errorBottom" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p20l">Kroki by powtórzyć</td>
-                            <td><form:textarea cssClass="w98p" id="step_by_step" path="stepByStep" rows="6" cols="40"/></td>
-                        </tr>
-                        <tr>
-                            <td class="p20l">Załączniki</td>
-                            <td>
+                            </li>
+                            <li>
+                                <label>Kroki by powtórzyć</label>
+                                <form:textarea cssClass="w99p" id="step_by_step" path="stepByStep" rows="6" cols="40"/>
+                            </li>
+                            <li>
+                                <label>Załączniki</label>
                                 <script type="text/javascript" src="<c:url value="/js/jquery-1.3.1.min.js"/>"></script>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
@@ -77,28 +64,22 @@
                                 <script type="text/javascript" src="<c:url value="/js/jquery.easing.1.3.js"/>"></script>
 <!--                                <link rel="stylesheet" type="text/css" href="<c:url value="/js/fancybox/fancybox.css"/>"/>-->
                                 <script type="text/javascript"
-                                        src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
-                                <a class="group iframe"
-                                   href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>">Dołącz
-                                    plik</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
+                                src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
+                                <a class="group iframe" href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>">Dołącz plik</a>
+                            </li>
+                            <li>
                                 <input class="btn" type="submit" value="Zapisz"/>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td id="middleright">&nbsp;</td>
-            </tr>
-            <tr class="bottom">
-                <td id="bottomcenter">&nbsp;</td>
-                <td id="bottomright">
-                    <div>&nbsp;</div>
-                </td>
-            </tr>
+                            </li>
+                        </ul>
+                    </td>
+                    <td id="middleright">&nbsp;</td>
+                </tr>
+                <tr class="bottom">
+                    <td id="bottomcenter">&nbsp;</td>
+                    <td id="bottomright">
+                        <div>&nbsp;</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
