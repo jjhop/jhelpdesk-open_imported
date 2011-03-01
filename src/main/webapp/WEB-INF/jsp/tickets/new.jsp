@@ -29,14 +29,15 @@
                             <td>
                                 <ul class="formContainer">
                                     <li class="floatLeft">
-                                        <label>Kategoria</label><form:select cssClass="w325" path="ticketCategory" items="${categories}"
-                                             itemValue="ticketCategoryId"
-                                             itemLabel="categoryName" />
+                                        <label>Kategoria</label>
+                                        <form:select cssClass="w325" path="ticketCategory" items="${categories}"
+                                                     itemValue="ticketCategoryId"
+                                                     itemLabel="categoryName" />
                                     </li>
                                     <li class="floatRight">
                                         <label>Ważność</label>
-                                <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
-                                             itemLabel="priorityName" />
+                                        <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
+                                                     itemLabel="priorityName" />
                                     </li>
                                 </ul>
                             </td>
@@ -74,7 +75,7 @@
                                     });
                                 </script>
                                 <script type="text/javascript" src="<c:url value="/js/jquery.easing.1.3.js"/>"></script>
-                                <link rel="stylesheet" type="text/css" href="<c:url value="/js/fancybox/fancybox.css"/>"/>
+<!--                                <link rel="stylesheet" type="text/css" href="<c:url value="/js/fancybox/fancybox.css"/>"/>-->
                                 <script type="text/javascript"
                                         src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
                                 <a class="group iframe"
