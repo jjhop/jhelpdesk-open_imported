@@ -8,7 +8,7 @@ td {padding: 0;}
 a {color: #4C609E;}
 a:hover {color: #344579;}
 img {border: none;behavior: url(iepngfix.htc);}
-input, select, textarea {font-size: 11px;font-family: Tahoma, Helvetica, sans-serif;}
+input, select, textarea {font-size: 12px; font-family: Tahoma, Helvetica, sans-serif;}
 .txtKB {
 width: 340px;
 }
@@ -1267,4 +1267,15 @@ ul.formContainer li label {
 
 .kbSearchItem .kbSearchItemMeta {
     color: #666;
+}
+
+.formError {
+    padding: 3px 2px 3px 20px;
+    color: red;
+    background: url(../i/jhd_arrows.gif) no-repeat;
+    display: block;
+}
+
+.errorBottom {
+    background-position: 0 6px;
 }
