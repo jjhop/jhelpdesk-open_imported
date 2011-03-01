@@ -152,10 +152,6 @@ public class User implements Serializable {
     @JoinColumn(name = "laf_preferences_id")
     private LookAndFeelPreferences lafPreferences;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dl_preferences_id")
-    private DisplayListsPreferences dlPreferences;
-
     /**
      * Przechowuje kolekcję artykułów, których autorem jest użytkownik.
      */
@@ -392,14 +388,6 @@ public class User implements Serializable {
         this.lafPreferences = lafPreferences;
     }
 
-    public DisplayListsPreferences getDlPreferences() {
-        return dlPreferences;
-    }
-
-    public void setDlPreferences(DisplayListsPreferences dlPreferences) {
-        this.dlPreferences = dlPreferences;
-    }
-
     /**
      * Zwraca numer telefonu komórkowego użytkownika.
      *
@@ -489,17 +477,6 @@ public class User implements Serializable {
         return toString();
     }
 
-    /**
-     * Zwraca preferowaną przez użytkownika skórkę aplikacji.
-     *
-     * @return preferowana skórka aplikacji
-     */
-    public String getPreferredTheme() {
-        return lafPreferences != null 
-                ? lafPreferences.getTheme()
-                : "blue";
-    }
-
     public Locale getPreferredLocale() {
         return lafPreferences != null
                 ? lafPreferences.getPreferredLocale()
@@ -507,44 +484,38 @@ public class User implements Serializable {
     }
 
     public Integer getPreferedTicketsListSize() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null 
-            ? dlPrefs.getTicketsListSize()
+        return lafPreferences != null
+            ? lafPreferences.getTicketsListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getAnnouncementsListSize() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null
-            ? dlPrefs.getAnnouncementsListSize()
+        return lafPreferences != null
+            ? lafPreferences.getAnnouncementsListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getArticlesListSize() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null
-            ? dlPrefs.getArticlesListSize()
+        return lafPreferences != null
+            ? lafPreferences.getArticlesListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getFiltersListSize() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null
-            ? dlPrefs.getFiltersListSize()
+        return lafPreferences != null
+            ? lafPreferences.getFiltersListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getUsersListSize() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null
-            ? dlPrefs.getUsersListSize()
+        return lafPreferences != null
+            ? lafPreferences.getUsersListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public int getSearchResultLimit() {
-        DisplayListsPreferences dlPrefs = getDlPreferences();
-        return dlPrefs != null
-            ? dlPrefs.getSearchResultLimit()
+        return lafPreferences != null
+            ? lafPreferences.getSearchResultLimit()
             : DEFAULT_LIST_SIZE;
     }
 

@@ -22,7 +22,6 @@
     <li class="submenu"><a href="javascript:none();"><span><fmt:message key="main.menu.settings"/></span></a>
         <ul class="level2">
             <li><a href="<c:url value="/preferences/lookAndFeel.html"/>"><span>Wygląd, język...</span></a></li>
-            <li><a href="<c:url value="/preferences/displayLists.html"/>"><span>Ustawienia list</span></a></li>
             <li><a href="<c:url value="/preferences/eventNotify.html"/>"><span>Powiadomienia</span></a></li>
             <li><a href="<c:url value="/preferences/personalData.html"/>"><span>Zmiana danych</span></a></li>
             <li><a href="<c:url value="/preferences/filters/list.html"/>"><span>Zarządzanie filtrami</span></a></li>

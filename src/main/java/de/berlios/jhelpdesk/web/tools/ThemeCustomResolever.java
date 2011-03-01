@@ -36,7 +36,7 @@ public class ThemeCustomResolever extends AbstractThemeResolver {
     public String resolveThemeName(HttpServletRequest req) {
         User currentUser = (User) req.getSession().getAttribute("user");
         if (currentUser != null) {
-            return currentUser.getPreferredTheme();
+            //return currentUser.getPreferredTheme();
         }
 
         Cookie themeCookie = WebUtils.getCookie(req, "jhd_theme");

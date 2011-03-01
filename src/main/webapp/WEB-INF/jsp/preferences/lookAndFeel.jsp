@@ -14,27 +14,6 @@
                         <div class="contenttop"></div>
                         <div class="contentmiddle">
                             <table cellspacing="0" class="standardtable">
-                                <tr><th colspan="3" class="lastcol">Temat</th></tr>
-                                <tr class="options">
-                                    <td style="width: 186px;">
-                                        <form:radiobutton id="t1" path="theme" value="blue"/>
-                                        <label for="t1">Blue (standardowy)</label><br />
-                                        <div>obrazek</div>
-                                    </td>
-                                    <td style="width: 186px;">
-                                        <form:radiobutton id="t2" path="theme" value="green" disabled="true"/>
-                                        <label for="t2">Green (nie istnieje)</label><br />
-                                        <div>obrazek</div>
-                                    </td>
-                                    <td class="lastcol" style="width: 188px;">
-                                        <form:radiobutton id="t3" path="theme" value="bluestroke"/>
-                                        <label for="t3">Bluestroke</label><br />
-                                        <div>obrazek</div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table cellspacing="0" class="standardtable">
                                 <tr><th colspan="5" class="lastcol">Strona startowa</th></tr>
                                 <tr class="options">
                                     <td style="width: 111px;">
@@ -48,7 +27,7 @@
                                     <td style="width: 111px;">
                                         <form:radiobutton id="v3" path="welcomePage" value="newTicket"/>
                                         <label for="v3">nowe zgłoszenie</label><br/>
-                                        
+
                                         <form:radiobutton id="nz1" path="newTicketFormView" value="form"/>
                                         <label for="nz1">Formularz zgłoszenia</label><br/>
 
@@ -79,6 +58,58 @@
                                 </tr>
                             </table>
                             <br />
+                            <table cellspacing="0" class="standardtable">
+                                <tr>
+                                    <th>Lista/ilość zgłoszeń</th>
+                                    <th>10</th>
+                                    <th>25</th>
+                                    <th>50</th>
+                                    <th class="lastcol">100</th>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Listy zgłoszeń</td>
+                                    <td><form:radiobutton path="ticketsListSize" value="10"/></td>
+                                    <td><form:radiobutton path="ticketsListSize" value="25"/></td>
+                                    <td><form:radiobutton path="ticketsListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="ticketsListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Lista wiadomości</td>
+                                    <td><form:radiobutton path="announcementsListSize" value="10"/></td>
+                                    <td><form:radiobutton path="announcementsListSize" value="25"/></td>
+                                    <td><form:radiobutton path="announcementsListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="announcementsListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Lista użytkowników</td>
+                                    <td><form:radiobutton path="usersListSize" value="10"/></td>
+                                    <td><form:radiobutton path="usersListSize" value="25"/></td>
+                                    <td><form:radiobutton path="usersListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="usersListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Lista filtrów</td>
+                                    <td><form:radiobutton path="filtersListSize" value="10"/></td>
+                                    <td><form:radiobutton path="filtersListSize" value="25"/></td>
+                                    <td><form:radiobutton path="filtersListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="filtersListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Lista artykułów (baza wiedzy)</td>
+                                    <td><form:radiobutton path="articlesListSize" value="10"/></td>
+                                    <td><form:radiobutton path="articlesListSize" value="25"/></td>
+                                    <td><form:radiobutton path="articlesListSize" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="articlesListSize" value="100"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="blank">Maksymalna rozmiar wyników wyszukiwania</td>
+                                    <td><form:radiobutton path="searchResultLimit" value="10"/></td>
+                                    <td><form:radiobutton path="searchResultLimit" value="25"/></td>
+                                    <td><form:radiobutton path="searchResultLimit" value="50"/></td>
+                                    <td class="lastcol"><form:radiobutton path="searchResultLimit" value="100"/></td>
+                                </tr>
+                            </table>
+                            <br/>
                             <table cellspacing="0">
                                 <tr>
                                     <td colspan="2">
