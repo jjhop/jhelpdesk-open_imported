@@ -124,24 +124,14 @@
                                                                 </tr>
                                                             </c:forEach>
                                                         </table>
-                                                        
                                                         <ul class="panelPager">
-                                                            <li>
-                                                                <a href="#">&laquo; poprzednia</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">1</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">2</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">następna &raquo;</a>
-                                                            </li>
+                                                            <li><a href="#">&laquo; poprzednia</a></li>
+                                                            <li><a href="#">1</a></li>
+                                                            <li><a href="#">2</a></li>
+                                                            <li><a href="#">następna &raquo;</a></li>
                                                         </ul>
-
                                                     </c:if>
-                                                    <form action="<c:url value="/ticketDetails.html?ticketId=${param.ticketId}"/>" method="post">
+                                                    <form action="<c:url value="/tickets/${ticket.ticketId}/details.html"/>" method="post">
                                                         <textarea id="addComm" name="addComm" rows="3" cols="40" class="addcomment" style="height: 120px;"></textarea>
                                                         <br/>
                                                         <input type="checkbox" name="notForPlainUser" value="true"/> - tylko dla pracowników helpdesku
