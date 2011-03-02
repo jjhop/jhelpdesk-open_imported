@@ -36,6 +36,7 @@ import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.utils.MarkdownTranslator;
+import de.berlios.jhelpdesk.web.commons.PagingTools;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
 import de.berlios.jhelpdesk.web.tools.ArticleCommentValidator;
@@ -139,15 +140,9 @@ public class HelpViewController {
         map.addAttribute("category", articleCategoryDAO.getById(cId));
         map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
         map.addAttribute("currentPage", page);
-        map.addAttribute("pages", calulatePages(articlesInSection, pageSize));
+        map.addAttribute("pages", PagingTools.calulatePages(articlesInSection, pageSize));
         map.addAttribute("offset", pageSize * (page-1));
         return HELP_KB_CATEGORY;
-    }
-
-    private int calulatePages(int count, int pageSize) {
-        return count > pageSize 
-            ? count / pageSize + count % pageSize
-            : 1;
     }
 
     /**
