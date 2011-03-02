@@ -27,41 +27,30 @@
                     <td id="middlecenter">
                         <form:form action="${formURL}" commandName="hdticket" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="2"/>
-                            <table id="table2" cellspacing="0">
-                                <tr><td colspan="2">Przyczyna zgłoszenia (max. 255 znaków):</td></tr>
-                                <tr>
-                                    <td colspan="2" id="reasonarea">
-                                        <form:textarea id="treasonarea" cssClass="w99p" rows="5" path="subject"/>
-                                        <form:errors path="subject" cssClass="formError errorBottom" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <ul class="formContainer">
-                                            <li class="floatLeft">
-                                                <label>Kategoria</label>
-                                                <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="ticketCategoryId" itemLabel="categoryName"/>
-                                            </li>
-                                            <li class="floatRight">
-                                                <label>Ważność</label>
-                                                <form:select id="waznosc" path="ticketPriority" items="${priorities}" itemValue="priorityId" itemLabel="priorityName"/>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr><td colspan="2">Opis zgłoszenia:</td></tr>
-                                <tr>
-                                    <td id="descarea" colspan="2">
-                                        <form:textarea id="tdescarea" cssClass="mceEditor w99p" rows="10" path="description"/>
-                                        <form:errors path="description" cssClass="formError errorBottom" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <input class="btn" type="submit" name="_target0" value="&laquo; Cofnij"/> <input class="btn" type="submit" name="_target2" value="Dalej &raquo;"/>
-                                    </td>
-                                </tr>
-                            </table>
+
+                            <ul class="formContainer">
+                                <li>
+                                    <label>Przyczyna zgłoszenia (max. 255 znaków)</label>
+                                    <form:textarea id="treasonarea" cssErrorClass="w99p fieldError" cssClass="w99p" rows="2" path="subject"/>
+                                    <form:errors path="subject" cssClass="formError errorBottom" />
+                                </li>
+                                <li class="floatLeft">
+                                    <label>Kategoria</label>
+                                    <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="ticketCategoryId" itemLabel="categoryName"/>
+                                </li>
+                                <li class="floatRight">
+                                    <label>Ważność</label>
+                                    <form:select id="waznosc" path="ticketPriority" items="${priorities}" itemValue="priorityId" itemLabel="priorityName"/>
+                                </li>
+                                <li class="clearFloat">
+                                    <label>Opis zgłoszenia</label>
+                                    <form:textarea id="tdescarea" cssErrorClass="w99p fieldError" cssClass="mceEditor w99p" rows="10" path="description"/>
+                                    <form:errors path="description" cssClass="formError errorBottom" />
+                                </li>
+                                <li>
+                                    <input class="btn floatLeft" type="submit" name="_target0" value="&laquo; Cofnij"/> <input class="btn floatRight" type="submit" name="_target2" value="Dalej &raquo;"/>
+                                </li>
+                            </ul>
                         </form:form>
                     </td>
                     <td id="middleright">&nbsp;</td>

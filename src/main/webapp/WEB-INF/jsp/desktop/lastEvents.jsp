@@ -6,9 +6,9 @@
         <c:forEach var="event" items="${lastEvents}">
             <tr>
                 <td class="lastcol">
-                    <a href="<c:url value="/tickets/${event.ticket.ticketId}/details.html"/>"><c:out value="${event.evtSubject}"/></a><br/>
-                    <c:out value="${event.eventType}"/><br/>
-                    <fmt:formatDate value="${event.evtDate}" pattern="dd/MM/yyyy HH:mm"/>
+                    <span class="entryMeta">Rafał Kotusiewicz, <fmt:formatDate value="${event.evtDate}" pattern="dd/MM/yyyy HH:mm"/></span>
+                    <img src="<c:url value="/themes/blue/i/remove.gif"/>" class="eventType" title="<c:out value="${event.eventType}"/>" alt="<c:out value="${event.eventType}"/>" /><a href="<c:url value="/tickets/${event.ticket.ticketId}/details.html"/>"><c:out value="${event.evtSubject}"/></a>
+                    
                 </td>
             </tr>
         </c:forEach>
