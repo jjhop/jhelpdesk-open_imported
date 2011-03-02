@@ -244,6 +244,12 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     width: 100%;
 
 }
+
+#desktop #lastEvents .eventType {
+    float: left;
+    padding: 0 5px 0 0;
+}
+
 #pagecontentheader td {
     padding: 0;
 }
@@ -1023,7 +1029,7 @@ td.artnumber {
     padding: 0 0 10px 0;
 }
 
-.kbComments dt .kbCommentsMeta {
+.kbComments dt .kbCommentsMeta, .entryMeta {
     display: block;
     font-size: 11px;
     font-weight: normal;
@@ -1151,6 +1157,8 @@ td.artnumber {
 .w350 {width: 350px;}
 .w375 {width: 375px;}
 .w400 {width: 400px;}
+.w415 {width: 415px;}
+.w425 {width: 425px;}
 .w98p { width: 98% }
 .w99p { width: 99% }
 .w100p { width: 100% }
@@ -1222,7 +1230,7 @@ hr {
 }
 
 ul.formContainer {
-    margin: 10px 0;
+    margin: 0 0 10px 0;
     padding: 0;
     list-style: none;
 }
@@ -1238,6 +1246,10 @@ ul.formContainer li input, ul.formContainer li textarea {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #677498;
+}
+
+ul.formContainer li input.fieldError, ul.formContainer li textarea.fieldError {
+    border-color: red;
 }
 ul.formContainer li .btn {
     padding: 2px 15px 5px 15px;
