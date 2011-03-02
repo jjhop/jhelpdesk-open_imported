@@ -59,8 +59,6 @@ public class LookAndFeelPreferences implements Serializable {
     @Column(name = "new_ticket_form_view")
     private String newTicketFormView;
 
-    // nowe rzeczy
-
     @Column(name = "tickest_list_size")
     private Integer ticketsListSize;
 
