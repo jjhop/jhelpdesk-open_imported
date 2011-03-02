@@ -8,7 +8,6 @@
         <ul class="level2">
             <li class="first"><a href="<c:url value="/tickets/new.html"/>"><span>Zgłoś problem</span></a></li>
             <li class="first"><a href="<c:url value="/tickets/wizzard.html"/>"><span>Kreator zgłoszenia</span></a></li>
-            <%--<li><a href="<c:url value="/newTicket.html"/>"><span>Zgłoś problem</span></a></li>--%>
             <c:if test="${not empty sessionScope.user.filters}">
                 <li><a href="#"><span>------------</span></a></li>
                 <c:forEach var="f" items="${sessionScope.user.filters}">
@@ -22,7 +21,6 @@
     <li class="submenu"><a href="javascript:none();"><span><fmt:message key="main.menu.settings"/></span></a>
         <ul class="level2">
             <li><a href="<c:url value="/preferences/lookAndFeel.html"/>"><span>Wygląd, język...</span></a></li>
-            <li><a href="<c:url value="/preferences/eventNotify.html"/>"><span>Powiadomienia</span></a></li>
             <li><a href="<c:url value="/preferences/personalData.html"/>"><span>Zmiana danych</span></a></li>
             <li><a href="<c:url value="/preferences/filters/list.html"/>"><span>Zarządzanie filtrami</span></a></li>
         </ul>
