@@ -11,9 +11,7 @@
             <tbody>
                 <tr class="top">
                     <td id="topcenter">&nbsp;</td>
-                    <td id="topright">
-                        <div>&nbsp;</div>
-                    </td>
+                    <td id="topright"><div>&nbsp;</div></td>
                 </tr>
                 <tr class="middle">
                     <td id="middlecenter">
@@ -62,7 +60,9 @@
                                     });
                                 </script>
                                 <script type="text/javascript" src="<c:url value="/js/jquery.easing.1.3.js"/>"></script>
-<!--                                <link rel="stylesheet" type="text/css" href="<c:url value="/js/fancybox/fancybox.css"/>"/>-->
+                                <style type="text/css">
+                                    @import url(<c:url value="/js/fancybox/fancybox.css"/>);
+                                </style>
                                 <script type="text/javascript"
                                 src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
                                 <a class="group iframe" href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>">Dołącz plik</a>
