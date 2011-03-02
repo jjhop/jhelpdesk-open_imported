@@ -18,28 +18,28 @@
                         <ul class="formContainer">
                             <li>
                                 <label>Zgłaszający</label>
-                                <form:input path="notifier" cssClass="w320"/>
+                                <form:input path="notifier" cssErrorClass="w415 fieldError" cssClass="w415"/>
                                 <form:errors path="notifier" cssClass="formError errorBottom" />
                             </li>
                             <li class="floatLeft">
                                 <label>Kategoria</label>
-                                <form:select cssClass="w400" path="ticketCategory" items="${categories}"
+                                <form:select cssClass="w425" path="ticketCategory" items="${categories}"
                                              itemValue="ticketCategoryId"
                                              itemLabel="categoryName" />
                             </li>
                             <li class="floatRight">
                                 <label>Ważność</label>
-                                <form:select cssClass="w125" path="ticketPriority" items="${priorities}" itemValue="priorityId"
+                                <form:select cssClass="w150" path="ticketPriority" items="${priorities}" itemValue="priorityId"
                                              itemLabel="priorityName" />
                             </li>
                             <li class="clearFloat">
                                 <label>Przyczyna</label>
-                                <form:input cssClass="w99p" path="subject"/>
+                                <form:input cssClass="w99p" cssErrorClass="w99p fieldError" path="subject"/>
                                 <form:errors path="subject" cssClass="formError errorBottom" />
                             </li>
                             <li>
                                 <label>Opis zgłoszenia</label>
-                                <form:textarea cssClass="w99p" path="description" rows="6" cols="40"/>
+                                <form:textarea cssClass="w99p" cssErrorClass="w99p fieldError" path="description" rows="6" cols="40"/>
                                 <form:errors path="description" cssClass="formError errorBottom" />
                             </li>
                             <li>

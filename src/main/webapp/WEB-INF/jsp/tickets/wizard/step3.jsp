@@ -27,23 +27,19 @@
                     <td id="middlecenter">
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="3"/>
-                            <table id="table2" cellspacing="0">
-                                <tr>
-                                    <td>Kroki by powtórzyć:</td>
-                                </tr>
-                                <tr>
-                                    <td>
+
+                            <ul class="formContainer">
+                                <li>
+                                    <label>Kroki by powtórzyć</label>
                                         <spring:bind path="hdticket.stepByStep">
                                             <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="15"><c:out value="${status.value}" /></textarea>
                                         </spring:bind>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="btn" type="submit" name="_target1" value="&laquo; Cofnij"/> <input class="btn" type="submit" name="_target3" value="Dalej &raquo;"/>
-                                    </td>
-                                </tr>
-                            </table>
+                                </li>
+                                <li>
+                                    <input class="btn floatLeft" type="submit" name="_target1" value="&laquo; Cofnij"/> <input class="btn floatRight" type="submit" name="_target3" value="Dalej &raquo;"/>
+                                </li>
+                            </ul>
+
                         </form>
                     </td>
                     <td id="middleright">&nbsp;</td>
