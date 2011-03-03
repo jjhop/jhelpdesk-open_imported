@@ -35,4 +35,6 @@ public interface TicketFilterDAO {
     void delete(Long filterId) throws DAOException;
 
     void delete(TicketFilter filter) throws DAOException;
+
+    List<TicketFilter> getForUser(User currentUser, int pageSize, int page) throws DAOException;
 }

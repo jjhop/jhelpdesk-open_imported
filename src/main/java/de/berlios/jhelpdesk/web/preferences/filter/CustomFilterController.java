@@ -26,12 +26,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketFilterDAO;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingTools;
 
 /**
  *
@@ -50,11 +52,16 @@ public class CustomFilterController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/preferences/filters/list.html", method = RequestMethod.GET)
-    public String showAllFilters(ModelMap map, HttpSession session) throws Exception {
-
+    public String showAllFilters(@RequestParam(value="p",required=false,defaultValue="1") int page,
+                                 ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
-        map.addAttribute("filters", ticketFilterDAO.getAllFiltersForUser(currentUser));
-
+        int pageSize = currentUser.getFiltersListSize();
+        int filtersCount = currentUser.getFilters().size();
+        
+        map.addAttribute("filters", ticketFilterDAO.getForUser(currentUser, pageSize, page));
+        map.addAttribute("currentPage", page);
+        map.addAttribute("pages", PagingTools.calulatePages(filtersCount, pageSize));
+        map.addAttribute("offset", pageSize * (page-1));
         return "preferences/filters/showAll";
     }
 
@@ -81,13 +88,11 @@ public class CustomFilterController {
         if (filter != null && filter.isOwnedBy(currentUser)) {
             try {
                 ticketFilterDAO.delete(filter);
-                session.setAttribute("user", userDAO.getById(currentUser.getUserId()));
-                map.addAttribute("message", null);
+                session.setAttribute("user", userDAO.getByLoginFetchFilters(currentUser.getLogin()));
             } catch (DAOException ex) {
                 throw new RuntimeException(ex);
             }
         }
-        map.addAttribute("filters", ticketFilterDAO.getAllFiltersForUser(currentUser));
-        return "preferences/filters/showAll";
+        return "redirect:/preferences/filters/list.html";
     }
 }
