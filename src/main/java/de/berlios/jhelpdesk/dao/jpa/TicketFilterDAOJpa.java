@@ -116,6 +116,25 @@ public class TicketFilterDAOJpa implements TicketFilterDAO {
         }
     }
 
+    public List<TicketFilter> getForUser(final User currentUser, final int pageSize,
+                                         final int page) throws DAOException {
+        try {
+            return this.jpaTemplate.execute(new JpaCallback<List<TicketFilter>>() {
+                public List<TicketFilter> doInJpa(EntityManager em) throws PersistenceException {
+                    int offset = (int) (pageSize * (page - 1));
+                    Query q = em.createQuery(
+                        "SELECT t FROM TicketFilter t WHERE t.owner.userId=?1 ORDER BY t.name ASC");
+                    q.setParameter(1, currentUser.getUserId());
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public TicketFilter getById(Long filterId) throws DAOException {
         try {
             return this.jpaTemplate.find(TicketFilter.class, filterId);

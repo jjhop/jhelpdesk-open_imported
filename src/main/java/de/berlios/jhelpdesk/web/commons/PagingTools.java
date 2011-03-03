@@ -29,7 +29,7 @@ public class PagingTools {
      */
     public static int calulatePages(int count, int pageSize) {
         return count > pageSize
-                ? count / pageSize + count % pageSize
+                ? count / pageSize + (count % pageSize == 0 ? 0 : 1)
                 : 1;
     }
 }
