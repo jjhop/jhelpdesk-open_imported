@@ -37,7 +37,7 @@ import de.berlios.jhelpdesk.model.User;
 public class AuthenticationController {
 
     @Autowired
-    private UserDAO userDAOJpa;
+    private UserDAO userDAO;
 
     /**
      * Przygotowuje formularz logowania.
@@ -66,9 +66,9 @@ public class AuthenticationController {
                                   HttpSession session) throws Exception {
         // TODO: w DAO metoda authenticate do wywalenia... uwierzytleniamy sprawdzajac
         // czy gosc podal pasujace haslo i login (email) oraz czy moze sie logowac (isActive)
-        boolean isAuthenticatedWithJpa = userDAOJpa.authenticate(user.getLogin(), user.getPassword());
+        boolean isAuthenticatedWithJpa = userDAO.authenticate(user.getLogin(), user.getPassword());
         if (isAuthenticatedWithJpa) {
-            User loggedUser = userDAOJpa.getByLoginFetchFilters(user.getLogin());
+            User loggedUser = userDAO.getByLoginFetchFilters(user.getLogin());
             session.setAttribute("user", loggedUser);
             session.setAttribute("logged", Boolean.TRUE);
             return "redirect:" + loggedUser.getWelcomePage();
