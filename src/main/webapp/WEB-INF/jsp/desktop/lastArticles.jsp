@@ -6,7 +6,7 @@
         <c:forEach var="article" items="${lastArticles}">
             <tr>
                 <td class="lastcol">
-                    <fmt:formatDate value="${article.createdAt}" pattern="dd/MM/yyyy HH:mm"/><br/>
+                    <span class="entryMeta">Rafał Kotusiewicz, <fmt:formatDate value="${article.createdAt}" pattern="dd/MM/yyyy HH:mm"/></span>
                     <a href="<c:url value="/help/base/articles/${article.id}/show.html"/>"><c:out value="${article.title}"/></a>
                 </td>
             </tr>
