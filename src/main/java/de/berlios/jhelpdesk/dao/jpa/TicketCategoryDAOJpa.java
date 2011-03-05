@@ -170,6 +170,15 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
     }
 
     @Transactional(readOnly = false)
+    public void save(TicketCategory category) {
+        if (category.getId() == null) {
+            this.jpaTemplate.persist(category);
+        } else {
+            this.jpaTemplate.merge(category);
+        }
+    }
+
+    @Transactional(readOnly = false)
     public void insertCategory(final TicketCategory category, final TicketCategory parent) throws DAOException {
         try {
             final long nodeCount = getNodeCount();
