@@ -62,4 +62,14 @@ public interface AnnouncementDAO {
      * @param announcement
      */
     void delete(Announcement announcement) throws DAOException;
+
+    /**
+     * 
+     * @param pageSize
+     * @param page
+     * @return
+     */
+    List<Announcement> get(int pageSize, int page) throws DAOException;
+
+    int countAll() throws DAOException;
 }

@@ -17,24 +17,29 @@
                                 </td>
                             </tr>
                         </table>
-                        
-                        <c:if test="${not empty announcements}">
-                            <table cellspacing="0" class="standardtable">
-                                <tr>
-                                    <th>Tytuł</th>
-                                    <th>Data utworzenia</th>
-                                    <th colspan="2" class="lastcol">&nbsp;</th>
-                                </tr>
-                                <c:forEach var="announcement" items="${announcements}">
-                                    <tr>
-                                        <td><a href="<c:url value="/announcements/${announcement.id}/show.html"/>"><c:out value="${announcement.title}"/></a></td>
-                                        <td><c:out value="${announcement.createDate}"/></td>
-                                        <td class="ticketEdit"><a href="<c:url value="/announcements/${announcement.id}/edit.html"/>">E</a></td>
-                                        <td class="lastcol ticketDrop"><a href="<c:url value="/announcements/${announcement.id}/remove.html"/>">R</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </c:if>
+                        <display:table id="announcementsIterator" name="announcements" class="standardtable"
+                                       pagesize="10" size="announcementsListSize" sort="external" partialList="true"
+                                       requestURI="" excludedParams="*" cellspacing="0">
+                            <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
+                                <c:out value="${announcementsIterator_rowNum + offset}"/>
+                            </display:column>
+                            <display:column title="Tytuł">
+                                <a href="<c:url value="/announcements/${announcementsIterator.id}/show.html"/>"><c:out value="${announcementsIterator.title}"/></a>
+                            </display:column>
+                            <display:column title="Data utworzenia" style="width: 100px;">
+                                <fmt:formatDate value="${announcementsIterator.createDate}" pattern="dd/MM/yyyy"/>
+                            </display:column>
+
+                            <display:column class="ticketEdit">
+                                <a class="actionView" href="<c:url value="/announcements/${announcementsIterator.id}/show.html"/>">V</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a class="actionEdit" href="<c:url value="/announcements/${announcementsIterator.id}/edit.html"/>">E</a>
+                            </display:column>
+                            <display:column class="lastcol ticketEdit" headerClass="lastcol">
+                                <a href="<c:url value="/announcements/${announcementsIterator.id}/remove.html"/>" class="actionDel">R</a>
+                            </display:column>
+                        </display:table>
                     </div>
                     <div class="contentbottom"></div>
                 </div>
