@@ -15,6 +15,10 @@
  */
 package de.berlios.jhelpdesk.web.manager;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,10 +30,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import de.berlios.jhelpdesk.dao.AnnouncementDAO;
 import de.berlios.jhelpdesk.model.Announcement;
+import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.tools.AnnouncementValidator;
 
 /**
@@ -79,8 +85,14 @@ public class AnnouncementController {
      * @return identyfikator widoku prezentującego listę ogłoszeń
      */
     @RequestMapping("/announcements/list.html")
-    public String showAllAnnouncements(ModelMap map) throws Exception {
-        map.addAttribute("announcements", announcementDAO.getAll());
+    public String showAllAnnouncements(@RequestParam(value="p",required=false,defaultValue="1") int page,
+                                       HttpSession session, ModelMap map) throws Exception {
+        User currentUser = (User) session.getAttribute("user");
+        int pageSize = currentUser.getAnnouncementsListSize();
+        List<Announcement> result = announcementDAO.get(pageSize, page);
+        map.addAttribute("offset", pageSize * (page-1));
+        map.addAttribute("announcements", result);
+        map.addAttribute("announcementsListSize", announcementDAO.countAll());
         return "announcement/showAll";
     }
 
