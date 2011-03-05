@@ -35,7 +35,6 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.User;
-import de.berlios.jhelpdesk.utils.MarkdownTranslator;
 import de.berlios.jhelpdesk.web.commons.PagingTools;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
@@ -70,9 +69,6 @@ public class HelpViewController {
 
     @Autowired
     private LuceneIndexer luceneIndexer;
-
-    @Autowired
-    private MarkdownTranslator translator;
 
     /**
      * Wyświetla pomoc do programu.
@@ -156,7 +152,6 @@ public class HelpViewController {
     public String kBItemView(@PathVariable("aId") Long id, ModelMap map) throws Exception {
         Article article = articleDAO.getById(id);
         if (article != null) {
-            article.setBody(translator.processMarkdown(article.getBody()));
             map.addAttribute("article", article);
         } else {
             map.addAttribute("message", "Nie znaleziono");

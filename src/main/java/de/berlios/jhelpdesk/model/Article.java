@@ -38,6 +38,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import de.berlios.jhelpdesk.utils.MarkdownTranslator;
+import javax.persistence.Transient;
+
 /**
  *
  * @author jjhop
@@ -110,6 +113,9 @@ public class Article implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "ticket_id")})
     private Set<Ticket> associatedTickets;
 
+    @Transient
+    private MarkdownTranslator translator = new MarkdownTranslator();
+    
     /**
      * 
      */
@@ -205,6 +211,10 @@ public class Article implements Serializable {
         return body;
     }
 
+    public String getHtmlBody() {
+        return this.translator.processMarkdown(this.body);
+    }
+
     /**
      * @param body The body to set.
      */
@@ -252,5 +262,9 @@ public class Article implements Serializable {
      */
     public void setAssociatedTickets(Set<Ticket> associatedTickets) {
         this.associatedTickets = associatedTickets;
+    }
+
+    public void setTranslator(MarkdownTranslator translator) {
+        this.translator = translator;
     }
 }

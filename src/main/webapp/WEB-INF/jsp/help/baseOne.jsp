@@ -26,7 +26,8 @@
                                     <c:choose>
                                         <c:when test="${article != null}">
                                             ${article.lead}
-                                            ${article.body}
+                                            <br/>
+                                            ${article.htmlBody}
                                         </c:when>
                                         <c:otherwise>${message}</c:otherwise>
                                     </c:choose>
