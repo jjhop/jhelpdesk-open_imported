@@ -46,11 +46,11 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     @Column(name = "id")
     private Long id;
 
-    /**
-     *
-     */
-    @Column(name = "parent_category") // TODO: przerobić na obiekt po prostu
-    private Long parentCategory;      // parentCategory != null jesli jest podkategorią
+//    /**
+//     *
+//     */
+//    @Column(name = "parent_category") // TODO: przerobić na obiekt po prostu
+//    private Long parentCategory;      // parentCategory != null jesli jest podkategorią
 
     /**
      *
@@ -212,20 +212,20 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
         this.isActive = isActive;
     }
 
-    /**
-     * @return Returns the parentCategory.
-     */
-    public Long getParentCategory() {
-        return parentCategory;
-    }
-
-    /**
-     * @param parentCategory
-     *            The parentCategory to set.
-     */
-    public void setParentCategory(Long parentCategory) {
-        this.parentCategory = parentCategory;
-    }
+//    /**
+//     * @return Returns the parentCategory.
+//     */
+//    public Long getParentCategory() {
+//        return parentCategory;
+//    }
+//
+//    /**
+//     * @param parentCategory
+//     *            The parentCategory to set.
+//     */
+//    public void setParentCategory(Long parentCategory) {
+//        this.parentCategory = parentCategory;
+//    }
 
     public Set<Ticket> getTickets() {
         return tickets;
@@ -255,7 +255,7 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     public int hashCode() {
         int hash = 7;
         hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 67 * hash + (this.parentCategory != null ? this.parentCategory.hashCode() : 0);
+//        hash = 67 * hash + (this.parentCategory != null ? this.parentCategory.hashCode() : 0);
         hash = 67 * hash + (this.categoryName != null ? this.categoryName.hashCode() : 0);
         hash = 67 * hash + (this.categoryDesc != null ? this.categoryDesc.hashCode() : 0);
         return hash;

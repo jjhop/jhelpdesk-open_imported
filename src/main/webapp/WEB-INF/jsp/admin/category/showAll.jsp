@@ -25,13 +25,12 @@
                                 </tr>
                                 <c:forEach var="c" items="${categories}">
                                     <tr>
-                                        <td style="padding-left: <c:out value="${c.depth}"/>0px"><span style="padding-left: 10px"><c:out value="${c.categoryName}"/></span></td>
+                                        <td><span style="padding-left: 10px"><c:out value="${c.categoryName}"/></span></td>
                                         <td>
                                             <c:if test="${not c.active}">NIE</c:if>
                                             <c:if test="${c.active}">TAK</c:if>
                                         </td>
                                         <td class="ticketEdit"><a href="<c:url value="/manage/category/${c.id}/edit.html"/>">Edit</a></td>
-                                        <td class="ticketView"><a href="<c:url value="/manage/category/new.html?parentId=${c.id}"/>">Add</a></td>
                                         <td class="lastcol ticketDrop"><a href="<c:url value="/manage/category/${c.id}/remove.html"/>">Drop</a></td>
                                     </tr>
                                 </c:forEach>
