@@ -38,7 +38,7 @@ public class TicketCategoryEditor extends PropertyEditorSupport {
         Object value = getValue();
         if (value != null) {
             TicketCategory tCategory = (TicketCategory) value;
-            return String.valueOf(tCategory.getTicketCategoryId());
+            return String.valueOf(tCategory.getId());
         } else {
             return null;
         }
@@ -47,8 +47,8 @@ public class TicketCategoryEditor extends PropertyEditorSupport {
     @Override
     public void setAsText(String text) {
         try {
-            Long ticketCategoryId = Long.valueOf(text);
-            TicketCategory category = ticketCategoryDAO.getById(ticketCategoryId);
+            Long categoryId = Long.valueOf(text);
+            TicketCategory category = ticketCategoryDAO.getById(categoryId);
             setValue(category);
         } catch(Exception ex) {
             throw new RuntimeException(ex);

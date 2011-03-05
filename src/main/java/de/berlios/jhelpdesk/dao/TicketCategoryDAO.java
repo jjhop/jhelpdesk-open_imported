@@ -78,4 +78,10 @@ public interface TicketCategoryDAO {
      * @param category
      */
     void updateCategory(TicketCategory category) throws DAOException;
+
+    /**
+     * 
+     * @param category
+     */
+    void save(TicketCategory category);
 }
