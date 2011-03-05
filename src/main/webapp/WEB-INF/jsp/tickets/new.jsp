@@ -24,7 +24,7 @@
                             <li class="floatLeft">
                                 <label>Kategoria</label>
                                 <form:select cssClass="w425" path="ticketCategory" items="${categories}"
-                                             itemValue="ticketCategoryId"
+                                             itemValue="id"
                                              itemLabel="categoryName" />
                             </li>
                             <li class="floatRight">

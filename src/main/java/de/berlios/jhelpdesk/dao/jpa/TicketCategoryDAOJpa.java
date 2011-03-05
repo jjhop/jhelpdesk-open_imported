@@ -68,8 +68,8 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
                     q2.setParameter(2, (getNodeCount() * 2));
                     q2.executeUpdate();
 
-                    Query q3 = em.createNativeQuery("DELETE FROM ticket_category WHERE category_id=?1");
-                    q3.setParameter(1, category.getTicketCategoryId());
+                    Query q3 = em.createNativeQuery("DELETE FROM ticket_category WHERE id=?1");
+                    q3.setParameter(1, category.getId());
                     q3.executeUpdate();
 
                     return null;
@@ -127,7 +127,7 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
             return (List<TicketCategory>) this.jpaTemplate.execute(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
                     Query q = em.createNativeQuery(
-                        "SELECT * FROM ticket_category WHERE category_id>0 ORDER BY t_left ASC",
+                        "SELECT * FROM ticket_category WHERE id>0 ORDER BY t_left ASC",
                         TicketCategory.class);
                     return q.getResultList();
                 }
@@ -143,7 +143,7 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
                     Query q = em.createNativeQuery(
                         "SELECT * FROM ticket_category " +
-                        "WHERE is_active IS true AND category_id > 0 ORDER BY t_left ASC",
+                        "WHERE is_active IS true AND id > 0 ORDER BY t_left ASC",
                         TicketCategory.class);
                     return q.getResultList();
                 }
@@ -166,6 +166,15 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
             return null;
         } catch (Exception ex) {
             throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void save(TicketCategory category) {
+        if (category.getId() == null) {
+            this.jpaTemplate.persist(category);
+        } else {
+            this.jpaTemplate.merge(category);
         }
     }
 

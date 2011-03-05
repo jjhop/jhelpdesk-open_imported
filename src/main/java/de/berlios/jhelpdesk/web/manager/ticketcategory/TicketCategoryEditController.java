@@ -56,25 +56,15 @@ public class TicketCategoryEditController {
 
     @RequestMapping(value = "/manage/category/update.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("category") TicketCategory category,
-                                BindingResult result, SessionStatus status, ModelMap map) throws Exception {
+                                BindingResult result, SessionStatus status,
+                                ModelMap map) throws Exception {
         validator.validate(category, result);
         if (result.hasErrors()) {
             return MANAGE_TICKET_CATEGORY_EDIT;
         }
-
-        // jeśli walidacja się powiedzie to można przystąpić do zapisania kategorii
-        if (category.getTicketCategoryId() != null) {
-            categoryDAO.updateCategory(category);
-        } else {
-            if (category.getParentCategory() != null) {
-                TicketCategory parent = categoryDAO.getById(category.getParentCategory()); // TODO: parametr w URLu
-                categoryDAO.insertCategory(category, parent);
-            } else {
-                categoryDAO.insertRootCategory(category);
-            }
-        }
+        categoryDAO.save(category);
         status.setComplete();
-        return "redirect:/manage/category/" + category.getTicketCategoryId() + "/show.html";
+        return "redirect:/manage/category/" + category.getId() + "/show.html";
     }
 
     @RequestMapping(value = "/manage/category/{id}/edit.html", method = RequestMethod.GET)
