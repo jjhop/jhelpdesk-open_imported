@@ -1,4 +1,4 @@
-<%@page contentType="text/html;charset=UTF-8" %>
+    <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -6,7 +6,7 @@
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
     <table cellspacing="0">
         <tr>
-            <td class="leftcells">
+            <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>Edycja wiadomości</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
@@ -17,53 +17,53 @@
                                     <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
                                 </spring:bind>
                             </c:if>
+
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <td>Tytul</td>
                                     <td class="lastcol">
-                                        <spring:bind path="announcement.title">
-                                            <input type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
-                                                   <c:if test="${not empty status.errorMessage}">class="hintanchor"
-                                                       onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                   </c:if>/>
-                                        </spring:bind>
-                                        <form:errors path="announcement.title"/>
+
+                                        <ul class="formContainer">
+                                            <li>
+                                                <label>Tytul</label>
+                                                <spring:bind path="announcement.title">
+                                                    <input class="w98p" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
+                                                           <c:if test="${not empty status.errorMessage}">class="hintanchor"
+                                                               onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
+                                                           </c:if>/>
+                                                </spring:bind>
+                                                <form:errors cssClass="formError errorBottom" path="announcement.title"/>
+                                            </li>
+                                            <li>
+                                                <label>Skrót</label>
+                                                <spring:bind path="announcement.lead">
+                                                    <textarea  class="w98p"
+                                                        name="<c:out value="${status.expression}"/>" rows="4" cols="30"
+                                                        <c:if test="${not empty status.errorMessage}">class="hintanchor"
+                                                            onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
+                                                        </c:if>><c:out value="${status.value}"/></textarea>
+                                                </spring:bind>
+                                                <form:errors cssClass="formError errorBottom" path="announcement.lead"/>
+                                            </li>
+                                            <li>
+                                                <label>Treść główna</label>
+                                                <spring:bind path="announcement.body">
+                                                    <textarea class="w98p"
+                                                        name="<c:out value="${status.expression}"/>" rows="6" cols="30"
+                                                        <c:if test="${not empty status.errorMessage}">class="hintanchor"
+                                                            onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
+                                                        </c:if>><c:out value="${status.value}"/></textarea>
+                                                </spring:bind>
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="zapisz" class="btn" />
+                                            </li>
+                                        </ul>
+
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Skrót</td>
-                                    <td class="lastcol">
-                                        <form:errors path="announcement.lead"/>
-                                        <spring:bind path="announcement.lead">
-                                            <textarea
-                                                name="<c:out value="${status.expression}"/>" rows="4" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">class="hintanchor"
-                                                    onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                </c:if>><c:out value="${status.value}"/></textarea>
-                                        </spring:bind>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Treść główna</td>
-                                    <td class="lastcol">
-                                        <spring:bind path="announcement.body">
-                                            <textarea
-                                                name="<c:out value="${status.expression}"/>" rows="6" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">class="hintanchor"
-                                                    onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                </c:if>><c:out value="${status.value}"/></textarea>
-                                        </spring:bind>
-                                    </td>
-                                </tr>
+     
                             </table>
-                            <br />
-                            <table cellspacing="0">
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="submit" value="zapisz" class="btn" />
-                                    </td>
-                                </tr>
-                            </table>
+ 
                         </form>
                     </div>
                     <div class="contentbottom"></div>
