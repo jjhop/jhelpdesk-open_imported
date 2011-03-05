@@ -22,38 +22,21 @@
                                 <tr>
                                     <td class="w125">Tytuł</td>
                                     <td class="lastcol">
-                                        <spring:bind path="article.title">
-                                            <input class="w99p" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
-                                                   <c:if test="${not empty status.errorMessage}">class="hintanchor"
-                                                       onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                   </c:if>/>
-                                        </spring:bind>
+                                        <form:input path="title"/>
                                         <form:errors path="title"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Wstęp</td>
                                     <td class="lastcol">
-                                        <spring:bind path="article.lead">
-                                            <textarea class="hintanchor w99p"
-                                                name="<c:out value="${status.expression}"/>" rows="4" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">
-                                                    onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                </c:if>><c:out value="${status.value}"/></textarea>
-                                        </spring:bind>
+                                        <form:textarea path="lead"/>
                                         <form:errors path="lead"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Treść główna</td>
                                     <td class="lastcol">
-                                        <spring:bind path="article.body">
-                                            <textarea class="hintanchor w99p"
-                                                name="<c:out value="${status.expression}"/>" rows="8" cols="30"
-                                                <c:if test="${not empty status.errorMessage}">
-                                                    onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                </c:if>><c:out value="${status.value}"/></textarea>
-                                        </spring:bind>
+                                        <form:textarea path="body"/>
                                         <form:errors path="body"/>
                                     </td>
                                 </tr>
