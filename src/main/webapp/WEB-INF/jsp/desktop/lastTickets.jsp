@@ -16,7 +16,7 @@
                 <td><c:out value="${ticket.notifier}"/></td>
                 <td>
                     <c:choose>
-                        <c:when test="${ticket.ticketCategory.ticketCategoryId == 0}">
+                        <c:when test="${ticket.ticketCategory.id == 0}">
                             Brak
                         </c:when>
                         <c:otherwise>
