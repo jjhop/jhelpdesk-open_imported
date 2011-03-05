@@ -36,7 +36,7 @@
                                 </li>
                                 <li class="floatLeft">
                                     <label>Kategoria</label>
-                                    <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="ticketCategoryId" itemLabel="categoryName"/>
+                                    <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="id" itemLabel="categoryName"/>
                                 </li>
                                 <li class="floatRight">
                                     <label>Ważność</label>

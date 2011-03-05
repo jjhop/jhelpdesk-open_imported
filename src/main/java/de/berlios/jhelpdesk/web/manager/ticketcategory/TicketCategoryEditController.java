@@ -63,7 +63,7 @@ public class TicketCategoryEditController {
         }
 
         // jeśli walidacja się powiedzie to można przystąpić do zapisania kategorii
-        if (category.getTicketCategoryId() != null) {
+        if (category.getId() != null) {
             categoryDAO.updateCategory(category);
         } else {
             if (category.getParentCategory() != null) {
@@ -74,7 +74,7 @@ public class TicketCategoryEditController {
             }
         }
         status.setComplete();
-        return "redirect:/manage/category/" + category.getTicketCategoryId() + "/show.html";
+        return "redirect:/manage/category/" + category.getId() + "/show.html";
     }
 
     @RequestMapping(value = "/manage/category/{id}/edit.html", method = RequestMethod.GET)

@@ -43,7 +43,7 @@
                                 <td colspan="2" style="width: 170px;">
                                     <select size="1">
                                         <c:forEach var="category" items="${ticketCategories}">
-                                            <option value="${category.ticketCategoryId}" <c:if test="${category.ticketCategoryId == ticket.ticketCategory.ticketCategoryId}">selected="selected"</c:if>>
+                                            <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
                                                 <c:out value="${category}" />
                                             </option>
                                         </c:forEach>

@@ -38,13 +38,13 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
 
     private static final long serialVersionUID = -8116103471359194082L;
 
-	/**
+    /**
      * 
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticket_category_sequence")
-    @Column(name = "category_id")
-    private Long ticketCategoryId;
+    @Column(name = "id")
+    private Long id;
 
     /**
      *
@@ -104,22 +104,22 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
      * @param categoryName
      */
     public TicketCategory(int categoryId, String categoryName) {
-        this.ticketCategoryId = new Long(categoryId);
+        this.id = new Long(categoryId);
         this.categoryName = categoryName;
     }
 
     /**
      * @return Returns the ticketCategoryId.
      */
-    public Long getTicketCategoryId() {
-        return ticketCategoryId;
+    public Long getId() {
+        return id;
     }
 
     /**
      * @param ticketCategoryId The ticketCategoryId to set.
      */
-    public void setTicketCategoryId(Long ticketCategoryId) {
-        this.ticketCategoryId = ticketCategoryId;
+    public void setId(Long ticketCategoryId) {
+        this.id = ticketCategoryId;
     }
 
     /**
@@ -244,17 +244,17 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (this.ticketCategoryId == null) {
+        if (this.id == null) {
             return false;
         }
         TicketCategory category = (TicketCategory) obj;
-        return this.ticketCategoryId.equals(category.ticketCategoryId);
+        return this.id.equals(category.id);
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + (this.ticketCategoryId != null ? this.ticketCategoryId.hashCode() : 0);
+        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 67 * hash + (this.parentCategory != null ? this.parentCategory.hashCode() : 0);
         hash = 67 * hash + (this.categoryName != null ? this.categoryName.hashCode() : 0);
         hash = 67 * hash + (this.categoryDesc != null ? this.categoryDesc.hashCode() : 0);

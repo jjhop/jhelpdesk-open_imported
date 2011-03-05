@@ -12,8 +12,8 @@
                     <div class="contentmiddle">
                         <form action="" method="post">
                             <table cellspacing="0" class="standardtable">
-                                <c:if test="${category.ticketCategoryId != null}">
-                                    <spring:bind path="category.ticketCategoryId">
+                                <c:if test="${category.id != null}">
+                                    <spring:bind path="category.id">
                                         <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
                                     </spring:bind>
                                 </c:if>
