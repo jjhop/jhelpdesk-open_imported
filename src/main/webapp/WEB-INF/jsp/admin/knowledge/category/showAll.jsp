@@ -12,9 +12,7 @@
                     <div class="contentmiddle">
                         <table cellspacing="0">
                             <tr>
-                                <td>
-                                    <a class="btn" href="<c:url value="/manage/kb/category/edit.html"/>">Dodaj nową sekcję</a>
-                                </td>
+                                <td><a class="btn" href="<c:url value="/manage/kb/category/edit.html"/>">Dodaj nową sekcję</a></td>
                             </tr>
                             <c:if test="${message != null}">
                                 <tr><td style="color: #dc143c;"><c:out value="message"/>${message}</td></tr>
