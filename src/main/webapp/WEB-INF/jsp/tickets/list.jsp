@@ -26,9 +26,6 @@
                     <a href="<c:url value="/tickets/${ticketsIterator.ticketId}/details.html"/>">
                         <c:out value="${ticketsIterator.subject}"/>
                     </a>
-                    <div id="row_<c:out value="${ticketsIterator.ticketId}"/>" class="linker">
-                        <c:out value="${ticketsIterator.description}"/>
-                    </div>
                 </display:column>
                 <display:column property="ticketCategory" title="Kategoria" class="category" headerClass="category" />
                 <display:column title="Data" class="createDate" headerClass="createDate">
