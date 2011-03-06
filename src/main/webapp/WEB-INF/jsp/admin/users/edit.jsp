@@ -64,22 +64,20 @@
                                                 <label>Rola</label>
                                                 <form:select  cssClass="w95p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
                                             </li>
-                                            <li class="floatLeft w45p">
-                                                <label>Aktywny</label>
-                                                <form:checkbox id="active1" path="active"/>
-                                                
+                                            <li class="floatRight w45p p21t">
+                                                <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
                                             </li>
                                             <li class="clearFloat">
                                                 <label>Avatar</label>
                                                 <input type="file"/>
-                                                <ul>
+                                                <ul class="legend">
                                                     <li>96x96px, lub wytniemy ze środka obrazka</li>
                                                     <li>jeśli nie dodasz awataru, spróbujemy skorzystać z Gravatara</li>
                                                     <li>możesz także <a>usunąć</a> awatar</li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <input type="submit" value="zapisz" class="btn" />
+                                                <input type="submit" value="zapisz" class="btn floatRight" />
                                             </li>
                                         </ul>
 
