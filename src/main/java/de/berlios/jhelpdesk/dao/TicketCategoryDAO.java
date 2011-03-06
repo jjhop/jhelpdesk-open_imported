@@ -33,6 +33,15 @@ public interface TicketCategoryDAO {
 
     /**
      * 
+     * @param pageSize
+     * @param page
+     * @return
+     * @throws DAOException
+     */
+    List<TicketCategory> getCategories(int pageSize, int page) throws DAOException;
+    
+    /**
+     * 
      * @return
      */
     List<TicketCategory> getAllCategoriesForView() throws DAOException;
@@ -56,19 +65,6 @@ public interface TicketCategoryDAO {
 
     /**
      *
-     * @param rootCategory
-     */
-    void insertRootCategory(TicketCategory rootCategory) throws DAOException;
-
-    /**
-     *
-     * @param category
-     * @param parent
-     */
-    void insertCategory(TicketCategory category, TicketCategory parent) throws DAOException;
-
-    /**
-     *
      * @param category
      */
     void deleteCategory(TicketCategory category) throws DAOException;
@@ -84,4 +80,11 @@ public interface TicketCategoryDAO {
      * @param category
      */
     void save(TicketCategory category);
+
+    int countAll() throws DAOException;
+
+    void moveUp(Long id) throws DAOException;
+    
+    void moveDown(Long id) throws DAOException;
+
 }

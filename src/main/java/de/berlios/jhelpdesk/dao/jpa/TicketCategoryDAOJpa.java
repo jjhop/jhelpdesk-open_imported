@@ -48,78 +48,21 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
     }
 
     @Transactional(readOnly = false)
+    public void delete(TicketCategory tc) throws DAOException {
+        this.jpaTemplate.refresh(tc);
+        this.jpaTemplate.remove(tc);
+    }
+
+    @Transactional(readOnly = false)
     public void deleteCategory(final TicketCategory category) throws DAOException {
+        if (category.getTicketsCount() > 0) {
+            return;
+        }
         try {
-            this.jpaTemplate.execute(new JpaCallback() {
-                public Object doInJpa(EntityManager em) throws PersistenceException {
-                    if (category.hasChildNodes()) {
-                        deleteChildNodes(category);
-                        category.setRight(category.getLeft() + 1);
-                    }
-                    Query q1 = em.createNativeQuery(
-                        "UPDATE ticket_category SET t_left=t_left-2 WHERE t_left>?1 AND t_left<?2");
-                    q1.setParameter(1, category.getRight());
-                    q1.setParameter(2, ((getNodeCount() * 2) + 1));
-                    q1.executeUpdate();
-
-                    Query q2 = em.createNativeQuery(
-                        "UPDATE ticket_category SET t_right=t_right-2 WHERE t_right>=?1 AND t_right<=?2");
-                    q2.setParameter(1, category.getRight());
-                    q2.setParameter(2, (getNodeCount() * 2));
-                    q2.executeUpdate();
-
-                    Query q3 = em.createNativeQuery("DELETE FROM ticket_category WHERE id=?1");
-                    q3.setParameter(1, category.getId());
-                    q3.executeUpdate();
-
-                    return null;
-                }
-            });
+            this.jpaTemplate.remove(category);
         } catch(Exception ex) {
             throw new DAOException(ex);
         }
-    }
-
-    @Transactional(readOnly = false) // TODO: to chyba nie powinno byc oddzielnie?
-    private void deleteChildNodes(final TicketCategory category) {
-        final long nodeCount = getNodeCount();
-        final long subtreeNodeCount = (category.getRight() - category.getLeft()) / 2;
-
-        this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = em.createQuery(
-                    "DELETE FROM TicketCategory c WHERE c.left > ?1 AND c.right < ?2");
-                q.setParameter(1, category.getLeft());
-                q.setParameter(2, category.getRight());
-                q.executeUpdate();
-                Query q2 = em.createQuery(
-                    "UPDATE TicketCategory c SET c.left = c.left - ?1 " +
-                    "WHERE c.left > ?2 AND c.left < ?3");
-                q2.setParameter(1, subtreeNodeCount * 2);
-                q2.setParameter(2, category.getLeft());
-                q2.setParameter(3, nodeCount * 2);
-                q2.executeUpdate();
-
-                Query q3 = em.createQuery(
-                    "UPDATE TicketCategory c SET c.right = c.right - ?1 " +
-                    "WHERE c.right >= ?2 AND c.right <= ?3");
-                q3.setParameter(1, subtreeNodeCount * 2);
-                q3.setParameter(2, category.getRight());
-                q3.setParameter(3, nodeCount * 2);
-                q3.executeUpdate();
-
-                return null;
-            }
-        });
-    }
-
-    private long getNodeCount() {
-        return (Long) this.jpaTemplate.execute(new JpaCallback() {
-            public Object doInJpa(EntityManager em) throws PersistenceException {
-                Query q = em.createQuery("SELECT COUNT(tc) FROM TicketCategory tc");
-                return q.getSingleResult();
-            }
-        });
     }
     
     public List<TicketCategory> getAllCategories() throws DAOException {
@@ -137,20 +80,92 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
         }
     }
 
-    public List<TicketCategory> getAllCategoriesForView() throws DAOException {
+    public List<TicketCategory> getCategories(final int pageSize, final int offset) throws DAOException {
         try {
-            return (List<TicketCategory>) this.jpaTemplate.execute(new JpaCallback() {
-                public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNativeQuery(
-                        "SELECT * FROM ticket_category " +
-                        "WHERE is_active IS true AND id > 0 ORDER BY t_left ASC",
-                        TicketCategory.class);
+            return this.jpaTemplate.executeFind(new JpaCallback<List<TicketCategory>>() {
+                public List<TicketCategory> doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT tc FROM TicketCategory tc ORDER BY tc.order ASC");
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
                     return q.getResultList();
                 }
             });
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
+    }
+
+    public List<TicketCategory> getAllCategoriesForView() throws DAOException {
+        try {
+            return (List<TicketCategory>) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT tc FROM TicketCategory tc WHERE tc.isActive=?1 ORDER BY tc.order ASC");
+                    q.setParameter(1, Boolean.TRUE);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countAll() throws DAOException {
+        try {
+            return ((Long) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("SELECT COUNT(tc) FROM TicketCategory tc");
+                    return q.getSingleResult();
+                }
+            })).intValue();
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void moveUp(final Long id) throws DAOException {
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                TicketCategory target = em.find(TicketCategory.class, id);
+                Query q = em.createQuery("SELECT tc FROM TicketCategory tc WHERE tc.order < ?1 ORDER BY tc.order DESC");
+                q.setParameter(1, target.getOrder());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    TicketCategory n = (TicketCategory) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
+                }
+                return null;
+            }
+        });
+    }
+
+    @Transactional(readOnly = false)
+    public void moveDown(final Long id) throws DAOException {
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                TicketCategory target = em.find(TicketCategory.class, id);
+                Query q = em.createQuery("SELECT tc FROM TicketCategory tc WHERE tc.order > ?1 ORDER BY tc.order ASC");
+                q.setParameter(1, target.getOrder());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    TicketCategory n = (TicketCategory) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
+                }
+                return null;
+            }
+        });
     }
 
     public TicketCategory getById(Long id) throws DAOException {
@@ -170,66 +185,23 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
     }
 
     @Transactional(readOnly = false)
-    public void save(TicketCategory category) {
+    public void save(final TicketCategory category) {
         if (category.getId() == null) {
-            this.jpaTemplate.persist(category);
-        } else {
-            this.jpaTemplate.merge(category);
-        }
-    }
-
-    @Transactional(readOnly = false)
-    public void insertCategory(final TicketCategory category, final TicketCategory parent) throws DAOException {
-        try {
-            final long nodeCount = getNodeCount();
-            this.jpaTemplate.execute(new JpaCallback() {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q1 = em.createNativeQuery(
-                        "UPDATE ticket_category SET t_right=t_right+2 WHERE t_right>=? AND t_right<=?");
-                    q1.setParameter(1, parent.getRight());
-                    q1.setParameter(2, nodeCount * 2);
-                    q1.executeUpdate();
-
-                    Query q2 = em.createNativeQuery(
-                        "UPDATE ticket_category SET t_left=t_left+2 WHERE t_left>? AND t_left<?");
-                    q2.setParameter(1, parent.getRight());
-                    q2.setParameter(2, (nodeCount + 1) * 2);
-                    q2.executeUpdate();
-
-                    category.setLeft(parent.getRight());
-                    category.setRight(parent.getRight() + 1);
-                    category.setDepth(parent.getDepth() + 1);
-
+                    Query q = em.createNativeQuery("SELECT MAX(ord) FROM ticket_category");
+                    Integer maxOrder = (Integer)q.getSingleResult();
+                    category.setOrder(maxOrder.longValue()+1);
+                    category.setTicketsCount(0L);
                     em.persist(category);
                     return null;
                 }
             });
-        } catch (Exception ex) {
-            throw new DAOException(ex);
+        } else {
+            this.jpaTemplate.merge(category);
         }
     }
     
-    @Transactional(readOnly = false)
-    public void insertRootCategory(final TicketCategory rootCategory) throws DAOException {
-        try {
-            this.jpaTemplate.execute(new JpaCallback() {
-                public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query getMaxTRightQuery =
-                        em.createNativeQuery("SELECT max(t_right) FROM ticket_category", Long.class);
-                    final Long maxTRight = (Long) getMaxTRightQuery.getSingleResult();
-
-                    rootCategory.setLeft(new Long(maxTRight.longValue() + 1));
-                    rootCategory.setRight(new Long(maxTRight.longValue() + 2));
-                    rootCategory.setDepth(0);
-                    em.persist(rootCategory);
-                    return null;
-                }
-            });
-        } catch(Exception ex) {
-            throw new DAOException(ex);
-        }
-    }
-
     @Transactional(readOnly = false)
     public void updateCategory(TicketCategory category) throws DAOException {
         try {

@@ -54,7 +54,7 @@ public class DesktopViewController {
      * Stała określająca liczbę wyświetalnych na biurku 
      * ostatnio dodanych ogłoszeń.
      */
-    private static int NUMBER_OF_LAST_ANNOUNCEMENTS = 10;
+    private static int NUMBER_OF_LAST_ANNOUNCEMENTS = 5;
 
     @Autowired
     private TicketDAO ticketDAO;

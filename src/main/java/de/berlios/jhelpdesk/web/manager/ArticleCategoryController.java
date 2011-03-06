@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.model.ArticleCategory;
@@ -52,6 +51,7 @@ public class ArticleCategoryController {
     @RequestMapping("/manage/kb/categories/all.html")
     public String showAll(ModelMap map) throws Exception {
         map.addAttribute("categories", categoryDAO.getAllCategories());
+        map.addAttribute("categoriesListSize", categoryDAO.countAll());
         return MANAGE_KB_CATEGORY_LIST;
     }
 
@@ -102,26 +102,27 @@ public class ArticleCategoryController {
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }
 
-    @RequestMapping(value = "/manage/kb/category/edit.html", method = RequestMethod.GET)
-    public String prepareForm(@RequestParam(value = "categoryId", required = false) Long categoryId,
-                              ModelMap map) throws Exception {
-        if (categoryId == null) {
-            map.addAttribute("category", new ArticleCategory());
-        } else {
-            map.addAttribute("category", categoryDAO.getById(categoryId));
-        }
+    @RequestMapping(value = "/manage/kb/category/new.html", method = RequestMethod.GET)
+    public String prepareForm(ModelMap map) throws Exception {
+        map.addAttribute("category", new ArticleCategory());
         return MANAGE_KB_CATEGORY_EDIT;
     }
 
-    @RequestMapping(value = "/manage/kb/category/edit.html", method = RequestMethod.POST)
-    public String processSubmit(@ModelAttribute("category")  ArticleCategory category,
-                                BindingResult result, SessionStatus status) throws Exception {
+    @RequestMapping(value = "/manage/kb/category/{cId}/edit.html", method = RequestMethod.GET)
+    public String prepareForm(@PathVariable("cId") Long cId, ModelMap map) throws Exception {
+        map.addAttribute("category", categoryDAO.getById(cId));
+        return MANAGE_KB_CATEGORY_EDIT;
+    }
+
+    @RequestMapping(value = "/manage/kb/category/save.html", method = RequestMethod.POST)
+    public String processSubmit(@ModelAttribute("category") ArticleCategory category,
+                                BindingResult result, ModelMap map) throws Exception {
         validator.validate(category, result);
         if (result.hasErrors()) {
+            map.addAttribute("category", category);
             return MANAGE_KB_CATEGORY_EDIT;
         }
         categoryDAO.saveOrUpdate(category);
-        status.setComplete();
-        return MANAGE_KB_CATEGORY_LIST_RDR;
+        return "redirect:/manage/kb/category/" + category.getId() + "/show.html";
     }
 }

@@ -1,5 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div id="editsection" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
@@ -10,22 +11,16 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <form action="" method="post">
+                        <c:url value="/manage/kb/category/save.html" var="formURL"/>
+                        <form:form commandName="category" action="${formURL}" method="post">
                             <c:if test="${category.id != null}">
-                                <spring:bind path="category.id">
-                                    <input type="hidden" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"/>
-                                </spring:bind>
+                                <form:hidden path="id"/>
                             </c:if>
                             <table cellspacing="0" class="standardtable">
                                 <tr>
                                     <td class="w125">Nazwa sekcji</td>
                                     <td class="lastcol">
-                                        <spring:bind path="category.categoryName">
-                                            <input class="w98p" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
-                                                   <c:if test="${not empty status.errorMessage}">class="hintanchor"
-                                                       onMouseover="showhint('<c:out value="${status.errorMessage}"/>', this, event, '150px')"
-                                                   </c:if>/>
-                                        </spring:bind>
+                                        <form:input path="categoryName" cssClass="w98p"/>
                                     </td>
                                 </tr>
                             </table>
@@ -37,7 +32,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
+                        </form:form>
                     </div>
                     <div class="contentbottom"></div>
                 </div>

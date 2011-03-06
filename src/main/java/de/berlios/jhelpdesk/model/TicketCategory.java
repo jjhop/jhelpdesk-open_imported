@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ticket_category")
 @SequenceGenerator(name = "ticket_category_sequence", sequenceName = "ticket_category_id_seq", allocationSize = 1)
-public class TicketCategory implements Serializable, Comparable<TicketCategory> {
+public class TicketCategory implements Serializable {
 
     private static final long serialVersionUID = -8116103471359194082L;
 
@@ -45,12 +45,6 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticket_category_sequence")
     @Column(name = "id")
     private Long id;
-
-//    /**
-//     *
-//     */
-//    @Column(name = "parent_category") // TODO: przerobić na obiekt po prostu
-//    private Long parentCategory;      // parentCategory != null jesli jest podkategorią
 
     /**
      *
@@ -64,29 +58,17 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     @Column(name = "category_desc")
     private String categoryDesc;
 
-    /**
-     *
-     */
-    @Column(name = "t_left")
-    private Long left;
-
-    /**
-     *
-     */
-    @Column(name = "t_right")
-    private Long right;
-
-    /**
-     *
-     */
-    @Column(name = "t_depth")
-    private Integer depth;
-
+    @Column(name = "ord")
+    private Long order;
+    
     /**
      *
      */
     @Column(name = "is_active")
     private boolean isActive;
+
+    @Column(name = "tickets_count")
+    private Long ticketsCount;
 
     @OneToMany(mappedBy = "ticketCategory")
     private Set<Ticket> tickets;
@@ -152,49 +134,20 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
         this.categoryName = categoryName;
     }
 
-    /**
-     * @return the depth
-     */
-    public Integer getDepth() {
-        return depth;
+    public Long getOrder() {
+        return order;
     }
 
-    /**
-     * @param depth
-     *            the depth to set
-     */
-    public void setDepth(Integer depth) {
-        this.depth = depth;
+    public void setOrder(Long order) {
+        this.order = order;
     }
 
-    /**
-     * @return the left
-     */
-    public Long getLeft() {
-        return left;
+    public Long getTicketsCount() {
+        return ticketsCount;
     }
 
-    /**
-     * @param left
-     *            the left to set
-     */
-    public void setLeft(Long left) {
-        this.left = left;
-    }
-
-    /**
-     * @return the right
-     */
-    public Long getRight() {
-        return right;
-    }
-
-    /**
-     * @param right
-     *            the right to set
-     */
-    public void setRight(Long right) {
-        this.right = right;
+    public void setTicketsCount(Long ticketsCount) {
+        this.ticketsCount = ticketsCount;
     }
 
     /**
@@ -211,21 +164,6 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
-
-//    /**
-//     * @return Returns the parentCategory.
-//     */
-//    public Long getParentCategory() {
-//        return parentCategory;
-//    }
-//
-//    /**
-//     * @param parentCategory
-//     *            The parentCategory to set.
-//     */
-//    public void setParentCategory(Long parentCategory) {
-//        this.parentCategory = parentCategory;
-//    }
 
     public Set<Ticket> getTickets() {
         return tickets;
@@ -255,20 +193,8 @@ public class TicketCategory implements Serializable, Comparable<TicketCategory> 
     public int hashCode() {
         int hash = 7;
         hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
-//        hash = 67 * hash + (this.parentCategory != null ? this.parentCategory.hashCode() : 0);
         hash = 67 * hash + (this.categoryName != null ? this.categoryName.hashCode() : 0);
         hash = 67 * hash + (this.categoryDesc != null ? this.categoryDesc.hashCode() : 0);
         return hash;
-    }
-
-    public boolean hasChildNodes() {
-        return left + 1 != right;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    public int compareTo(TicketCategory o) {
-        return getLeft().compareTo((o).getLeft());
     }
 }

@@ -15,8 +15,7 @@
  */
 package de.berlios.jhelpdesk.web.manager;
 
-import java.util.List;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -30,12 +29,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import de.berlios.jhelpdesk.dao.AnnouncementDAO;
 import de.berlios.jhelpdesk.model.Announcement;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 import de.berlios.jhelpdesk.web.tools.AnnouncementValidator;
 
 /**
@@ -65,8 +64,8 @@ public class AnnouncementController {
      * @param map modelu widoku
      * @return identyfikator widoku prezentującego ogłoszenia
      */
-    @RequestMapping("/announcements/{infoId}/show.html")
-    public String showAnnouncement(@PathVariable("infoId") Long infoId, 
+    @RequestMapping("/announcements/{id}/show.html")
+    public String showAnnouncement(@PathVariable("id") Long infoId,
                                    ModelMap map) throws Exception {
         try {
             map.addAttribute("announcement", announcementDAO.getById(infoId));
@@ -79,19 +78,23 @@ public class AnnouncementController {
 
     /**
      * Wyświetla pełną listę ogłoszeń.
-     * TODO: stronicowanie
+     * TODO: stronicowanie announcementsIterator
      *
      * @param map model widoku
      * @return identyfikator widoku prezentującego listę ogłoszeń
      */
     @RequestMapping("/announcements/list.html")
-    public String showAllAnnouncements(@RequestParam(value="p",required=false,defaultValue="1") int page,
-                                       HttpSession session, ModelMap map) throws Exception {
+    public String showAllAnnouncements(HttpServletRequest request, HttpSession session,
+                                       ModelMap map) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         int pageSize = currentUser.getAnnouncementsListSize();
-        List<Announcement> result = announcementDAO.get(pageSize, page);
-        map.addAttribute("offset", pageSize * (page-1));
-        map.addAttribute("announcements", result);
+
+        PagingParamsEncoder enc =
+                new PagingParamsEncoder("announcementsIterator", null, request, pageSize);
+        int offset = enc.getOffset();
+        map.addAttribute("listSize", pageSize);
+        map.addAttribute("offset", offset);
+        map.addAttribute("announcements", announcementDAO.get(pageSize, offset));
         map.addAttribute("announcementsListSize", announcementDAO.countAll());
         return "announcement/showAll";
     }
@@ -102,8 +105,8 @@ public class AnnouncementController {
      * @param annId identyfikator ogłoszenia do usunięcia
      * @return widok do wyświetlania po usunięciu ogłoszenia
      */
-    @RequestMapping("/announcements/{infoId}/remove.html")
-    public String removeAnnouncement(@PathVariable("infoId") Long annId) throws Exception {
+    @RequestMapping("/announcements/{id}/remove.html")
+    public String removeAnnouncement(@PathVariable("id") Long annId) throws Exception {
         try {
             announcementDAO.delete(annId);
         } catch (Exception e) {
@@ -122,8 +125,8 @@ public class AnnouncementController {
      * @param map model widoku
      * @return identyfikato widoku
      */
-    @RequestMapping(value = "/announcements/{infoId}/edit.html", method = RequestMethod.GET)
-    protected String prepareEditForm(@PathVariable("infoId") Long infoId, 
+    @RequestMapping(value = "/announcements/{id}/edit.html", method = RequestMethod.GET)
+    protected String prepareEditForm(@PathVariable("id") Long infoId,
                                      ModelMap map) throws Exception {
         map.addAttribute("announcement", announcementDAO.getById(infoId));
         return "announcement/edit";

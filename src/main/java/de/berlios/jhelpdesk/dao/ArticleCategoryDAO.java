@@ -40,6 +40,8 @@ public interface ArticleCategoryDAO {
      */
     List<ArticleCategory> getAllCategories() throws DAOException;
 
+    int countAll() throws DAOException;
+    
     /**
      * Zwraca obiekt ArticleCategory na podstawie dostarczonego identyfikatora
      * lub {@code ull} jeśli w bazie nie ma obiektu z takim identyfikatorem.

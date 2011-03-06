@@ -73,7 +73,7 @@
                         <div id="sc3" class="switchcontent">
                             <select id="ticketCategories" name="ticketCategories" multiple="multiple">
                                 <c:forEach items="${categories}" var="tc">
-                                    <option value="${tc.ticketCategoryId}"
+                                    <option value="${tc.id}"
                                             <c:forEach items="${filter.ticketCategories}" var="ftc">
                                                 <c:if test="${tc eq ftc}">selected="selected"</c:if>
                                             </c:forEach>

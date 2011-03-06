@@ -15,14 +15,18 @@
  */
 package de.berlios.jhelpdesk.web.manager.ticketcategory;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
+import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 
 /**
  *
@@ -39,54 +43,64 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/list.html")
-    public String showAllCategories(ModelMap map) throws Exception {
-        map.addAttribute("categories", categoryDAO.getAllCategories());
+    public String showAllCategories(HttpServletRequest request,
+                                    HttpSession session, ModelMap map) throws Exception {
+        User currentUser = (User) session.getAttribute("user");
+        int pageSize = currentUser.getDefaultListSize();
+
+        PagingParamsEncoder enc =
+                new PagingParamsEncoder("c", null, request, pageSize);
+        int offset = enc.getOffset();
+        map.addAttribute("listSize", pageSize);
+        map.addAttribute("offset", offset);
+        map.addAttribute("categories", categoryDAO.getCategories(pageSize, offset));
+        map.addAttribute("categoriesListSize", categoryDAO.countAll());
         return "manager/category/showAll";
     }
 
     /**
      * 
-     * @param categoryId
+     * @param id
      * @param map
      * @return
      */
     @RequestMapping("/manage/category/{id}/show.html")
-    public String showOneCategory(@PathVariable("id") Long categoryId,
-                                  ModelMap map) throws Exception {
-        map.addAttribute("category", categoryDAO.getById(categoryId));
-        return null;
+    public String showOneCategory(@PathVariable("id") Long id,
+            ModelMap map) throws Exception {
+        map.addAttribute("category", categoryDAO.getById(id));
+        return "manager/categor/show";
     }
 
     /**
      * 
-     * @param categoryId
+     * @param id
      * @return
      */
     @RequestMapping("/manage/category/{id}/remove.html")
-    public String removeCategory(@PathVariable("id") Long categoryId) throws Exception {
-        categoryDAO.deleteCategory(categoryDAO.getById(categoryId));
+    public String removeCategory(@PathVariable("id") Long id) throws Exception {
+        categoryDAO.deleteCategory(categoryDAO.getById(id)); // todo: uprościć!
         return "redirect:/manage/category/list.html";
     }
 
     /**
      * 
-     * @param categoryId
+     * @param id
      * @return
      */
-    @RequestMapping("/manage/category/up.html")
-    public String moveUp(@RequestParam("categoryId") Long categoryId) {
-        // TODO: zaimplementować
+    @RequestMapping("/manage/category/{id}/up.html")
+    public String moveUp(@PathVariable("id") Long id) throws Exception {
+        categoryDAO.moveUp(id);
         return "redirect:/manage/category/list.html";
     }
 
     /**
      * 
-     * @param categoryId
+     * @param id
      * @return
      */
-    @RequestMapping("/manage/category/down.html")
-    public String moveDown(@RequestParam("categoryId") Long categoryId) {
-        // TODO: zaimplementować
+    @RequestMapping("/manage/category/{id}/down.html")
+    public String moveDown(@PathVariable("id") Long id) throws Exception {
+        categoryDAO.moveDown(id);
         return "redirect:/manage/category/list.html";
     }
 }

@@ -53,7 +53,7 @@
                             <td>
                                 <select id="ticketCategories" class="w255" name="ticketCategories" multiple="multiple">
                                     <c:forEach items="${ticketCategories}" var="tc">
-                                        <option value="${tc.ticketCategoryId}"
+                                        <option value="${tc.id}"
                                                 <c:forEach items="${filter.ticketCategories}" var="ftc">
                                                     <c:if test="${tc eq ftc}">selected="selected"</c:if>
                                                 </c:forEach>

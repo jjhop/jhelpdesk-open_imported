@@ -49,6 +49,7 @@ pkJoinColumns =
 public class Announcement implements Serializable {
 
     private static final long serialVersionUID = 7847414108796364163L;
+    
     /**
      *
      */
@@ -56,22 +57,26 @@ public class Announcement implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "announcement_sequence")
     @Column(name = "id")
     private Long id;
+
     /**
      *
      */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false)
     private Date createdAt;
+
     /**
      *
      */
     @Column(name = "title")
     private String title;
+
     /**
      *
      */
     @Column(name = "lead")
     private String lead;
+    
     /**
      *
      */

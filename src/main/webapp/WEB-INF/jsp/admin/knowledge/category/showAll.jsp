@@ -12,7 +12,7 @@
                     <div class="contentmiddle">
                         <table cellspacing="0">
                             <tr>
-                                <td><a class="btn" href="<c:url value="/manage/kb/category/edit.html"/>">Dodaj nową sekcję</a></td>
+                                <td><a class="btn" href="<c:url value="/manage/kb/category/new.html"/>">Dodaj nową sekcję</a></td>
                             </tr>
                             <c:if test="${message != null}">
                                 <tr><td style="color: #dc143c;"><c:out value="message"/>${message}</td></tr>
@@ -42,10 +42,14 @@
                                             <a class="actionDel" href="<c:url value="/manage/kb/category/${c.id}/remove.html"/>">R</a>
                                         </td>
                                         <td class="ticketEdit">
+                                            <c:if test="${c.order > 1}">
                                             <a class="actionUp" href="<c:url value="/manage/kb/category/${c.id}/up.html"/>">U</a>
+                                            </c:if>
                                         </td>
                                         <td class="lastcol ticketEdit">
+                                            <c:if test="${c.order < categoriesListSize}">
                                             <a class="actionDown" href="<c:url value="/manage/kb/category/${c.id}/down.html"/>">D</a>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>

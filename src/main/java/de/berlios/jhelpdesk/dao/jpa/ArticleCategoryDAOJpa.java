@@ -51,12 +51,10 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
     public void delete(final Long categoryId) throws DAOException {
         try {
             ArticleCategory categoryToRemove = this.getById(categoryId);
-            System.out.println("--------------------- DELETE MIDDLE --------------------");
             // TODO: tutaj nalezaloby jeszcze zmienic category_position dla wszystkich
             //       rekordow powyzej category_position - odjac 1 dla kazdemu - może
             //       to być zrealizowane za pomocą triggera w bazie danych
             this.jpaTemplate.remove(categoryToRemove);
-            System.out.println("--------------------- DELETE END -----------------------");
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
@@ -66,6 +64,19 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
         try {
             return this.jpaTemplate.findByNamedQuery("ArticleCategory.getAllOrderByPositionASC");
         } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countAll() throws DAOException {
+        try {
+            return ((Long) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("SELECT COUNT(ac) FROM ArticleCategory ac");
+                    return q.getSingleResult();
+                }
+            })).intValue();
+        } catch (Exception ex) {
             throw new DAOException(ex);
         }
     }
