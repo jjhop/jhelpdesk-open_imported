@@ -18,20 +18,21 @@
                             </c:if>
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <td class="w125">Nazwa sekcji</td>
-                                    <td class="lastcol">
-                                        <form:input path="categoryName" cssClass="w98p"/>
+                                    <td>
+                                        <ul class="formContainer">
+                                            <li>
+                                                <label>Nazwa sekcji</label>
+                                                <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" />
+                                                <form:errors path="categoryName" cssClass="formError errorBottom"/>
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="zapisz" class="btn floatRight" />
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
                             </table>
-                            <br />
-                            <table cellspacing="0">
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="submit" value="zapisz" class="btn" />
-                                    </td>
-                                </tr>
-                            </table>
+
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>

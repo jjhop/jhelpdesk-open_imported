@@ -1137,7 +1137,8 @@ td.artnumber {
 #table1.wide #table2 .btn {
     padding: 2px 15px 5px 15px;
 }
-
+.p10t {padding-top: 10px !important}
+.p21t {padding-top: 21px !important}
 .p10l {padding-left: 10px !important;}
 .p20l {padding-left: 20px !important;}
 .p10r {padding-right: 10px !important;}
@@ -1257,6 +1258,11 @@ ul.formContainer li input, ul.formContainer li textarea {
     border: 1px solid #677498;
 }
 
+ul.formContainer li input.chk {
+    padding: 0;
+    margin: 6px 5px 0 0;
+}
+
 ul.formContainer li input.fieldError, ul.formContainer li textarea.fieldError {
     border-color: red;
 }
@@ -1295,6 +1301,15 @@ ul.formContainer li label {
     font-weight: bold;
 }
 
+ul.formContainer ul.legend {
+    margin: 10px 0 0 15px;
+    padding: 0;
+}
+
+ul.formContainer ul.legend li {
+    min-height: 12px;
+    padding: 5px 0;
+}
 
 .kbSearchItem {
     padding: 5px 10px;
