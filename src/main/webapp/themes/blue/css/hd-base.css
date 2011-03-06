@@ -1159,6 +1159,15 @@ td.artnumber {
 .w400 {width: 400px;}
 .w415 {width: 415px;}
 .w425 {width: 425px;}
+.w45p { width: 45% }
+.w46p { width: 46% }
+.w47p { width: 47% }
+.w48p { width: 48% }
+.w49p { width: 49% }
+.w50p { width: 50% }
+.w95p { width: 95% }
+.w96p { width: 96% }
+.w97p { width: 97% }
 .w98p { width: 98% }
 .w99p { width: 99% }
 .w100p { width: 100% }
@@ -1260,7 +1269,17 @@ ul.formContainer li .btn:hover {
     border: 2px solid #32415d;
 }
 
+ul.formContainer li.floatLeft {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
 ul.formContainer ul li.floatLeft {
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+ul.formContainer li.floatRight {
     padding-left: 0;
     padding-right: 10px;
 }

@@ -22,20 +22,20 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Tytuł</label>
-                                                <form:input path="title"/>
+                                                <form:input maxlength="255" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
                                                 <form:errors path="title" cssClass="formError errorBottom"/>
                                             </li>
                                             <li>
                                                 <label>Skrót</label>
-                                                <form:textarea path="lead"/>
+                                                <form:textarea cssErrorClass="w98p fieldError" cssClass="w98p" path="lead"/>
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                             </li>
                                             <li>
                                                 <label>Treść główna</label>
-                                                <form:textarea path="body"/>
+                                                <form:textarea cssClass="w98p" rows="8" path="body"/>
                                             </li>
                                             <li>
-                                                <input type="submit" value="zapisz" class="btn" />
+                                                <input type="submit" value="zapisz" class="btn floatRight" />
                                             </li>
                                         </ul>
                                     </td>

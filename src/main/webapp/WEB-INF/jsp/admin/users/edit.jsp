@@ -25,61 +25,68 @@
                                     </tr>
                                 </spring:hasBindErrors>
                                 <tr>
-                                    <td>Imię</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="firstName"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Nazwisko</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="lastName"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Login</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="login"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Hasło</td>
-                                    <td class="lastcol"><form:password cssClass="w98p" path="password"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="email"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Telefon</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="phone"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile</td>
-                                    <td class="lastcol"><form:input cssClass="w98p" path="mobile"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Rola</td>
                                     <td class="lastcol">
-                                        <form:select  cssClass="w98p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="active1">Aktywny</label></td>
-                                    <td class="lastcol"><form:checkbox id="active1" path="active"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="avatar">Avatar</label></td>
-                                    <td class="lastcol">
-                                        <input type="file"/>
-                                        <ul>
-                                            <li>96x96px, lub wytniemy ze środka obrazka</li>
-                                            <li>jeśli nie dodasz awataru, spróbujemy skorzystać z Gravatara</li>
-                                            <li>możesz także <a>usunąć</a> awatar</li>
+                                        <ul class="formContainer">
+                                            <li class="floatLeft w45p">
+                                                <label>Imię</label>
+                                                <form:input cssClass="w95p" path="firstName"/>
+                                            </li>
+                                            <li class="floatRight w45p">
+                                                <label>Nazwisko</label>
+                                                <form:input cssClass="w95p" path="lastName"/>
+                                            </li>
+                                            <li class="clearFloat">
+                                                <label>Login</label>
+                                                <form:input cssClass="w98p" path="login"/>
+                                            </li>
+                                            <li class="floatLeft w45p">
+                                                <label>Hasło</label>
+                                                <form:password cssClass="w95p" path="password"/>
+                                            </li>
+
+                                            <li class="floatRight w45p">
+                                                <label>Powtórz</label>
+                                                <input type="text" class="w95p" name="" />
+                                            </li>
+                                            <li>
+                                                <label>Email</label>
+                                                <form:input cssClass="w98p" path="email"/>
+                                            </li>
+                                            <li class="floatLeft w45p">
+                                                <label>Telefon</label>
+                                                <form:input cssClass="w95p" path="phone"/>
+                                            </li>
+                                            <li class="floatRight w45p">
+                                                <label>Mobile</label>
+                                                <form:input cssClass="w95p" path="mobile"/>
+                                            </li>
+                                            <li class="floatLeft w45p">
+                                                <label>Rola</label>
+                                                <form:select  cssClass="w95p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
+                                            </li>
+                                            <li class="floatLeft w45p">
+                                                <label>Aktywny</label>
+                                                <form:checkbox id="active1" path="active"/>
+                                                
+                                            </li>
+                                            <li class="clearFloat">
+                                                <label>Avatar</label>
+                                                <input type="file"/>
+                                                <ul>
+                                                    <li>96x96px, lub wytniemy ze środka obrazka</li>
+                                                    <li>jeśli nie dodasz awataru, spróbujemy skorzystać z Gravatara</li>
+                                                    <li>możesz także <a>usunąć</a> awatar</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="zapisz" class="btn" />
+                                            </li>
                                         </ul>
+
                                     </td>
                                 </tr>
                             </table>
-                            <br />
-                            <table cellspacing="0">
-                                <tr>
-                                    <td colspan="2"><input type="submit" value="zapisz" class="btn" /></td>
-                                </tr>
-                            </table>
+
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>

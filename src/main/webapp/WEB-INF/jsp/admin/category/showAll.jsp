@@ -3,7 +3,7 @@
 
 <div id="showallcategories" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table cellspacing="0">
+    <table class="w100p" cellspacing="0">
         <tr>
             <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>Kategorie zgłoszeń</h3></div>
@@ -28,21 +28,21 @@
                                 <c:if test="${not c.active}">NIE</c:if>
                                 <c:if test="${c.active}">TAK</c:if>
                             </display:column>
-                            <display:column class="ticketEdit">
+                            <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
                                 <a href="<c:url value="/manage/category/${c.id}/show.html"/>" class="actionView">V</a>
                             </display:column>
-                            <display:column class="ticketEdit">
+                            <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
                                 <a href="<c:url value="/manage/category/${c.id}/edit.html"/>" class="actionEdit">E</a>
                             </display:column>
-                            <display:column class="ticketEdit">
+                            <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
                                 <a href="<c:url value="/manage/category/${c.id}/remove.html"/>" class="actionDel">R</a>
                             </display:column>
-                            <display:column class="ticketEdit">
+                            <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
                                 <c:if test="${c.order > 1}">
                                 <a href="<c:url value="/manage/category/${c.id}/up.html"/>" class="actionUp">U</a>
                                 </c:if>
                             </display:column>
-                            <display:column class="lastcol ticketEdit">
+                                <display:column class="lastcol ticketEdit" headerClass="lastcol ticketEdit">
                                 <c:if test="${c.order < categoriesListSize}">
                                 <a href="<c:url value="/manage/category/${c.id}/down.html"/>" class="actionDown">E</a>
                                 </c:if>
