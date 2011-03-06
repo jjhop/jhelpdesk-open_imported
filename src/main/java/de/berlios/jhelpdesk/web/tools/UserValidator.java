@@ -45,7 +45,7 @@ public class UserValidator implements Validator {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputStr);
         if (!matcher.matches()) {
-            errors.rejectValue("email", "errors.hduser.email.invalid");
+            errors.rejectValue("email", "errors.hduser.email");
         }
         if (u.getUserRole() == null) {
             errors.rejectValue("userRole", "errors.hduser.userRole.notset");
