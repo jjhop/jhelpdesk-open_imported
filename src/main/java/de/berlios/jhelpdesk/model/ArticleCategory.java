@@ -45,7 +45,7 @@ public class ArticleCategory implements Serializable {
 
     private static final long serialVersionUID = 7805731164520429416L;
 
-	/**
+    /**
      *
      */
     @Id
@@ -71,6 +71,9 @@ public class ArticleCategory implements Serializable {
     @Column(name = "articles_count")
     private int articlesCount;
 
+    @Column(name = "ord")
+    private int order;
+
     /**
      * 
      */
@@ -93,6 +96,14 @@ public class ArticleCategory implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     /**

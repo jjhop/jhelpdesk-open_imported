@@ -11,7 +11,8 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <form:form commandName="category">
+                        <c:url value="/manage/category/save.html" var="formURL"/>
+                        <form:form commandName="category" action="${formURL}">
                             <table cellspacing="0" class="standardtable">
                                 <c:if test="${category.id != null}">
                                     <form:hidden path="id"/>
@@ -26,6 +27,12 @@
                                     <td>Opis</td>
                                     <td class="lastcol">
                                         <form:textarea path="categoryDesc"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Aktywna</td>
+                                    <td class="lastcol">
+                                        <form:checkbox path="active"/>
                                     </td>
                                 </tr>
                             </table>

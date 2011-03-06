@@ -79,9 +79,16 @@ public class TicketCategoryEditController {
         return MANAGE_TICKET_CATEGORY_EDIT; // todo: może tutaj jakiś widok inny? -> new?
     }
 
-    @RequestMapping(value = "/manage/category/{parent}/new.html", method = RequestMethod.GET)
-    public String prepareFormForNew(@PathVariable("parent") Long parent, ModelMap map) {
-        map.addAttribute("category", new TicketCategory());
-        return MANAGE_TICKET_CATEGORY_EDIT; // todo: może tutaj jakiś widok inny? -> new?
+    @RequestMapping(value = "/manage/category/save.html", method = RequestMethod.POST)
+    public String saveCategory(@ModelAttribute("category") TicketCategory category,
+                               BindingResult result, ModelMap map) {
+        validator.validate(category, result);
+        if (result.hasErrors()) {
+            // powrót do normalnego widoku
+            map.addAttribute("category", category);
+            return MANAGE_TICKET_CATEGORY_EDIT;
+        }
+        categoryDAO.save(category);
+        return "redirect:/manage/category/" + category.getId() + "/show.html";
     }
 }

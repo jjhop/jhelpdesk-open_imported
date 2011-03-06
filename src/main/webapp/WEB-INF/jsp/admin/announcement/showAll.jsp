@@ -18,7 +18,7 @@
                             </tr>
                         </table>
                         <display:table id="announcementsIterator" name="announcements" class="standardtable"
-                                       pagesize="10" size="announcementsListSize" sort="external" partialList="true"
+                                       pagesize="${listSize}" size="announcementsListSize" sort="external" partialList="true"
                                        requestURI="" excludedParams="*" cellspacing="0">
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${announcementsIterator_rowNum + offset}"/>
@@ -29,7 +29,6 @@
                             <display:column title="Data utworzenia" style="width: 100px;">
                                 <fmt:formatDate value="${announcementsIterator.createDate}" pattern="dd/MM/yyyy"/>
                             </display:column>
-
                             <display:column class="ticketEdit">
                                 <a class="actionView" href="<c:url value="/announcements/${announcementsIterator.id}/show.html"/>">V</a>
                             </display:column>

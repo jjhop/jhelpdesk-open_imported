@@ -71,5 +71,10 @@ public interface AnnouncementDAO {
      */
     List<Announcement> get(int pageSize, int page) throws DAOException;
 
+    /**
+     * 
+     * @return
+     * @throws DAOException
+     */
     int countAll() throws DAOException;
 }

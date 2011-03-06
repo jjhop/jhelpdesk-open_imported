@@ -142,6 +142,11 @@
         <put-attribute name="content" value="/WEB-INF/jsp/admin/category/edit.jsp"/>
     </definition>
 
+    <definition name="manager/categor/show" extends="baseLayout">
+        <put-attribute name="title" value="edycja..."/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/category/show.jsp"/>
+    </definition>
+
     <definition name="announcement/showAll" extends="baseLayout">
         <put-attribute name="title" value="pokaz info wszystki"/>
         <put-attribute name="content" value="/WEB-INF/jsp/admin/announcement/showAll.jsp"/>

@@ -59,13 +59,11 @@ public class AnnouncementDAOJpa implements AnnouncementDAO {
         return this.jpaTemplate.findByNamedQuery("Announcement.allOrderByCreatedAtDesc");
     }
 
-    public List<Announcement> get(final int pageSize, final int page) throws DAOException {
+    public List<Announcement> get(final int pageSize, final int offset) throws DAOException {
         try {
             return this.jpaTemplate.executeFind(new JpaCallback<List<Announcement>>() {
                 public List<Announcement> doInJpa(EntityManager em) throws PersistenceException {
-                    int offset = (int) (pageSize * (page - 1));
-                    Query q = em.createQuery(
-                        "SELECT a FROM Announcement a ORDER BY a.createdAt DESC");
+                    Query q = em.createNamedQuery("Announcement.allOrderByCreatedAtDesc");
                     q.setFirstResult(offset);
                     q.setMaxResults(pageSize);
                     return q.getResultList();

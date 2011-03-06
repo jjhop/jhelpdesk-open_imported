@@ -15,27 +15,39 @@
                                 <td><a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj kategorię główną</a></td>
                             </tr>
                         </table>
-                        <c:if test="${not empty categories}">
-                            <br />
-                            <table cellspacing="0" class="standardtable">
-                                <tr>
-                                    <th>Nazwa kategorii</th>
-                                    <th>Aktywna</th>
-                                    <th colspan="3" class="lastcol">&nbsp;</th>
-                                </tr>
-                                <c:forEach var="c" items="${categories}">
-                                    <tr>
-                                        <td><span style="padding-left: 10px"><c:out value="${c.categoryName}"/></span></td>
-                                        <td>
-                                            <c:if test="${not c.active}">NIE</c:if>
-                                            <c:if test="${c.active}">TAK</c:if>
-                                        </td>
-                                        <td class="ticketEdit"><a href="<c:url value="/manage/category/${c.id}/edit.html"/>">Edit</a></td>
-                                        <td class="lastcol ticketDrop"><a href="<c:url value="/manage/category/${c.id}/remove.html"/>">Drop</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </c:if>
+                        <br/>
+                        <display:table id="c" name="categories" class="standardtable"
+                                       pagesize="${listSize}" size="categoriesListSize" sort="external" partialList="true"
+                                       requestURI="${requestURI}" excludedParams="*" cellspacing="0">
+                            <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
+                                <c:out value="${c_rowNum + offset}"/>
+                            </display:column>
+                            <display:column property="categoryName" title="Nazwa kategorii"/>
+                            <display:column property="ticketsCount" title="Ilość"/>
+                            <display:column title="Aktywna">
+                                <c:if test="${not c.active}">NIE</c:if>
+                                <c:if test="${c.active}">TAK</c:if>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a href="<c:url value="/manage/category/${c.id}/show.html"/>" class="actionView">V</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a href="<c:url value="/manage/category/${c.id}/edit.html"/>" class="actionEdit">E</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a href="<c:url value="/manage/category/${c.id}/remove.html"/>" class="actionDel">R</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <c:if test="${c.order > 1}">
+                                <a href="<c:url value="/manage/category/${c.id}/up.html"/>" class="actionUp">U</a>
+                                </c:if>
+                            </display:column>
+                            <display:column class="lastcol ticketEdit">
+                                <c:if test="${c.order < categoriesListSize}">
+                                <a href="<c:url value="/manage/category/${c.id}/down.html"/>" class="actionDown">E</a>
+                                </c:if>
+                            </display:column>
+                        </display:table>
                     </div>
                     <div class="contentbottom"></div>
                 </div>

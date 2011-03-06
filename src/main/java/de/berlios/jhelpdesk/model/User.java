@@ -513,6 +513,10 @@ public class User implements Serializable {
             : DEFAULT_LIST_SIZE;
     }
 
+    public int getDefaultListSize() {
+        return DEFAULT_LIST_SIZE;
+    }
+
     public int getSearchResultLimit() {
         return lafPreferences != null
             ? lafPreferences.getSearchResultLimit()
