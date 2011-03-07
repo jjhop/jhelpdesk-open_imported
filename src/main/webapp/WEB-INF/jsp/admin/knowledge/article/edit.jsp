@@ -20,35 +20,31 @@
                             <form:hidden path="author"/>
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <td class="w125">Tytuł</td>
-                                    <td class="lastcol">
-                                        <form:input path="title"/>
-                                        <form:errors path="title"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Wstęp</td>
-                                    <td class="lastcol">
-                                        <form:textarea path="lead"/>
-                                        <form:errors path="lead"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Treść główna</td>
-                                    <td class="lastcol">
-                                        <form:textarea path="body"/>
-                                        <form:errors path="body"/>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table cellspacing="0">
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="submit" value="zapisz" class="btn" />
+                                    <td>
+                                        <ul class="formContainer">
+                                            <li>
+                                                <label>Tytuł</label>
+                                                <form:input cssClass="w99p" cssErrorClass="fieldError w99p" path="title"/>
+                                                <form:errors cssClass="formError errorBottom" path="title"/>
+                                            </li>
+                                            <li>
+                                                <label>Wstęp</label>
+                                                <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="3" path="lead"/>
+                                                <form:errors cssClass="formError errorBottom" path="lead"/>
+                                            </li>
+                                            <li>
+                                                <label>Treść główna</label>
+                                                <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
+                                                <form:errors cssClass="formError errorBottom" path="body"/>
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="zapisz" class="btn floatRight" />
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
                             </table>
+
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>
