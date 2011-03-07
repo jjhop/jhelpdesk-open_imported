@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.model.ArticleCategory;
@@ -82,8 +81,8 @@ public class ArticleCategoryController {
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }
 
-    @RequestMapping("/manage/kb/category/up.html")
-    public String moveUp(@RequestParam("categoryId") Long categoryId) {
+    @RequestMapping("/manage/kb/category/{cId}/up.html")
+    public String moveUp(@PathVariable("cId") Long categoryId) {
         try {
             categoryDAO.moveUp(categoryId);
         } catch (Exception ex) {
@@ -92,8 +91,8 @@ public class ArticleCategoryController {
         return MANAGE_KB_CATEGORY_LIST_RDR;
     }
 
-    @RequestMapping("/manage/kb/category/down.html")
-    public String moveDown(@RequestParam("categoryId") Long categoryId) {
+    @RequestMapping("/manage/kb/category/{cId}/down.html")
+    public String moveDown(@PathVariable("cId") Long categoryId) {
         try {
             categoryDAO.moveDown(categoryId);
         } catch (Exception ex) {

@@ -50,11 +50,21 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
     @Transactional(readOnly = false)
     public void delete(final Long categoryId) throws DAOException {
         try {
-            ArticleCategory categoryToRemove = this.getById(categoryId);
-            // TODO: tutaj nalezaloby jeszcze zmienic category_position dla wszystkich
-            //       rekordow powyzej category_position - odjac 1 dla kazdemu - może
-            //       to być zrealizowane za pomocą triggera w bazie danych
-            this.jpaTemplate.remove(categoryToRemove);
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery(
+                        "UPDATE article_category " +
+                        "SET ord=ord-1 " +
+                        "WHERE ord>(SELECT ord FROM article_category WHERE id=?)");
+                    q.setParameter(1, categoryId);
+                    q.executeUpdate();
+                    Query q2 = em.createNativeQuery(
+                            "DELETE FROM article_category WHERE id=?");
+                    q2.setParameter(1, categoryId);
+                    q2.executeUpdate();
+                    return null;
+                }
+            });
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
@@ -62,7 +72,7 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
 
     public List<ArticleCategory> getAllCategories() throws DAOException {
         try {
-            return this.jpaTemplate.findByNamedQuery("ArticleCategory.getAllOrderByPositionASC");
+            return this.jpaTemplate.findByNamedQuery("ArticleCategory.getAllByOrderASC");
         } catch(Exception ex) {
             throw new DAOException(ex);
         }
@@ -91,43 +101,73 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
 
     @Transactional(readOnly = false)
     public void moveDown(final Long categoryId) throws DAOException {
-        try {
-            this.jpaTemplate.execute(new JpaCallback() {
-                public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNativeQuery("SELECT category_move_down(?1)");
-                    q.setParameter(1, categoryId);
-                    q.getSingleResult();
-                    return null;
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                ArticleCategory target = em.find(ArticleCategory.class, categoryId);
+                Query q = em.createQuery("SELECT ac FROM ArticleCategory ac WHERE ac.order > ?1 ORDER BY ac.order ASC");
+                q.setParameter(1, target.getOrder());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    ArticleCategory n = (ArticleCategory) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
                 }
-            });
-        } catch(Exception ex) {
-            throw new DAOException(ex);
-        }
+                return null;
+            }
+        });
     }
 
     @Transactional(readOnly = false)
     public void moveUp(final Long categoryId) throws DAOException {
-        try {
-            this.jpaTemplate.execute(new JpaCallback() {
-                public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNativeQuery("SELECT category_move_up(?1)");
-                    q.setParameter(1, categoryId);
-                    q.getSingleResult();
-                    return null;
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                ArticleCategory target = em.find(ArticleCategory.class, categoryId);
+                Query q = em.createQuery("SELECT ac FROM ArticleCategory ac WHERE ac.order < ?1 ORDER BY ac.order DESC");
+                q.setParameter(1, target.getOrder());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    ArticleCategory n = (ArticleCategory) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
                 }
-            });
-        } catch (Exception ex) {
-            throw new DAOException(ex);
-        }
+                return null;
+            }
+        });
     }
 
     @Transactional(readOnly = false)
-    public void saveOrUpdate(ArticleCategory category) throws DAOException {
+    public void saveOrUpdate(final ArticleCategory category) throws DAOException {
         try {
             if (category.getId() == null) {
-                this.jpaTemplate.persist(category);
+                this.jpaTemplate.execute(new JpaCallback<Object>() {
+                    public Object doInJpa(EntityManager em) throws PersistenceException {
+                        Query q = em.createNativeQuery("SELECT MAX(ord) FROM article_category");
+                        Integer maxOrder = (Integer)q.getSingleResult();
+                        category.setOrder(maxOrder.longValue()+1);
+                        category.setArticlesCount(0);
+                        em.persist(category);
+                        return null;
+                    }
+                });
             } else {
-                this.jpaTemplate.merge(category);
+                this.jpaTemplate.execute(new JpaCallback<Object>() {
+                    public Object doInJpa(EntityManager em) throws PersistenceException {
+                        Query q = em.createNativeQuery(
+                            "UPDATE article_category SET category_name=? WHERE id=?");
+                        q.setParameter(1, category.getCategoryName());
+                        q.setParameter(2, category.getId());
+                        q.executeUpdate();
+                        return null;
+                    }
+                });
             }
         } catch (Exception ex) {
             throw new DAOException(ex);

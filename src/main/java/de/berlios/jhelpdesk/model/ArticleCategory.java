@@ -39,7 +39,7 @@ import javax.persistence.Table;
 @Table(name = "article_category")
 @SequenceGenerator(name="article_category_sequence", sequenceName="article_category_id_seq")
 @NamedQueries({
-    @NamedQuery(name = "ArticleCategory.getAllOrderByPositionASC", query = "SELECT a FROM ArticleCategory a ORDER BY a.categoryPosition ASC")
+    @NamedQuery(name = "ArticleCategory.getAllByOrderASC", query = "SELECT a FROM ArticleCategory a ORDER BY a.order ASC")
 })
 public class ArticleCategory implements Serializable {
 
@@ -56,12 +56,6 @@ public class ArticleCategory implements Serializable {
     /**
      *
      */
-    @Column(name = "category_position")
-    private Long categoryPosition;
-
-    /**
-     *
-     */
     @Column(name = "category_name")
     private String categoryName;
 
@@ -72,7 +66,7 @@ public class ArticleCategory implements Serializable {
     private int articlesCount;
 
     @Column(name = "ord")
-    private int order;
+    private Long order;
 
     /**
      * 
@@ -98,11 +92,11 @@ public class ArticleCategory implements Serializable {
         this.id = id;
     }
 
-    public int getOrder() {
+    public Long getOrder() {
         return order;
     }
 
-    public void setOrder(int order) {
+    public void setOrder(Long order) {
         this.order = order;
     }
 
@@ -118,20 +112,6 @@ public class ArticleCategory implements Serializable {
      */
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    /**
-     * @return Returns the categoryPosition.
-     */
-    public Long getCategoryPosition() {
-        return categoryPosition;
-    }
-
-    /**
-     * @param categoryPosition The categoryPosition to set.
-     */
-    public void setCategoryPosition(Long categoryPosition) {
-        this.categoryPosition = categoryPosition;
     }
 
     /**
