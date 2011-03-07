@@ -15,6 +15,9 @@
  */
 package de.berlios.jhelpdesk.web.manager;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.model.ArticleCategory;
+import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 import de.berlios.jhelpdesk.web.tools.ArticleCategoryValidator;
 
 @Controller
@@ -36,7 +41,7 @@ public class ArticleCategoryController {
 
     private static final Logger log = LoggerFactory.getLogger(ArticleCategoryController.class);
 
-    private final static String MANAGE_KB_CATEGORY_LIST_RDR = "redirect:/manage/kb/categories/all.html";
+    private final static String MANAGE_KB_CATEGORY_LIST_RDR = "redirect:/manage/kb/categories/list.html";
     private final static String MANAGE_KB_CATEGORY_LIST = "manager/knowledge/category/showAll";
     private final static String MANAGE_KB_CATEGORY_SHOW = "manager/knowledge/category/show";
     private final static String MANAGE_KB_CATEGORY_EDIT = "manager/knowledge/category/edit";
@@ -47,9 +52,19 @@ public class ArticleCategoryController {
     @Autowired
     private ArticleCategoryDAO categoryDAO;
 
-    @RequestMapping("/manage/kb/categories/all.html")
-    public String showAll(ModelMap map) throws Exception {
-        map.addAttribute("categories", categoryDAO.getAllCategories());
+    @RequestMapping("/manage/kb/categories/list.html")
+    public String showAll(HttpServletRequest request, HttpSession session,
+                          ModelMap map) throws Exception {
+        User currentUser = (User) session.getAttribute("user");
+        int pageSize = currentUser.getDefaultListSize();
+
+        PagingParamsEncoder enc =
+                new PagingParamsEncoder("c", null, request, pageSize);
+        int offset = enc.getOffset();
+
+        map.addAttribute("listSize", pageSize);
+        map.addAttribute("offset", offset);
+        map.addAttribute("categories", categoryDAO.getCategories(pageSize, offset));
         map.addAttribute("categoriesListSize", categoryDAO.countAll());
         return MANAGE_KB_CATEGORY_LIST;
     }

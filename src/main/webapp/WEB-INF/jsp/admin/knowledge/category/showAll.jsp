@@ -19,41 +19,35 @@
                             </c:if>
                         </table>
                         <c:if test="${not empty categories}">
-                            <br />
-                            <table cellspacing="0" class="standardtable">
-                                <tr>
-                                    <th class="rowNumber">Lp.</th>
-                                    <th>Nazwa sekcji</th>
-                                    <th class="artnumber">Ilość art.</th>
-                                    <th colspan="5" class="lastcol">Akcje</th>
-                                </tr>
-                                <c:forEach var="c" items="${categories}">
-                                    <tr>
-                                        <td class="rowNumber">.</td>
-                                        <td><c:out value="${c.categoryName}"/></td>
-                                        <td class="artnumber"><c:out value="${c.articlesCount}"/></td>
-                                        <td class="ticketEdit">
-                                            <a class="actionNew" href="<c:url value="/manage/kb/category/${c.id}/articles.html"/>">Art</a>
-                                        </td>
-                                        <td class="ticketEdit">
-                                            <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.id}/edit.html"/>">E</a>
-                                        </td>
-                                        <td class="ticketEdit">
-                                            <a class="actionDel" href="<c:url value="/manage/kb/category/${c.id}/remove.html"/>">R</a>
-                                        </td>
-                                        <td class="ticketEdit">
-                                            <c:if test="${c.order > 1}">
-                                            <a class="actionUp" href="<c:url value="/manage/kb/category/${c.id}/up.html"/>">U</a>
-                                            </c:if>
-                                        </td>
-                                        <td class="lastcol ticketEdit">
-                                            <c:if test="${c.order < categoriesListSize}">
-                                            <a class="actionDown" href="<c:url value="/manage/kb/category/${c.id}/down.html"/>">D</a>
-                                            </c:if>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
+                            <br/>
+                            <display:table id="c" name="categories" class="standardtable"
+                                           pagesize="${listSize}" size="categoriesListSize" sort="external" partialList="true"
+                                           requestURI="${requestURI}" excludedParams="*" cellspacing="0">
+                                <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
+                                    <c:out value="${c_rowNum + offset}"/>
+                                </display:column>
+                                <display:column property="categoryName" title="Nazwa kategorii"/>
+                                <display:column property="articlesCount" title="Ilość art." class="artnumber"/>
+                                <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
+                                    <a href="<c:url value="/manage/kb/category/${c.id}/articles.html"/>" class="actionNew">Art</a>
+                                </display:column>
+                                <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
+                                    <a class="actionEdit" href="<c:url value="/manage/kb/category/${c.id}/edit.html"/>">E</a>
+                                </display:column>
+                                <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
+                                    <a class="actionDel" href="<c:url value="/manage/kb/category/${c.id}/remove.html"/>">R</a>
+                                </display:column>
+                                <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
+                                    <c:if test="${c.order > 1}">
+                                        <a class="actionUp" href="<c:url value="/manage/kb/category/${c.id}/up.html"/>">U</a>
+                                    </c:if>
+                                </display:column>
+                                <display:column class="lastcol ticketEdit" headerClass="lastcol ticketEdit">
+                                    <c:if test="${c.order < categoriesListSize}">
+                                        <a class="actionDown" href="<c:url value="/manage/kb/category/${c.id}/down.html"/>">D</a>
+                                    </c:if>
+                                </display:column>
+                            </display:table>
                         </c:if>
                     </div>
                     <div class="contentbottom"></div>
