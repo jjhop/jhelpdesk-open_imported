@@ -4,9 +4,9 @@
 
 <div id="editsection" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
-    <table class="w100p" cellspacing="0">
+    <table class="" cellspacing="0">
         <tr>
-            <td class="">
+            <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>Edycja artykułu</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
