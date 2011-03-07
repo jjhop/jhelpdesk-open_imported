@@ -44,7 +44,7 @@ public class UserValidator implements Validator {
         CharSequence inputStr = u.getEmail();
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputStr);
-        if (!matcher.matches()) {
+        if (errors.getFieldErrorCount("email") == 0 && !matcher.matches()) {
             errors.rejectValue("email", "errors.hduser.email");
         }
         if (u.getUserRole() == null) {
