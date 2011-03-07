@@ -69,9 +69,8 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
         try {
             return (List<TicketCategory>) this.jpaTemplate.execute(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNativeQuery(
-                        "SELECT * FROM ticket_category WHERE id>0 ORDER BY t_left ASC",
-                        TicketCategory.class);
+                    Query q = em.createQuery(
+                        "SELECT tc FROM TicketCategory tc ORDER BY tc.order ASC");
                     return q.getResultList();
                 }
             });
