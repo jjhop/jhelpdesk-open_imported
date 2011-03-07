@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.tools.UserValidator;
 
 /**
  * 
@@ -42,6 +43,9 @@ public class PersonalDataEditController {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private UserValidator validator;
+
     @RequestMapping(value = "/preferences/personalData.html", method = RequestMethod.GET)
     public String prepareForm(HttpSession session, ModelMap map) {
         map.addAttribute("personalData", getUserFromSession(session));
@@ -50,10 +54,13 @@ public class PersonalDataEditController {
 
     @RequestMapping(value = "/preferences/personalData/change.html", method = RequestMethod.POST)
     public String processPersonalDataChange(@ModelAttribute("personalData") User user,
-                                            BindingResult result) {
+                                            BindingResult result, ModelMap map) {
         // 1. walidacje a jeśli jest ok to przepisujemy do usera z bazki i zapisujemy i zmykamy
-
-
+        validator.validate(user, result);
+        if (result.hasErrors()) {
+            map.addAttribute("user", user);
+            return "preferences/personalData";
+        }
         return "preferences/personalData";
     }
 

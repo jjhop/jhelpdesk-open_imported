@@ -25,7 +25,7 @@ import org.springframework.validation.Validator;
 
 import de.berlios.jhelpdesk.model.User;
 
-@Component("userValidator")
+@Component
 public class UserValidator implements Validator {
 
     public boolean supports(Class<?> clazz) {

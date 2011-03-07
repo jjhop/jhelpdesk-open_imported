@@ -11,7 +11,8 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <form:form modelAttribute="personalData">
+                        <c:url value="/preferences/personalData/change.html" var="formURL"/>
+                        <form:form action="${formURL}" modelAttribute="personalData">
                             <table cellspacing="0" class="standardtable">
                                 <tr><th colspan="2" class="lastcol">Dane osobowe</th></tr>
                                 <tr>
