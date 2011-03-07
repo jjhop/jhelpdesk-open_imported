@@ -48,23 +48,23 @@
                                                 <label>Powtórz</label>
                                                 <input type="text" class="w95p" name="" />
                                             </li>
-                                            <li>
+                                            <li class="floatLeft w45p">
                                                 <label>Email</label>
                                                 <form:input cssClass="w98p" path="email"/>
                                             </li>
-                                            <li class="floatLeft w45p">
+                                            <li class="floatRight w45p">
                                                 <label>Telefon</label>
                                                 <form:input cssClass="w95p" path="phone"/>
-                                            </li>
-                                            <li class="floatRight w45p">
-                                                <label>Mobile</label>
-                                                <form:input cssClass="w95p" path="mobile"/>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Rola</label>
                                                 <form:select  cssClass="w95p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
                                             </li>
-                                            <li class="floatRight w45p p21t">
+                                            <li class="floatRight w45p">
+                                                <label>Mobile</label>
+                                                <form:input cssClass="w95p" path="mobile"/>
+                                            </li>
+                                            <li class="clearFloat w45p">
                                                 <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
                                             </li>
                                             <li class="clearFloat">
