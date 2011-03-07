@@ -20,7 +20,7 @@ import java.util.List;
 import de.berlios.jhelpdesk.model.ArticleCategory;
 
 /**
- * Interfejs DAO dla obiektów ArticleCategory. Nieco rozszrzony ponad
+ * Interfejs DAO dla obiektów ArticleCategory. Nieco rozszerzony ponad
  * standardowe operacje CRUD.
  *
  * @author jjhop
@@ -40,6 +40,20 @@ public interface ArticleCategoryDAO {
      */
     List<ArticleCategory> getAllCategories() throws DAOException;
 
+    /**
+     *
+     * @param pageSize
+     * @param offset
+     * @return
+     * @throws DAOException
+     */
+    List<ArticleCategory>  getCategories(int pageSize, int offset) throws DAOException;
+
+    /**
+     * 
+     * @return
+     * @throws DAOException
+     */
     int countAll() throws DAOException;
     
     /**

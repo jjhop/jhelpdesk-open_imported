@@ -78,6 +78,23 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
         }
     }
 
+    public List<ArticleCategory> getCategories(final int pageSize, final int offset)
+            throws DAOException {
+        try {
+            return this.jpaTemplate.executeFind(new JpaCallback<List<ArticleCategory>>() {
+                public List<ArticleCategory> doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT ac FROM ArticleCategory ac ORDER BY ac.order ASC");
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public int countAll() throws DAOException {
         try {
             return ((Long) this.jpaTemplate.execute(new JpaCallback() {
