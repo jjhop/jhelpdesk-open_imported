@@ -1247,7 +1247,7 @@ ul.formContainer {
 
 ul.formContainer li {
     padding: 0 10px 10px 10px;
-    min-height: 25px;
+    min-height: 55px;
 }
 
 ul.formContainer li input, ul.formContainer li textarea {

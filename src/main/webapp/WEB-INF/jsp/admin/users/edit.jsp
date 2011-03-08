@@ -50,7 +50,7 @@
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Email</label>
-                                                <form:input cssClass="w98p" path="email"/>
+                                                <form:input cssClass="w95p" path="email"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Telefon</label>
