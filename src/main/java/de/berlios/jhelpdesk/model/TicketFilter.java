@@ -64,6 +64,10 @@ public class TicketFilter implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
     @Column(name = "tfstamp")
     private String tfStamp;
     
@@ -123,12 +127,24 @@ public class TicketFilter implements Serializable {
     @Column(name = "statuses")
     private String ticketStatusesAsString;
 
+    public TicketFilter() {
+        this.createdAt = new Date();
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getTfStamp() {

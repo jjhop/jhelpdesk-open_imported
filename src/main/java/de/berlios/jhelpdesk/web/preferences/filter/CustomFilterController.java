@@ -17,6 +17,7 @@ package de.berlios.jhelpdesk.web.preferences.filter;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketFilterDAO;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.User;
-import de.berlios.jhelpdesk.web.commons.PagingTools;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 
 /**
  *
@@ -52,16 +52,19 @@ public class CustomFilterController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/preferences/filters/list.html", method = RequestMethod.GET)
-    public String showAllFilters(@RequestParam(value="p",required=false,defaultValue="1") int page,
-                                 ModelMap map, HttpSession session) throws Exception {
+    public String showAllFilters(ModelMap map, HttpServletRequest request,
+                                 HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         int pageSize = currentUser.getFiltersListSize();
         int filtersCount = currentUser.getFilters().size();
-        
-        map.addAttribute("filters", ticketFilterDAO.getForUser(currentUser, pageSize, page));
-        map.addAttribute("currentPage", page);
-        map.addAttribute("pages", PagingTools.calulatePages(filtersCount, pageSize));
-        map.addAttribute("offset", pageSize * (page-1));
+        PagingParamsEncoder enc =
+                new PagingParamsEncoder("filtersIterator", null, request, pageSize);
+        int offset = enc.getOffset();
+
+        map.addAttribute("filters", ticketFilterDAO.getForUser(currentUser, pageSize, offset));
+        map.addAttribute("offset", offset);
+        map.addAttribute("listSize", pageSize);
+        map.addAttribute("filtersListSize", filtersCount);
         return "preferences/filters/showAll";
     }
 
