@@ -117,11 +117,10 @@ public class TicketFilterDAOJpa implements TicketFilterDAO {
     }
 
     public List<TicketFilter> getForUser(final User currentUser, final int pageSize,
-                                         final int page) throws DAOException {
+                                         final int offset) throws DAOException {
         try {
             return this.jpaTemplate.execute(new JpaCallback<List<TicketFilter>>() {
                 public List<TicketFilter> doInJpa(EntityManager em) throws PersistenceException {
-                    int offset = (int) (pageSize * (page - 1));
                     Query q = em.createQuery(
                         "SELECT t FROM TicketFilter t WHERE t.owner.userId=?1 ORDER BY t.name ASC");
                     q.setParameter(1, currentUser.getUserId());
