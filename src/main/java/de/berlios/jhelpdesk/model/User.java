@@ -149,8 +149,8 @@ public class User implements Serializable {
     private boolean isActive;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "laf_preferences_id")
-    private LookAndFeelPreferences lafPreferences;
+    @JoinColumn(name = "user_preferences_id")
+    private Preferences preferences;
 
     /**
      * Przechowuje kolekcję artykułów, których autorem jest użytkownik.
@@ -376,16 +376,16 @@ public class User implements Serializable {
      *
      * @return
      */
-    public LookAndFeelPreferences getLafPreferences() {
-        return lafPreferences;
+    public Preferences getPreferences() {
+        return preferences;
     }
 
     /**
      * 
-     * @param lafPreferences
+     * @param preferences
      */
-    public void setLafPreferences(LookAndFeelPreferences lafPreferences) {
-        this.lafPreferences = lafPreferences;
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
     }
 
     /**
@@ -478,38 +478,38 @@ public class User implements Serializable {
     }
 
     public Locale getPreferredLocale() {
-        return lafPreferences != null
-                ? lafPreferences.getPreferredLocale()
+        return preferences != null
+                ? preferences.getPreferredLocale()
                 : Locale.getDefault();
     }
 
     public Integer getPreferedTicketsListSize() {
-        return lafPreferences != null
-            ? lafPreferences.getTicketsListSize()
+        return preferences != null
+            ? preferences.getTicketsListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getAnnouncementsListSize() {
-        return lafPreferences != null
-            ? lafPreferences.getAnnouncementsListSize()
+        return preferences != null
+            ? preferences.getAnnouncementsListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getArticlesListSize() {
-        return lafPreferences != null
-            ? lafPreferences.getArticlesListSize()
+        return preferences != null
+            ? preferences.getArticlesListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getFiltersListSize() {
-        return lafPreferences != null
-            ? lafPreferences.getFiltersListSize()
+        return preferences != null
+            ? preferences.getFiltersListSize()
             : DEFAULT_LIST_SIZE;
     }
 
     public Integer getUsersListSize() {
-        return lafPreferences != null
-            ? lafPreferences.getUsersListSize()
+        return preferences != null
+            ? preferences.getUsersListSize()
             : DEFAULT_LIST_SIZE;
     }
 
@@ -518,19 +518,19 @@ public class User implements Serializable {
     }
 
     public int getSearchResultLimit() {
-        return lafPreferences != null
-            ? lafPreferences.getSearchResultLimit()
+        return preferences != null
+            ? preferences.getSearchResultLimit()
             : DEFAULT_LIST_SIZE;
     }
 
     public String getWelcomePage() {
-        String welcomePage = getLafPreferences().getWelcomePage();
+        String welcomePage = getPreferences().getWelcomePage();
         if (welcomePage.equalsIgnoreCase("desktop")) {
             return "/desktop/main.html";
         } else if (welcomePage.equalsIgnoreCase("tickets")) {
-            return "/tickets/byFilter/" + getLafPreferences().getFilterId() + "/list.html";
+            return "/tickets/byFilter/" + getPreferences().getFilterId() + "/list.html";
         } else if (welcomePage.equalsIgnoreCase("newTicket")) {
-            String formView = getLafPreferences().getNewTicketFormView();
+            String formView = getPreferences().getNewTicketFormView();
             return "form".equalsIgnoreCase(formView)
                 ? "/tickets/new.html"
                 : "/tickets/wizzard.html";
@@ -583,7 +583,7 @@ public class User implements Serializable {
         hash = 31 * hash + (null == this.firstName ? 0 : this.firstName.hashCode());
         hash = 31 * hash + (null == this.lastName ? 0 : this.lastName.hashCode());
         hash = 31 * hash + (null == this.email ? 0 : this.email.hashCode());
-        hash = 31 * hash + (null == this.lafPreferences ? 0 : this.lafPreferences.hashCode());
+        hash = 31 * hash + (null == this.preferences ? 0 : this.preferences.hashCode());
         return hash;
     }
 }

@@ -18,37 +18,33 @@
                                 </td>
                             </tr>
                         </table>
-                        <c:if test="${not empty articles}">
-                            <table cellspacing="0" class="standardtable">
-                                <tr>
-                                    <th>Lp.</th>
-                                    <th>Tytuł</th>
-                                    <th>Autor</th>
-                                    <th>Data</th>
-                                    <th colspan="4" class="lastcol">Akcje</th>
-                                </tr>
-                                <c:forEach var="article" items="${articles}">
-                                    <tr>
-                                        <td width="22">1</td>
-                                        <td><c:out value="${article.title}"/></td>
-                                        <td width="150"><c:out value="${article.author}"/></td>
-                                        <td width="110"><fmt:formatDate value="${article.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
-                                        <td class="ticketEdit">
-                                            <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.id}/edit.html"/>">E</a>
-                                        </td>
-                                        <td class="ticketEdit">
-                                            <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${article.id}/remove.html"/>">R</a>
-                                        </td>
-                                        <td class="ticketEdit">
-                                            <a class="actionUp" title="Move up" href="<c:url value="/manage/kb/article/up.html?articleId=${article.id}"/>">U</a>
-                                        </td>
-                                        <td class="lastcol ticketEdit">
-                                            <a class="actionDown" title="Move down" href="<c:url value="/manage/kb/article/down.html?articleId=${article.id}"/>">D</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </c:if>
+                        <c:url value="/manage/kb/category/${categoryId}/articles.html" var="requestURI"/>
+                        <display:table id="a" name="articles" class="standardtable"
+                                       pagesize="${listSize}" size="articlesListSize" sort="external" partialList="true"
+                                       requestURI="${requestURI}" excludedParams="*" cellspacing="0">
+                            <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
+                                <c:out value="${a_rowNum + offset}"/>
+                            </display:column>
+                            <display:column property="title" title="Tytuł"/>
+                            <display:column property="author" title="Autor"/>
+                            <display:column title="Date">
+                                <fmt:formatDate value="${a.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a class="actionEdit" title="Edit" href="<c:url value="/manage/kb/category/${categoryId}/articles/${a.id}/edit.html"/>">E</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${a.id}/remove.html"/>">R</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <a class="actionUp" title="Move up" href="<c:url value="/manage/kb/article/up.html?articleId=${a.id}"/>">U</a>
+                            </display:column>
+                            <display:column class="ticketEdit">
+                                <c:if test="${a.order < fn:length(articles)}">
+                                    <a class="actionDown" title="Move down" href="<c:url value="/manage/kb/article/down.html?articleId=${a.id}"/>">D</a>
+                                </c:if>
+                            </display:column>
+                        </display:table>
                     </div>
                     <div class="contentbottom"></div>
                 </div>

@@ -36,10 +36,13 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleCategory;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.tools.ArticleCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.ArticleValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * TODO: dokumentacja
@@ -80,8 +83,19 @@ public class ArticleController {
     }
 
     @RequestMapping("/manage/kb/category/{id}/articles.html")
-    public String showAllArticles(@PathVariable("id") Long categoryId, ModelMap map) throws Exception {
-        map.addAttribute("articles", articleDAOJpa.getForSection(categoryId));
+    public String showAllArticles(@PathVariable("id") Long categoryId, ModelMap map,
+                                  HttpServletRequest request, HttpSession session) throws Exception {
+        User currentUser = (User) session.getAttribute("user");
+
+        int pageSize = currentUser.getArticlesListSize();
+        PagingParamsEncoder enc = new PagingParamsEncoder("a", null, request, pageSize);
+        int offset = enc.getOffset();
+        int articlesInCategory = articleDAOJpa.countForSection(categoryId);
+        
+        map.addAttribute("articles", articleDAOJpa.getForSection(categoryId, pageSize, offset));
+        map.addAttribute("articlesListSize", articlesInCategory);
+        map.addAttribute("listSize", pageSize);
+        map.addAttribute("offset", offset);
         map.addAttribute("categoryId", categoryId);
         return MANAGE_KB_ARTICLE_LIST;
     }
@@ -145,7 +159,6 @@ public class ArticleController {
         } else {
             luceneIndexer.addToIndex(article);
         }
-        System.out.println("artykul [" + article.getId() + "] dodany do indeksu");
         return "redirect:/manage/kb/category/" + article.getCategory().getId() +
                 "/articles/" + article.getId() + "/edit.html";
     }

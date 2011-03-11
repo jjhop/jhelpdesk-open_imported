@@ -35,14 +35,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.UserPreferencesDAO;
 import de.berlios.jhelpdesk.model.User;
-import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
+import de.berlios.jhelpdesk.model.Preferences;
 
 /**
  * 
  * @author jjhop
  */
 @Controller
-public class LookAndFeelEditController {
+public class PreferencesEditController {
 
     private static final int SECONDS_BY_WEEK = 604800; // 24*3600*7
 
@@ -57,22 +57,22 @@ public class LookAndFeelEditController {
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.GET)
     public String prepareForm(ModelMap map, HttpSession session) {
         User currentUser = (User) session.getAttribute("user");
-        LookAndFeelPreferences lafPreferences = currentUser.getLafPreferences();
+        Preferences lafPreferences = currentUser.getPreferences();
         map.addAttribute("preferences", lafPreferences != null
                                             ? lafPreferences
-                                            : new LookAndFeelPreferences());
+                                            : new Preferences());
         return "preferences/lookAndFeel";
     }
 
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.POST)
-    public String processForm(@ModelAttribute("preferences") LookAndFeelPreferences lafPreferences,
+    public String processForm(@ModelAttribute("preferences") Preferences lafPreferences,
                               @RequestParam(value = "filterId", required = false) Long filterId,
                               HttpServletRequest request, HttpServletResponse respone,
                               ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         if (isPrefsOwnedByUser(lafPreferences, currentUser)) {
             lafPreferences.setUser(currentUser);
-            currentUser.setLafPreferences(lafPreferences);
+            currentUser.setPreferences(lafPreferences);
             this.userPreferencesDAO.save(lafPreferences);
             respone.addCookie(createCookie(request, lafPreferences.getPreferredLocale()));
             session.setAttribute("user", currentUser);
@@ -88,8 +88,8 @@ public class LookAndFeelEditController {
         return cookie;
     }
 
-    private boolean isPrefsOwnedByUser(LookAndFeelPreferences laf, User user) {
-        LookAndFeelPreferences userLaf = user.getLafPreferences();
+    private boolean isPrefsOwnedByUser(Preferences laf, User user) {
+        Preferences userLaf = user.getPreferences();
         Long lafId = laf.getId();
         if (userLaf == null || lafId == null) {
             return false;

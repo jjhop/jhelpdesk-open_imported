@@ -69,19 +69,10 @@ public interface ArticleDAO {
     void delete(Long articleId) throws DAOException;
 
     /**
-     * Zwraca listę obiektów Article z sekcji o podanym identyfikatorze.
+     * Zwraca stronicowaną listę obiektów Article z sekcji o podanym identyfikatorze.
      * Zwrócona lista jest zawsze prawidłowym obiektem. Jeśli nie zostaną
      * znalezione żadne obiekty to lista będzie pusta ale nigdy nie będzie
      * {@code nullem}.
-     * 
-     * @param categoryId identyfikator sekcji, z której mają pochodzić obiekty Article
-     * @return lista obiektów Article (może być pusta)
-     */
-    @Deprecated
-    List<Article> getForSection(Long categoryId) throws DAOException;
-
-    /**
-     * Zwraca stronicowaną listę arttykułów w sekcji.
      *
      * @param categoryId identyfikator sekcji, z której mają pochodzić obiekty Article
      * @param count

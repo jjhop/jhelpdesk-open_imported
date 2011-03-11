@@ -15,7 +15,7 @@
  */
 package de.berlios.jhelpdesk.dao;
 
-import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
+import de.berlios.jhelpdesk.model.Preferences;
 
 /**
  *
@@ -23,6 +23,6 @@ import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
  */
 public interface UserPreferencesDAO {
 
-    void save(LookAndFeelPreferences lafPrefs) throws DAOException;
+    void save(Preferences lafPrefs) throws DAOException;
 
 }
