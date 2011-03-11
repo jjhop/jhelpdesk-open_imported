@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserPreferencesDAO;
-import de.berlios.jhelpdesk.model.LookAndFeelPreferences;
+import de.berlios.jhelpdesk.model.Preferences;
 
 /**
  *
@@ -42,7 +42,7 @@ public class UserPreferencesDAOJpa implements UserPreferencesDAO {
     }
 
     @Transactional(readOnly = false)
-    public void save(LookAndFeelPreferences lafPrefs) throws DAOException {
+    public void save(Preferences lafPrefs) throws DAOException {
         try {
             if (lafPrefs.getId() != null) {
                 this.jpaTemplate.merge(lafPrefs);

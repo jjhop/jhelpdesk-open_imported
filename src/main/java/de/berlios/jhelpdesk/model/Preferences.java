@@ -32,19 +32,19 @@ import javax.persistence.Table;
  * @author jjhop
  */
 @Entity
-@Table(name = "laf_preferences")
-@SequenceGenerator(name = "laf_preferences_sequence", 
-                   sequenceName = "laf_preferences_id_seq", allocationSize = 1)
-public class LookAndFeelPreferences implements Serializable {
+@Table(name = "user_preferences")
+@SequenceGenerator(name = "user_preferences_sequence",
+                   sequenceName = "user_preferences_id_seq", allocationSize = 1)
+public class Preferences implements Serializable {
 
     private static final long serialVersionUID = 7120658431650439152L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="laf_preferences_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_preferences_sequence")
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "lafPreferences")
+    @OneToOne(mappedBy = "preferences")
     private User user;
 
     @Column(name = "welcome_page")

@@ -43,7 +43,6 @@
                                                 <label>Hasło</label>
                                                 <form:password cssClass="w95p" path="password"/>
                                             </li>
-
                                             <li class="floatRight w45p">
                                                 <label>Powtórz</label>
                                                 <input type="text" class="w95p" name="" />
@@ -80,11 +79,9 @@
                                                 <input type="submit" value="zapisz" class="btn floatRight" />
                                             </li>
                                         </ul>
-
                                     </td>
                                 </tr>
                             </table>
-
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>

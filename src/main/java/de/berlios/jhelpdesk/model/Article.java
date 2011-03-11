@@ -37,9 +37,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import de.berlios.jhelpdesk.utils.MarkdownTranslator;
-import javax.persistence.Transient;
 
 /**
  *
@@ -79,6 +79,9 @@ public class Article implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
+
+    @Column(name = "ord")
+    private Long order;
 
     /**
      *
@@ -145,7 +148,15 @@ public class Article implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+    
+    public Long getOrder() {
+        return order;
+    }
 
+    public void setOrder(Long order) {
+        this.order = order;
+    }
+    
     /**
      * @return Returns the articleId.
      */

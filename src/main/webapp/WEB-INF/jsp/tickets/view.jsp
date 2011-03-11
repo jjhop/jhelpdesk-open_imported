@@ -32,31 +32,34 @@
                             </tr>
                             <tr>
                                 <td colspan="2" style="width: 170px;">
-                                    <select size="1">
+                                    ${ticket.ticketStatus.statusName}
+                                    <!--<select size="1">
                                         <c:forEach var="status" items="${ticketStatuses}">
                                             <option value="${status.statusId}" <c:if test="${status.statusId == ticket.ticketStatus.statusId}">selected="selected"</c:if>>
                                                 <c:out value="${status}" />
                                             </option>
                                         </c:forEach>
-                                    </select>
+                                    </select>-->
                                 </td>
                                 <td colspan="2" style="width: 170px;">
-                                    <select size="1">
+                                    ${ticket.ticketCategory}
+                                    <!--<select size="1">
                                         <c:forEach var="category" items="${ticketCategories}">
                                             <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
                                                 <c:out value="${category}" />
                                             </option>
                                         </c:forEach>
-                                    </select>
+                                    </select>-->
                                 </td>
                                 <td colspan="2" class="lastcol">
-                                    <select size="1">
+                                    ${ticket.ticketPriority.priorityName}
+                                    <!--<select size="1">
                                         <c:forEach var="priority" items="${ticketPriorities}">
                                             <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
                                                 <c:out value="${priority}" />
                                             </option>
                                         </c:forEach>
-                                    </select>
+                                    </select>-->
                                 </td>
                             </tr>
                             <tr>
