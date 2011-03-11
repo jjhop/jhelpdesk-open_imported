@@ -35,10 +35,11 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.User;
-import de.berlios.jhelpdesk.web.commons.PagingTools;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
 import de.berlios.jhelpdesk.web.tools.ArticleCommentValidator;
+
+import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
 /**
  * Obsługa funkcji znajdujących się w menu "Pomoc" programu (w tym obsługa
@@ -133,11 +134,13 @@ public class HelpViewController {
         int pageSize = currentUser.getArticlesListSize();
         int articlesInSection = articleDAO.countForSection(cId);
 
+        int offset = calculateOffset(pageSize, page);
+
         map.addAttribute("category", articleCategoryDAO.getById(cId));
-        map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, page));
+        map.addAttribute("articles", articleDAO.getForSection(cId, pageSize, offset));
         map.addAttribute("currentPage", page);
-        map.addAttribute("pages", PagingTools.calulatePages(articlesInSection, pageSize));
-        map.addAttribute("offset", pageSize * (page-1));
+        map.addAttribute("pages", calculatePages(articlesInSection, pageSize));
+        map.addAttribute("offset", offset);
         return HELP_KB_CATEGORY;
     }
 

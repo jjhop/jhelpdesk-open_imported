@@ -27,9 +27,13 @@ public class PagingTools {
      * @param pageSize rozmiar strony
      * @return ilość stron
      */
-    public static int calulatePages(int count, int pageSize) {
+    public static int calculatePages(int count, int pageSize) {
         return count > pageSize
                 ? count / pageSize + (count % pageSize == 0 ? 0 : 1)
                 : 1;
+    }
+
+    public static int calculateOffset(int pageSize, int page) {
+        return pageSize * (page-1);
     }
 }

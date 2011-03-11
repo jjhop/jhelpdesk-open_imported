@@ -69,16 +69,6 @@ public class ArticleCategoryController {
         return MANAGE_KB_CATEGORY_LIST;
     }
 
-    @RequestMapping("/manage/kb/category/{id}/show.html")
-    public String showOne(@PathVariable("id") Long categoryId, ModelMap map) {
-        try {
-            map.addAttribute("category", categoryDAO.getById(categoryId));
-        } catch (Exception ex) {
-            return MANAGE_KB_CATEGORY_LIST_RDR;
-        }
-        return MANAGE_KB_CATEGORY_SHOW;
-    }
-
     @RequestMapping("/manage/kb/category/{id}/remove.html")
     public String processRemove(@PathVariable("id") Long categoryId, ModelMap map) {
         try {
@@ -137,6 +127,6 @@ public class ArticleCategoryController {
             return MANAGE_KB_CATEGORY_EDIT;
         }
         categoryDAO.saveOrUpdate(category);
-        return "redirect:/manage/kb/category/" + category.getId() + "/show.html";
+        return "redirect:/manage/kb/category/" + category.getId() + "/articles.html";
     }
 }
