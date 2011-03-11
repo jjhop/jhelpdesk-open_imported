@@ -34,13 +34,12 @@
                                                 <form:checkbox cssClass="floatLeft chk" path="active"/>
                                                 <label>Aktywna</label>
                                             </li>
-                                            <li>
-                                                <input type="submit" value="zapisz" class="floatRight btn" />
-                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <div class="clearFloat"></div>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>

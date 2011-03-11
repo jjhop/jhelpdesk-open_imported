@@ -47,6 +47,15 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     border: 0;
     text-align: center;
 }
+
+.btnMargin {
+    margin: 10px 0;
+}
+
+.btnMarginTop {
+    margin-top: 10px;
+}
+
 /*#filterbutton {
     position: absolute;
     top: 187px;
@@ -1308,7 +1317,7 @@ ul.formContainer ul.legend {
 
 ul.formContainer ul.legend li {
     min-height: 12px;
-    padding: 5px 0;
+    padding: 5px 0 0 0;
 }
 
 .kbSearchItem {

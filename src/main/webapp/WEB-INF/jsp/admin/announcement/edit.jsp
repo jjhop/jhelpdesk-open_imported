@@ -34,13 +34,13 @@
                                                 <label>Treść główna</label>
                                                 <form:textarea cssClass="w98p" rows="8" path="body"/>
                                             </li>
-                                            <li>
-                                                <input type="submit" value="zapisz" class="btn floatRight" />
-                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
+
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <div class="clearFloat"></div>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>
