@@ -12,7 +12,7 @@
                     <div class="contentmiddle">
                         <table cellspacing="0">
                             <tr>
-                                <td><a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj kategorię główną</a></td>
+                                <td><a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj kategorię</a></td>
                             </tr>
                         </table>
                         <br/>
