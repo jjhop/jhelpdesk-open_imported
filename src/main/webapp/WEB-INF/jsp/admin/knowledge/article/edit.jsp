@@ -37,13 +37,12 @@
                                                 <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                             </li>
-                                            <li>
-                                                <input type="submit" value="zapisz" class="btn floatRight" />
-                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <div class="clearFloat"></div>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>
