@@ -98,7 +98,6 @@
                         </div>
                         <div class="contentbottom"></div>
                     </c:if>
-                    <div id="pagecontentsubheader"><h3>Ostatnie zdarzenia</h3></div>
                     <div class="chartcontainer">
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
