@@ -30,6 +30,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +41,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "ticket_event")
+@SequenceGenerator(name = "ticket_event_sequence", sequenceName = "ticket_event_id_seq", allocationSize = 1)
 @NamedQueries({
     @NamedQuery(name = "TicketEvent.getByTicketOrderByEventDateDESC",
                 query = "SELECT t FROM TicketEvent t WHERE t.ticket=?1 ORDER BY t.evtDate DESC"),
@@ -62,7 +64,7 @@ public class TicketEvent implements Serializable {
      *
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_event_sequence")
     @Column(name = "event_id")
     private Long ticketEventId;
 
@@ -85,12 +87,6 @@ public class TicketEvent implements Serializable {
     private User evtAuthor;
 
     /**
-     *
-     */
-    @Column(name = "event_subject")
-    private String evtSubject;
-
-    /**
      * @see #eventTypeAsInt
      * @see #populateEventTypeDB()
      * @see #populateEventTypeTransient()
@@ -109,6 +105,33 @@ public class TicketEvent implements Serializable {
     @Column(name = "event_type")
     @SuppressWarnings("unused")
     private int eventTypeAsInt;
+
+    public static TicketEvent ticketCreated(Ticket ticket) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.CREATE);
+        event.setEvtAuthor(ticket.getInputer());
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent ticketAssigned(Ticket ticket, User assigner) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.ASSIGN);
+        event.setEvtAuthor(assigner);
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent commentAdded(TicketComment comment) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.COMMENTADD);
+        event.setEvtAuthor(comment.getCommentAuthor());
+        event.setEvtDate(new Date());
+        event.setTicket(comment.getTicket());
+        return event;
+    }
 
     /**
      * @return Returns the ticketEventId.
@@ -156,14 +179,7 @@ public class TicketEvent implements Serializable {
      * @return Returns the evtSubject.
      */
     public String getEvtSubject() {
-        return evtSubject;
-    }
-
-    /**
-     * @param evtSubject The evtSubject to set.
-     */
-    public void setEvtSubject(String evtSubject) {
-        this.evtSubject = evtSubject;
+        return "TUTAJ GENERUJEMY";
     }
 
     /**
@@ -199,7 +215,7 @@ public class TicketEvent implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + ticketEventId + "] => [" + evtSubject + "]";
+        return "[" + ticketEventId + "] => [" + getEvtSubject() + "]";
     }
  
     @PrePersist
