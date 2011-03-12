@@ -191,4 +191,21 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
+
+    @Transactional(readOnly = false)
+    public void assignTicket(final Long ticketId, final Long userId) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET saviour=?1 WHERE id=?2");
+                    q.setParameter(1, userId);
+                    q.setParameter(2, ticketId);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
 }

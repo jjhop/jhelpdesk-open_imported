@@ -132,4 +132,11 @@ public interface TicketDAO {
      */
     List<Ticket> getTicketsWithFilter(TicketFilter filter) throws DAOException;
 
+    /**
+     * @param ticketId
+     * @param userId
+     * @throws DAOException
+     */
+    public void assignTicket(Long ticketId, Long userId) throws DAOException;
+
 }
