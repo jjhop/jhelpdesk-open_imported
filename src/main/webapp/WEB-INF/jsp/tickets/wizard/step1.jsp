@@ -7,7 +7,6 @@
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
-
             <table id="table1" cellspacing="0">
                 <tr class="top">
                     <td id="topleft">&nbsp;</td>
@@ -29,7 +28,7 @@
                             <input type="hidden" name="currentPage" value="1"/>
                             <table id="table2" cellspacing="0">
                                 <tr>
-                                    <td class="tabtitle">Login:</td>
+                                    <td class="tabtitle">Email:</td>
                                     <td>
                                         <spring:bind path="hdticket.notifier">
                                             <c:choose>
@@ -78,14 +77,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tabtitle">E-mail:</td>
-                                    <td>
-                                        <c:if test="${ not empty hdticket.notifier}">
-                                            <c:out value="${hdticket.notifier.email}"/>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td colspan="2"><input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/></td>
                                 </tr>
                             </table>
@@ -99,7 +90,6 @@
                     <td id="bottomright"><div>&nbsp;</div></td>
                 </tr>
             </table>
-
         </div>
         <div class="contentbottom"></div>
     </div>

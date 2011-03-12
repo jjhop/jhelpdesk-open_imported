@@ -57,10 +57,9 @@ import org.apache.commons.codec.digest.DigestUtils;
 @Table(name = "users")
 @SequenceGenerator(name = "user_sequence", sequenceName = "user_id_seq", allocationSize = 1)
 @NamedQueries({
-    @NamedQuery(name = "User.byLoginAndHashedPassoword", query = "SELECT u FROM User u WHERE u.login=?1 AND u.hashedPassword=?2"),
-    @NamedQuery(name = "User.byLogin", query = "SELECT u FROM User u WHERE u.login=?1"),
+    @NamedQuery(name = "User.byEmailAndHashedPassoword", query = "SELECT u FROM User u WHERE u.email=?1 AND u.hashedPassword=?2"),
     @NamedQuery(name = "User.byEmail", query = "SELECT u FROM User u WHERE u.email=?1"),
-    @NamedQuery(name = "User.byLoginFetchFilters", query = "SELECT u FROM User u LEFT JOIN FETCH u.filters WHERE u.login=?1"),
+    @NamedQuery(name = "User.byEmailFetchFilters", query = "SELECT u FROM User u LEFT JOIN FETCH u.filters WHERE u.email=?1"),
     @NamedQuery(name = "User.allOrderByLastName", query = "SELECT u FROM User u ORDER by u.lastName ASC"),
     @NamedQuery(name = "User.allByRoleOrderByLastName", query = "SELECT u FROM User u WHERE u.roleAsInt=?1 ORDER by u.lastName ASC")
 })
@@ -78,12 +77,6 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private Long userId;
 
-    /**
-     * Login użytkownika. Musi być unikalny w obrębie systemu.
-     */
-    @Column(name = "login", unique = true, updatable = false, nullable = false)
-    private String login;
-    
     /**
      * Zahaszowane hasło użytkownika.
      */
@@ -175,14 +168,12 @@ public class User implements Serializable {
      * Konstruktor inicjalizujący kilka niezbędnych zmiennych w obiekcie.
      *
      * @param userId identyfikator użytkownika
-     * @param login login użytkownika
      * @param firstName imię użytkownika
      * @param lastName nazwisko użytkownika
      */
-    public User(Long userId, String login, String firstName, String lastName) {
+    public User(Long userId, String firstName, String lastName) {
         this();
         this.userId = userId;
-        this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -209,28 +200,6 @@ public class User implements Serializable {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    /**
-     * Zwraca login użytkownika. Login jest unikalny w obrębie systemu.
-     *
-     * @return login użytkownika
-     *
-     * @see #login
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * Ustawia login użytkownika. Po pierwszym ustawieniu i zapisaniu w bazie danych
-     * login nie mogę podlegać zmianom. Od tego czasu metoda powinna być wykorzystywana
-     * tylko przez mechanizm przepisywania danych z bazy.
-     * 
-     * @param login login użytkownika do zapisania
-     */
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     /**
@@ -579,7 +548,6 @@ public class User implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + (null == this.userId ? 0 : this.userId.hashCode());
-        hash = 31 * hash + (null == this.login ? 0 : this.login.hashCode());
         hash = 31 * hash + (null == this.firstName ? 0 : this.firstName.hashCode());
         hash = 31 * hash + (null == this.lastName ? 0 : this.lastName.hashCode());
         hash = 31 * hash + (null == this.email ? 0 : this.email.hashCode());

@@ -39,7 +39,7 @@
                                     <td class="t1"><label for="f_date_end">Do:</label></td>
                                     <td class="t2"><form:input id="f_date_end" path="endDate" readonly="1"/></td>
                                     <td>
-                                        <img alt="" src="<c:url value="/themes/blueó/i/cal.gif"/>" id="f_trigger_d"
+                                        <img alt="" src="<c:url value="/themes/blue/i/cal.gif"/>" id="f_trigger_d"
                                              style="cursor: pointer; border: 0px;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
@@ -107,7 +107,7 @@
                         <div id="sc5" class="switchcontent">
                             <select id="notifiers" name="notifiers" multiple="multiple">
                                 <c:forEach items="${notifiers}" var="n">
-                                    <option value="${n.login}"
+                                    <option value="${n.email}"
                                             <c:forEach items="${filter.notifiers}" var="fs">
                                                 <c:if test="${fs.userId == n.userId}">selected="selected"</c:if>
                                             </c:forEach>
@@ -123,7 +123,7 @@
                         <div id="sc6" class="switchcontent">
                             <select id="saviours" name="saviours" multiple="multiple">
                                 <c:forEach items="${saviours}" var="s">
-                                    <option value="${s.login}"
+                                    <option value="${s.email}"
                                             <c:forEach items="${filter.saviours}" var="fs">
                                                 <c:if test="${fs.userId == s.userId}">selected="selected"</c:if>
                                             </c:forEach>

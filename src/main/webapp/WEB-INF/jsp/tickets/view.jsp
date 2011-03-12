@@ -202,12 +202,8 @@
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <td class="tabtitle">Login:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.login}"/></td>
-                            </tr>
-                            <tr>
                                 <td class="tabtitle">Użytkownik:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.firstName}"/> <c:out value="${ticket.inputer.lastName}"/></td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.inputer.fullName}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Email:</td>
@@ -227,12 +223,8 @@
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <td class="tabtitle">Login:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.login}"/></td>
-                            </tr>
-                            <tr>
                                 <td class="tabtitle">Użytkownik:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.firstName}"/> <c:out value="${ticket.notifier.lastName}"/></td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.notifier.fullName}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Email:</td>
@@ -252,12 +244,8 @@
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <td class="tabtitle">Login:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.login}"/></td>
-                            </tr>
-                            <tr>
                                 <td class="tabtitle">Użytkownik: </td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.firstName}"/> <c:out value="${ticket.saviour.lastName}"/></td>
+                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.fullName}"/></td>
                             </tr>
                             <tr>
                                 <td class="tabtitle">Email:</td>

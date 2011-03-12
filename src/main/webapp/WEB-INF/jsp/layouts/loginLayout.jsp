@@ -29,7 +29,7 @@
                             <tr>
                                 <td class="inputs">
                                     <label><fmt:message key="prompt.login"/></label>
-                                    <spring:bind path="user.login">
+                                    <spring:bind path="user.email">
                                         <input type="text" name="<c:out value="${status.expression}"/>" value="" size="23"/>
                                     </spring:bind>
                                 </td>

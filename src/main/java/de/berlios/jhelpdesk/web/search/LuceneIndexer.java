@@ -154,8 +154,6 @@ public class LuceneIndexer {
                           Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field("authorId", String.valueOf(article.getAuthor().getUserId()),
                           Field.Store.YES, Field.Index.NOT_ANALYZED));
-        doc.add(new Field("authorLogin", String.valueOf(article.getAuthor().getLogin()),
-                          Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field("authorFirstName", String.valueOf(article.getAuthor().getFirstName()),
                           Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field("authorLastName", String.valueOf(article.getAuthor().getLastName()),
@@ -176,7 +174,6 @@ public class LuceneIndexer {
         Date createdAt = new Date(Long.parseLong(doc.get("createdAt")));
         User author = new User(
                 Long.parseLong(doc.get("authorId")),
-                doc.get("authorLogin"),
                 doc.get("authorFirstName"),
                 doc.get("authorLastName"));
         Article article = new Article(articleId, doc.get("title"), doc.get("lead"), createdAt);

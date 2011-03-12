@@ -15,7 +15,6 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -72,20 +71,11 @@ public class UserDAOJpa implements UserDAO {
         }
     }
 
-    public User getByLoginFetchFilters(String login) throws DAOException {
+    public User getByEmailFetchFilters(String email) throws DAOException {
         try {
-            List<User> users = this.jpaTemplate.findByNamedQuery("User.byLoginFetchFilters", login);
+            List<User> users = this.jpaTemplate.findByNamedQuery("User.byEmailFetchFilters", email);
             return users.isEmpty() ? null : users.get(0);
         } catch (Exception ex) {
-            throw new DAOException(ex);
-        }
-    }
-
-    public User getByLogin(String login) throws DAOException {
-        try {
-            List<User> users = this.jpaTemplate.findByNamedQuery("User.byLogin", login);
-            return users.isEmpty() ? null : users.get(0);
-        } catch(Exception ex) {
             throw new DAOException(ex);
         }
     }
@@ -99,21 +89,11 @@ public class UserDAOJpa implements UserDAO {
         }
     }
 
-    public boolean authenticate(String login, String passw) throws DAOException {
+    public boolean authenticate(String email, String passw) throws DAOException {
         try {
             List<User> users = this.jpaTemplate.findByNamedQuery(
-                    "User.byLoginAndHashedPassoword", login, passw);
+                    "User.byEmailAndHashedPassoword", email, passw);
             return users.isEmpty() ? false : true;
-        } catch(Exception ex) {
-            throw new DAOException(ex);
-        }
-    }
-
-    @Transactional(readOnly = false)
-    @Deprecated
-    public void loginUser(String login, Date date) throws DAOException {
-        try {
-            throw new UnsupportedOperationException("Not supported yet.");
         } catch(Exception ex) {
             throw new DAOException(ex);
         }

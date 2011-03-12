@@ -66,9 +66,9 @@ public class AuthenticationController {
                                   HttpSession session) throws Exception {
         // TODO: w DAO metoda authenticate do wywalenia... uwierzytleniamy sprawdzajac
         // czy gosc podal pasujace haslo i login (email) oraz czy moze sie logowac (isActive)
-        boolean isAuthenticatedWithJpa = userDAO.authenticate(user.getLogin(), user.getPassword());
+        boolean isAuthenticatedWithJpa = userDAO.authenticate(user.getEmail(), user.getPassword());
         if (isAuthenticatedWithJpa) {
-            User loggedUser = userDAO.getByLoginFetchFilters(user.getLogin());
+            User loggedUser = userDAO.getByEmailFetchFilters(user.getEmail());
             session.setAttribute("user", loggedUser);
             session.setAttribute("logged", Boolean.TRUE);
             return "redirect:" + loggedUser.getWelcomePage();

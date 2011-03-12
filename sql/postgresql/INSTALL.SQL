@@ -118,7 +118,6 @@ CREATE SEQUENCE user_id_seq
 
 CREATE TABLE users (
   user_id integer NOT NULL DEFAULT nextval(('public.user_id_seq'::text)::regclass),
-  "login" character varying(96) NOT NULL,
   passw character varying(40) NOT NULL,
   first_name character varying(64),
   last_name character varying(128),

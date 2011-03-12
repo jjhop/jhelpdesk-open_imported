@@ -32,41 +32,26 @@ public class UserDAOTest {
         User user = userDAO.getById(ADMIN_ID); // 1 -> admin
         Assert.assertNotNull(user);
         Assert.assertEquals(ADMIN_ID, user.getUserId());
-        Assert.assertEquals("admin", user.getLogin());
-    }
-
-    @Test
-    public void testGetByLoginWithNonExistingUser() throws Exception {
-        Assert.assertNull(userDAO.getByLogin("non_existing_user"));
-    }
-
-    @Test
-    public void testGetByLoginWithExistingUser() throws Exception {
-        User user = userDAO.getByLogin("admin");
-        Assert.assertNotNull(user);
-        Assert.assertEquals(ADMIN_ID, user.getUserId());
-        Assert.assertEquals("admin", user.getLogin());
     }
 
     @Test
     public void testGetByEmailWithNonExistingUser() throws Exception {
-        User user = userDAO.getByLogin("non_existing_user@non-existing-host.com");
+        User user = userDAO.getByEmail("non_existing_user@non-existing-host.com");
         Assert.assertNull(user);
     }
 
     @Test
     public void testGetByEmailWithExistingUser() throws Exception {
-        User user = userDAO.getByLogin("admin@localhost.localdomain");
+        User user = userDAO.getByEmail("admin@localhost.localdomain");
         Assert.assertNotNull(user);
         Assert.assertEquals(ADMIN_ID, user.getUserId());
-        Assert.assertEquals("admin", user.getLogin());
     }
 
     // TODO: do przetestowania jeszcze domyślne wartości preferencji użytkownika
 
     @Test
     public void testDefaultsForNewlyCreatedUser() throws Exception {
-        User user = new User(null, "new_user", "NU_FIRSTNAME", "NU_LASTNAME");
+        User user = new User(null, "NU_FIRSTNAME", "NU_LASTNAME");
         user.setPassword("topsecret");
         user.setActive(false);
         user.setEmail("new_user@localhost.localdomain");

@@ -15,7 +15,6 @@
  */
 package de.berlios.jhelpdesk.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import de.berlios.jhelpdesk.model.Role;
@@ -63,16 +62,7 @@ public interface UserDAO {
     User getById(Long id) throws DAOException;
 
     /**
-     * Zwraca użytkownika o podanym loginie lub {@code null} jeśli
-     * nie zostanie odnaleziony.
-     *
-     * @param login login poszukiwanego użytkownika
-     * @return obiekt użytkownika o podanym identyfikatorze
-     */
-    User getByLogin(String login) throws DAOException;
-
-    /**
-     * Zwraca użytkownika o podanym loginie lub {@code null} jeśli
+     * Zwraca użytkownika o podanym emailu lub {@code null} jeśli
      * nie zostanie odnaleziony.
      * 
      * @param email poszukiwanego użytkownika
@@ -81,34 +71,26 @@ public interface UserDAO {
     User getByEmail(String email) throws DAOException;
 
     /**
-     * Działa jak metoda {@link #getByLogin(java.lang.String)} jednak ignoruje
+     * Działa jak metoda {@link #getByEmail(java.lang.String)} jednak ignoruje
      * znacznik leniwego pobierania kolekcji filtrów użytkownika i zaciągą je
      * wraz z nim.
      *
-     * @param login login poszukiwanego użytkownika
+     * @param email email poszukiwanego użytkownika
      * @return obiekt użytkownika o podanym identyfikatorze
      */
-    User getByLoginFetchFilters(String login) throws DAOException;
+    User getByEmailFetchFilters(String email) throws DAOException;
 
     /**
      * Sprawdza czy w systemie istnieje użytkownik z pasującą do podanych
-     * parą {@code login} oraz {@code hasło}. Zwraca {@code true} jeśli użytkownik
+     * parą {@code email} oraz {@code hasło}. Zwraca {@code true} jeśli użytkownik
      * zostanie odnaleziony i hasło pasuje oraz {@code false} w każdym innym wypadku.
      * 
-     * @param login login użytkownika
+     * @param email email użytkownika
      * @param passw hasło użytkownika
      * @return {@code true} jeśli odnajdzie użytkownika z podanym hasłem oraz {@code false}
      *     w każdym innym wypadku
      */
-    boolean authenticate(String login, String passw) throws DAOException;
-
-    /**
-     * Loguje użytkownika w systemie. Zapisuje informacje o czasie logowania.
-     *
-     * @param login login uzytkownika (użytkownik o tym loginie musi istnieć w systemie)
-     * @param date data logowanie
-     */
-    void loginUser(String login, Date date) throws DAOException;
+    boolean authenticate(String email, String passw) throws DAOException;
 
     /**
      * Zapisuje dane nowego użytkownika lub uaktualnie dane istniejącego. Wybór akcji odbywa się
