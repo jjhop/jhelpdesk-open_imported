@@ -19,6 +19,7 @@ import java.util.List;
 
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
+import de.berlios.jhelpdesk.model.TicketEvent;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
@@ -139,4 +140,11 @@ public interface TicketDAO {
      */
     public void assignTicket(Long ticketId, Long userId) throws DAOException;
 
+    /**
+     * 
+     * @param howMuch
+     * @return
+     * @throws DAOException
+     */
+    List<TicketEvent> getLastEvents(int howMuch) throws DAOException;
 }

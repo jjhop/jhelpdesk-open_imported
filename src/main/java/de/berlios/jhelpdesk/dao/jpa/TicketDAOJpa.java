@@ -33,6 +33,7 @@ import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
+import de.berlios.jhelpdesk.model.TicketEvent;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
@@ -202,6 +203,21 @@ public class TicketDAOJpa implements TicketDAO {
                     q.setParameter(2, ticketId);
                     q.executeUpdate();
                     return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+    
+    public List<TicketEvent> getLastEvents(final int howMuch) throws DAOException {
+        try {
+            return (List<TicketEvent>)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "TicketEvent.getLastFewEventsOrderByEventDateDESC");
+                    q.setMaxResults(howMuch);
+                    return q.getResultList();
                 }
             });
         } catch(Exception ex) {
