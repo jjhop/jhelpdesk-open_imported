@@ -19,6 +19,7 @@ import java.util.List;
 
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
+import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.model.TicketEvent;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.TicketPriority;
@@ -97,6 +98,13 @@ public interface TicketDAO {
     void remove(Long ticketId) throws DAOException;
 
     /**
+     * 
+     * @param comment
+     * @throws DAOException
+     */
+    void addComment(TicketComment comment) throws DAOException;
+
+    /**
      * Zapisuje podane zgłoszenie. Jesli jest to zgłoszenie istniejący
      * uaktualnie związane z nim dane.
      * 
@@ -138,7 +146,7 @@ public interface TicketDAO {
      * @param userId
      * @throws DAOException
      */
-    public void assignTicket(Long ticketId, Long userId) throws DAOException;
+    public void assignTicket(Long ticketId, Long userId, Long assignerId) throws DAOException;
 
     /**
      * 

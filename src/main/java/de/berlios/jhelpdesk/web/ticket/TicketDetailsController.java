@@ -60,6 +60,7 @@ public class TicketDetailsController {
      * @param user
      * @return
      */
+    // todo: przerobić na obiekt z modelu
     @RequestMapping(value = "/tickets/{ticketId}/details.html", method = RequestMethod.POST)
     public String processAddComment(@PathVariable("ticketId") Long ticketId,
                                     @RequestParam("addComm") String addComm,
@@ -67,14 +68,14 @@ public class TicketDetailsController {
                                                   defaultValue = "false") boolean notForPlain,
                                     @ModelAttribute("user") User user) throws Exception {
 
-        TicketComment comm = new TicketComment();
+        TicketComment comment = new TicketComment();
         Ticket ticket = ticketDAO.getTicketById(ticketId);
-        comm.setTicket(ticket);
-        comm.setNotForPlainUser(notForPlain);
-        comm.setCommentAuthor(user);
-        comm.setCommentText(addComm);
-        ticket.addComment(comm);
-        ticketDAO.save(ticket);
+        comment.setTicket(ticket);
+        comment.setNotForPlainUser(notForPlain);
+        comment.setCommentAuthor(user);
+        comment.setCommentText(addComm);
+        ticket.addComment(comment);
+        ticketDAO.addComment(comment);
         // tutaj jeszcze id komentarz jako część strony w URLu
         return "redirect:/tickets/" + ticketId + "/details.html";
     }

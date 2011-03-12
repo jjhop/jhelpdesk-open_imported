@@ -15,6 +15,8 @@
  */
 package de.berlios.jhelpdesk.web.ticket;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.model.User;
 
 /**
  *
@@ -36,9 +39,11 @@ public class TicketAssignController {
 
     @RequestMapping(value = "/tickets/{tId}/assign.html", method = RequestMethod.GET)
     public String assignTicket(@PathVariable("tId") Long ticketId,
-                               @RequestParam("uId") Long userId) throws Exception {
+                               @RequestParam("uId") Long userId,
+                               HttpSession session) throws Exception {
+        User currentUser = (User)session.getAttribute("user");
 
-        ticketDAO.assignTicket(ticketId, userId);
+        ticketDAO.assignTicket(ticketId, userId, currentUser.getUserId());
 
         return "redirect:/tickets/" + ticketId + "/details.html";
     }

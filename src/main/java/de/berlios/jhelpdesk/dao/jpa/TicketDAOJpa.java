@@ -33,6 +33,7 @@ import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
+import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.model.TicketEvent;
 import de.berlios.jhelpdesk.model.TicketFilter;
 import de.berlios.jhelpdesk.model.TicketPriority;
@@ -181,27 +182,51 @@ public class TicketDAOJpa implements TicketDAO {
     }
 
     @Transactional(readOnly = false)
-    public void save(Ticket ticket) throws DAOException {
+    public void addComment(final TicketComment comment) throws DAOException {
         try {
-            if (ticket.getTicketId() == null) {
-                this.jpaTemplate.persist(ticket);
-            } else {
-                this.jpaTemplate.merge(ticket);
-            }
+            final TicketEvent event = TicketEvent.commentAdded(comment);
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    em.persist(comment);
+                    em.persist(event);
+                    return null;
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void save(final Ticket ticket) throws DAOException {
+        try {
+            // Tickety nie są uaktualniane
+            assert ticket.getTicketId() == null;
+            final TicketEvent event = TicketEvent.ticketCreated(ticket);
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    em.persist(ticket);
+                    em.persist(event);
+                    return null;
+                }
+            });
         } catch(Exception ex) {
             throw new DAOException(ex);
         }
     }
 
     @Transactional(readOnly = false)
-    public void assignTicket(final Long ticketId, final Long userId) throws DAOException {
+    public void assignTicket(final Long ticketId, final Long userId, final Long assignerId) throws DAOException {
         try {
+            User assigner = this.jpaTemplate.find(User.class, assignerId);
+            final TicketEvent event = TicketEvent.ticketAssigned(getTicketById(ticketId), assigner);
             this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
                     Query q = em.createNativeQuery("UPDATE ticket SET saviour=?1 WHERE id=?2");
                     q.setParameter(1, userId);
                     q.setParameter(2, ticketId);
                     q.executeUpdate();
+                    em.persist(event);
                     return null;
                 }
             });
