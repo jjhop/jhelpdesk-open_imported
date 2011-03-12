@@ -17,10 +17,7 @@ package de.berlios.jhelpdesk.dao;
 
 import java.util.List;
 
-import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketEvent;
-import de.berlios.jhelpdesk.model.EventType;
-import de.berlios.jhelpdesk.model.User;
 
 /**
  * Definiuje zestaw metod do obsługi trwałości obiektów TicketEvent.
@@ -31,34 +28,6 @@ public interface TicketEventDAO {
 
     /**
      *
-     * @param eventId
-     * @return
-     */
-    TicketEvent getById(Long eventId) throws DAOException;
-
-    /**
-     *
-     * @param user
-     * @return
-     */
-    List<TicketEvent> getByUser(User user) throws DAOException;
-
-    /**
-     *
-     * @param userId
-     * @return
-     */
-    List<TicketEvent> getByUser(Long userId) throws DAOException;
-
-    /**
-     *
-     * @param ticket
-     * @return
-     */
-    List<TicketEvent> getByTicket(Ticket ticket) throws DAOException;
-
-    /**
-     *
      * @param ticketId
      * @return
      */
@@ -66,21 +35,8 @@ public interface TicketEventDAO {
 
     /**
      *
-     * @param type
-     * @return
-     */
-    List<EventType> getByType(EventType type) throws DAOException;
-
-    /**
-     *
-     * @param howMuch
-     * @return
-     */
-    List<TicketEvent> getLastEvents(int howMuch) throws DAOException;
-
-    /**
-     *
      * @param event
      */
+    @Deprecated
     void save(TicketEvent event) throws DAOException;
 }

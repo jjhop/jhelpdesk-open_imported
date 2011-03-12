@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import de.berlios.jhelpdesk.dao.AnnouncementDAO;
 import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
-import de.berlios.jhelpdesk.dao.TicketEventDAO;
 import de.berlios.jhelpdesk.model.TicketStatus;
 
 /**
@@ -58,9 +57,6 @@ public class DesktopViewController {
 
     @Autowired
     private TicketDAO ticketDAO;
-
-    @Autowired
-    private TicketEventDAO eventDAO;
 
     @Autowired
     private ArticleDAO articleDAO;
@@ -116,7 +112,7 @@ public class DesktopViewController {
     }
 
     private void fillLastEvent(ModelMap map) throws Exception {
-        map.addAttribute("lastEvents", eventDAO.getLastEvents(NUMBER_OF_EVENTS_IN_DESKTOP));
+        map.addAttribute("lastEvents", ticketDAO.getLastEvents(NUMBER_OF_EVENTS_IN_DESKTOP));
     }
 
     private void fillLastTickets(ModelMap map) throws Exception {
