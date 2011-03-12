@@ -221,6 +221,14 @@ public class User implements Serializable {
         this.hashedPassword = DigestUtils.shaHex(password);
     }
 
+    public boolean isManager() {
+        return userRole.equals(Role.MANAGER);
+    }
+
+    public boolean isPlain() {
+        return userRole.equals(Role.CLIENT);
+    }
+
     /**
      * Zwraca systemową rolę użytkownika.
      * 
@@ -315,6 +323,10 @@ public class User implements Serializable {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAvatarURL() {
+        return "http://www.gravatar.com/avatar/" + DigestUtils.md5Hex(email) + "?d=mm&s=96";
     }
 
     /**

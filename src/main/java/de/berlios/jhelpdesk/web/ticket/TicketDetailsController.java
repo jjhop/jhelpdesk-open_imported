@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.dao.UserDAO;
+import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.model.TicketPriority;
@@ -40,7 +42,10 @@ import de.berlios.jhelpdesk.model.User;
 @Controller
 @SessionAttributes("user")
 public class TicketDetailsController {
-    
+
+    @Autowired
+    private UserDAO userDAO;
+
     @Autowired
     private TicketDAO ticketDAO;
 
@@ -87,6 +92,7 @@ public class TicketDetailsController {
                              ModelMap mav) throws Exception {
 
         Ticket ticket = ticketDAO.getTicketById(ticketId);
+        mav.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
         mav.addAttribute("ticket", ticket);
         mav.addAttribute("ticketPriorities", TicketPriority.values());
         mav.addAttribute("ticketStatuses", TicketStatus.values());

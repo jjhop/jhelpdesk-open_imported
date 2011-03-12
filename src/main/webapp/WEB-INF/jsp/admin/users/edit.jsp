@@ -62,15 +62,6 @@
                                             <li class="clearFloat w45p">
                                                 <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
                                             </li>
-                                            <li class="clearFloat">
-                                                <label>Avatar</label>
-                                                <input type="file"/>
-                                                <ul class="legend">
-                                                    <li>96x96px, lub wytniemy ze środka obrazka</li>
-                                                    <li>jeśli nie dodasz awataru, spróbujemy skorzystać z Gravatara</li>
-                                                    <li>możesz także <a>usunąć</a> awatar</li>
-                                                </ul>
-                                            </li>
                                         </ul>
                                     </td>
                                 </tr>

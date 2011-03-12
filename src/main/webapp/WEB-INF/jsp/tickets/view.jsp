@@ -197,7 +197,7 @@
                     </script>
                 </td>
                 <td class="leftcells">
-                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="<c:url value="/avatars/jjhop.jpg"/>" alt="avatar" class="avatar" /></h3></div>
+                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -218,7 +218,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Zgłosił <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
+                    <div id="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -239,25 +239,48 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Rozwiązuje <img src="<c:url value="/avatars/jjhop.jpg"/>" class="avatar" /></h3></div>
+                    <div id="pagecontentsubheader">
+                        <h3>Rozwiązuje 
+                            <c:if test="${ticket.saviour != null}">
+                                <img src="${ticket.saviour.avatarURL}" alt="avatar" class="avatar" />
+                            </c:if>
+                        </h3>
+                    </div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0" class="standardtable">
-                            <tr>
-                                <td class="tabtitle">Użytkownik: </td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.fullName}"/></td>
-                            </tr>
-                            <tr>
-                                <td class="tabtitle">Email:</td>
-                                <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.email}"/></td>
-                            </tr>
-                            <tr>
-                                <td class="tabtitle">Tel:</td>
-                                <td style="width: 110px;"><c:out value="${ticket.saviour.phone}"/></td>
-                                <td class="tabtitle">Kom:</td>
-                                <td class="lastcol" style="width: 110px;"><c:out value="${ticket.saviour.mobile}"/></td>
-                            </tr>
-                        </table>
+                        <c:if test="${ticket.saviour != null}">
+                            <table cellspacing="0" class="standardtable">
+                                <tr>
+                                    <td class="tabtitle">Użytkownik:</td>
+                                    <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.fullName}"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="tabtitle">Email:</td>
+                                    <td colspan="3" class="lastcol"><c:out value="${ticket.saviour.email}"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="tabtitle">Tel:</td>
+                                    <td style="width: 110px;"><c:out value="${ticket.saviour.phone}"/></td>
+                                    <td class="tabtitle">Kom:</td>
+                                    <td class="lastcol" style="width: 110px;"><c:out value="${ticket.saviour.mobile}"/></td>
+                                </tr>
+                            </table>
+                        </c:if>
+                        <c:if test="${not user.plain}">
+                            <%-- przypisywanie nie dla zwykłych użytkowników --%>
+                            <a href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a><br/>
+                        </c:if>
+                        <c:if test="${user.manager}">
+                            <%-- formularz tylko dla managera --%>
+                            <form action="<c:url value="/tickets/${ticket.ticketId}/assign.html"/>">
+                                <select name="uId">
+                                    <c:forEach items="${saviours}" var="u">
+                                        <option value="${u.userId}">${u.fullName}</option>
+                                    </c:forEach>
+                                </select>
+                                <input type="submit" value="Przypisz"/>
+                            </form>
+                        </c:if>
                     </div>
                     <div class="contentbottom"></div>
                 </td>
