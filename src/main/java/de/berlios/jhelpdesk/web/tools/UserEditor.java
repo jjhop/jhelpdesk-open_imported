@@ -32,7 +32,7 @@ public class UserEditor extends PropertyEditorSupport {
     @Override
     public String getAsText() {
         if (getValue() != null) {
-            return ((User) getValue()).getLogin();
+            return ((User) getValue()).getEmail();
         } else {
             return null;
         }
@@ -41,7 +41,7 @@ public class UserEditor extends PropertyEditorSupport {
     @Override
     public void setAsText(String text) {
         try {
-            User user = userDAO.getByLogin(text);
+            User user = userDAO.getByEmail(text);
             setValue(user);
         } catch (Exception ex) {
             throw new RuntimeException(ex);

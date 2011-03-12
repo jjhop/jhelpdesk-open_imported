@@ -35,9 +35,9 @@
                                                 <label>Nazwisko</label>
                                                 <form:input cssClass="w95p" path="lastName"/>
                                             </li>
-                                            <li class="clearFloat">
-                                                <label>Login</label>
-                                                <form:input cssClass="w98p" path="login"/>
+                                            <li class="floatLeft w45p">
+                                                <label>Email</label>
+                                                <form:input cssClass="w95p" path="email"/>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Hasło</label>
@@ -46,10 +46,6 @@
                                             <li class="floatRight w45p">
                                                 <label>Powtórz</label>
                                                 <input type="text" class="w95p" name="" />
-                                            </li>
-                                            <li class="floatLeft w45p">
-                                                <label>Email</label>
-                                                <form:input cssClass="w95p" path="email"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Telefon</label>

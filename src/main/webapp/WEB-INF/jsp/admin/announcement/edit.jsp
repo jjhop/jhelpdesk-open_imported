@@ -38,7 +38,6 @@
                                     </td>
                                 </tr>
                             </table>
-
                             <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
                             <div class="clearFloat"></div>
                         </form:form>

@@ -12,10 +12,6 @@
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <td>Login</td>
-                                <td class="lastcol"><c:out value="${user.login}"/></td>
-                            </tr>
-                            <tr>
                                 <td>Imię</td>
                                 <td class="lastcol"><c:out value="${user.firstName}"/></td>
                             </tr>

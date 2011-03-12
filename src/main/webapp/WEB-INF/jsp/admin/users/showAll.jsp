@@ -19,9 +19,8 @@
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${user_rowNum}" />
                             </display:column>
-                            <display:column title="Nazwisko" property="lastName" style="width: 200px;" />
-                            <display:column title="Imię" property="firstName" />
-                            <display:column title="Login" property="login" />
+                            <display:column title="Imię i nazwisko" property="fullName" style="width: 200px;" />
+                            <display:column title="Email" property="email" />
                             <display:column title="" media="html" class="ticketEdit" headerClass="ticketView">
                                 <a class="actionView" href="<c:url value="/manage/users/${user.userId}/show.html"/>">View</a>
                             </display:column>

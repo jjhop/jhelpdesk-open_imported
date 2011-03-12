@@ -65,10 +65,6 @@ poza<%@page contentType="text/html;charset=UTF-8" %>
                                 <td>
                                     <ul class="formContainer">
                                         <li>
-                                            <label>Login</label>
-                                            ${personalData.login}
-                                        </li>
-                                        <li>
                                             <label>Hasło</label>
                                             <input type="password" name="password" class="w98p" maxlength="128"/>
                                         </li>

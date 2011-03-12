@@ -17,7 +17,7 @@
                     <td id="middlecenter">
                         <ul class="formContainer">
                             <li>
-                                <label>Zgłaszający</label>
+                                <label>Zgłaszający (wprowadź email)</label>
                                 <form:input path="notifier" cssErrorClass="w415 fieldError" cssClass="w415"/>
                                 <form:errors path="notifier" cssClass="formError errorBottom" />
                             </li>

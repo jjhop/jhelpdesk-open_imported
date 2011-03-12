@@ -98,7 +98,7 @@
                             <td>
                                 <select id="notifiers" class="w255" name="notifiers" multiple="multiple">
                                     <c:forEach items="${notifiers}" var="n">
-                                        <option value="${n.login}"
+                                        <option value="${n.email}"
                                                 <c:forEach items="${filter.notifiers}" var="fs">
                                                     <c:if test="${fs.userId == n.userId}">selected="selected"</c:if>
                                                 </c:forEach>
@@ -113,7 +113,7 @@
                             <td>
                                 <select id="saviours" class="w255" name="saviours" multiple="multiple">
                                     <c:forEach items="${saviours}" var="s">
-                                        <option value="${s.login}"
+                                        <option value="${s.email}"
                                                 <c:forEach items="${filter.saviours}" var="fs">
                                                     <c:if test="${fs.userId == s.userId}">selected="selected"</c:if>
                                                 </c:forEach>

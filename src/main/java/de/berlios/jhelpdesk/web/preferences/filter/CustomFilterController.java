@@ -91,7 +91,7 @@ public class CustomFilterController {
         if (filter != null && filter.isOwnedBy(currentUser)) {
             try {
                 ticketFilterDAO.delete(filter);
-                session.setAttribute("user", userDAO.getByLoginFetchFilters(currentUser.getLogin()));
+                session.setAttribute("user", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
             } catch (DAOException ex) {
                 throw new RuntimeException(ex);
             }
