@@ -15,6 +15,9 @@
  */
 package de.berlios.jhelpdesk.web.manager.users;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserDAO;
+import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 
 /**
  * Kontroler częściowo obsługujący zarządzanie użytkownikami systemu. Obsługuje tylko wyświetlanie listy
@@ -64,15 +69,23 @@ public class UserController {
 
     /**
      * Wyświetla pełną listę użytkowników.
-     * TODO: stronicowanie
      *
      * @param map model widoku
      * @return identyfikator widoku prezentującego listę użytkowników
      */
     @RequestMapping("/manage/users/list.html")
-    public String showAllUsers(ModelMap map) {
+    public String showAllUsers(HttpServletRequest request, HttpSession session, ModelMap map) {
+
+        User currentUser = (User) session.getAttribute("user");
+        int pageSize = currentUser.getUsersListSize();
+        PagingParamsEncoder enc = new PagingParamsEncoder("user", null, request, pageSize);
+        int offset = enc.getOffset();
+
         try {
-            map.addAttribute("users", userDAO.getAllUsers());
+            map.addAttribute("users", userDAO.getUsers(pageSize, offset));
+            map.addAttribute("usersListSize", userDAO.countUsers());
+            map.addAttribute("listSize", pageSize);
+            map.addAttribute("offset", offset);
         } catch (DAOException ex) {
             log.error("Komunikat....", ex);
             throw new RuntimeException(ex);
