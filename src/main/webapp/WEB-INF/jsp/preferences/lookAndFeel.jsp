@@ -6,6 +6,22 @@
     <div id="pagecontentheader"><h2>Preferencje</h2></div>
     <form:form modelAttribute="preferences">
         <form:hidden path="id"/>
+        <script type="text/javascript">
+            function desktopViewSelected() {
+                $('ticketsViewDD', 'newTicketRadios').invoke('hide');
+            }
+            function ticketsViewSelected() {
+                $('ticketsViewDD').show();
+                $('newTicketRadios').hide();
+            }
+            function newTicketSelected() {
+                $('ticketsViewDD').hide();
+                $('newTicketRadios').show();
+            }
+            function kbSelected() {
+                $('ticketsViewDD', 'newTicketRadios').invoke('hide');
+            }
+        </script>
         <table cellspacing="0">
             <tr>
                 <td class="rightcells">
@@ -17,25 +33,38 @@
                                 <tr><th colspan="5" class="lastcol">Strona startowa</th></tr>
                                 <tr class="options">
                                     <td style="width: 111px;">
-                                        <form:radiobutton id="v1" path="welcomePage" value="desktop"/>
+                                        <form:radiobutton id="v1" path="welcomePage" value="desktop"
+                                                          onclick="desktopViewSelected();"/>
                                         <label for="v1">biurko</label></td>
                                     <td style="width: 111px;">
-                                        <form:radiobutton id="v2" path="welcomePage" value="tickets"/>
+                                        <form:radiobutton id="v2" path="welcomePage" value="tickets"
+                                                          onclick="ticketsViewSelected();"/>
                                         <label for="v2">zgłoszenia</label><br/>
-                                        <form:select items="${sessionScope.user.filters}" path="filterId" itemValue="id" itemLabel="name"/>
+                                        <c:if test='${not fn:endsWith(user.welcomePage,"list.html")}'>
+                                            <c:set var="ftfstyle" value="display:none"/>
+                                        </c:if>
+                                        <form:select id="ticketsViewDD" cssStyle="${ftfstyle}"
+                                                     items="${sessionScope.user.filters}" path="filterId"
+                                                     itemValue="id" itemLabel="name"/>
                                     </td>
                                     <td style="width: 111px;">
-                                        <form:radiobutton id="v3" path="welcomePage" value="newTicket"/>
+                                        <form:radiobutton id="v3" path="welcomePage" value="newTicket"
+                                                          onclick="newTicketSelected();"/>
                                         <label for="v3">nowe zgłoszenie</label><br/>
-
-                                        <form:radiobutton id="nz1" path="newTicketFormView" value="form"/>
-                                        <label for="nz1">Formularz zgłoszenia</label><br/>
-
-                                        <form:radiobutton id="nz2" path="newTicketFormView" value="wizzard"/>
-                                        <label for="nz2">Kreator zgłoszenia</label>
+                                        <c:if test='${(not fn:endsWith(user.welcomePage,"new.html"))
+                                                      and (not fn:endsWith(user.welcomePage,"wizzard.html"))}'>
+                                            <c:set var="ntrstyle" value="display:none;"/>
+                                        </c:if>
+                                        <span id="newTicketRadios" style="${ntrstyle}">
+                                            <form:radiobutton id="nz1" path="newTicketFormView" value="form"/>
+                                            <label for="nz1">Formularz zgłoszenia</label><br/>
+                                            <form:radiobutton id="nz2" path="newTicketFormView" value="wizzard"/>
+                                            <label for="nz2">Kreator zgłoszenia</label>
+                                        </span>
                                     </td>
                                     <td class="lastcol" style="width: 112px;">
-                                        <form:radiobutton id="v4" path="welcomePage" value="kBase"/>
+                                        <form:radiobutton id="v4" path="welcomePage" value="kBase"
+                                                          onclick="kbSelected();"/>
                                         <label for="v4">baza wiedzy</label></td>
                                 </tr>
                             </table>
@@ -60,7 +89,7 @@
                             <br />
                             <table cellspacing="0" class="standardtable">
                                 <tr>
-                                    <th>Lista/ilość zgłoszeń</th>
+                                    <th>List/rozmiar listy</th>
                                     <th>10</th>
                                     <th>25</th>
                                     <th>50</th>
