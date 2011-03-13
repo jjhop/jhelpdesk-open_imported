@@ -78,7 +78,6 @@ public class AnnouncementController {
 
     /**
      * Wyświetla pełną listę ogłoszeń.
-     * TODO: stronicowanie announcementsIterator
      *
      * @param map model widoku
      * @return identyfikator widoku prezentującego listę ogłoszeń
