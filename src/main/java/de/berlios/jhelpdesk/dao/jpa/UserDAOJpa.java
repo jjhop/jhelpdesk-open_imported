@@ -31,6 +31,7 @@ import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.User;
+import javax.persistence.Query;
 
 /**
  *
@@ -50,6 +51,34 @@ public class UserDAOJpa implements UserDAO {
     public List<User> getAllUsers() throws DAOException {
         try {
             return this.jpaTemplate.findByNamedQuery("User.allOrderByLastName");
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public List<User> getUsers(final int limit, final int offset) throws DAOException {
+        try {
+            return (List<User>) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery("User.allOrderByLastName");
+                    q.setMaxResults(limit);
+                    q.setFirstResult(offset);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countUsers() throws DAOException {
+        try {
+            return ((Long) this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery("User.countAll");
+                    return q.getSingleResult();
+                }
+            })).intValue();
         } catch (Exception ex) {
             throw new DAOException(ex);
         }

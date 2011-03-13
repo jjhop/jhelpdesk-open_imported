@@ -15,9 +15,12 @@
                                 <td><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></td>
                             </tr>
                         </table>
-                        <display:table name="users" id="user" class="standardtable" cellspacing="0" export="false" pagesize="25" requestURI="">
+                        <c:url value="/manage/users/list.html" var="requestURI"/>
+                        <display:table id="user" name="users" class="standardtable" cellspacing="0" export="false"
+                                       partialList="true"
+                                       pagesize="${listSize}" size="usersListSize" requestURI="${requestURI}">
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
-                                <c:out value="${user_rowNum}" />
+                                <c:out value="${user_rowNum + offset}" />
                             </display:column>
                             <display:column title="Imię i nazwisko" property="fullName" style="width: 200px;" />
                             <display:column title="Email" property="email" />

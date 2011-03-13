@@ -39,6 +39,23 @@ public interface UserDAO {
     List<User> getAllUsers() throws DAOException;
 
     /**
+     * Zwraca stronicowaną listę użytkowników systemu. Lista zawsze jest jest różna od {@code null}.
+     *
+     * @param limit
+     * @param offset
+     * @return
+     * @throws DAOException
+     */
+    List<User> getUsers(int limit, int offset) throws DAOException;
+
+    /**
+     * 
+     * @return
+     * @throws DAOException
+     */
+    int countUsers() throws DAOException;
+
+    /**
      * Zwraca wszystkich użytkowników sytemu z podaną rolą. Jeśli nie zostanie znaleziony
      * żadne użytkownik zwrócona zostanie pusta lista.
      *
