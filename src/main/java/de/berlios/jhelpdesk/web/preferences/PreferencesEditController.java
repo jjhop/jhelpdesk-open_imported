@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.UserPreferencesDAO;
 import de.berlios.jhelpdesk.model.User;
@@ -57,26 +56,23 @@ public class PreferencesEditController {
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.GET)
     public String prepareForm(ModelMap map, HttpSession session) {
         User currentUser = (User) session.getAttribute("user");
-        Preferences lafPreferences = currentUser.getPreferences();
-        map.addAttribute("preferences", lafPreferences != null
-                                            ? lafPreferences
-                                            : new Preferences());
+        map.addAttribute("preferences", currentUser.getPreferences());
         return "preferences/lookAndFeel";
     }
 
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.POST)
-    public String processForm(@ModelAttribute("preferences") Preferences lafPreferences,
-                              @RequestParam(value = "filterId", required = false) Long filterId,
+    public String processForm(@ModelAttribute("preferences") Preferences preferences,
                               HttpServletRequest request, HttpServletResponse respone,
                               ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
-        if (isPrefsOwnedByUser(lafPreferences, currentUser)) {
-            lafPreferences.setUser(currentUser);
-            currentUser.setPreferences(lafPreferences);
-            this.userPreferencesDAO.save(lafPreferences);
-            respone.addCookie(createCookie(request, lafPreferences.getPreferredLocale()));
+        if (isPrefsOwnedByUser(preferences, currentUser)) {
+            // TODO: poniższe dwie linijki są wysoce podejrzane :)
+            preferences.setUser(currentUser);
+            currentUser.setPreferences(preferences);
+            this.userPreferencesDAO.save(preferences);
+            respone.addCookie(createCookie(request, preferences.getPreferredLocale()));
             session.setAttribute("user", currentUser);
-            map.addAttribute("preferences", lafPreferences);
+            map.addAttribute("preferences", preferences);
         }
         return "preferences/lookAndFeel";
     }

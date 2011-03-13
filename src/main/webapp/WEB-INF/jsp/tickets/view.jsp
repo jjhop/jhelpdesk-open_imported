@@ -102,12 +102,12 @@
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
                                 <div class="Tabs">
-                                    <a href="#first" id="tab_first" class="tab"><span>Lista komentarzy</span></a>
-                                    <a href="#second" id="tab_second" class="tab"><span>Historia zgłoszenia</span></a>
+                                    <a href="#comments" id="tab_comments" class="tab"><span>Lista komentarzy</span></a>
+                                    <a href="#events" id="tab_events" class="tab"><span>Historia zgłoszenia</span></a>
                                 </div>
                                 <div class="contenttop"></div>
                                 <div class="Pages">
-                                    <div id="panel_first" class="Page">
+                                    <div id="panel_comments" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
                                             <tr>
                                                 <td>
@@ -145,7 +145,7 @@
                                         </table>
 
                                     </div>
-                                    <div id="panel_second" class="Page">
+                                    <div id="panel_events" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
                                             <tr>
                                                 <td>
@@ -173,27 +173,6 @@
                             </div>
                         </div>
                     </div>
-                    <script type="text/javascript">
-                        //<![CDATA[
-                        Event.observe(window, 'load', loadTabs, false);
-                        function loadTabs() {
-                            var tabs = new tabset('currentWeekTabView', {
-                                classNames: {
-                                    tab:        'tab',    // class name used to identify the tabs
-                                    panel:      'Page',   // class name used to identify the tab content
-                                    tabActive:  'Active'  // class name added to the active tab
-                                },
-                                ids: {
-                                    tab:        'tab_',   // what to strip off the tab id to get the tab name
-                                    panel:      'panel_'  // what to strip off the tab content id to get the tab name
-                                },
-                                onEvent:        'click',    // perhaps you want to activate on mouseover? not recommended
-                                effects:        true        // set this to false if you do not want to include effects.js
-                            }); // name of div to crawl for tabs and panels
-                            tabs.autoActivate($('tab_first')); // name of tab to auto-select if none exists in the url
-                        }
-                        //]]>
-                    </script>
                 </td>
                 <td class="leftcells">
                     <div id="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
@@ -287,3 +266,4 @@
         </table>
     </div>
 </div>
+<script type="text/javascript" src="<c:url value="/js/ticket.js"/>"></script>
