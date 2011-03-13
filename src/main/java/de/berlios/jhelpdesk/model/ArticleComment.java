@@ -47,13 +47,6 @@ public class ArticleComment implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    /**
-     * // TODO: migrujemy do article, stąd też w mapowaniu to: insertable = false, updatable = false
-     */
-    @Deprecated
-    @Column(name = "article_id", nullable = false, insertable = false, updatable = false)
-    private Long articleId;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "article_id")
     private Article article;
@@ -98,26 +91,6 @@ public class ArticleComment implements Serializable {
      */
     public void setArticleCommentId(Long id) {
         this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Deprecated
-    public Long getArticleId() {
-        System.out.println("@Deprecated -> getArticleId()");
-        return articleId;
-    }
-
-    /**
-     *
-     * @param articleId
-     */
-    @Deprecated
-    public void setArticleId(Long articleId) {
-        System.out.println("@Deprecated -> setArticleId(Long articleId)");
-        this.articleId = articleId;
     }
 
     /**
