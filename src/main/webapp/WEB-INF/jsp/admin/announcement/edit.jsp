@@ -22,21 +22,28 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <form:label path="title">Tytuł</form:label>
-                                                <form:input maxlength="255" onblur="$('titleCounter').hide()" onkeyup="this.value.charCount('titleCounter', 255)" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
+                                                <form:input path="title" maxlength="255"
+                                                            onblur="$('titleCounter').hide()"
+                                                            onkeyup="this.value.charCount('titleCounter', 255)"
+                                                            cssErrorClass="w98p fieldError" cssClass="w98p"/>
                                                 <form:errors path="title" cssClass="formError errorBottom"/>
                                                 <span id="titleCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <form:label path="lead">Skrót</form:label>
-                                                <form:textarea onblur="$('shortCounter').hide()" onkeyup="this.value.charTextCount('shortCounter', 24)" cssErrorClass="w98p fieldError" cssClass="w98p" path="lead" />
+                                                <form:textarea path="lead"
+                                                               onblur="$('shortCounter').hide()"
+                                                               onkeyup="this.value = this.value.charTextCount('shortCounter', 25)"
+                                                               cssErrorClass="w98p fieldError" cssClass="w98p" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                                 <span id="shortCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <label>Treść główna</label>
+                                                <form:label path="body">Treść główna</form:label>
                                                 <form:textarea cssClass="w98p ml16384" rows="8" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                             </li>
+
                                         </ul>
                                     </td>
                                 </tr>
