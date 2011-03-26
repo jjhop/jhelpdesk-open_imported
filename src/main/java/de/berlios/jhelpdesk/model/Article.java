@@ -86,19 +86,19 @@ public class Article implements Serializable {
     /**
      *
      */
-    @Column(name = "title")
+    @Column(name = "title", length = 255)
     private String title;
 
     /**
      *
      */
-    @Column(name = "lead")
+    @Column(name = "lead", length = 4096)
     private String lead;
 
     /**
      *
      */
-    @Column(name = "body")
+    @Column(name = "body", length = 16384)
     private String body;
 
     /**
