@@ -39,11 +39,11 @@
                                                 <label>Email</label>
                                                 <form:input cssClass="w95p" path="email"/>
                                             </li>
-                                            <li class="floatLeft w45p">
+                                            <li class="floatRight w45p">
                                                 <label>Hasło</label>
                                                 <form:password cssClass="w95p" path="password"/>
                                             </li>
-                                            <li class="floatRight w45p">
+                                            <li class="floatLeft w45p">
                                                 <label>Powtórz</label>
                                                 <input type="text" class="w95p" name="" />
                                             </li>

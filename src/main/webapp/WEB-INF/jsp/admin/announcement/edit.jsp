@@ -22,8 +22,9 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Tytuł</label>
-                                                <form:input maxlength="255" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
+                                                <form:input maxlength="255"  onkeyup="this.value.charCount('titleCounter', 255)" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
                                                 <form:errors path="title" cssClass="formError errorBottom"/>
+                                                <span id="titleCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <label>Skrót</label>
