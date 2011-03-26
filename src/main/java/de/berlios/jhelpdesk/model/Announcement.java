@@ -68,19 +68,19 @@ public class Announcement implements Serializable {
     /**
      *
      */
-    @Column(name = "title")
+    @Column(name = "title", length = 255)
     private String title;
 
     /**
      *
      */
-    @Column(name = "lead")
+    @Column(name = "lead", length = 4096)
     private String lead;
     
     /**
      *
      */
-    @Column(name = "body", table = "announcement_body", nullable = true)
+    @Column(name = "body", table = "announcement_body", nullable = true, length = 16384)
     private String body;
 
     public Announcement() {
