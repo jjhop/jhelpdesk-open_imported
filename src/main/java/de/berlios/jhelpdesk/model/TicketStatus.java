@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO: dodać jakąą maszynę stanów, która kontrolowałaby w logiczny
+ * TODO: dodać jakąś maszynę stanów, która kontrolowałaby w logiczny
  *       sposób przejścia pomiędzy różnymi statusami.
  * @author jjhop
  */
@@ -52,12 +52,7 @@ public enum TicketStatus {
     /**
      * 
      */
-    CLOSED(5, "ZAMKNIĘTY", "desc", "228664", true),
-    
-    /**
-     * 
-     */
-    UNKNOWN(6, "NIEZNANY", "desc", "228664", true); // TODO: tymczasowe...
+    CLOSED(5, "ZAMKNIĘTY", "desc", "228664", true);
 
     private static final Logger log = LoggerFactory.getLogger(TicketStatus.class);
 
@@ -146,10 +141,7 @@ public enum TicketStatus {
                 return RESOLVED;
             case 5:
                 return CLOSED;
-            //default: throw new RuntimeException("Nieznany status.");
-            //TODO: trzeba rzucac wyjatek...
-            default:
-                return UNKNOWN;
+            default: throw new RuntimeException("Nieznany status.");
         }
     }
 
