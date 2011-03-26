@@ -56,7 +56,7 @@ public class ArticleCategory implements Serializable {
     /**
      *
      */
-    @Column(name = "category_name")
+    @Column(name = "category_name", length = 128)
     private String categoryName;
 
     /**
