@@ -25,15 +25,23 @@ import de.berlios.jhelpdesk.model.Announcement;
 @Component
 public class AnnouncementValidator implements Validator {
 
-	// implementujemy Validator.supports(Class), dlatego SuppressWarnings
-	public boolean supports(Class<?> clazz) {
-		return Announcement.class.equals(clazz);
-	}
+    public boolean supports(Class<?> clazz) {
+        return Announcement.class.equals(clazz);
+    }
 
-	public void validate(Object announcement, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(
-				errors, "title", "errors.announcement.title");
-		ValidationUtils.rejectIfEmptyOrWhitespace(
-				errors, "lead", "errors.announcement.lead");
-	}
+    public void validate(Object target, Errors errors) {
+        Announcement announcement = (Announcement) target;
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "errors.announcement.title");
+        if (announcement.getTitle() != null & announcement.getTitle().length() > 255) {
+            errors.rejectValue("title", "errors.announcement.title.toolong");
+        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lead", "errors.announcement.lead");
+        if (announcement.getLead() != null & announcement.getLead().length() > 4096) {
+            errors.rejectValue("lead", "errors.announcement.lead.toolong"); // za długie
+        }
+
+        if (announcement.getBody() != null && announcement.getBody().length() > 16384) {
+            errors.rejectValue("body", "errors.announcement.body.toolong"); // za długie
+        }
+    }
 }
