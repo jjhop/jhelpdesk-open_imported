@@ -27,12 +27,12 @@
                                             </li>
                                             <li>
                                                 <label>Skrót</label>
-                                                <form:textarea cssErrorClass="w98p fieldError" cssClass="w98p" path="lead"/>
+                                                <form:textarea cssErrorClass="w98p fieldError" cssClass="w98p ml4096" path="lead" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                             </li>
                                             <li>
                                                 <label>Treść główna</label>
-                                                <form:textarea cssClass="w98p" rows="8" path="body"/>
+                                                <form:textarea cssClass="w98p ml16384" rows="8" path="body"/>
                                             </li>
                                         </ul>
                                     </td>
