@@ -19,4 +19,13 @@ String.prototype.charCount = function (counter, ml) {
     (this.length >= percent) ? $(counter).show() : $(counter).hide();
 }
 
+String.prototype.charTextCount = function (counter, ml) {
+    var charsLeft = ml - this.length;
+    var percent = Math.ceil(ml * 0.90);
+    $(counter).update(charsLeft);
+
+    (this.length >= percent) ? $(counter).show() : $(counter).hide();
+    return this.length < ml;
+}
+
 </script>
