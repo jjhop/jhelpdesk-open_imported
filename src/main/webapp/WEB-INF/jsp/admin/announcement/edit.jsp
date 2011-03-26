@@ -33,6 +33,7 @@
                                             <li>
                                                 <label>Treść główna</label>
                                                 <form:textarea cssClass="w98p ml16384" rows="8" path="body"/>
+                                                <form:errors cssClass="formError errorBottom" path="body"/>
                                             </li>
                                         </ul>
                                     </td>
