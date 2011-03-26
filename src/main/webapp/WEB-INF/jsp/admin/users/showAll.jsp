@@ -1,0 +1,55 @@
+<%@page contentType="text/html;charset=UTF-8" %>
+<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+
+<div id="showallusers" class="management">
+    <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
+    <table cellspacing="0" class="w100p">
+        <tr>
+            <td class="">
+                <div id="pagecontentsubheader"><h3>Użytkownicy</h3></div>
+                <div id="content">
+                    <div class="contenttop"></div>
+                    <div class="contentmiddle">
+                        <table cellspacing="0">
+                            <tr>
+                                <td><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></td>
+                            </tr>
+                        </table>
+                        <c:url value="/manage/users/list.html" var="requestURI"/>
+                        <display:table id="user" name="users" class="standardtable" cellspacing="0" export="false"
+                                       partialList="true"
+                                       pagesize="${listSize}" size="usersListSize" requestURI="${requestURI}">
+                            <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
+                                <c:out value="${user_rowNum + offset}" />
+                            </display:column>
+                            <display:column title="Imię i nazwisko" property="fullName" style="width: 200px;" />
+                            <display:column title="Email" property="email" />
+                            <display:column title="" media="html" class="ticketEdit" headerClass="ticketView">
+                                <a class="actionView" href="<c:url value="/manage/users/${user.userId}/show.html"/>">View</a>
+                            </display:column>
+                            <display:column title="" media="html" class="ticketEdit" headerClass="ticketEdit">
+                                <a class="actionEdit" href="<c:url value="/manage/users/${user.userId}/edit.html"/>">Edit</a>
+                            </display:column>
+                            <display:column title="" media="html" class="lastcol ticketEdit" headerClass="lastcol ticketDrop">
+                                <a  class="actionDel" href="<c:url value="/manage/users/${user.userId}/remove.html"/>">Remove</a>
+                            </display:column>
+                            <display:setProperty name="paging.banner.no_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">No {0} found.</td>" />
+                            <display:setProperty name="paging.banner.one_item_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">One {0} found.</td>" />
+                            <display:setProperty name="paging.banner.all_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">{0} {1} found, displaying all {2}.</td>" />
+                            <display:setProperty name="paging.banner.some_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">Rekordy od {2} do {3} z {0}.</td>" />
+                            <display:setProperty name="paging.banner.full" value="<td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
+                            <display:setProperty name="paging.banner.first" value="<td id=\"paginationlinks\"><span>&laquo;</span> <span>&lsaquo;</span> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
+                            <display:setProperty name="paging.banner.last" value=" <td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <span>&rsaquo;</span> <span>&raquo;</span></a></td></tr></table>" />
+                            <display:setProperty name="paging.banner.onepage" value="<td id=\"paginationlinks\">{0}</td></tr></table>" />
+                            <display:setProperty name="export.banner" value="<div class=\"exportlinks\"><br>Eksportuj jako: {0}</div>"/>
+                            <display:setProperty name="export.pdf" value="false" />
+                            <display:setProperty name="paging.banner.placement" value="top"/>
+                            <display:setProperty name="basic.msg.empty_list" value="Nie znaleziono żadnego użytkownika."/>
+                        </display:table>
+                    </div>
+                    <div class="contentbottom"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
