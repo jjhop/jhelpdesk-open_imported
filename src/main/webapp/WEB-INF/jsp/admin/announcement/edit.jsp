@@ -28,7 +28,7 @@
                                             </li>
                                             <li>
                                                 <label>Skrót</label>
-                                                <form:textarea onblur="$('shortCounter').hide()" onkeyup="this.value.charTextCount('shortCounter', 96)" cssErrorClass="w98p fieldError" cssClass="w98p" path="lead" />
+                                                <form:textarea onblur="$('shortCounter').hide()" onkeyup="this.value = this.value.charTextCount('shortCounter', 25)" cssErrorClass="w98p fieldError" cssClass="w98p" path="lead" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                                 <span id="shortCounter" class="counter"></span>
                                             </li>

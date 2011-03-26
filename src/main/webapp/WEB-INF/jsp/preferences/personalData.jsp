@@ -21,7 +21,7 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Imie</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" onkeyup="this.value.charCount('nameCounter', 35)" path="firstName"/>
+                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" onkeyup="this.value = this.value.charCount('nameCounter', 35)" path="firstName"/>
                                                 <form:errors cssClass="formError errorBottom" path="firstName" />
                                                 <span id="nameCounter" style="display:none" class="counter"></span>
                                             </li>
