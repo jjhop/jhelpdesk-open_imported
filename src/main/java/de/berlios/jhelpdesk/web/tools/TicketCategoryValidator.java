@@ -30,10 +30,15 @@ public class TicketCategoryValidator implements Validator {
         return TicketCategory.class.equals(clazz);
     }
 
-    public void validate(Object category, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(
-                errors, "categoryName", "errors.category.categoryName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(
-                errors, "categoryDesc", "errors.category.categoryDesc");
+    public void validate(Object target, Errors errors) {
+        TicketCategory category = (TicketCategory) target;
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryName", "errors.category.categoryName");
+        if (category.getCategoryName() != null && category.getCategoryName().length() > 64) {
+            errors.rejectValue("categoryName", "errors.category.categoryName.toolong"); // za długie
+        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryDesc", "errors.category.categoryDesc");
+        if (category.getCategoryDesc() != null && category.getCategoryDesc().length() > 255) {
+            errors.rejectValue("categoryDesc", "errors.category.categoryDesc.toolong"); // za długie
+        }
     }
 }

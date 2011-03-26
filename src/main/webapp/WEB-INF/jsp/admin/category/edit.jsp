@@ -22,12 +22,12 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Nazwa</label>
-                                                <form:input cssErrorClass="fieldError w98p" maxlength="128" cssClass="w98p" path="categoryName"/>
+                                                <form:input cssErrorClass="fieldError w98p" maxlength="64" cssClass="w98p" path="categoryName"/>
                                                 <form:errors cssClass="formError errorBottom" path="categoryName"/>
                                             </li>
                                             <li>
                                                 <label>Opis</label>
-                                                <form:textarea cssErrorClass="fieldError w98p" cssClass="w98p" path="categoryDesc"/>
+                                                <form:textarea cssErrorClass="fieldError w98p" cssClass="w98p ml255" path="categoryDesc"/>
                                                 <form:errors cssClass="formError errorBottom" path="categoryDesc"/>
                                             </li>
                                             <li>

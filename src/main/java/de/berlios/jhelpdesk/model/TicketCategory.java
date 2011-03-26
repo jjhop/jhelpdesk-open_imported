@@ -49,13 +49,13 @@ public class TicketCategory implements Serializable {
     /**
      *
      */
-    @Column(name = "category_name")
+    @Column(name = "category_name", length = 64)
     private String categoryName;
 
     /**
      *
      */
-    @Column(name = "category_desc")
+    @Column(name = "category_desc", length = 255)
     private String categoryDesc;
 
     @Column(name = "ord")
