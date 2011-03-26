@@ -22,14 +22,15 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Tytuł</label>
-                                                <form:input maxlength="255"  onkeyup="this.value.charCount('titleCounter', 255)" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
+                                                <form:input maxlength="255" onblur="$('titleCounter').hide()" onkeyup="this.value.charCount('titleCounter', 255)" cssErrorClass="w98p fieldError" cssClass="w98p" path="title"/>
                                                 <form:errors path="title" cssClass="formError errorBottom"/>
                                                 <span id="titleCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <label>Skrót</label>
-                                                <form:textarea cssErrorClass="w98p fieldError" cssClass="w98p ml4096" path="lead" />
+                                                <form:textarea onblur="$('shortCounter').hide()" onkeyup="this.value.charTextCount('shortCounter', 96)" cssErrorClass="w98p fieldError" cssClass="w98p" path="lead" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
+                                                <span id="shortCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <label>Treść główna</label>
