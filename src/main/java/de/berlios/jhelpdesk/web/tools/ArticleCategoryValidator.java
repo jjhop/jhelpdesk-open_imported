@@ -22,16 +22,18 @@ import org.springframework.validation.Validator;
 
 import de.berlios.jhelpdesk.model.ArticleCategory;
 
-@Component("articleCategoryValidator")
+@Component
 public class ArticleCategoryValidator implements Validator {
 	
-	// implementujemy Validator.supports(Class), dlatego SuppressWarnings
 	public boolean supports(Class<?> clazz) {
 		return ArticleCategory.class.equals(clazz);
 	}
 
 	public void validate(Object command, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(
-				errors, "categoryName", "errors.kbase.categoryName");
+        ArticleCategory category = (ArticleCategory) command;
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryName", "errors.kbase.categoryName");
+        if (category.getCategoryName() != null && category.getCategoryName().length() > 128) {
+             errors.rejectValue("categoryName", "errors.kbase.categoryName.toolong");
+        }
 	}
 }
