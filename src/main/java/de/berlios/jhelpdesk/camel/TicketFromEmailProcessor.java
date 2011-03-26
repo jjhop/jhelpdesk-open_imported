@@ -59,7 +59,7 @@ public class TicketFromEmailProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         MailMessage in = exchange.getIn(MailMessage.class);
         User emailAuthor = null;
-        TicketPriority priority = TicketPriority.LOW; // TODO: jakiś default powinien być
+        TicketPriority priority = TicketPriority.NORMAL;
         for (Map.Entry<String, Object> e : in.getHeaders().entrySet()) {
             if (e.getKey().startsWith("From")) {
                 emailAuthor = extractUserEmail(e.getValue());
