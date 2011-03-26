@@ -21,8 +21,8 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li>
-                                                <label>Nazwa sekcji</label>
-                                                <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" />
+                                                <form:label path="categoryName">Nazwa sekcji</form:label>
+                                                <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" maxlength="128"/>
                                                 <form:errors path="categoryName" cssClass="formError errorBottom"/>
                                             </li>
                                         </ul>
