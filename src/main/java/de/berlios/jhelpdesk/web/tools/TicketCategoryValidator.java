@@ -22,10 +22,9 @@ import org.springframework.validation.Validator;
 
 import de.berlios.jhelpdesk.model.TicketCategory;
 
-@Component("ticketCategoryValidator")
+@Component
 public class TicketCategoryValidator implements Validator {
 
-    // implementujemy Validator.supports(Class), dlatego SuppressWarnings
     public boolean supports(Class<?> clazz) {
         return TicketCategory.class.equals(clazz);
     }
