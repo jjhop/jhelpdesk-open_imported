@@ -17,6 +17,7 @@ package de.berlios.jhelpdesk.web.tools;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import de.berlios.jhelpdesk.model.TicketFilter;
@@ -25,7 +26,7 @@ import de.berlios.jhelpdesk.model.TicketFilter;
  *
  * @author jjhop
  */
-@Component("ticketFilterValidator")
+@Component
 public class TicketFilterValidator implements Validator {
 
     public boolean supports(Class<?> clazz) {
@@ -33,13 +34,13 @@ public class TicketFilterValidator implements Validator {
     }
 
     public void validate(Object target, Errors errors) {
-        TicketFilter filterToValidate = (TicketFilter) target;
-        if(filterToValidate.getName() == null
-                || filterToValidate.getName().trim().isEmpty()) {
-            errors.rejectValue("name", "ticketFilter.name.error");
+        TicketFilter filter = (TicketFilter) target;
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "ticketFilter.name.empty");
+        if (filter.getName() != null && filter.getName().length() > 32) {
+            errors.rejectValue("name", "ticketFilter.name.toolong");
         }
-//        validateSubject(ticketToValidate, errors);
-//        validateDescription(ticketToValidate, errors);
-//        validateNotifier(ticketToValidate, errors);
+        if (filter.getDescription() != null && filter.getDescription().length() > 512) {
+            errors.rejectValue("description", "ticketFilter.description.toolong");
+        }
     }
 }

@@ -32,13 +32,13 @@
                     <table id="table2">
                         <tr>
                             <td class="w100 p20l">Nazwa*:</td>
-                            <td><form:input path="name" cssClass="w250"/>
+                            <td><form:input path="name" cssClass="w250" maxlength="32"/>
                                 <font color="red"><form:errors path="name"/></font>
                             </td>
                         </tr>
                         <tr>
                             <td class="p20l">Opis:</td>
-                            <td><form:textarea path="description" cssClass="w250"/></td>
+                            <td><form:textarea path="description" cssClass="w250" /></td><!-- max 512 znaków -->
                         </tr>
                         <tr>
                             <td class="p20l">Od:</td>
