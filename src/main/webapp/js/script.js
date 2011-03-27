@@ -1,4 +1,23 @@
 // nowe funkcje
+String.prototype.charCount = function (counter, ml) {
+    var charsLeft = ml - this.length;
+    var percent = Math.ceil(ml * 0.90);
+    $(counter).update(charsLeft);
+
+    (this.length >= percent) ? $(counter).show() : $(counter).hide();
+}
+
+String.prototype.charTextCount = function (counter, ml) {
+    var charsLeft = ml - this.length;
+    var percent = Math.ceil(ml * 0.90);
+    $(counter).update(charsLeft);
+
+    (this.length >= percent) ? $(counter).show() : $(counter).hide();
+
+    return this.slice(0, ml);
+
+}
+
 function updateDiv(triggerId, sourceUrl) {
     var targetDiv  = triggerId.substr(0, triggerId.length-3);
     var imgElement = $(triggerId).firstDescendant();
