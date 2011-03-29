@@ -93,14 +93,6 @@ public enum TicketStatus {
     };
 
     /**
-     * TODO: dlaczego tutaj jest NONOPEN skoro NOTIFIED to OPEN??
-     */
-    private static TicketStatus[] NONOPEN_STATUSES = {
-        NOTIFIED,
-        ASSIGNED
-    };
-
-    /**
      *
      * @param id
      * @param name
@@ -178,14 +170,6 @@ public enum TicketStatus {
      */
     public static TicketStatus[] getAllStatuses() {
         return ALL_STATUSES;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public static TicketStatus[] getNonOpenedStatuses() {
-        return NONOPEN_STATUSES;
     }
 
     /**
