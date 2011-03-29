@@ -1257,6 +1257,7 @@ ul.formContainer {
 ul.formContainer li {
     padding: 0 10px 10px 10px;
     min-height: 55px;
+    position: relative;
 }
 
 ul.formContainer li input, ul.formContainer li textarea {
@@ -1265,6 +1266,13 @@ ul.formContainer li input, ul.formContainer li textarea {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #677498;
+}
+
+ul.formContainer li .counter {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    color: #f65656;
 }
 
 ul.formContainer li input.chk {
