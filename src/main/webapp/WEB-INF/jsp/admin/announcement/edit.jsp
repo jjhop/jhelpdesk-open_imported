@@ -33,7 +33,7 @@
                                                 <form:label path="lead">Skrót</form:label>
                                                 <form:textarea path="lead"
                                                                onblur="$('shortCounter').hide()"
-                                                               onkeyup="this.value = this.value.charTextCount('shortCounter', 25)"
+                                                               onkeyup="this.value = this.value.charTextCount('shortCounter', 45)"
                                                                cssErrorClass="w98p fieldError" cssClass="w98p" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                                 <span id="shortCounter" class="counter"></span>
