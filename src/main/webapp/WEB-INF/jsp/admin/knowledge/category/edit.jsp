@@ -22,8 +22,9 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <form:label path="categoryName">Nazwa sekcji</form:label>
-                                                <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" maxlength="128"/>
+                                                <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" onblur="$('categoryCounter').hide()" onkeyup="this.value.charCount('categoryCounter', 128)"  maxlength="128"/>
                                                 <form:errors path="categoryName" cssClass="formError errorBottom"/>
+                                                <span id="categoryCounter" class="counter"></span>
                                             </li>
                                         </ul>
                                     </td>
