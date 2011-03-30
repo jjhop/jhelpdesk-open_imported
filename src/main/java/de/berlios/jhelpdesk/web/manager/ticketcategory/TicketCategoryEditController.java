@@ -35,7 +35,6 @@ import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
 import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.web.tools.TicketCategoryValidator;
 
-// TODO: dorobić widok metoda dla save.html w odróżnieniu od update
 @Controller
 public class TicketCategoryEditController {
 
