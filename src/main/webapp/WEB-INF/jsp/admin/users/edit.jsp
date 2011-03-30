@@ -1,4 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" %>
+<%@page import="de.berlios.jhelpdesk.model.User"%>
+<%@page import="de.berlios.jhelpdesk.model.Role"%>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -12,12 +14,12 @@
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <c:url value="/manage/users/save.html" var="formUrl"/>
-                        <form:form action="${formUrl}" commandName="user" >
+                        <form:form action="${formUrl}" commandName="user">
                             <c:if test="${user.userId != null}">
                                 <form:hidden path="userId"/>
                             </c:if>
                             <table cellspacing="0" class="standardtable">
-                                <spring:hasBindErrors name="user">
+                                <spring:hasBindErrors name="user" >
                                     <tr>
                                         <td colspan="2" style="color: red" class="lastcol">
                                             <form:errors path="*" />
@@ -53,7 +55,16 @@
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Rola</label>
-                                                <form:select  cssClass="w95p" id="userRole" path="userRole" items="${roles}" itemValue="roleCode" itemLabel="roleName"/>
+                                                <select id="userRole" class="w95p">
+                                                <% User u = (User)session.getAttribute("user"); %>
+                                                <c:forEach items="${roles}" var="role">
+                                                    <% Role r = (Role)pageContext.getAttribute("role"); %>
+                                                    <option value="<c:out value="${role.roleCode}"/>"
+                                                        <% if (r.equals(u.getUserRole())) {%>selected="selected"<%}%>>
+                                                        <%= r.getRoleName(u.getPreferredLocale()) %>
+                                                    </option>
+                                                </c:forEach>
+                                                </select>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Mobile</label>
