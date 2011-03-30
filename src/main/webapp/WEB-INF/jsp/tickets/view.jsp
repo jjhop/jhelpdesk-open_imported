@@ -1,4 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" %>
+<%@page import="de.berlios.jhelpdesk.model.User"%>
+<%@page import="de.berlios.jhelpdesk.model.Ticket"%>
+<%@page import="de.berlios.jhelpdesk.model.TicketEvent"%>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="ticketdetails">
@@ -153,14 +156,16 @@
                                                         <tr>
                                                             <th>Lp.</th>
                                                             <th>Zdarzenie</th>
-                                                            <th>Autor</th>
-                                                            <th class="lastcol">Data</th>
+                                                            <th width="100" class="lastcol">Data</th>
                                                         </tr>
+                                                        <% User user = (User)session.getAttribute("user"); %>
                                                         <c:forEach var="event" items="${ticket.events}" varStatus="status">
                                                             <tr>
                                                                 <td class="scount"><c:out value="${status.count}"/></td>
-                                                                <td><c:out value="${event.evtSubject}"/></td>
-                                                                <td><c:out value="${event.evtAuthor}"/></td>
+                                                                <td>
+                                                                    <% TicketEvent evt = (TicketEvent)pageContext.getAttribute("event");%>
+                                                                    <%= evt.getEvtSubject(user.getPreferredLocale()) %>
+                                                                </td>
                                                                 <td class="lastcol"><fmt:formatDate value="${event.evtDate}" pattern="yyyy-MM-dd HH:mm"/></td>
                                                             </tr>
                                                         </c:forEach>
