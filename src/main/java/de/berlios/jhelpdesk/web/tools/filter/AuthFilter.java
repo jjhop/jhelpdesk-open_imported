@@ -33,10 +33,10 @@ public class AuthFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse res, 
 			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest servletRreq = (HttpServletRequest) req;
-		HttpSession sess = servletRreq.getSession();
+		HttpServletRequest servletReq = (HttpServletRequest) req;
+		HttpSession sess = servletReq.getSession();
 
-		String reqUrl = servletRreq.getRequestURL().toString().toLowerCase();
+		String reqUrl = servletReq.getRequestURL().toString().toLowerCase();
 		if (reqUrl.endsWith("/login.html") 
 				|| reqUrl.endsWith(".ico") 
 				|| reqUrl.endsWith(".gif")
@@ -48,9 +48,10 @@ public class AuthFilter implements Filter {
 		Boolean logged = (Boolean) sess.getAttribute("logged");
 
 		if ((logged == null) || (!logged.booleanValue())) {
-			sess.invalidate();
+            int rp = servletReq.getContextPath().length();
+            sess.setAttribute("requestURI", servletReq.getRequestURI().substring(rp));
 			((HttpServletResponse) res).sendRedirect(
-					servletRreq.getContextPath() + "/login.html");
+					servletReq.getContextPath() + "/login.html");
 			return;
 		}
 		chain.doFilter(req, res);
