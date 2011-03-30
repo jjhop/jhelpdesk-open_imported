@@ -160,7 +160,6 @@ public class TicketNewWizardController {
         }
     }
 
-    // TODO: _checkLogin zamienić na target?
     private int getTarget(HttpServletRequest request, int currentPage) {
         if (request.getParameter("_checkLogin") != null) {
             return 0;
