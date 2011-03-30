@@ -18,6 +18,8 @@ package de.berlios.jhelpdesk.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * <p>
@@ -25,9 +27,6 @@ import java.util.List;
  * wartości dla wszystkich ról oraz metody pozwalające na wygodne używanie 
  * jej obiektów (np. zapisywanie ról w bazie za pomocą liczb i odtwarzenie
  * tychże z zapisanych liczba - szczegóły w dokumentacji poszczególnych metod).
- * </p>
- * <p>
- * TODO: należy lokalizowac nazwy ról i umiescic je w plikach role.properties
  * </p>
  * 
  * @author jjhop
@@ -39,7 +38,7 @@ public enum Role {
      * w ograniczony sposób korzystać z pozostałych części systemu, nie może jednak edytować
      * nic poza częścią swoich danych osobowych.
      */
-    CLIENT(1, "Użytkownik"),
+    CLIENT(1, "role.client"),
     
     /**
      * Rola TICKETKILLER. Uzytkownik w tej roli może zgłaszać problemy w swoim imieniu, oraz
@@ -47,14 +46,14 @@ public enum Role {
      * (np. przypisywać je do rozwiązania przez siebie ale nie przez innych użytkowników).
      * Może także edytować wiele innych elementów systemu.
      */
-    TICKETKILLER(10, "Pracownik helpdesku"),
+    TICKETKILLER(10, "role.ticketkiller"),
 
     /**
      * Rola MANAGER. Użytkownik z nieograniczonymi uprawnieniami w systemie. Może zmieniać role
      * innych użytkowników, przypisywać zgłoszenia do rozwiązania przez dowolnego użytkownika
      * z rolą TICKETKILLER. W pełni może edytować wszystkie obiekty w systemie.
      */
-    MANAGER(100, "Helpdesk manager");
+    MANAGER(100, "role.manager");
 
     /**
      * Liczba, za pomocą której rola może być przedstawiana w bazie danych.
@@ -149,14 +148,13 @@ public enum Role {
     /**
      * Zwraca nazwę roli. Nazwa jest ustalana podczas tworzenia roli.
      *
-     * TODO: i18n dla nazw
-     *
-     * @return nazwa roli
+     * @return zlokalizowana nazwa roli
      * 
      * @see #roleName
      */
-    public String getRoleName() {
-        return roleName;
+    public String getRoleName(Locale locale) {
+        ResourceBundle names = ResourceBundle.getBundle("role", locale);
+        return names.getString(roleName);
     }
 
     /**
@@ -171,10 +169,4 @@ public enum Role {
     public int getRoleCode() {
         return code;
     }
-
-    @Override
-    public String toString() {
-        return roleName;
-    }
-
 }
