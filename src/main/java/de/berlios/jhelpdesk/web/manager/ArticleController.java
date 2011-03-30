@@ -42,10 +42,8 @@ import de.berlios.jhelpdesk.web.tools.ArticleCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.ArticleValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * TODO: dokumentacja
  *
  * @author jjhop
  */
