@@ -91,7 +91,6 @@ public class TicketDetailsController {
     @RequestMapping(value = "/tickets/{ticketId}/details.html", method = RequestMethod.GET)
     public String showTicket(@PathVariable("ticketId") Long ticketId,
                              ModelMap mav) throws Exception {
-
         Ticket ticket = ticketDAO.getTicketById(ticketId);
         mav.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
         mav.addAttribute("ticket", ticket);

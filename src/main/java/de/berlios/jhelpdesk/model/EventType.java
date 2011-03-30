@@ -15,14 +15,12 @@
  */
 package de.berlios.jhelpdesk.model;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
- * <p>
  * Typ zdarzenia związanego z <i>życiem</i> zgłoszenia w systemie.
- * </p>
- * <p>
- * TODO: wszystkie nazwy trzeba zaciągnąć z właściwych propertisow<br/>
- * TODO: uzupełnić dokumentację
- * </p>
+ * 
  * @author jjhop
  *
  * @see Ticket
@@ -33,47 +31,47 @@ public enum EventType {
     /**
      * 
      */
-    CREATE(1, "Zgłoszenie problemu."),
+    CREATE(1, "eventType.create"),
 
     /**
      *
      */
-    ASSIGN(2, "Przypisanie problemu."),
+    ASSIGN(2, "eventType.assign"),
 
     /**
      *
      */
-    REASSIGN(3, "Zmiana przypisania problemu."),
+    REASSIGN(3, "eventType.reassign"),
 
     /**
      *
      */
-    CLOSE(4, "Zamknięcie/rozwiązanie problemu."),
+    CLOSE(4, "eventType.close"),
 
     /**
      *
      */
-    REJECT(5, "Odrzucenie problemu."),
+    REJECT(5, "eventType.reject"),
 
     /**
      * 
      */
-    CATEGORYCHANGE(6, "Zmiana kategorii."),
+    CATEGORYCHANGE(6, "eventType.categoryChange"),
 
     /**
      *
      */
-    PRIORITYCHANGE(7, "Zmiana ważności."),
+    PRIORITYCHANGE(7, "eventType.priorityChange"),
 
     /**
      *
      */
-    STATUSCHANGE(8, "Zmiana statusu."),
+    STATUSCHANGE(8, "eventType.statusChange"),
 
     /**
      *
      */
-    COMMENTADD(9, "Dodanie komentarza.");
+    COMMENTADD(9, "eventType.commentAdd");
 
     /**
      * Liczbowy identyfikator zdarzenia. Za jego pomocą można
@@ -84,21 +82,21 @@ public enum EventType {
     /**
      * Nazwa zdarzenia.
      */
-    private final String typeName;
+    private final String eventNameCode;
 
     /**
      * Konstruktor tworzący zdarzenie za pomocą podanego kodu liczbowego oraz
      * nazwy.
      * 
      * @param code kod liczbowy, identyfikator zdarzenia
-     * @param typeName nazwa zdarzenia
+     * @param eventNameCode nazwa zdarzenia
      * 
      * @see #code
-     * @see #typeName
+     * @see #eventNameCode
      */
-    private EventType(int code, String typeName) {
+    private EventType(int code, String eventNameCode) {
         this.code = code;
-        this.typeName = typeName;
+        this.eventNameCode = eventNameCode;
     }
 
     /**
@@ -118,12 +116,13 @@ public enum EventType {
      * 
      * @return nazwa zdarzenia
      *
-     * @see #typeName
+     * @see #eventNameCode
      */
-    public String getTypeName() {
-        return typeName;
+    public String getTypeName(Locale locale) {
+        ResourceBundle names = ResourceBundle.getBundle("eventType", locale);
+        return names.getString(eventNameCode);
     }
-
+    
     /**
      * <p>
      * Odtwarza typ zdarzenia z podanego identyfikatora. Identyfikator musi mieć
@@ -138,8 +137,7 @@ public enum EventType {
      * 
      * @param code identyfikator zdarzenia
      * @return prawidłowy obiekt zdarzenia
-     * @throws RuntimeException jesli podana liczba jest spoza spodziewanego
-     * zbioru
+     * @throws RuntimeException jesli podana liczba jest spoza spodziewanego zbioru
      * 
      * @see #code
      * @see #toInt()
@@ -175,10 +173,10 @@ public enum EventType {
      *
      * @return łańcuchowa reprezentacja typu zdarzenia
      *
-     * @see #typeName
+     * @see #eventNameCode
      */
     @Override
     public String toString() {
-        return typeName;
+        return eventNameCode;
     }
 }

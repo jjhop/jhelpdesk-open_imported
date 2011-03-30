@@ -17,10 +17,12 @@ package de.berlios.jhelpdesk.web;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -71,6 +73,9 @@ public class HelpViewController {
     @Autowired
     private LuceneIndexer luceneIndexer;
 
+    @Autowired
+    private MessageSource ms;
+
     /**
      * Wyświetla pomoc do programu.
      * 
@@ -106,7 +111,7 @@ public class HelpViewController {
 
     @RequestMapping(value = "/help/kb/search.html", method = RequestMethod.GET)
     public String kBSearch(@RequestParam("query") String query, ModelMap map,
-                           HttpSession session) throws Exception {
+                           HttpSession session, Locale currentLocale) throws Exception {
         try {
             User currentUser = (User) session.getAttribute("user");
             List<Article> result = luceneIndexer.search(query, currentUser.getSearchResultLimit());
@@ -114,13 +119,13 @@ public class HelpViewController {
             if (result.size() < 1) {
                 map.addAttribute("categories", articleCategoryDAO.getAllCategories());
                 map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
-                map.addAttribute("msg", "Nic nie znaleziono..."); // TODO: i18n
+                map.addAttribute("msg", ms.getMessage("kb.search.notfound.error", null, currentLocale));
                 return HELP_KB_INDEX;
             }
         } catch(SearchException se) {
             map.addAttribute("categories", articleCategoryDAO.getAllCategories());
             map.addAttribute("latest", articleDAO.getLastArticles(NUM_OF_LAST_ADDED_ARTICLES));
-            map.addAttribute("msg", "Niewłaściwy format łańucha wyszukiwania."); // TODO: i18n
+            map.addAttribute("msg", ms.getMessage("kb.search.string.format.error", null, currentLocale));
             return HELP_KB_INDEX;
         }
         return HELP_KB_SEARCH_RESULT;

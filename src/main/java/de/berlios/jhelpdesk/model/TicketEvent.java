@@ -17,6 +17,8 @@ package de.berlios.jhelpdesk.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -178,8 +180,46 @@ public class TicketEvent implements Serializable {
     /**
      * @return Returns the evtSubject.
      */
-    public String getEvtSubject() {
-        return "TUTAJ GENERUJEMY";
+    public String getEvtSubject(Locale locale) {
+        ResourceBundle names = ResourceBundle.getBundle("eventType", locale);
+        switch (getEventType()) {
+            case ASSIGN:
+                return String.format(locale,
+                                     names.getString("ticketEvent.assign"),
+                                     evtAuthor);
+            case CATEGORYCHANGE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.category.change"),
+                                     evtAuthor);
+            case CLOSE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.close"),
+                                     evtAuthor);
+            case COMMENTADD:
+                return String.format(locale,
+                                     names.getString("ticketEvent.comment.add"),
+                                     evtAuthor);
+            case CREATE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.create"),
+                                     evtAuthor);
+            case PRIORITYCHANGE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.priority.change"),
+                                     evtAuthor);
+            case REASSIGN:
+                return String.format(locale,
+                                     names.getString("ticketEvent.reassign"),
+                                     evtAuthor);
+            case REJECT:
+                return String.format(locale,
+                                     names.getString("ticketEvent.reject"),
+                                     evtAuthor);
+            case STATUSCHANGE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.status.change"));
+        }
+        throw new RuntimeException("Nieznany rodzaj zdarzenia.");
     }
 
     /**
@@ -215,7 +255,7 @@ public class TicketEvent implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + ticketEventId + "] => [" + getEvtSubject() + "]";
+        return "[" + ticketEventId + "] => [" + getEvtSubject(Locale.getDefault()) + "]";
     }
  
     @PrePersist
