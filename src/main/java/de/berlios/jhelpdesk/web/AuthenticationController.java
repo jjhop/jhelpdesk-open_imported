@@ -60,7 +60,6 @@ public class AuthenticationController {
      *         jeśli nie uwierzytelnienie nie powiedzie się i widok domyślny
      *         dla użytkownika jeśli uda się uwierzytelnić
      */
-    // TODO: przeniesienie na domyślny widok użytkownika lub na ten, na który chciał wejść
     @RequestMapping(value = "/login.html", method = RequestMethod.POST)
     protected String processLogin(@ModelAttribute("user") User user, ModelMap map,
                                   HttpSession session) throws Exception {
@@ -71,7 +70,10 @@ public class AuthenticationController {
             User loggedUser = userDAO.getByEmailFetchFilters(user.getEmail());
             session.setAttribute("user", loggedUser);
             session.setAttribute("logged", Boolean.TRUE);
-            return "redirect:" + loggedUser.getWelcomePage();
+            String requestURI = (String) session.getAttribute("requestURI");
+            return "redirect:" + (requestURI != null && requestURI.length() > 0
+                                    ? requestURI
+                                    : loggedUser.getWelcomePage());
         }
         map.addAttribute("badLogin", Boolean.TRUE);
         return "login";
