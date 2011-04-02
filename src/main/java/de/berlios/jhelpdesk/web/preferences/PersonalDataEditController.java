@@ -75,10 +75,12 @@ public class PersonalDataEditController {
     public String processPasswordChange(@ModelAttribute("passwordForm") PasswordForm form,
                                         BindingResult result, ModelMap map, HttpSession session) throws Exception {
         User currentUser = getUserFromSession(session);
+        currentUser.setPassword(form.getCurrentPassword());
         passwordValidator.validate(form, result);
 
-        boolean isCurrentPasswordNotValid = !userDAO.authenticate(
-                currentUser.getEmail(), form.getCurrentPassword());
+        boolean isCurrentPasswordNotValid =
+                userDAO.authenticate(currentUser.getEmail(), currentUser.getPassword());
+        
         if (result.hasErrors() || isCurrentPasswordNotValid) {
             if (isCurrentPasswordNotValid) {
                 result.rejectValue("currentPassword", "passw.change.current.notValid");
