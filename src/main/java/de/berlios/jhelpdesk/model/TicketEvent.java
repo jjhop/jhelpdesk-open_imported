@@ -186,19 +186,19 @@ public class TicketEvent implements Serializable {
             case ASSIGN:
                 return String.format(locale,
                                      names.getString("ticketEvent.assign"),
-                                     evtAuthor);
+                                     ticket.getTicketId(), evtAuthor);
             case CATEGORYCHANGE:
                 return String.format(locale,
                                      names.getString("ticketEvent.category.change"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case CLOSE:
                 return String.format(locale,
                                      names.getString("ticketEvent.close"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case COMMENTADD:
                 return String.format(locale,
                                      names.getString("ticketEvent.comment.add"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case CREATE:
                 return String.format(locale,
                                      names.getString("ticketEvent.create"),
@@ -206,18 +206,19 @@ public class TicketEvent implements Serializable {
             case PRIORITYCHANGE:
                 return String.format(locale,
                                      names.getString("ticketEvent.priority.change"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case REASSIGN:
                 return String.format(locale,
                                      names.getString("ticketEvent.reassign"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case REJECT:
                 return String.format(locale,
                                      names.getString("ticketEvent.reject"),
-                                     evtAuthor);
+                                     evtAuthor, ticket.getTicketId());
             case STATUSCHANGE:
                 return String.format(locale,
-                                     names.getString("ticketEvent.status.change"));
+                                     names.getString("ticketEvent.status.change"),
+                                     ticket.getTicketId());
         }
         throw new RuntimeException("Nieznany rodzaj zdarzenia.");
     }
