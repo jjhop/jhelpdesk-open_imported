@@ -47,12 +47,11 @@ public class AuthFilter implements Filter {
 		}
 		Boolean logged = (Boolean) sess.getAttribute("logged");
 
-		if ((logged == null) || (!logged.booleanValue())) {
+		if ((logged == null) || !logged.booleanValue()) {
             int rp = servletReq.getContextPath().length();
             sess.setAttribute("requestURI", servletReq.getRequestURI().substring(rp));
 			((HttpServletResponse) res).sendRedirect(
 					servletReq.getContextPath() + "/login.html");
-			return;
 		}
 		chain.doFilter(req, res);
 	}
