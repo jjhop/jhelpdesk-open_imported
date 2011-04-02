@@ -18,39 +18,41 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="<c:url value="/preferences/personalData/password/change.html"/>" rel="iframe" title=":: :: topclose: false, width: 320, height: 390" class="lightview">Yahoo</a>
                                         <ul class="formContainer">
-                                            <li>
+                                            <li class="floatLeft w45p">
                                                 <label>Imie</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" onkeyup="this.value.charCount('nameCounter', 35)" path="firstName"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" onkeyup="this.value.charCount('nameCounter', 35)" path="firstName"/>
                                                 <form:errors cssClass="formError errorBottom" path="firstName" />
                                                 <span id="nameCounter" style="display:none" class="counter"></span>
                                             </li>
-                                            <li>
+                                            <li class="floatRight w45p">
                                                 <label>Nazwisko</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="lastName"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="lastName"/>
                                                 <form:errors cssClass="formError errorBottom" path="lastName" />
                                             </li>
-                                            <li>
+                                            <li class="floatLeft w45p">
                                                 <label>Email</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="email"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="email"/>
                                                 <form:errors cssClass="formError errorBottom" path="email" />
                                             </li>
-                                            <li>
+                                            <li class="floatRight w45p">
                                                 <label>Telefon</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="phone"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="phone"/>
                                                 <form:errors cssClass="formError errorBottom" path="phone" />
                                             </li>
-                                            <li>
+                                            <li class="clearFloat floatLeft w45p">
                                                 <label>Mobile</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="mobile"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="mobile"/>
                                                 <form:errors cssClass="formError errorBottom" path="mobile" />
+                                            </li>
+                                            <li class="floatRight w45p">
+                                                <a href="<c:url value="/preferences/personalData/password/change.html"/>" rel="iframe" title=":: :: topclose: false, width: 320, height: 390" class="btn floatRight btnMarginTop25 lightview">zmień hasło</a>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatLeft" />
+                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatRight" />
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>

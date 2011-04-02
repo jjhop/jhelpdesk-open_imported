@@ -29,7 +29,8 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatLeft" />
+        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatRight" />
+        
         <div class="clearFloat"></div>
     </form:form>
 </div>
