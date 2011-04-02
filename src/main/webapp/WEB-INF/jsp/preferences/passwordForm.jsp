@@ -10,8 +10,8 @@
             <tr>
                 <td>
                     <div>
-                        Zbiorcze komunikaty o błędach...
-                        <form:errors path="*"/>
+                        <form:errors path="currentPassword"/>
+                        <form:errors path="newPassword"/>
                     </div>
                     <ul class="formContainer">
                         <li>
