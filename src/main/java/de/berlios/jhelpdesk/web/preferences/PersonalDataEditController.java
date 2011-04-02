@@ -77,12 +77,11 @@ public class PersonalDataEditController {
         User currentUser = getUserFromSession(session);
         passwordValidator.validate(form, result);
 
-        currentUser.setPassword(form.getCurrentPassword());
-        boolean isCurrentPasswordNotValid =
-                !userDAO.authenticate(currentUser.getEmail(), currentUser.getPassword());
-        
-        if (result.hasErrors() || isCurrentPasswordNotValid) {
-            if (isCurrentPasswordNotValid) {
+        boolean isCurrentPasswordValid =
+                userDAO.authenticate(currentUser.getEmail(),
+                                     currentUser.getHashedPassword(form.getCurrentPassword()));
+        if (result.hasErrors() || !isCurrentPasswordValid) {
+            if (!isCurrentPasswordValid) {
                 result.rejectValue("currentPassword", "passw.change.current.notValid");
             }
             map.addAttribute("passwordForm", form);

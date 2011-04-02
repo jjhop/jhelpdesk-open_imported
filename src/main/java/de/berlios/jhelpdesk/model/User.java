@@ -222,6 +222,10 @@ public class User implements Serializable {
         this.hashedPassword = DigestUtils.shaHex(password);
     }
 
+    public String getHashedPassword(String password) {
+        return DigestUtils.shaHex(password);
+    }
+
     public boolean isManager() {
         return userRole.equals(Role.MANAGER);
     }

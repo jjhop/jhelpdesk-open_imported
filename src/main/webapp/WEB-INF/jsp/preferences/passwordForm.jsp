@@ -4,7 +4,8 @@
 
 <div id="pagecontentsubheader"><h3>Zmiana hasła</h3></div>
 <div class="contentmiddle">
-    <form:form commandName="passwordForm" action="../password/change.html" method="post">
+    <c:url value="/preferences/personalData/password/change.html" var="formURL"/>
+    <form:form commandName="passwordForm" action="${formURL}" method="post">
         <table cellspacing="0" class="standardtable">
             <tr>
                 <td>
