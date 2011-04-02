@@ -52,7 +52,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatLeft" />
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
