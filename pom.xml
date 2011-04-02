@@ -109,7 +109,8 @@
                         **/*TicketStatus.class,
                         **/*EventType.class,
                         **/*NotifyFrequency.class,
-                        **/*Role.class
+                        **/*Role.class,
+                        **/*PasswordForm.class
                     </excludes>
                     <addDefaultConstructor>true</addDefaultConstructor>
                     <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
