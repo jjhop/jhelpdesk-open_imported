@@ -50,6 +50,11 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     text-align: center;
 }
 
+.btnPlain {
+    padding: 5px 0;
+    margin: 10px 10px 0 10px;
+}
+
 .btnMargin {
     margin: 10px 0;
 }

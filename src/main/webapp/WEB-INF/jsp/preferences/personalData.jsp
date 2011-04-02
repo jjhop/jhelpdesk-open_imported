@@ -31,19 +31,19 @@
                                                 <form:errors cssClass="formError errorBottom" path="lastName" />
                                             </li>
                                             <li class="floatLeft w45p">
-                                                <label>Email</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="email"/>
-                                                <form:errors cssClass="formError errorBottom" path="email" />
-                                            </li>
-                                            <li class="floatRight w45p">
                                                 <label>Telefon</label>
                                                 <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="phone"/>
                                                 <form:errors cssClass="formError errorBottom" path="phone" />
                                             </li>
-                                            <li class="clearFloat floatLeft w45p">
+                                            <li class="floatRight w45p">
                                                 <label>Mobile</label>
                                                 <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="mobile"/>
                                                 <form:errors cssClass="formError errorBottom" path="mobile" />
+                                            </li>
+                                            <li class="floatLeft w45p">
+                                                <label>Email</label>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="email"/>
+                                                <form:errors cssClass="formError errorBottom" path="email" />
                                             </li>
                                             <li class="floatRight w45p">
                                                 <a href="<c:url value="/preferences/personalData/password/change.html"/>" rel="iframe" title=":: :: topclose: false, width: 320, height: 390" class="btn floatRight btnMarginTop25 lightview">zmień hasło</a>
@@ -53,6 +53,7 @@
                                 </tr>
                             </table>
                             <input type="submit" value="zmień dane" class="btn btnMarginTop floatLeft" />
+                            <a href="#" class="btnPlain floatLeft">anuluj</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
