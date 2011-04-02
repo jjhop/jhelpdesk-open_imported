@@ -26,12 +26,14 @@ width: 340px;
     cursor: pointer;
 }
 
+
 .btn:hover {
     background: url("../i/buttonBgNavy.png") -260px -2px no-repeat;
     border: 2px solid #32415d;
 }
 * html .btn {width: auto;}
-a.btn {display: block;padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
+
+a.btn {padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
 .ticketslist a#filterbutton.btn {
     position: absolute;
@@ -54,6 +56,10 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 
 .btnMarginTop {
     margin-top: 10px;
+}
+
+.btnMarginTop25 {
+    margin-top: 25px;
 }
 
 /*#filterbutton {
