@@ -6,10 +6,9 @@
 <div class="contentmiddle">
     <form:form commandName="passwordForm" action="../password/change.html" method="post">
         <table cellspacing="0" class="standardtable">
-            <tr><th colspan="2" class="lastcol">Zmiana hasła</th></tr>
             <tr>
                 <td>
-                    <div>
+                    <div class="passwordErrors">
                         <form:errors path="currentPassword"/>
                         <form:errors path="newPassword"/>
                     </div>

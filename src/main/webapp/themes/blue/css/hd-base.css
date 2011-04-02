@@ -1328,6 +1328,12 @@ ul.formContainer ul.legend li {
     padding: 5px 0 0 0;
 }
 
+.passwordErrors span {
+    display: block;
+    color: red;
+    padding: 3px 10px;
+}
+
 .kbSearchItem {
     padding: 5px 10px;
     margin: 10px 0 15px 0;
