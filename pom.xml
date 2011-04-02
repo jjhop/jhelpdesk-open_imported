@@ -105,6 +105,7 @@
                     <includes>de/berlios/jhelpdesk/model/*.class</includes>
                     <excludes>
                         **/*TicketPriority.class,
+                        **/*TicketEvent$1.class,
                         **/*TicketStatus.class,
                         **/*EventType.class,
                         **/*NotifyFrequency.class,
