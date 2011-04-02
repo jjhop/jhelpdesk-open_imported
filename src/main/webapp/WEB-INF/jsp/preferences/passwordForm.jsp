@@ -30,7 +30,8 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatRight" />
+        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatLeft" />
+        <a href="javascript:Lightview.hide();" onclick="Lightview.hide();" class="btnPlain floatLeft">anuluj</a>
         
         <div class="clearFloat"></div>
     </form:form>
