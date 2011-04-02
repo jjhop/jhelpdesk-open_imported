@@ -6,6 +6,10 @@
 
     <definition name="javascripts" template="/WEB-INF/jsp/inc/javascripts.jsp"/>
 
+    <definition name="lightLayout" template="/WEB-INF/jsp/layouts/lightLayout.jsp">
+        
+    </definition>
+
     <definition name="baseLayout" template="/WEB-INF/jsp/layouts/baseLayout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="displayFilterLink" value="none"/>
@@ -99,6 +103,14 @@
     <definition name="preferences/personalData" extends="baseLayout">
         <put-attribute name="title" value="Edycja preferencji - ustawienia powiadamiania"/>
         <put-attribute name="content" value="/WEB-INF/jsp/preferences/personalData.jsp"/>
+    </definition>
+
+    <definition name="preferences/password/form" extends="lightLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/preferences/passwordForm.jsp"/>
+    </definition>
+    
+    <definition name="preferences/password/thanks" extends="lightLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/preferences/passwordThanks.jsp"/>
     </definition>
 
     <definition name="preferences/filters/showAll" extends="baseLayout">

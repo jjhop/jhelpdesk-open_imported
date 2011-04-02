@@ -18,6 +18,7 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        <a href="<c:url value="/preferences/personalData/password/change.html"/>" rel="iframe" title=":: :: topclose: false, width: 320, height: 390" class="lightview">Yahoo</a>
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Imie</label>
@@ -49,39 +50,14 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input name="_cancel" type="submit" value="Anuluj" class="btn btnMarginTop floatLeft" />
-                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatLeft" />
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
                 </div>
             </td>
             <td class="leftcells colNarrowRight">
-                <div id="pagecontentsubheader"><h3>Zmiana hasła</h3></div>
-                <div class="contentmiddle">
-                    <form action="../password/change.html" method="post">
-                        <table cellspacing="0" class="standardtable">
-                            <tr><th colspan="2" class="lastcol">Zmiana hasła</th></tr>
-                            <tr>
-                                <td>
-                                    <ul class="formContainer">
-                                        <li>
-                                            <label>Hasło</label>
-                                            <input type="password" name="password" class="w98p" maxlength="128"/>
-                                        </li>
-                                        <li>
-                                            <label>Powtórz hasło</label>
-                                            <input type="password" name="repeated" class="w98p" maxlength="128"/>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                        <input name="_cancel" type="submit" value="Anuluj" class="btn btnMarginTop floatLeft" />
-                        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatRight" />
-                        <div class="clearFloat"></div>
-                    </form>
-                </div>
+                
             </td>
         </tr>
     </table>

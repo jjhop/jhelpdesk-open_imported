@@ -17,8 +17,6 @@ package de.berlios.jhelpdesk.web.preferences;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,11 +24,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.UserDAO;
+import de.berlios.jhelpdesk.model.PasswordForm;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.tools.PasswordFormValidator;
 import de.berlios.jhelpdesk.web.tools.UserValidator;
 
 /**
@@ -45,6 +44,9 @@ public class PersonalDataEditController {
 
     @Autowired
     private UserValidator validator;
+    
+    @Autowired
+    private PasswordFormValidator passwordValidator;
 
     @RequestMapping(value = "/preferences/personalData.html", method = RequestMethod.GET)
     public String prepareForm(HttpSession session, ModelMap map) {
@@ -55,7 +57,6 @@ public class PersonalDataEditController {
     @RequestMapping(value = "/preferences/personalData/change.html", method = RequestMethod.POST)
     public String processPersonalDataChange(@ModelAttribute("personalData") User user,
                                             BindingResult result, ModelMap map) {
-        // 1. walidacje a jeśli jest ok to przepisujemy do usera z bazki i zapisujemy i zmykamy
         validator.validate(user, result);
         if (result.hasErrors()) {
             map.addAttribute("user", user);
@@ -64,27 +65,29 @@ public class PersonalDataEditController {
         return "preferences/personalData";
     }
 
-    @RequestMapping(value = "/preferences/password/change.html", method = RequestMethod.POST)
-    public String processPasswordChange(@RequestParam("password") String password,
-                                        @RequestParam("repeated") String repeated,
-                                        HttpSession session, ModelMap map) throws Exception {
-        User currentUser = getUserFromSession(session);
-        map.addAttribute("personalData", currentUser);
-
-        if (passwordsAreSameAndValid(password, repeated)) {
-            userDAO.updatePasswordAndSalt(currentUser, password);
-            map.addAttribute("message", "wyciagamy info z messagesów"); // UDAŁO SIĘ!
-        } else {
-            map.addAttribute("message", "nie udało się!!!!"); // PORAŻKA!
-        }
-        return "preferences/personalData";
+    @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.GET)
+    public String preparePasswordChange(HttpSession session, ModelMap map) throws Exception {
+        map.addAttribute("passwordForm", new PasswordForm());
+        return "preferences/password/form";
     }
 
-    private boolean passwordsAreSameAndValid(String p1, String p2) {
-        boolean containsNumber = StringUtils.containsAny(p1, "0123456789");
-        boolean containsSpecial = StringUtils.containsAny(p1, "!@#$%^&*()_+-=/*,.;:\\\"'`~'");
+    @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.POST)
+    public String processPasswordChange(@ModelAttribute("passwordForm") PasswordForm form,
+                                        BindingResult result, ModelMap map, HttpSession session) throws Exception {
+        User currentUser = getUserFromSession(session);
+        passwordValidator.validate(form, result);
 
-        return (p1.length() < 6 && p1.equals(p2) && containsNumber && containsSpecial);
+        boolean isCurrentPasswordNotValid = !userDAO.authenticate(
+                currentUser.getEmail(), form.getCurrentPassword());
+        if (result.hasErrors() || isCurrentPasswordNotValid) {
+            if (isCurrentPasswordNotValid) {
+                result.rejectValue("currentPassword", "passw.change.current.notValid");
+            }
+            map.addAttribute("passwordForm", form);
+            return "preferences/password/form";
+        }
+        userDAO.updatePasswordAndSalt(currentUser, form.getNewPassword());
+        return "preferences/password/thanks";
     }
 
     private User getUserFromSession(HttpSession session) {
