@@ -11,6 +11,7 @@
                 <td>
                     <div>
                         Zbiorcze komunikaty o błędach...
+                        <form:errors path="*"/>
                     </div>
                     <ul class="formContainer">
                         <li>
@@ -18,8 +19,8 @@
                             <form:password path="currentPassword" maxlength="128" cssClass="w98p" cssErrorClass=""/>
                         </li>
                         <li>
-                            <form:label path="newPasswordRepeated">Hasło</form:label>
-                            <form:password path="newPasswordRepeated" maxlength="128" cssClass="w98p"/>
+                            <form:label path="newPassword">Hasło</form:label>
+                            <form:password path="newPassword" maxlength="128" cssClass="w98p"/>
                         </li>
                         <li>
                             <form:label path="newPasswordRepeated">Powtórz hasło</form:label>

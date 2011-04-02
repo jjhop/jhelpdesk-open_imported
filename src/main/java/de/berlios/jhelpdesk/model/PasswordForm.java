@@ -54,7 +54,7 @@ public class PasswordForm {
     public boolean newPasswordValid() {
         boolean containsNumber = StringUtils.containsAny(newPassword, "0123456789");
         boolean containsSpecial = StringUtils.containsAny(newPassword, "!@#$%^&*()_+-=/*,.;:\\\"'`~'");
-        return (newPassword.length() >= 6)
+        return newPassword.length() >= 6
                 && newPassword.equals(newPasswordRepeated)
                 && containsNumber
                 && containsSpecial;
