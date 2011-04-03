@@ -467,6 +467,7 @@ td.rightcells {
 #box {
     width: 561px;
     position: absolute;
+    top: 14px;
 }
 div.panelsBg {
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='../i/transFilter.png');
