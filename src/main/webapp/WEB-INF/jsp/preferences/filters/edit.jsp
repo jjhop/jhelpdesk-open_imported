@@ -11,26 +11,26 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-
                         <c:url value="/preferences/filters/save.html" var="formUrl"/>
                         <form:form action="${formUrl}" commandName="filter" method="post">
                             <form:hidden path="id"/>
                             <form:hidden path="tfStamp"/>
                             <form:hidden path="owner.userId"/>
                             <table cellspacing="0" class="standardtable">
-
                                 <tr>
                                     <td>
                                         <c:if test="${not empty message}">${message}</c:if>
                                          <ul class="formContainer">
-                                            <li>
+                                            <li class="w45p">
                                                 <label>Nazwa</label>
-                                                <form:input path="name" cssClass="w98p" maxlength="32"/>
-                                                <form:errors path="name"/>
+                                                <form:input path="name" onblur="$('nameCounter').hide()" onkeyup="this.value.charCount('nameCounter', 32)" cssClass="w95p" cssErrorClass="fieldError w95p" maxlength="32"/>
+                                                <form:errors cssClass="formError errorBottom" path="name"/>
+                                                <span id="nameCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <label>Opis</label>
-                                                <form:textarea path="description" cssClass="w98p" />
+                                                <form:textarea path="description" onblur="$('descCounter').hide()" onkeyup="this.value = this.value.charTextCount('descCounter', 512)" cssClass="w98p" />
+                                                <span id="descCounter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Od</label>
@@ -109,7 +109,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft"/>
+                            <a href="<c:url value="/preferences/filters/list.html"/>" class="btnPlain floatLeft">anuluj</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
