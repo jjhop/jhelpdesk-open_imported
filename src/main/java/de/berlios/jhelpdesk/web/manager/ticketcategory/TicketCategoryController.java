@@ -79,10 +79,11 @@ public class TicketCategoryController {
     @RequestMapping("/manage/category/{id}/remove.html")
     public String removeCategory(@PathVariable("id") Long id, ModelMap map) throws Exception {
         TicketCategory category = categoryDAO.getById(id);
-        if (category.getTicketsCount() > 0) {
+        if (category.getTicketsCount() == 0) {
             categoryDAO.deleteCategory(category.getId());
+            map.addAttribute("msg", "Kategoria została usunięta.");
         } else {
-            map.addAttribute("msg", "Nie można usunąć kategorii z ticketami");
+            map.addAttribute("msg", "Nie można usunąć kategorii ze zgłoszeniami.");
         }
         return "redirect:/manage/category/list.html";
     }
