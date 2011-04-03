@@ -7,7 +7,7 @@
         <tiles:insertDefinition name="javascripts" flush="true"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/hd-base.css"/>"/>
     </head>
-    <body>
+    <body class="lightPassView">
         <tiles:insertAttribute name="content" />
     </body>
 </html>
