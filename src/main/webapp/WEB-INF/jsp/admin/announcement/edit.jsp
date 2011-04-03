@@ -49,7 +49,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
+                            <a href="<c:url value="/announcements/list.html"/>" class="btnPlain floatLeft">anuluj</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
