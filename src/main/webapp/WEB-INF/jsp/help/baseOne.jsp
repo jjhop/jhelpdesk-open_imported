@@ -44,21 +44,21 @@
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <c:if test="${fn:length(article.comments) > 0}">
-                        <table cellspacing="0" class="standardtable">
-                            <tr>
-                                <td class="lastcol">
-                                    <dl class="kbComments">
-                                    <c:forEach items="${article.comments}" var="comment">
-                                        <dt id="c${comment.id}">
-                                            <span class="kbCommentsMeta">Autor: asdsadasdasd; Dodano: 2011.01.30</span>
-                                            <c:out value="${comment.title}"/>
-                                        </dt>
-                                        <dd><c:out value="${comment.body}"/></dd>
-                                    </c:forEach>
-                                    </dl>
-                                </td>
-                            </tr>
-                        </table>
+                            <table cellspacing="0" class="standardtable">
+                                <tr>
+                                    <td class="lastcol">
+                                        <dl class="kbComments">
+                                            <c:forEach items="${article.comments}" var="comment">
+                                                <dt id="c${comment.id}">
+                                                    <span class="kbCommentsMeta">Autor: asdsadasdasd; Dodano: 2011.01.30</span>
+                                                    <c:out value="${comment.title}"/>
+                                                </dt>
+                                                <dd><c:out value="${comment.body}"/></dd>
+                                            </c:forEach>
+                                        </dl>
+                                    </td>
+                                </tr>
+                            </table>
                         </c:if>
                         <br>
                         <table cellspacing="0" class="standardtable">
@@ -96,10 +96,10 @@
                 <div class="contentmiddle">
                     <ul class="kbList">
                         <c:forEach items="${article.associatedTickets}" var="ticket">
-                        <li>
-                            <a href="<c:url value="/ticketDetails.html?ticketId=${ticket.ticketId}"/>"><c:out value="${ticket.subject}"/></a>
-                            <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
-                        </li>
+                            <li>
+                                <a href="<c:url value="/ticketDetails.html?ticketId=${ticket.ticketId}"/>"><c:out value="${ticket.subject}"/></a>
+                                <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
+                            </li>
                         </c:forEach>
                         <li>Brak powiązanych zdarzeń.</li>
                     </ul>

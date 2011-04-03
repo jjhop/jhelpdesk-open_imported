@@ -114,4 +114,8 @@ public interface ArticleDAO {
      * @see Article
      */
     void saveArticleComment(ArticleComment comment) throws DAOException;
+
+    void moveUp(Long categoryId) throws DAOException;
+
+    void moveDown(Long categoryId) throws DAOException;
 }

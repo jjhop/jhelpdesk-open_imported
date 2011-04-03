@@ -99,7 +99,7 @@ public class ArticleDAOJpa implements ArticleDAO {
             return this.jpaTemplate.executeFind(new JpaCallback<List<Article>>() {
                 public List<Article> doInJpa(EntityManager em) throws PersistenceException {
                     Query q = em.createQuery(
-                        "SELECT a FROM Article a WHERE a.category.id=?1 ORDER BY a.createdAt DESC");
+                        "SELECT a FROM Article a WHERE a.category.id=?1 ORDER BY a.order ASC");
                     q.setParameter(1, cId);
                     q.setFirstResult(offset);
                     q.setMaxResults(pageSize);
@@ -186,5 +186,55 @@ public class ArticleDAOJpa implements ArticleDAO {
         } catch(Exception ex) {
             throw new DAOException(ex);
         }
+    }
+
+    @Transactional(readOnly = false)
+    public void moveDown(final Long articleId) throws DAOException {
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                Article target = em.find(Article.class, articleId);
+                Query q = em.createQuery("SELECT a FROM Article a "
+                                       + "WHERE a.order > ?1 AND a.category.id=?2 "
+                                       + "ORDER BY a.order ASC");
+                q.setParameter(1, target.getOrder());
+                q.setParameter(2, target.getCategory().getId());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    Article n = (Article) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
+                }
+                return null;
+            }
+        });
+    }
+
+    @Transactional(readOnly = false)
+    public void moveUp(final Long articleId) throws DAOException {
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                Article target = em.find(Article.class, articleId);
+                Query q = em.createQuery("SELECT a FROM Article a "
+                                       + "WHERE a.order < ?1 AND a.category.id=?2 "
+                                       + "ORDER BY a.order DESC");
+                q.setParameter(1, target.getOrder());
+                q.setParameter(2, target.getCategory().getId());
+                q.setMaxResults(1);
+                List result = q.getResultList();
+                if (result.size() > 0) {
+                    Article n = (Article) result.get(0);
+                    Long targetNewOrd = n.getOrder();
+                    n.setOrder(target.getOrder());
+                    target.setOrder(targetNewOrd);
+                    em.merge(target);
+                    em.merge(n);
+                }
+                return null;
+            }
+        });
     }
 }

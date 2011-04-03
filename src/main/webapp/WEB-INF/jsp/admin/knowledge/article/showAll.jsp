@@ -37,11 +37,13 @@
                                 <a class="actionDel" title="Remove" href="<c:url value="/manage/kb/category/${categoryId}/articles/${a.id}/remove.html"/>">R</a>
                             </display:column>
                             <display:column class="ticketEdit">
-                                <a class="actionUp" title="Move up" href="<c:url value="/manage/kb/article/up.html?articleId=${a.id}"/>">U</a>
+                                <c:if test="${a.order > 1}">
+                                    <a class="actionUp" title="Move up" href="<c:url value="/manage/kb/category/${categoryId}/articles/${a.id}/up.html"/>">U</a>
+                                </c:if>
                             </display:column>
                             <display:column class="ticketEdit">
                                 <c:if test="${a.order < fn:length(articles)}">
-                                    <a class="actionDown" title="Move down" href="<c:url value="/manage/kb/article/down.html?articleId=${a.id}"/>">D</a>
+                                    <a class="actionDown" title="Move down" href="<c:url value="/manage/kb/category/${categoryId}/articles/${a.id}/down.html"/>">D</a>
                                 </c:if>
                             </display:column>
                         </display:table>

@@ -43,7 +43,6 @@ public class ArticleCategoryController {
 
     private final static String MANAGE_KB_CATEGORY_LIST_RDR = "redirect:/manage/kb/categories/list.html";
     private final static String MANAGE_KB_CATEGORY_LIST = "manager/knowledge/category/showAll";
-    private final static String MANAGE_KB_CATEGORY_SHOW = "manager/knowledge/category/show";
     private final static String MANAGE_KB_CATEGORY_EDIT = "manager/knowledge/category/edit";
 
     @Autowired
