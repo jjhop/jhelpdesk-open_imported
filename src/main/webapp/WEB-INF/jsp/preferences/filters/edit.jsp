@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Zarządzanie filtrami</h3></div>
+                <div id="pagecontentsubheader"><h3>Zarządzanie filtrami <a href="#"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a></h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
