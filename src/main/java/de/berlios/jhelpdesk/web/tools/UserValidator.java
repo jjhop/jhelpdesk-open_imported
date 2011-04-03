@@ -10,45 +10,28 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
 package de.berlios.jhelpdesk.web.tools;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 import de.berlios.jhelpdesk.model.User;
 
 @Component
-public class UserValidator implements Validator {
+@Qualifier("complete")
+public class UserValidator extends UserDataValidator {
 
-    public boolean supports(Class<?> clazz) {
-        return User.class.equals(clazz);
-    }
-
+    @Override
     public void validate(Object user, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "errors.hduser.firstName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "errors.hduser.lastName");
+        super.validate(user, errors);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "errors.hduser.password");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "errors.hduser.email");
-
-        User u = (User) user;
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        CharSequence inputStr = u.getEmail();
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (errors.getFieldErrorCount("email") == 0 && !matcher.matches()) {
-            errors.rejectValue("email", "errors.hduser.email");
-        }
-        if (u.getUserRole() == null) {
+        if (((User) user).getUserRole() == null) {
             errors.rejectValue("userRole", "errors.hduser.userRole.notset");
         }
     }
 }
-
