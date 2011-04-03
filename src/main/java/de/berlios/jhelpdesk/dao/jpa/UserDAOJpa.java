@@ -129,12 +129,26 @@ public class UserDAOJpa implements UserDAO {
     }
 
     @Transactional(readOnly = false)
-    public void saveOrUpdate(User user) throws DAOException {
+    public void saveOrUpdate(final User user) throws DAOException {
         try {
             if (user.getUserId() == null) {
                 this.jpaTemplate.persist(user);
             } else {
-                this.jpaTemplate.merge(user);
+                this.jpaTemplate.execute(new JpaCallback<Object>() {
+                    public Object doInJpa(EntityManager em) throws PersistenceException {
+                        Query q = em.createNativeQuery("UPDATE users SET first_name=?1, "
+                                                     + "last_name=?2, phone=?3, mobile=?4, "
+                                                     + "email=?5 WHERE user_id=?6");
+                        q.setParameter(1, user.getFirstName());
+                        q.setParameter(2, user.getLastName());
+                        q.setParameter(3, user.getPhone());
+                        q.setParameter(4, user.getMobile());
+                        q.setParameter(5, user.getEmail());
+                        q.setParameter(6, user.getUserId());
+                        q.executeUpdate();
+                        return null;
+                    }
+                });
             }
         } catch(Exception ex) {
             throw new DAOException(ex);

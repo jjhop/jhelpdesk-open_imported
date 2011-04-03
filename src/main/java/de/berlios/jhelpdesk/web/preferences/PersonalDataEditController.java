@@ -18,6 +18,7 @@ package de.berlios.jhelpdesk.web.preferences;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -30,7 +31,7 @@ import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.PasswordForm;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.tools.PasswordFormValidator;
-import de.berlios.jhelpdesk.web.tools.UserValidator;
+import de.berlios.jhelpdesk.web.tools.UserDataValidator;
 
 /**
  * 
@@ -43,7 +44,8 @@ public class PersonalDataEditController {
     private UserDAO userDAO;
 
     @Autowired
-    private UserValidator validator;
+    @Qualifier("onlyData")
+    private UserDataValidator validator;
     
     @Autowired
     private PasswordFormValidator passwordValidator;
@@ -56,12 +58,16 @@ public class PersonalDataEditController {
 
     @RequestMapping(value = "/preferences/personalData/change.html", method = RequestMethod.POST)
     public String processPersonalDataChange(@ModelAttribute("personalData") User user,
-                                            BindingResult result, ModelMap map) {
+                                            BindingResult result, ModelMap map, 
+                                            HttpSession session) throws Exception {
+        User currentUser = getUserFromSession(session);
         validator.validate(user, result);
         if (result.hasErrors()) {
             map.addAttribute("user", user);
             return "preferences/personalData";
         }
+        user.setUserId(currentUser.getUserId());
+        userDAO.saveOrUpdate(user);
         return "preferences/personalData";
     }
 
