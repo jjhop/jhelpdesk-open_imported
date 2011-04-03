@@ -71,6 +71,7 @@ public class AuthenticationController {
             session.setAttribute("user", loggedUser);
             session.setAttribute("logged", Boolean.TRUE);
             String requestURI = (String) session.getAttribute("requestURI");
+            session.removeAttribute("requestURI");
             return "redirect:" + (requestURI != null && requestURI.length() > 0
                                     ? requestURI
                                     : loggedUser.getWelcomePage());
