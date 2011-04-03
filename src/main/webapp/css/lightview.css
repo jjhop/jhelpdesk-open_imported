@@ -305,14 +305,10 @@
 	margin: 0;
 	padding: 0;
 	clear: both;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
 }
 
 #lightview iframe {
 	float: left;
-	border: 0;
 	clear: both;
 	padding: 0;
 	margin: 0;
