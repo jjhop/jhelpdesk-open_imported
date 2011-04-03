@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
+import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 
@@ -65,8 +66,7 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/{id}/show.html")
-    public String showOneCategory(@PathVariable("id") Long id,
-            ModelMap map) throws Exception {
+    public String showOneCategory(@PathVariable("id") Long id, ModelMap map) throws Exception {
         map.addAttribute("category", categoryDAO.getById(id));
         return "manager/categor/show";
     }
@@ -77,8 +77,13 @@ public class TicketCategoryController {
      * @return
      */
     @RequestMapping("/manage/category/{id}/remove.html")
-    public String removeCategory(@PathVariable("id") Long id) throws Exception {
-        categoryDAO.deleteCategory(categoryDAO.getById(id)); // todo: uprościć!
+    public String removeCategory(@PathVariable("id") Long id, ModelMap map) throws Exception {
+        TicketCategory category = categoryDAO.getById(id);
+        if (category.getTicketsCount() > 0) {
+            categoryDAO.deleteCategory(category.getId());
+        } else {
+            map.addAttribute("msg", "Nie można usunąć kategorii z ticketami");
+        }
         return "redirect:/manage/category/list.html";
     }
 
