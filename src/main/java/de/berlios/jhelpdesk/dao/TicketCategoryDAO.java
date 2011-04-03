@@ -63,11 +63,7 @@ public interface TicketCategoryDAO {
      */
     TicketCategory getDefault() throws DAOException;
 
-    /**
-     *
-     * @param category
-     */
-    void deleteCategory(TicketCategory category) throws DAOException;
+    void deleteCategory(Long categoryId) throws DAOException;
 
     /**
      *

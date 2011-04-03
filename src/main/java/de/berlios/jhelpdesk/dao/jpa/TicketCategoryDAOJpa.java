@@ -46,11 +46,18 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
     public TicketCategoryDAOJpa(EntityManagerFactory emf) {
         this.jpaTemplate = new JpaTemplate(emf);
     }
-
+    
     @Transactional(readOnly = false)
-    public void delete(TicketCategory tc) throws DAOException {
-        this.jpaTemplate.refresh(tc);
-        this.jpaTemplate.remove(tc);
+    public void deleteCategory(final Long categoryId) throws DAOException {
+        this.jpaTemplate.execute(new JpaCallback<Object>() {
+            public Object doInJpa(EntityManager em) throws PersistenceException {
+                TicketCategory category = em.find(TicketCategory.class, categoryId);
+                if (category.getTicketsCount() == 0) {
+                    em.remove(category);
+                }
+                return null;
+            }
+        });
     }
 
     @Transactional(readOnly = false)
