@@ -17,7 +17,11 @@ package de.berlios.jhelpdesk.web.manager;
 
 import java.text.NumberFormat;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
@@ -41,7 +45,6 @@ import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.tools.ArticleCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.ArticleValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -50,12 +53,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ArticleController {
 
+    private static final Logger log = LoggerFactory.getLogger(ArticleController.class);
+
     private final static String MANAGE_KB_ARTICLE_SHOW = "manage/knowledge/article/show";
     private final static String MANAGE_KB_ARTICLE_EDIT = "manage/knowledge/article/edit";
     private final static String MANAGE_KB_ARTICLE_LIST = "manage/knowledge/article/showAll";
 
     @Autowired
-    private ArticleDAO articleDAOJpa;
+    private ArticleDAO articleDAO;
 
     @Autowired
     private ArticleCategoryDAO articleCategoryDAO;
@@ -88,9 +93,9 @@ public class ArticleController {
         int pageSize = currentUser.getArticlesListSize();
         PagingParamsEncoder enc = new PagingParamsEncoder("a", null, request, pageSize);
         int offset = enc.getOffset();
-        int articlesInCategory = articleDAOJpa.countForSection(categoryId);
+        int articlesInCategory = articleDAO.countForSection(categoryId);
         
-        map.addAttribute("articles", articleDAOJpa.getForSection(categoryId, pageSize, offset));
+        map.addAttribute("articles", articleDAO.getForSection(categoryId, pageSize, offset));
         map.addAttribute("articlesListSize", articlesInCategory);
         map.addAttribute("listSize", pageSize);
         map.addAttribute("offset", offset);
@@ -100,14 +105,14 @@ public class ArticleController {
 
     @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/show.html")
     public String showArticle(@PathVariable("aId") Long articleId, ModelMap map) throws Exception {
-        map.addAttribute("article", articleDAOJpa.getById(articleId));
+        map.addAttribute("article", articleDAO.getById(articleId));
         return MANAGE_KB_ARTICLE_SHOW;
     }
 
     @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/remove.html")
     public String remove(@PathVariable("cId") Long categoryId,
                          @PathVariable("aId") Long articleId) throws Exception {
-        articleDAOJpa.delete(articleId);
+        articleDAO.delete(articleId);
         luceneIndexer.removeIndexedArticle(articleId);
         return "redirect:/manage/kb/category/" + categoryId + "/articles.html";
     }
@@ -122,7 +127,7 @@ public class ArticleController {
             article.setCategory(articleCategoryDAO.getById(categoryId));
             article.setAuthor((User) session.getAttribute("user"));
         } else {
-            article = articleDAOJpa.getById(articleId);
+            article = articleDAO.getById(articleId);
         }
         map.addAttribute("article", article);
         map.addAttribute("formAction", "edit");
@@ -151,7 +156,7 @@ public class ArticleController {
             map.addAttribute("formAction", "save");
             return MANAGE_KB_ARTICLE_EDIT;
         }
-        articleDAOJpa.saveOrUpdate(article);
+        articleDAO.saveOrUpdate(article);
         if (article.getId() != null) {
             luceneIndexer.updateIndexedArticle(article);
         } else {
@@ -159,5 +164,27 @@ public class ArticleController {
         }
         return "redirect:/manage/kb/category/" + article.getCategory().getId() +
                 "/articles/" + article.getId() + "/edit.html";
+    }
+
+    @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/up.html")
+    public String articleUp(@PathVariable("cId") Long categoryId,
+                            @PathVariable("aId") Long articleId) throws Exception {
+        try {
+            articleDAO.moveUp(articleId);
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+        return "redirect:/manage/kb/category/" + categoryId + "/articles.html";
+    }
+
+    @RequestMapping("/manage/kb/category/{cId}/articles/{aId}/down.html")
+    public String articleDown(@PathVariable("cId") Long categoryId,
+                              @PathVariable("aId") Long articleId) throws Exception {
+        try {
+            articleDAO.moveDown(articleId);
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+        return "redirect:/manage/kb/category/" + categoryId + "/articles.html";
     }
 }
