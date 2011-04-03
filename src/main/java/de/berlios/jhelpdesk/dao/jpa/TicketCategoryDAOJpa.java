@@ -53,7 +53,16 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
             public Object doInJpa(EntityManager em) throws PersistenceException {
                 TicketCategory category = em.find(TicketCategory.class, categoryId);
                 if (category.getTicketsCount() == 0) {
-                    em.remove(category);
+                    Query q = em.createNativeQuery(
+                        "UPDATE ticket_category " +
+                        "SET ord=ord-1 " +
+                        "WHERE ord>(SELECT ord FROM ticket_category WHERE id=?)");
+                    q.setParameter(1, categoryId);
+                    q.executeUpdate();
+                    Query q2 = em.createNativeQuery(
+                            "DELETE FROM ticket_category WHERE id=?");
+                    q2.setParameter(1, categoryId);
+                    q2.executeUpdate();
                 }
                 return null;
             }
