@@ -23,14 +23,16 @@
                                     <td>
                                         <c:if test="${not empty message}">${message}</c:if>
                                          <ul class="formContainer">
-                                            <li>
+                                            <li class="w45p">
                                                 <label>Nazwa</label>
-                                                <form:input path="name" cssClass="w98p" maxlength="32"/>
-                                                <form:errors path="name"/>
+                                                <form:input path="name" onblur="$('nameCounter').hide()" onkeyup="this.value.charCount('nameCounter', 32)" cssClass="w95p" cssErrorClass="fieldError w95p" maxlength="32"/>
+                                                <form:errors cssClass="formError errorBottom" path="name"/>
+                                                <span id="nameCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <label>Opis</label>
-                                                <form:textarea path="description" cssClass="w98p" />
+                                                <form:textarea path="description" onblur="$('descCounter').hide()" onkeyup="this.value = this.value.charTextCount('descCounter', 512)" cssClass="w98p" />
+                                                <span id="descCounter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Od</label>
