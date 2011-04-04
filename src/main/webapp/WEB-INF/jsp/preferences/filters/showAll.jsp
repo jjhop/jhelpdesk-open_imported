@@ -10,7 +10,7 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0" class="spacing">
+                        <table cellspacing="0">
                             <tr>
                                 <td class="right">
                                     <a href="<c:url value="/preferences/filters/new.html"/>" class="btn">Dodaj nowy filtr</a>

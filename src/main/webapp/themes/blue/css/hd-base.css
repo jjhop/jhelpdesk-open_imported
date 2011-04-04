@@ -339,6 +339,9 @@ td.rightcells {
 .ticketslist #pagecontentsubheader h3 {
     background: transparent url(../i/icons/gnome-help.png) no-repeat 10px 50%;
 }
+#pagination {
+    margin: 5px 0 7px 0;
+}
 #paginationinfo {
     vertical-align: middle;
 }
