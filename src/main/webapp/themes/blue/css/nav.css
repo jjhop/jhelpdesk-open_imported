@@ -76,6 +76,9 @@
 #pagemenu .level2 li {
 	border-bottom: 1px solid #ccc;
 }
+#pagemenu .level2 li.border {
+    border-bottom: 3px solid #ccc;
+}
 #pagemenu .level2 a {
 	width: 180px;
 }
