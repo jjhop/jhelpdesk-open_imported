@@ -129,6 +129,11 @@ public class CustomFilterEditController {
         TicketFilter filter = new TicketFilter();
         filter.setOwner(currentUser);
         map.addAttribute("filter", filter);
+        String message = (String) session.getAttribute("message");
+        if (message != null) {
+            session.removeAttribute("message");
+            map.addAttribute("message", message);
+        }
         return "preferences/filters/edit";
     }
 
@@ -136,19 +141,16 @@ public class CustomFilterEditController {
     public String processForm(@ModelAttribute("filter") TicketFilter filter,
                               BindingResult result, ModelMap map,
                               HttpSession session) throws Exception {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("user");
         ticketFilterValidator.validate(filter, result);
-        if (!result.hasErrors()) {
-            ticketFilterDAO.saveOrUpdate(filter);
-            map.addAttribute("message", "Filtr został zapisany."); // todo: ms.get(...
-            try {
-                session.setAttribute("user", userDAO.getById(currentUser.getUserId()));
-            } catch (DAOException ex) {
-                throw new RuntimeException(ex);
-            }
+        if (result.hasErrors()) {
+            map.addAttribute(filter);
+            return "preferences/filters/edit";
         }
-        map.addAttribute(filter);
-        
-        return "preferences/filters/edit";
+        ticketFilterDAO.saveOrUpdate(filter);
+        session.setAttribute("user", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
+        session.setAttribute("message", "Filtr został zapisany."); // ms.get
+        map.clear();
+        return "redirect:/preferences/filters/" + filter.getId() + "/edit.html";
     }
 }

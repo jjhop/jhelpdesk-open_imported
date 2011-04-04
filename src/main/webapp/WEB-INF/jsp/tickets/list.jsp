@@ -39,18 +39,35 @@
                 <display:column property="ticketPriority" title="Ważność" class="priority" headerClass="priority" />
                 <display:column property="notifier" title="Zgłaszający" class="notifier" headerClass="notifier ticketView" />
 
-                <display:setProperty name="paging.banner.no_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">No {0} found.</td>"/>
-                <display:setProperty name="paging.banner.one_item_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">One {0} found.</td>"/>
-                <display:setProperty name="paging.banner.all_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">{0} {1} found, displaying all {2}.</td>"/>
-                <display:setProperty name="paging.banner.some_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">Strona {4} z {5}</td>"/>
-                <display:setProperty name="paging.banner.full" value="<td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
-                <display:setProperty name="paging.banner.first" value="<td id=\"paginationlinks\"><span>&laquo;</span> <span>&lsaquo;</span> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
-                <display:setProperty name="paging.banner.last" value=" <td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <span>&rsaquo;</span> <span>&raquo;</span></a></td></tr></table>" />
-                <display:setProperty name="paging.banner.onepage" value="<td id=\"paginationlinks\">{0}</td></tr></table>" />
-
+                <display:setProperty name="paging.banner.no_items_found">
+                    <fmt:message key="ticket.list.paging.banner.no_items_found"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.one_item_found">
+                    <fmt:message key="ticket.list.paging.banner.one_item_found"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.all_items_found">
+                    <fmt:message key="ticket.list.paging.banner.all_items_found"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.some_items_found">
+                    <fmt:message key="ticket.list.paging.banner.some_items_found"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.full">
+                    <fmt:message key="ticket.list.paging.banner.full"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.first">
+                    <fmt:message key="ticket.list.paging.banner.first"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.last">
+                    <fmt:message key="ticket.list.paging.banner.last"/>
+                </display:setProperty>
+                <display:setProperty name="paging.banner.onepage">
+                    <fmt:message key="ticket.list.paging.banner.onepage"/>
+                </display:setProperty>
                 <display:setProperty name="paging.banner.page.separator" value=" &nbsp;" />
                 <display:setProperty name="paging.banner.placement" value="top" />
-                <display:setProperty name="basic.msg.empty_list" value="Nie znaleziono zgłoszeń do wyświetlenia." />
+                <display:setProperty name="basic.msg.empty_list">
+                    <fmt:message key="ticket.list.basic.msg.empty_list"/>
+                </display:setProperty>
             </display:table>
         </div>
         <div class="contentbottom"></div>

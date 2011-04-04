@@ -28,7 +28,7 @@
                                              style="cursor: pointer; border: 0px;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
-                                                inputField : "f_date_start", ifFormat : "%Y-%m-%d",    button : "f_trigger_c", align : "BR", singleClick : true
+                                                inputField: "f_date_start", ifFormat: "%Y-%m-%d", button: "f_trigger_c", align: "BR", singleClick: true
                                             });
                                         </script>
                                     </td>
@@ -43,7 +43,7 @@
                                              style="cursor: pointer; border: 0px;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
-                                                inputField : "f_date_end", ifFormat : "%Y-%m-%d", button : "f_trigger_d", align : "BR", singleClick : true
+                                                inputField: "f_date_end", ifFormat: "%Y-%m-%d", button: "f_trigger_d", align: "BR", singleClick: true
                                             });
                                         </script>
                                     </td>
