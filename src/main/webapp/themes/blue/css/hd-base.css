@@ -340,7 +340,7 @@ td.rightcells {
     background: transparent url(../i/icons/gnome-help.png) no-repeat 10px 50%;
 }
 #pagination {
-    margin: 5px 0 7px 0;
+    margin: 10px 0 5px 0;
 }
 #paginationinfo {
     vertical-align: middle;
@@ -924,13 +924,8 @@ div.buttons input {margin: 0 5px;}
 .management .rightcells {
     width: 560px;
 }
-
-#showallusers .standardtable {
-    margin-top: 5px;
-}
 #showallusers .standardtable td {
     padding: 6px 5px 7px;
-    padding: 3px 5px 4px;
 }
 #showallusers #paginationinfo {
     padding: 0;
