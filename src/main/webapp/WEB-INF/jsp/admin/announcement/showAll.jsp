@@ -10,7 +10,7 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0" class="spacing">
+                        <table cellspacing="0"
                             <tr>
                                 <td class="right">
                                     <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj wiadomość</a>

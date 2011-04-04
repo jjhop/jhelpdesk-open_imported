@@ -19,7 +19,6 @@
                             </c:if>
                         </table>
                         <c:if test="${not empty categories}">
-                            <br/>
                             <display:table id="c" name="categories" class="standardtable"
                                            pagesize="${listSize}" size="categoriesListSize" sort="external" partialList="true"
                                            requestURI="${requestURI}" excludedParams="*" cellspacing="0">
