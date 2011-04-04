@@ -7,7 +7,12 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Zarządzanie filtrami <a href="#"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a></h3></div>
+                <div id="pagecontentsubheader">
+                    <h3>Zarządzanie filtrami
+                        <a href="#filtersHelp"
+                           class="lightview" title=":: :: width: 400, height: 300, keyboard: true"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a>
+                    </h3>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
@@ -19,8 +24,13 @@
                             <table cellspacing="0" class="standardtable">
                                 <tr>
                                     <td>
-                                        <c:if test="${not empty message}">${message}</c:if>
-                                         <ul class="formContainer">
+                                        <c:if test="${not empty message}">
+                                            <p id="msg2Hide">${message}</p>
+                                            <script type="text/javascript">
+                                                hideMe('msg2Hide');
+                                            </script>
+                                        </c:if>
+                                        <ul class="formContainer">
                                             <li class="w45p">
                                                 <label>Nazwa</label>
                                                 <form:input path="name" onblur="$('nameCounter').hide()" onkeyup="this.value.charCount('nameCounter', 32)" cssClass="w95p" cssErrorClass="fieldError w95p" maxlength="32"/>
@@ -34,11 +44,23 @@
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Od</label>
-                                                <form:input path="beginDate" cssClass="w95p"/>
+                                                <form:input id="f_date_start" path="beginDate" cssClass="w85p"/>
+                                                <img id="f_trigger_c" src="<c:url value="/themes/blue/i/cal.gif"/>" alt="" style="cursor: pointer; border: 0px;"/>
+                                                <script type="text/javascript">
+                                                    Calendar.setup({
+                                                        inputField: "f_date_start", ifFormat: "%Y-%m-%d", button: "f_trigger_c", align: "BR", singleClick: true
+                                                    });
+                                                </script>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Do</label>
-                                                <form:input path="endDate" cssClass="w95p"/>
+                                                <form:input id="f_date_end" path="endDate" cssClass="w85p"/>
+                                                <img id="f_trigger_d" src="<c:url value="/themes/blue/i/cal.gif"/>" alt="" style="cursor: pointer; border: 0px;"/>
+                                                <script type="text/javascript">
+                                                    Calendar.setup({
+                                                        inputField: "f_date_end", ifFormat: "%Y-%m-%d", button: "f_trigger_d", align: "BR", singleClick: true
+                                                    });
+                                                </script>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Status</label>
@@ -110,7 +132,7 @@
                                 </tr>
                             </table>
                             <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft"/>
-                            <a href="<c:url value="/preferences/filters/list.html"/>" class="btnPlain floatLeft">anuluj</a>
+                            <a href="<c:url value="/preferences/filters/list.html"/>" class="btnPlain floatLeft">powrót do listy</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
@@ -119,4 +141,27 @@
             </td>
         </tr>
     </table>
+</div>
+<div id="filtersHelp" style="display: none">
+    <h2>Pomoc do formularza edycji filtrów</h2>
+    <p>
+        <strong>Nazwa filtru</strong> jest tą samą nazwą, która wyświetla się w menu "Zgłoszenia" (została
+        ograniczona do 32 znaków). Warto dla filtra wybrać nazwę, która ma jakieś znacznie 
+        w kontekście zgłoszeń, które pojawią się po jego zastosowaniu
+        (np. Moje zgłoszenia, Zgłoszenia pilne nierozwiązane).
+    </p>
+    <p>
+        Pole <strong>Od</strong> oraz <strong>Do</strong> wyznaczają dolną i górną granicę czasową
+        <em>zarejestrowania</em> zgłoszenia w systemie. Jeśli w tych polach nie będzie żadnej
+        wartości to data zarejestrowania zgłoszenia nie będzie brana pod uwagę podczas wyszukiwania.
+        Jeśli pojawi się jedna z dat to zostanie ona potraktowana jako granic (dolna lub górna
+        w zależności od tego, która z dat zostanie podana).
+    </p>
+    <p>
+        W przypadku list niewybranie żadnej wartości jest jednoznaczne z usunięciem tego pola z
+        kryteriów wyszukiwania. Jeśli zaznaczone zostaną wszystkie wartości to nowe - te, które
+        pojawią się po zbudowaniu filtra - nie będą brane pod uwagę (nowe wartości mogą pojawić
+        się tylko w listach <strong>Zgłaszający</strong>, <strong>Rozwiązujący</strong>,
+        <strong>Kategoria zgłoszenia</strong>).
+    </p>
 </div>

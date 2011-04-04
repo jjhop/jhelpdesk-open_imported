@@ -35,7 +35,12 @@
     <!--  inne beany widoku -->
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="message"/>
+        <property name="basenames">
+            <list>
+                <value>message</value>
+                <value>displaytagMsg</value>
+            </list>
+        </property>
     </bean>
 
     <bean id="tilesConfigurator"

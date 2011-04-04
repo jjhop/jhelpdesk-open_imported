@@ -33,18 +33,36 @@
                             <display:column title="" media="html" class="lastcol ticketEdit" headerClass="lastcol ticketDrop">
                                 <a  class="actionDel" href="<c:url value="/manage/users/${user.userId}/remove.html"/>">Remove</a>
                             </display:column>
-                            <display:setProperty name="paging.banner.no_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">No {0} found.</td>" />
-                            <display:setProperty name="paging.banner.one_item_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">One {0} found.</td>" />
-                            <display:setProperty name="paging.banner.all_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">{0} {1} found, displaying all {2}.</td>" />
-                            <display:setProperty name="paging.banner.some_items_found" value="<table id=\"pagination\"><tr><td id=\"paginationinfo\">Rekordy od {2} do {3} z {0}.</td>" />
-                            <display:setProperty name="paging.banner.full" value="<td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
-                            <display:setProperty name="paging.banner.first" value="<td id=\"paginationlinks\"><span>&laquo;</span> <span>&lsaquo;</span> {0} <a href=\"{3}\">&rsaquo;</a> <a href=\"{4}\">&raquo;</a></td></tr></table>" />
-                            <display:setProperty name="paging.banner.last" value=" <td id=\"paginationlinks\"><a href=\"{1}\">&laquo;</a> <a href=\"{2}\">&lsaquo;</a> {0} <span>&rsaquo;</span> <span>&raquo;</span></a></td></tr></table>" />
-                            <display:setProperty name="paging.banner.onepage" value="<td id=\"paginationlinks\">{0}</td></tr></table>" />
-                            <display:setProperty name="export.banner" value="<div class=\"exportlinks\"><br>Eksportuj jako: {0}</div>"/>
-                            <display:setProperty name="export.pdf" value="false" />
-                            <display:setProperty name="paging.banner.placement" value="top"/>
-                            <display:setProperty name="basic.msg.empty_list" value="Nie znaleziono żadnego użytkownika."/>
+
+                            <display:setProperty name="paging.banner.no_items_found">
+                                <fmt:message key="user.list.paging.banner.no_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.one_item_found">
+                                <fmt:message key="user.list.paging.banner.one_item_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.all_items_found">
+                                <fmt:message key="user.list.paging.banner.all_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.some_items_found">
+                                <fmt:message key="user.list.paging.banner.some_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.full">
+                                <fmt:message key="user.list.paging.banner.full"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.first">
+                                <fmt:message key="user.list.paging.banner.first"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.last">
+                                <fmt:message key="user.list.paging.banner.last"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.onepage">
+                                <fmt:message key="user.list.paging.banner.onepage"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.page.separator" value=" &nbsp;" />
+                            <display:setProperty name="paging.banner.placement" value="top" />
+                            <display:setProperty name="basic.msg.empty_list">
+                                <fmt:message key="user.list.basic.msg.empty_list"/>
+                            </display:setProperty>
                         </display:table>
                     </div>
                     <div class="contentbottom"></div>
