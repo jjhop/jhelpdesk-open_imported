@@ -38,6 +38,36 @@
                             <display:column class="lastcol ticketEdit" headerClass="lastcol">
                                 <a href="<c:url value="/announcements/${announcementsIterator.id}/remove.html"/>" class="actionDel">R</a>
                             </display:column>
+
+                            <display:setProperty name="paging.banner.no_items_found">
+                                <fmt:message key="announcements.list.paging.banner.no_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.one_item_found">
+                                <fmt:message key="announcements.list.paging.banner.one_item_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.all_items_found">
+                                <fmt:message key="announcements.list.paging.banner.all_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.some_items_found">
+                                <fmt:message key="announcements.list.paging.banner.some_items_found"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.full">
+                                <fmt:message key="announcements.list.paging.banner.full"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.first">
+                                <fmt:message key="announcements.list.paging.banner.first"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.last">
+                                <fmt:message key="announcements.list.paging.banner.last"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.onepage">
+                                <fmt:message key="announcements.list.paging.banner.onepage"/>
+                            </display:setProperty>
+                            <display:setProperty name="paging.banner.page.separator" value=" &nbsp;" />
+                            <display:setProperty name="paging.banner.placement" value="top" />
+                            <display:setProperty name="basic.msg.empty_list">
+                                <fmt:message key="announcements.list.basic.msg.empty_list"/>
+                            </display:setProperty>
                         </display:table>
                     </div>
                     <div class="contentbottom"></div>
