@@ -35,9 +35,9 @@ public class UserDataValidator implements Validator {
     }
 
     public void validate(Object user, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "errors.hduser.firstName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "errors.hduser.lastName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "errors.hduser.email");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "errors.user.firstName");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "errors.user.lastName");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "errors.user.email");
 
         User u = (User) user;
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
@@ -45,7 +45,7 @@ public class UserDataValidator implements Validator {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputStr);
         if (errors.getFieldErrorCount("email") == 0 && !matcher.matches()) {
-            errors.rejectValue("email", "errors.hduser.email");
+            errors.rejectValue("email", "errors.user.email");
         }
     }
 }
