@@ -20,29 +20,29 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li class="floatLeft w45p">
-                                                <label>Imie</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" onkeyup="this.value.charCount('nameCounter', 35)" path="firstName"/>
+                                                <label>Imię</label>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" onkeyup="this.value.charCount('nameCounter', 64)" path="firstName"  maxlength="64"/>
                                                 <form:errors cssClass="formError errorBottom" path="firstName" />
                                                 <span id="nameCounter" style="display:none" class="counter"></span>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Nazwisko</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="lastName"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="lastName" maxlength="128"/>
                                                 <form:errors cssClass="formError errorBottom" path="lastName" />
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Telefon</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="phone"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="phone" maxlength="20"/>
                                                 <form:errors cssClass="formError errorBottom" path="phone" />
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Mobile</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="mobile"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="mobile" maxlength="20"/>
                                                 <form:errors cssClass="formError errorBottom" path="mobile" />
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Email</label>
-                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="email"/>
+                                                <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="email" maxlength="128"/>
                                                 <form:errors cssClass="formError errorBottom" path="email" />
                                             </li>
                                             <li class="floatRight w45p">
