@@ -31,27 +31,31 @@
                                         <ul class="formContainer">
                                             <li class="floatLeft w45p">
                                                 <label>Imię</label>
-                                                <form:input cssClass="w95p" path="firstName"/>
+                                                <form:input cssClass="w95p" path="firstName" maxlength="64"/>
+                                                <form:errors path="firstName"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Nazwisko</label>
-                                                <form:input cssClass="w95p" path="lastName"/>
+                                                <form:input cssClass="w95p" path="lastName" maxlength="128"/>
+                                                <form:errors path="lastName"/>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Email</label>
-                                                <form:input cssClass="w95p" path="email"/>
+                                                <form:input cssClass="w95p" path="email" maxlength="128"/>
+                                                <form:errors path="email"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Hasło</label>
-                                                <form:password cssClass="w95p" path="password"/>
+                                                <form:password cssClass="w95p" path="password" maxlength="32"/>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Powtórz</label>
-                                                <input type="text" class="w95p" name="" />
+                                                <input type="text" class="w95p" name="" maxlength="32"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Telefon</label>
-                                                <form:input cssClass="w95p" path="phone"/>
+                                                <form:input cssClass="w95p" path="phone" maxlength="20"/>
+                                                <form:errors path="phone"/>
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Rola</label>
@@ -68,7 +72,8 @@
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Mobile</label>
-                                                <form:input cssClass="w95p" path="mobile"/>
+                                                <form:input cssClass="w95p" path="mobile" maxlength="20"/>
+                                                <form:errors path="mobile"/>
                                             </li>
                                             <li class="clearFloat w45p">
                                                 <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
