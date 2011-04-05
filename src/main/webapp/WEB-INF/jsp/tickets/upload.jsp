@@ -12,13 +12,10 @@
             <input type="submit"/>
         </form:form>
         <c:if test="${uploaded}">
-            <script type="text/javascript" src="<c:url value="/js/jquery-1.3.1.min.js"/>"></script>
-            <script type="text/javascript" src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
             <script type="text/javascript">
-                $(window).load(function(){
-                    parent.$.fancybox.close();
-                });
+                window.parent.eval('Lightview.hide()');
             </script>
         </c:if>
+        <a href="javascript:window.parent.eval('Lightview.hide()');" class="">anuluj</a>
     </body>
 </html>
