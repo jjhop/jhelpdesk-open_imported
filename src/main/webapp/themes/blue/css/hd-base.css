@@ -1301,6 +1301,10 @@ ul.formContainer li .counter {
     color: #f65656;
 }
 
+ul.formContainer li.chk {
+    padding-top: 22px;
+}
+
 ul.formContainer li input.chk {
     padding: 0;
     margin: 6px 5px 0 0;

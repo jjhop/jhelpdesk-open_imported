@@ -19,45 +19,51 @@
                                 <form:hidden path="userId"/>
                             </c:if>
                             <table cellspacing="0" class="standardtable">
-                                <spring:hasBindErrors name="user" >
-                                    <tr>
-                                        <td colspan="2" style="color: red" class="lastcol">
-                                            <form:errors path="*" />
-                                        </td>
-                                    </tr>
-                                </spring:hasBindErrors>
                                 <tr>
                                     <td class="lastcol">
                                         <ul class="formContainer">
-                                            <li class="floatLeft w45p">
+                                            <li class="">
+                                                <label>Email</label>
+                                                <form:input onkeyup="this.value.charCount('mailCounter', 128)" onblur="$('mailCounter').hide()" cssClass="w98p" cssErrorClass="fieldError w98p" path="email" maxlength="128"/>
+                                                <span id="mailCounter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="email"/>
+                                            </li>
+                                            <li class="clearFloat floatLeft w45p">
                                                 <label>Imię</label>
-                                                <form:input cssClass="w95p" path="firstName" maxlength="64"/>
-                                                <form:errors path="firstName"/>
+                                                <form:input onkeyup="this.value.charCount('firstNameCounter', 64)" onblur="$('firstNameCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="firstName" maxlength="64"/>
+                                                <span id="firstNameCounter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="firstName"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Nazwisko</label>
-                                                <form:input cssClass="w95p" path="lastName" maxlength="128"/>
-                                                <form:errors path="lastName"/>
+                                                <form:input onkeyup="this.value.charCount('lastNameCounter', 128)" onblur="$('lastNameCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="lastName" maxlength="128"/>
+                                                <span id="lastNameCounter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="lastName"/>
                                             </li>
-                                            <li class="floatLeft w45p">
-                                                <label>Email</label>
-                                                <form:input cssClass="w95p" path="email" maxlength="128"/>
-                                                <form:errors path="email"/>
+                                            <li class="clearFloat floatLeft w45p">
+                                                <label>Hasło</label>
+                                                <form:password onkeyup="this.value.charCount('pwd1Counter', 32)" onblur="$('pwd1Counter').hide()" cssClass="w95p" path="password" maxlength="32"/>
+                                                <span id="pwd1Counter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="password"/>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Hasło</label>
-                                                <form:password cssClass="w95p" path="password" maxlength="32"/>
-                                            </li>
-                                            <li class="floatLeft w45p">
                                                 <label>Powtórz</label>
                                                 <input type="text" class="w95p" name="" maxlength="32"/>
-                                            </li>
-                                            <li class="floatRight w45p">
-                                                <label>Telefon</label>
-                                                <form:input cssClass="w95p" path="phone" maxlength="20"/>
-                                                <form:errors path="phone"/>
+                                                <span id="pwd2Counter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">
+                                                <label>Telefon</label>
+                                                <form:input onkeyup="this.value.charCount('phoneCounter', 20)" onblur="$('phoneCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="phone" maxlength="20"/>
+                                                <span id="phoneCounter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="phone"/>
+                                            </li>
+                                            <li class="floatRight w45p">
+                                                <label>Mobile</label>
+                                                <form:input onkeyup="this.value.charCount('mobileCounter', 20)" onblur="$('mobileCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="mobile" maxlength="20"/>
+                                                <span id="mobileCounter" class="counter"></span>
+                                                <form:errors cssClass="formError errorBottom" path="mobile"/>
+                                            </li>
+                                            <li class="clearFloat floatLeft w45p">
                                                 <label>Rola</label>
                                                 <select id="userRole" name="userRole" class="w95p">
                                                 <% User u = (User)session.getAttribute("user"); %>
@@ -70,12 +76,8 @@
                                                 </c:forEach>
                                                 </select>
                                             </li>
-                                            <li class="floatRight w45p">
-                                                <label>Mobile</label>
-                                                <form:input cssClass="w95p" path="mobile" maxlength="20"/>
-                                                <form:errors path="mobile"/>
-                                            </li>
-                                            <li class="clearFloat w45p">
+
+                                            <li class="floatRight w45p chk">
                                                 <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
                                             </li>
                                         </ul>
