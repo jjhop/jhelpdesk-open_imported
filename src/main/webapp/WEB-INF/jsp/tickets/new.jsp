@@ -18,56 +18,51 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li>
-                                                <label>Zgłaszający <span class="lblTip">(wprowadź email)</span></label>
-                                                <form:input path="notifier" cssErrorClass="w50p fieldError" cssClass="w50p"/>
-                                                <input type="image" align="top" style="border: 0" src="/jhd/themes/blue/i/find.gif" value="true" alt="Znajdź" name="_checkLogin">
+                                                <label>Zgłaszający 
+                                                    <span class="lblTip">(wprowadź email i sprawdzić czy użytkownik istnieje)</span>
+                                                </label>
+                                                <form:input path="notifier" cssErrorClass="w50p fieldError" cssClass="w50p" maxlength="128"/>
+                                                <input type="image" align="top" style="border: 0" src="<c:url value="/themes/blue/i/find.gif"/>" value="true" alt="Znajdź" name="_checkLogin">
                                                 <form:errors path="notifier" cssClass="formError errorBottom" />
                                             </li>
                                             <li class="floatLeft w75p">
                                                 <label>Kategoria</label>
                                                 <form:select cssClass="w98p" path="ticketCategory" items="${categories}"
-                                                             itemValue="id"
-                                                             itemLabel="categoryName" />
+                                                             itemValue="id" itemLabel="categoryName" />
                                             </li>
                                             <li class="floatRight">
                                                 <label>Ważność</label>
-                                                <form:select cssClass="w20" path="ticketPriority" items="${priorities}" itemValue="priorityId"
-                                                             itemLabel="priorityName" />
+                                                <form:select cssClass="w20" path="ticketPriority" items="${priorities}" 
+                                                             itemValue="priorityId" itemLabel="priorityName" />
                                             </li>
                                             <li class="clearFloat">
-                                                <label>Przyczyna</label>
-                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="subject"/>
+                                                <label>Przyczyna
+                                                    <span class="lblTip">(zasygnalizuj problem, zmieść w 255 znakach, pole wymagane)</span>
+                                                </label>
+                                                <form:input cssClass="w98p" cssErrorClass="w98p fieldError" path="subject" maxlength="255"/>
                                                 <form:errors path="subject" cssClass="formError errorBottom" />
                                             </li>
                                             <li>
-                                                <label>Opis zgłoszenia</label>
+                                                <label>Opis zgłoszenia
+                                                    <span class="lblTip">(opisz objawy problemu, podaj istatne szczegóły, zmieść w 8192 znakach, pole wymagane)</span>
+                                                </label>
+                                                <!-- tutaj maxlength 8192 -->
                                                 <form:textarea cssClass="w98p" cssErrorClass="w98p fieldError" path="description" rows="6" cols="40"/>
                                                 <form:errors path="description" cssClass="formError errorBottom" />
                                             </li>
                                             <li>
-                                                <label>Kroki by powtórzyć</label>
+                                                <label>Kroki by powtórzyć
+                                                    <span class="lblTip">(jeśli problem jest powtarzalny - napisz jak go wywołać, zmieść w 16384 znakach)</span>
+                                                </label>
+                                                <!-- tutaj maxlength 16384 -->
                                                 <form:textarea cssClass="w98p" id="step_by_step" path="stepByStep" rows="6" cols="40"/>
                                             </li>
                                             <li>
                                                 <label>Załączniki</label>
-                                                <script type="text/javascript" src="<c:url value="/js/jquery-1.3.1.min.js"/>"></script>
-                                                <script type="text/javascript">
-                                                    $(document).ready(function() {
-                                                        $("a.group").fancybox({
-                                                            'hideOnContentClick': false,
-                                                            'hideOnOverlayClick': false,
-                                                            'frameWidth' : 320,
-                                                            'frameHeight' : 150
-                                                        });
-                                                    });
-                                                </script>
-                                                <script type="text/javascript" src="<c:url value="/js/jquery.easing.1.3.js"/>"></script>
-                                                <style type="text/css">
-                                                    @import url(<c:url value="/js/fancybox/fancybox.css"/>);
-                                                </style>
-                                                <script type="text/javascript"
-                                                src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
-                                                <a class="group iframe" href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>">Dołącz plik</a>
+                                                <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
+                                                   rel="iframe"
+                                                   title=":: :: closeButton: false, width: 320, height: 390"
+                                                   class="lightview">Dołącz plik</a>
                                             </li>
                                         </ul>
                                     </td>
