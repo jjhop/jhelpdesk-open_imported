@@ -55,7 +55,7 @@
                                             </li>
                                             <li class="floatLeft w45p">
                                                 <label>Rola</label>
-                                                <select id="userRole" class="w95p">
+                                                <select id="userRole" name="userRole" class="w95p">
                                                 <% User u = (User)session.getAttribute("user"); %>
                                                 <c:forEach items="${roles}" var="role">
                                                     <% Role r = (Role)pageContext.getAttribute("role"); %>
