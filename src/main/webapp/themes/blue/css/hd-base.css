@@ -43,6 +43,10 @@ width: 340px;
 a.btn {padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
 
+table a.btn {
+    float:left;
+}
+
 .ticketslist a#filterbutton.btn {
     position: absolute;
     top: -15px;
