@@ -42,6 +42,7 @@ width: 340px;
 
 a.btn {padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
+
 .ticketslist a#filterbutton.btn {
     position: absolute;
     top: -15px;
@@ -1196,12 +1197,9 @@ td.artnumber {
 .w48p { width: 48% }
 .w49p { width: 49% }
 .w50p { width: 50% }
-<<<<<<< local
 .w70p { width: 70% }
 .w75p { width: 75% }
-=======
 .w85p { width: 85% }
->>>>>>> other
 .w95p { width: 95% }
 .w96p { width: 96% }
 .w97p { width: 97% }
