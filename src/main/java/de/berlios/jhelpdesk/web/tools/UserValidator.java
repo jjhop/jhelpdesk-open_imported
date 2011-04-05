@@ -29,9 +29,9 @@ public class UserValidator extends UserDataValidator {
     @Override
     public void validate(Object user, Errors errors) {
         super.validate(user, errors);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "errors.hduser.password");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "errors.user.password");
         if (((User) user).getUserRole() == null) {
-            errors.rejectValue("userRole", "errors.hduser.userRole.notset");
+            errors.rejectValue("userRole", "errors.user.userRole.notset");
         }
     }
 }
