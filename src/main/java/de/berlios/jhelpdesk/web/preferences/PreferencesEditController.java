@@ -66,7 +66,6 @@ public class PreferencesEditController {
                               ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         if (isPrefsOwnedByUser(preferences, currentUser)) {
-            // TODO: poniższe dwie linijki są wysoce podejrzane :)
             preferences.setUser(currentUser);
             currentUser.setPreferences(preferences);
             this.userPreferencesDAO.save(preferences);
