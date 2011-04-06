@@ -45,7 +45,7 @@
                                             <li class="floatLeft w45p">
                                                 <label>Od</label>
                                                 <form:input id="f_date_start" path="beginDate" cssClass="w85p"/>
-                                                <img id="f_trigger_c" src="<c:url value="/themes/blue/i/cal.gif"/>" alt="" style="cursor: pointer; border: 0px;"/>
+                                                <img id="f_trigger_c" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
                                                     Calendar.setup({
                                                         inputField: "f_date_start", ifFormat: "%Y-%m-%d", button: "f_trigger_c", align: "BR", singleClick: true
@@ -55,7 +55,7 @@
                                             <li class="floatRight w45p">
                                                 <label>Do</label>
                                                 <form:input id="f_date_end" path="endDate" cssClass="w85p"/>
-                                                <img id="f_trigger_d" src="<c:url value="/themes/blue/i/cal.gif"/>" alt="" style="cursor: pointer; border: 0px;"/>
+                                                <img id="f_trigger_d" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
                                                     Calendar.setup({
                                                         inputField: "f_date_end", ifFormat: "%Y-%m-%d", button: "f_trigger_d", align: "BR", singleClick: true

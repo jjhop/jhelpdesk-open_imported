@@ -22,7 +22,7 @@
                                                     <span class="lblTip">(wprowadź email i sprawdzić czy użytkownik istnieje)</span>
                                                 </label>
                                                 <form:input onkeyup="this.value.charCount('notifierCounter', 128)" onblur="$('notifierCounter').hide()" path="notifier" cssErrorClass="w90p fieldError" cssClass="w90p" maxlength="128"/>
-                                                <input type="image" align="top" style="border: 0" src="<c:url value="/themes/blue/i/find.gif"/>" value="true" alt="Znajdź" name="_checkLogin">
+                                                <input type="image" align="top" style="border: 0" src="<c:url value="/themes/blue/i/btn_find.png"/>" value="true" alt="Znajdź" name="_checkLogin">
                                                 <form:errors path="notifier" cssClass="formError errorBottom" />
                                                 <span id="notifierCounter" class="counter"></span>
                                             </li>
