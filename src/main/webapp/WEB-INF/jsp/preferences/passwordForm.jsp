@@ -16,15 +16,15 @@
                     <ul class="formContainer">
                         <li>
                             <form:label path="currentPassword">Aktualne hasło</form:label>
-                            <form:password path="currentPassword" maxlength="128" cssClass="w98p" cssErrorClass=""/>
+                            <form:password path="currentPassword" maxlength="64" cssClass="w98p" cssErrorClass=""/>
                         </li>
                         <li>
                             <form:label path="newPassword">Hasło</form:label>
-                            <form:password path="newPassword" maxlength="128" cssClass="w98p"/>
+                            <form:password path="newPassword" maxlength="64" cssClass="w98p"/>
                         </li>
                         <li>
                             <form:label path="newPasswordRepeated">Powtórz hasło</form:label>
-                            <form:password path="newPasswordRepeated" maxlength="128" cssClass="w98p"/>
+                            <form:password path="newPasswordRepeated" maxlength="64" cssClass="w98p"/>
                         </li>
                     </ul>
                 </td>

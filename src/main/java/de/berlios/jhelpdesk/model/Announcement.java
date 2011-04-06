@@ -40,8 +40,7 @@ import javax.persistence.TemporalType;
 @Table(name = "announcement")
 @SequenceGenerator(name = "announcement_sequence", sequenceName = "announcement_id_seq")
 @SecondaryTable(name = "announcement_body",
-pkJoinColumns =
-@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"))
+                pkJoinColumns = @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id"))
 @NamedQueries({
     @NamedQuery(name = "Announcement.allOrderByCreatedAtDesc", query = "SELECT a FROM Announcement a ORDER BY a.createdAt DESC"),
     @NamedQuery(name = "Announcement.byId", query = "SELECT a FROM Announcement a WHERE a.id=?1")
