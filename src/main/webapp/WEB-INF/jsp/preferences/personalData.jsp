@@ -46,7 +46,10 @@
                                                 <form:errors cssClass="formError errorBottom" path="email" />
                                             </li>
                                             <li class="floatRight w45p">
-                                                <a href="<c:url value="/preferences/personalData/password/change.html"/>" rel="iframe" title=":: :: closeButton: false, width: 320, height: 390" class="btn floatRight btnMarginTop25 lightview">zmień hasło</a>
+                                                <a href="<c:url value="/preferences/personalData/password/change.html"/>"
+                                                   rel="iframe"
+                                                   title=":: :: closeButton: false, width: 320, height: 390"
+                                                   class="btn floatRight btnMarginTop25 lightview">zmień hasło</a>
                                             </li>
                                         </ul>
                                     </td>
@@ -58,9 +61,6 @@
                         </form:form>
                     </div>
                 </div>
-            </td>
-            <td class="leftcells colNarrowRight">
-                
             </td>
         </tr>
     </table>

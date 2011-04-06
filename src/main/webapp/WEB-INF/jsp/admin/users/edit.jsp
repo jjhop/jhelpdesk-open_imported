@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@page import="de.berlios.jhelpdesk.model.User"%>
 <%@page import="de.berlios.jhelpdesk.model.Role"%>
@@ -42,13 +43,13 @@
                                             </li>
                                             <li class="clearFloat floatLeft w45p">
                                                 <label>Hasło</label>
-                                                <form:password onkeyup="this.value.charCount('pwd1Counter', 32)" onblur="$('pwd1Counter').hide()" cssClass="w95p" path="password" maxlength="32"/>
+                                                <form:password onkeyup="this.value.charCount('pwd1Counter', 64)" onblur="$('pwd1Counter').hide()" cssClass="w95p" path="password" maxlength="64"/>
                                                 <span id="pwd1Counter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="password"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>Powtórz</label>
-                                                <input type="text" class="w95p" name="" maxlength="32"/>
+                                                <input type="text" class="w95p" name="" maxlength="64"/>
                                                 <span id="pwd2Counter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">

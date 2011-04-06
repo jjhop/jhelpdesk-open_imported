@@ -24,16 +24,18 @@
                                         <ul class="formContainer">
                                             <li>
                                                 <label>Tytuł</label>
-                                                <form:input cssClass="w99p" cssErrorClass="fieldError w99p" path="title"/>
+                                                <form:input cssClass="w99p" cssErrorClass="fieldError w99p" path="title" maxlength="255"/>
                                                 <form:errors cssClass="formError errorBottom" path="title"/>
                                             </li>
                                             <li>
                                                 <label>Wstęp</label>
+                                                <!-- tutaj maxlength to 4096 -->
                                                 <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="3" path="lead"/>
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                             </li>
                                             <li>
                                                 <label>Treść główna</label>
+                                                <!-- tutaj maxlength to 16384 -->
                                                 <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                             </li>

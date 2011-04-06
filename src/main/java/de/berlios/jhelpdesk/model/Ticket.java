@@ -115,13 +115,13 @@ public class Ticket implements Serializable {
     private User inputer;
 
     /**
-     * Krótki opis zgłoszenia. Max 256 znaków.
+     * Krótki opis zgłoszenia. Max 255 znaków.
      */
-    @Column(name = "subject", length = 256)
+    @Column(name = "subject", length = 255)
     private String subject;
 
     /**
-     * Dokładny opis zgłoszenia. Max 8192 znaki.
+     * Dokładny opis zgłoszenia. Max 16384 znaki.
      */
     @Column(name = "description", length = 8192)
     private String description;
@@ -130,7 +130,7 @@ public class Ticket implements Serializable {
      * Szczegółowy opis zgłoszenia. Jeśli problem jest powtarzalny i można opisać 
      * sposób w jaki go wywołać, to właśnie tutaj będzie on zapisany.
      */
-    @Column(name = "step_by_step")
+    @Column(name = "step_by_step", length = 16384)
     private String stepByStep;
 
     /**
