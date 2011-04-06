@@ -39,7 +39,7 @@
                                             </li>
                                             <li>
                                                 <label>Opis</label>
-                                                <form:textarea path="description" onblur="$('descCounter').hide()" onkeyup="this.value = this.value.charTextCount('descCounter', 512)" cssClass="w98p" />
+                                                <form:textarea path="description" onblur="$('descCounter').hide()" onkeyup="charTextCount(this.form.description, 'descCounter', 512)" cssClass="w98p" />
                                                 <span id="descCounter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">

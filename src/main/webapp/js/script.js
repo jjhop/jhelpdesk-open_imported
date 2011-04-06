@@ -7,6 +7,7 @@ String.prototype.charCount = function (counter, ml) {
     (this.length >= percent) ? $(counter).show() : $(counter).hide();
 }
 
+
 String.prototype.charTextCount = function (counter, ml) {
     var charsLeft = ml - this.length;
     var percent = Math.ceil(ml * 0.90);
@@ -14,7 +15,20 @@ String.prototype.charTextCount = function (counter, ml) {
 
     (this.length >= percent) ? $(counter).show() : $(counter).hide();
     return this.slice(0, ml);
+}
 
+function charTextCount(source, counter, ml) {
+    var charsLeft = ml - source.value.length;
+    var percent = Math.ceil(ml * 0.90);
+    $(counter).update(charsLeft);
+
+    (source.value.length >= percent) ? $(counter).show() : $(counter).hide();
+    //return this.slice(0, ml);
+    //return source.value.substring(0, ml);
+
+    if(source.value.length > ml) {
+        source.value = source.value.substring(0, ml);    
+    }
 }
 
 function updateDiv(triggerId, sourceUrl) {

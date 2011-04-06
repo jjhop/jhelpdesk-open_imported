@@ -28,7 +28,7 @@
                                             </li>
                                             <li>
                                                 <label>Opis</label>
-                                                <form:textarea cssErrorClass="fieldError w98p" cssClass="w98p" onblur="$('descCounter').hide()" onkeyup="this.value = this.value.charTextCount('descCounter', 255)" path="categoryDesc"/>
+                                                <form:textarea cssErrorClass="fieldError w98p" cssClass="w98p" onblur="$('descCounter').hide()" onkeyup="charTextCount(this.form.categoryDesc, 'descCounter', 255)" path="categoryDesc"/>
                                                 <form:errors cssClass="formError errorBottom" path="categoryDesc"/>
                                                 <span id="descCounter" class="counter"></span>
                                             </li>

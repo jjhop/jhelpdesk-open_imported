@@ -40,7 +40,7 @@
                                             </li>
                                             <li>
                                                 <form:label path="body">Treść główna</form:label>
-                                                <form:textarea cssClass="w98p" onblur="$('bodyCounter').hide()" onkeyup="this.value = this.value.charTextCount('bodyCounter', 16384)" rows="8" path="body"/>
+                                                <form:textarea cssClass="w98p" onblur="$('bodyCounter').hide()" onkeyup="charTextCount(this.form.body, 'bodyCounter', 16384)" rows="8" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                                 <span id="bodyCounter" class="counter"></span>
                                             </li>
