@@ -32,18 +32,27 @@
                                         </c:if>
                                         <ul class="formContainer">
                                             <li class="w45p">
-                                                <label>Nazwa</label>
+                                                <label>
+                                                    Nazwa
+                                                    <span class="lblTip">(nazwa, która pojawi się w menu, do 32 znaków)</span>
+                                                </label>
                                                 <form:input path="name" onblur="$('nameCounter').hide()" onkeyup="this.value.charCount('nameCounter', 32)" cssClass="w95p" cssErrorClass="fieldError w95p" maxlength="32"/>
                                                 <form:errors cssClass="formError errorBottom" path="name"/>
                                                 <span id="nameCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <label>Opis</label>
+                                                <label>
+                                                    Opis
+                                                    <span class="lblTip">(do wykorzystania w przyszłości, maksymalnie 512 znaków)</span>
+                                                </label>
                                                 <form:textarea path="description" onblur="$('descCounter').hide()" onkeyup="charTextCount(this.form.description, 'descCounter', 512)" cssClass="w98p" />
                                                 <span id="descCounter" class="counter"></span>
                                             </li>
                                             <li class="floatLeft w45p">
-                                                <label>Od</label>
+                                                <label>
+                                                    Od
+                                                    <span class="lblTip">(data początkowa - format 1999-12-12)</span>
+                                                </label>
                                                 <form:input id="f_date_start" path="beginDate" cssClass="w85p"/>
                                                 <img id="f_trigger_c" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
@@ -53,7 +62,10 @@
                                                 </script>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Do</label>
+                                                <label>
+                                                    Do
+                                                    <span class="lblTip">(data końcowa - format 1999-12-12)</span>
+                                                </label>
                                                 <form:input id="f_date_end" path="endDate" cssClass="w85p"/>
                                                 <img id="f_trigger_d" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
@@ -63,7 +75,10 @@
                                                 </script>
                                             </li>
                                             <li class="floatLeft w45p">
-                                                <label>Status</label>
+                                                <label>
+                                                    Status
+                                                    <span class="lblTip">(przytrzymaj klawisz Ctrl, aby zaznaczyć kilka)</span>
+                                                </label>
                                                 <select id="ticketStatuses" class="w99p" size="5" name="ticketStatuses" multiple="multiple">
                                                     <c:forEach items="${ticketStatuses}" var="ts">
                                                         <option value="${ts}"
@@ -76,7 +91,10 @@
                                                 <input id="_ticketStatuses" type="hidden" name="_ticketStatuses" value="1"/>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Ważność</label>
+                                                <label>
+                                                    Ważność
+                                                    <span class="lblTip">(przytrzymaj klawisz Ctrl, aby zaznaczyć kilka)</span>
+                                                </label>
                                                 <select id="ticketPriorities" class="w99p" size="5" name="ticketPriorities" multiple="multiple">
                                                     <c:forEach items="${ticketPriorities}" var="tp">
                                                         <option value="${tp}"
@@ -89,7 +107,10 @@
                                                 <input id="_ticketPriorities" type="hidden" name="_ticketPriorities" value="1"/>
                                             </li>
                                             <li class="floatLeft w45p">
-                                                <label>Saviours</label>
+                                                <label>
+                                                    Rozwiązujący
+                                                    <span class="lblTip">(przytrzymaj klawisz Ctrl, aby zaznaczyć kilka)</span>
+                                                </label>
                                                 <select id="saviours" class="w99p" size="5" name="saviours" multiple="multiple">
                                                     <c:forEach items="${saviours}" var="s">
                                                         <option value="${s.email}"
@@ -102,7 +123,10 @@
                                                 <input id="_saviours" type="hidden" name="_saviours" value="1"/>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Notifiers</label>
+                                                <label>
+                                                    Zgłaszający
+                                                    <span class="lblTip">(przytrzymaj klawisz Ctrl, aby zaznaczyć kilka)</span>
+                                                </label>
                                                 <select id="notifiers" class="w99p" size="5" name="notifiers" multiple="multiple">
                                                     <c:forEach items="${notifiers}" var="n">
                                                         <option value="${n.email}"
@@ -115,7 +139,10 @@
                                                 <input id="_notifiers" type="hidden" name="_notifiers" value="1"/>
                                             </li>
                                             <li class="clearFloat">
-                                                <label>Kategoria</label>
+                                                <label>
+                                                    Kategoria zgłoszenia
+                                                    <span class="lblTip">(przytrzymaj klawisz Ctrl, aby zaznaczyć kilka)</span>
+                                                </label>
                                                 <select id="ticketCategories" class="w995p" size="5" name="ticketCategories" multiple="multiple">
                                                     <c:forEach items="${ticketCategories}" var="tc">
                                                         <option value="${tc.id}"

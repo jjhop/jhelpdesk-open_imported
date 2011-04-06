@@ -21,7 +21,10 @@
                                     <td class="lastcol">
                                         <ul class="formContainer">
                                             <li>
-                                                <form:label path="title">Tytuł</form:label>
+                                                <form:label path="title">
+                                                    Tytuł
+                                                    <span class="lblTip">(tytuł wiadomości jest wymagany, ale ograniczony do 255 znaków)</span>
+                                                </form:label>
                                                 <form:input path="title" maxlength="255"
                                                             onblur="$('titleCounter').hide()"
                                                             onkeyup="this.value.charCount('titleCounter', 255)"
@@ -30,16 +33,22 @@
                                                 <span id="titleCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <form:label path="lead">Skrót</form:label>
+                                                <form:label path="lead">
+                                                    Treść wiadomości
+                                                    <span class="lblTip">(treść wiadomości jest wymagana, ale ograniczona do 4096 znaków)</span>
+                                                </form:label>
                                                 <form:textarea path="lead"
                                                                onblur="$('shortCounter').hide()"
-                                                               onkeyup="this.value = this.value.charTextCount('shortCounter', 45)"
+                                                               onkeyup="this.value = this.value.charTextCount('shortCounter', 4096)"
                                                                cssErrorClass="w98p fieldError" cssClass="w98p" />
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                                 <span id="shortCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <form:label path="body">Treść główna</form:label>
+                                                <form:label path="body">
+                                                    Treść rozszerzona
+                                                    <span class="lblTip">(treść rozszerzona nie jest wymagana, jednak jest ograniczona do 16384 znaków)</span>
+                                                </form:label>
                                                 <form:textarea cssClass="w98p" onblur="$('bodyCounter').hide()" onkeyup="charTextCount(this.form.body, 'bodyCounter', 16384)" rows="8" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                                 <span id="bodyCounter" class="counter"></span>

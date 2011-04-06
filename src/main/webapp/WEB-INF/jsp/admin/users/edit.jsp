@@ -24,31 +24,46 @@
                                     <td class="lastcol">
                                         <ul class="formContainer">
                                             <li class="">
-                                                <label>Email</label>
+                                                <label>
+                                                    Email
+                                                    <span class="lblTip">(email jest wymagany, prawidłowy format np. <i>jan.kowalski@example.com</i>, max. 128 znaków)</span>
+                                                </label>
                                                 <form:input onkeyup="this.value.charCount('mailCounter', 128)" onblur="$('mailCounter').hide()" cssClass="w98p" cssErrorClass="fieldError w98p" path="email" maxlength="128"/>
                                                 <span id="mailCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="email"/>
                                             </li>
                                             <li class="clearFloat floatLeft w45p">
-                                                <label>Imię</label>
+                                                <label>
+                                                    Imię
+                                                    <span class="lblTip">(imię jest wymagane, max. 64 znaki)</span>
+                                                </label>
                                                 <form:input onkeyup="this.value.charCount('firstNameCounter', 64)" onblur="$('firstNameCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="firstName" maxlength="64"/>
                                                 <span id="firstNameCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="firstName"/>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Nazwisko</label>
+                                                <label>
+                                                    Nazwisko
+                                                    <span class="lblTip">(nazwisko jest wymagane, max. 128 znaków)</span>
+                                                </label>
                                                 <form:input onkeyup="this.value.charCount('lastNameCounter', 128)" onblur="$('lastNameCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="lastName" maxlength="128"/>
                                                 <span id="lastNameCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="lastName"/>
                                             </li>
                                             <li class="clearFloat floatLeft w45p">
-                                                <label>Hasło</label>
+                                                <label>
+                                                    Hasło
+                                                    <span class="lblTip">(min. 6 znaków, w tym min. jedna cyfra)</span>
+                                                </label>
                                                 <form:password onkeyup="this.value.charCount('pwd1Counter', 64)" onblur="$('pwd1Counter').hide()" cssClass="w95p" path="password" maxlength="64"/>
                                                 <span id="pwd1Counter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="password"/>
                                             </li>
                                             <li class="floatRight w45p">
-                                                <label>Powtórz</label>
+                                                <label>
+                                                    Powtórz hasło
+                                                    <span class="lblTip">(do wywalenia)</span>
+                                                </label>
                                                 <input type="text" class="w95p" name="" maxlength="64"/>
                                                 <span id="pwd2Counter" class="counter"></span>
                                             </li>

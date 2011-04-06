@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Edycja/dodanie kategorii</h3></div>
+                <div id="pagecontentsubheader"><h3>Dodawanie/edycja kategorii zgłoszeń</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
@@ -21,26 +21,33 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li>
-                                                <label>Nazwa</label>
+                                                <form:label path="categoryName">
+                                                    Nazwa kategorii
+                                                    <span class="lblTip">(nazwa jest wymagana, max. 64 znaki)</span>
+                                                </form:label>
                                                 <form:input cssErrorClass="fieldError w98p" maxlength="64" onblur="$('categoryCounter').hide()" onkeyup="this.value.charCount('categoryCounter', 64)" cssClass="w98p" path="categoryName"/>
                                                 <form:errors cssClass="formError errorBottom" path="categoryName"/>
                                                 <span id="categoryCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <label>Opis</label>
+                                                <form:label path="categoryDesc">
+                                                    Opis
+                                                    <span class="lblTip">(opis kategorii wymagany, do wykorzystania w przyszłości, maksymalnie 255 znaków)</span>
+                                                </form:label>
                                                 <form:textarea cssErrorClass="fieldError w98p" cssClass="w98p" onblur="$('descCounter').hide()" onkeyup="charTextCount(this.form.categoryDesc, 'descCounter', 255)" path="categoryDesc"/>
                                                 <form:errors cssClass="formError errorBottom" path="categoryDesc"/>
                                                 <span id="descCounter" class="counter"></span>
                                             </li>
                                             <li>
                                                 <form:checkbox cssClass="floatLeft chk" path="active"/>
-                                                <label>Aktywna</label>
+                                                <form:label path="active">Aktywna</form:label>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
+                            <a href="<c:url value="/manage/category/list.html"/>" class="btnPlain floatLeft">powrót do listy</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
