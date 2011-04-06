@@ -7,7 +7,12 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Zgłaszanie problemu <a href="#"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a></h3></div>
+                <div id="pagecontentsubheader">
+                    <h3>Zgłaszanie problemu
+                        <a href="#help"
+                           class="lightview" title=":: :: width: 400, height: 300, keyboard: true"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a>
+                    </h3>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
@@ -19,7 +24,7 @@
                                         <ul class="formContainer">
                                             <li class="w75p">
                                                 <label>Zgłaszający 
-                                                    <span class="lblTip">(wprowadź email i sprawdzić czy użytkownik istnieje)</span>
+                                                    <span class="lblTip">(wprowadź email, aby sprawdzić czy użytkownik istnieje)</span>
                                                 </label>
                                                 <form:input onkeyup="this.value.charCount('notifierCounter', 128)" onblur="$('notifierCounter').hide()" path="notifier" cssErrorClass="w90p fieldError" cssClass="w90p" maxlength="128"/>
                                                 <input type="image" align="top" style="border: 0" src="<c:url value="/themes/blue/i/btn_find.png"/>" value="true" alt="Znajdź" name="_checkLogin">
@@ -46,7 +51,7 @@
                                             </li>
                                             <li>
                                                 <label>Opis zgłoszenia
-                                                    <span class="lblTip">(opisz objawy problemu, podaj istatne szczegóły, zmieść w 8192 znakach, pole wymagane)</span>
+                                                    <span class="lblTip">(opisz objawy problemu, podaj istotne szczegóły, zmieść je w 8192 znakach, pole wymagane)</span>
                                                 </label>
                                                 <form:textarea onkeyup="charTextCount(this.form.description, 'descriptionCounter', 8192)" onblur="$('descriptionCounter').hide()" cssClass="w98p" cssErrorClass="w98p fieldError" path="description" rows="6" cols="40"/>
                                                 <form:errors path="description" cssClass="formError errorBottom" />
@@ -82,10 +87,6 @@
     </table>
 </div>
 
-
-
-
-
-
-
-
+<div id="help" style="display: none;">
+Hello world!
+</div>

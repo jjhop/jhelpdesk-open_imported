@@ -21,7 +21,10 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li>
-                                                <form:label path="categoryName">Nazwa sekcji</form:label>
+                                                <form:label path="categoryName">
+                                                    Nazwa sekcji
+                                                    <span class="lblTip">(nazwa jest wymagana, max. 128 znaków)</span>
+                                                </form:label>
                                                 <form:input path="categoryName" cssClass="w98p" cssErrorClass="fieldError w98p" onblur="$('categoryCounter').hide()" onkeyup="this.value.charCount('categoryCounter', 128)"  maxlength="128"/>
                                                 <form:errors path="categoryName" cssClass="formError errorBottom"/>
                                                 <span id="categoryCounter" class="counter"></span>
@@ -30,7 +33,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
+                            <a href="<c:url value="/manage/kb/categories/list.html"/>" class="btnPlain floatLeft">powrót do listy</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>

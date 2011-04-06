@@ -23,18 +23,27 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li>
-                                                <label>Tytuł</label>
+                                                <form:label path="title">
+                                                    Tytuł artykułu
+                                                    <span class="lblTip">(tytuł jest wymagany, ale ograniczony do 255 znaków)</span>
+                                                </form:label>
                                                 <form:input cssClass="w99p" cssErrorClass="fieldError w99p" path="title" maxlength="255"/>
                                                 <form:errors cssClass="formError errorBottom" path="title"/>
                                             </li>
                                             <li>
-                                                <label>Wstęp</label>
+                                                <form:label path="lead">
+                                                    Wstęp
+                                                    <span class="lblTip">(wstęp jest wymagany, max. 4096 znaków)</span>
+                                                </form:label>
                                                 <!-- tutaj maxlength to 4096 -->
                                                 <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="3" path="lead"/>
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                             </li>
                                             <li>
-                                                <label>Treść główna</label>
+                                                <form:label path="body">
+                                                    Treść główna
+                                                    <span class="lblTip">(treść jest wymagana, max. 16384 znaków)</span>
+                                                </form:label>
                                                 <!-- tutaj maxlength to 16384 -->
                                                 <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
@@ -43,7 +52,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatRight" />
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
+                            <a href="<c:url value="/manage/kb/category/${article.category.id}/articles.html"/>" class="btnPlain floatLeft">powrót do listy</a>
                             <div class="clearFloat"></div>
                         </form:form>
                     </div>
