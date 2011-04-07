@@ -62,12 +62,12 @@
                                             <li class="floatRight w45p">
                                                 <label>
                                                     Powtórz hasło
-                                                    <span class="lblTip">(do wywalenia)</span>
+                                                    <span class="lblTip">Powtórz wpisane hasło</span>
                                                 </label>
                                                 <input type="text" class="w95p" name="" maxlength="64"/>
                                                 <span id="pwd2Counter" class="counter"></span>
                                             </li>
-                                            <li class="floatLeft w45p">
+                                            <li class="clearFloat floatLeft w45p">
                                                 <label>Telefon</label>
                                                 <form:input onkeyup="this.value.charCount('phoneCounter', 20)" onblur="$('phoneCounter').hide()" cssClass="w95p" cssErrorClass="fieldError w95p" path="phone" maxlength="20"/>
                                                 <span id="phoneCounter" class="counter"></span>

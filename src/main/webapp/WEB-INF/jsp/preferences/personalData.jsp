@@ -30,7 +30,7 @@
                                                 <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="lastName" maxlength="128"/>
                                                 <form:errors cssClass="formError errorBottom" path="lastName" />
                                             </li>
-                                            <li class="floatLeft w45p">
+                                            <li class="clearFloat floatLeft w45p">
                                                 <label>Telefon</label>
                                                 <form:input cssClass="w95p" cssErrorClass="w95p fieldError" path="phone" maxlength="20"/>
                                                 <form:errors cssClass="formError errorBottom" path="phone" />
