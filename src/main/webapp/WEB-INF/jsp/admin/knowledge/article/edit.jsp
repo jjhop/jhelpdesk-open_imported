@@ -27,7 +27,8 @@
                                                     Tytuł artykułu
                                                     <span class="lblTip">(tytuł jest wymagany, ale ograniczony do 255 znaków)</span>
                                                 </form:label>
-                                                <form:input cssClass="w99p" cssErrorClass="fieldError w99p" path="title" maxlength="255"/>
+                                                <form:input onkeyup="this.value.charCount('titleCounter', 255)" onblur="$('titleCounter').hide()" cssClass="w99p" cssErrorClass="fieldError w99p" path="title" maxlength="255"/>
+                                                <span id="titleCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="title"/>
                                             </li>
                                             <li>
@@ -35,8 +36,8 @@
                                                     Wstęp
                                                     <span class="lblTip">(wstęp jest wymagany, max. 4096 znaków)</span>
                                                 </form:label>
-                                                <!-- tutaj maxlength to 4096 -->
-                                                <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="3" path="lead"/>
+                                                <form:textarea onkeyup="this.value.charCount('leadCounter', 4096)" onblur="$('leadCounter').hide()" cssClass="w99p" cssErrorClass="fieldError w99p" rows="3" path="lead"/>
+                                                <span id="leadCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="lead"/>
                                             </li>
                                             <li>
@@ -44,8 +45,8 @@
                                                     Treść główna
                                                     <span class="lblTip">(treść jest wymagana, max. 16384 znaków)</span>
                                                 </form:label>
-                                                <!-- tutaj maxlength to 16384 -->
-                                                <form:textarea cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
+                                                <form:textarea onkeyup="charTextCount(this.form.body, 'bodyCounter', 16384)" onblur="$('bodyCounter').hide()" cssClass="w99p" cssErrorClass="fieldError w99p" rows="7" path="body"/>
+                                                <span id="bodyCounter" class="counter"></span>
                                                 <form:errors cssClass="formError errorBottom" path="body"/>
                                             </li>
                                         </ul>
