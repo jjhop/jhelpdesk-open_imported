@@ -32,40 +32,56 @@
                             <table cellspacing="0" class="standardtable">
                                 <tr><th colspan="5" class="lastcol">Strona startowa</th></tr>
                                 <tr class="options">
-                                    <td style="width: 111px;">
-                                        <form:radiobutton id="v1" path="welcomePage" value="desktop"
+                                    <td style="width: 15%">
+                                        <span class="layoutOption">
+                                            <form:radiobutton id="v1" path="welcomePage" value="desktop"
                                                           onclick="desktopViewSelected();"/>
-                                        <label for="v1">biurko</label></td>
-                                    <td style="width: 111px;">
-                                        <form:radiobutton id="v2" path="welcomePage" value="tickets"
+                                            <label for="v1">biurko</label>
+                                        </span>
+                                    </td>
+                                    <td style="width: auto">
+                                        <span class="layoutOption">
+                                            <form:radiobutton id="v2" path="welcomePage" value="tickets"
                                                           onclick="ticketsViewSelected();"/>
-                                        <label for="v2">zgłoszenia</label><br/>
+                                            <label for="v2">zgłoszenia</label>
+                                        </span>
                                         <c:if test='${not fn:endsWith(user.welcomePage,"list.html")}'>
                                             <c:set var="ftfstyle" value="display:none"/>
                                         </c:if>
+                                        <span class="layoutOption">
                                         <form:select id="ticketsViewDD" cssStyle="${ftfstyle}"
                                                      items="${sessionScope.user.filters}" path="filterId"
                                                      itemValue="id" itemLabel="name"/>
+                                        </span>
                                     </td>
-                                    <td style="width: 111px;">
-                                        <form:radiobutton id="v3" path="welcomePage" value="newTicket"
+                                    <td style="width: 29%">
+                                        <span class="layoutOption">
+                                            <form:radiobutton id="v3" path="welcomePage" value="newTicket"
                                                           onclick="newTicketSelected();"/>
-                                        <label for="v3">nowe zgłoszenie</label><br/>
+                                            <label for="v3">nowe zgłoszenie</label>
+                                        </span>
                                         <c:if test='${(not fn:endsWith(user.welcomePage,"new.html"))
                                                       and (not fn:endsWith(user.welcomePage,"wizzard.html"))}'>
                                             <c:set var="ntrstyle" value="display:none;"/>
                                         </c:if>
                                         <span id="newTicketRadios" style="${ntrstyle}">
-                                            <form:radiobutton id="nz1" path="newTicketFormView" value="form"/>
-                                            <label for="nz1">Formularz zgłoszenia</label><br/>
-                                            <form:radiobutton id="nz2" path="newTicketFormView" value="wizzard"/>
-                                            <label for="nz2">Kreator zgłoszenia</label>
+                                            <span class="layoutOption">
+                                                <form:radiobutton id="nz1" path="newTicketFormView" value="form"/>
+                                                <label for="nz1">Formularz zgłoszenia</label>
+                                            </span>
+                                            <span class="layoutOption">
+                                                <form:radiobutton id="nz2" path="newTicketFormView" value="wizzard"/>
+                                                <label for="nz2">Kreator zgłoszenia</label>
+                                            </span>
                                         </span>
                                     </td>
-                                    <td class="lastcol" style="width: 112px;">
-                                        <form:radiobutton id="v4" path="welcomePage" value="kBase"
+                                    <td class="lastcol" style="width: 20%">
+                                        <span class="layoutOption">
+                                            <form:radiobutton id="v4" path="welcomePage" value="kBase"
                                                           onclick="kbSelected();"/>
-                                        <label for="v4">baza wiedzy</label></td>
+                                            <label for="v4">baza wiedzy</label>
+                                        </span>
+                                    </td>
                                 </tr>
                             </table>
                             <br />
@@ -138,15 +154,11 @@
                                     <td class="lastcol"><form:radiobutton path="searchResultLimit" value="100"/></td>
                                 </tr>
                             </table>
-                            <br/>
-                            <table cellspacing="0">
-                                <tr>
-                                    <td colspan="2">
-                                        <input name="_cancel" type="submit" value="anuluj" class="btn" />
-                                        <input type="submit" value="zapisz" class="btn" />
-                                    </td>
-                                </tr>
-                            </table>
+
+                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
+                            <a href="" class="btnPlain floatLeft">anuluj</a>
+                            <div class="clearFloat"></div>
+
                         </div>
                         <div class="contentbottom"></div>
                     </div>

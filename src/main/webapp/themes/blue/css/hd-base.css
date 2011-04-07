@@ -254,6 +254,7 @@ table a.btn {
     border-right: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
 }
+
 .standardtable .lastcol {
     border-right: 0;
 }
@@ -906,10 +907,12 @@ div.buttons input {margin: 0 5px;}
 }
 .preferences .options input {
     float: left;
+    /*
     position: relative;
     top: 0 !important;
     top: -3px;
-    margin: 0;
+    */
+    margin: 3px 3px 0 0;
     padding: 0;
 }
 .preferences .standardtable .options span {
@@ -923,6 +926,11 @@ div.buttons input {margin: 0 5px;}
     text-align: left;
 }
 
+.preferences .standardtable .options .layoutOption {
+    display: block;
+    padding: 3px 0;
+    margin: 0;
+}
 
 /* ZARZĄDZANIE */
 
