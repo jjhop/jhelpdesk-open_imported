@@ -53,20 +53,21 @@
                                                     Od
                                                     <span class="lblTip">(data początkowa - format 1999-12-12)</span>
                                                 </label>
-                                                <form:input id="f_date_start" path="beginDate" cssClass="w85p"/>
+                                                <form:input id="f_date_start" path="beginDate" cssClass="w85p" cssErrorClass="fieldError w85p"/>
                                                 <img id="f_trigger_c" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
                                                     Calendar.setup({
                                                         inputField: "f_date_start", ifFormat: "%Y-%m-%d", button: "f_trigger_c", align: "BR", singleClick: true
                                                     });
                                                 </script>
+                                                <form:errors cssClass="formError errorBottom" path="beginDate"/>
                                             </li>
                                             <li class="floatRight w45p">
                                                 <label>
                                                     Do
                                                     <span class="lblTip">(data końcowa - format 1999-12-12)</span>
                                                 </label>
-                                                <form:input id="f_date_end" path="endDate" cssClass="w85p"/>
+                                                <form:input id="f_date_end" path="endDate" cssClass="w85p" cssErrorClass="fieldError w85p"/>
                                                 <img id="f_trigger_d" src="<c:url value="/themes/blue/i/btn_calendar.png"/>" alt="" style="padding-top: 1px; float: right; cursor: pointer; border: 0px;"/>
                                                 <script type="text/javascript">
                                                     Calendar.setup({
