@@ -44,7 +44,7 @@ public interface ArticleDAO {
 
     /**
      * Zapisuje lub uaktualnie podany obiekt Article. Operacja wybierana jest na
-     * podstawie wartości {@link Article#articleId} dostarczonego obiektu.
+     * podstawie wartości {@link Article#id} dostarczonego obiektu.
      * Jeśli jest on równy {@code null} to obiekt zapisywany jest jako nowy a
      * identyfikator jest uzupełniany. Jeśli obiekt posiada identyfikator (
      * {@code article.getArticleId() != null}) to w bazie danych
@@ -94,13 +94,13 @@ public interface ArticleDAO {
     /**
      * Zwraca listę obiektów Article o rozmiarze co najwyżej {@code howMuch}.
      * Lista zawiera obiekty Article o najświeższej dacie dodania (
-     * {@link Article#createDate});
+     * {@link Article#createdAt});
      * 
      * @param howMuch
      * @return lista obiektów Article (może być pusta)
      * 
      * @see Article
-     * @see Article#getCreateDate()
+     * @see Article#getCreatedAt()
      */
     List<Article> getLastArticles(int howMuch) throws DAOException;
 
