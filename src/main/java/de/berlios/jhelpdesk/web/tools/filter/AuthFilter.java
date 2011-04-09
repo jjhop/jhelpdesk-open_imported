@@ -29,32 +29,33 @@ import javax.servlet.http.HttpSession;
 
 public class AuthFilter implements Filter {
 
-	public void init(FilterConfig filter) throws ServletException {}
+    public void init(FilterConfig filter) throws ServletException {}
 
-	public void doFilter(ServletRequest req, ServletResponse res, 
-			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest servletReq = (HttpServletRequest) req;
-		HttpSession sess = servletReq.getSession();
+    public void doFilter(ServletRequest req, ServletResponse res,
+                         FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest servletReq = (HttpServletRequest) req;
 
-		String reqUrl = servletReq.getRequestURL().toString().toLowerCase();
-		if (reqUrl.endsWith("/login.html") 
-				|| reqUrl.endsWith(".ico") 
-				|| reqUrl.endsWith(".gif")
-				|| reqUrl.endsWith(".png") 
-				|| reqUrl.endsWith(".htc")) {
-			chain.doFilter(req, res);
-			return;
-		}
-		Boolean logged = (Boolean) sess.getAttribute("logged");
+        String reqUrl = servletReq.getRequestURL().toString().toLowerCase();
+        if (reqUrl.endsWith("/login.html")
+                || reqUrl.endsWith(".ico")
+                || reqUrl.endsWith(".gif")
+                || reqUrl.endsWith(".png")
+                || reqUrl.endsWith(".htc")) {
+            chain.doFilter(req, res);
+            return;
+        }
 
-		if ((logged == null) || !logged.booleanValue()) {
+        HttpSession sess = servletReq.getSession();
+        Boolean logged = (Boolean) sess.getAttribute("logged");
+
+        if ((logged == null) || !logged.booleanValue()) {
             int rp = servletReq.getContextPath().length();
             sess.setAttribute("requestURI", servletReq.getRequestURI().substring(rp));
-			((HttpServletResponse) res).sendRedirect(servletReq.getContextPath() + "/login.html");
+            ((HttpServletResponse) res).sendRedirect(servletReq.getContextPath() + "/login.html");
             return;
-		}
-		chain.doFilter(req, res);
-	}
+        }
+        chain.doFilter(req, res);
+    }
 
-	public void destroy() {}
+    public void destroy() {}
 }
