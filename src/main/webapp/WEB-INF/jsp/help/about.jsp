@@ -3,21 +3,23 @@
 
 <div id="tableofcontent" class="management">
     <div id="pagecontentheader"><h2>Pomoc</h2></div>
-    <table cellspacing="0">
-        <tr>
-            <td class="rightcells">
                 <div id="pagecontentsubheader"><h3>O programie</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        Informacje o wersji.<br/>
-                        Informacje o stronie domowej (developer.berlios.de/projects/jhelpdesk) i komercyjnym wsparciu.<br/>
-                        Informacje o licencji (GPL oraz komercyjna).<br/>
-                        Informacja o developerach.<br/>
+                        <table cellspacing="0" id="table1">
+                            <tbody>
+                                <tr class="middle">
+                                    <td id="middlecenter" class="rndCrn5px">
+
+                                    </td>
+                                    <td id="jhdBanner">
+                                        <img src="<c:url value="/themes/blue/i/jhd_banner.jpg"/>" alt="O programie" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="contentbottom"></div>
                 </div>
-            </td>
-        </tr>
-    </table>
 </div>
