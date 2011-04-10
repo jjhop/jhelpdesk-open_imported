@@ -6,7 +6,7 @@
 
     <definition name="javascripts" template="/WEB-INF/jsp/inc/javascripts.jsp"/>
 
-    <definition name="lightLayout" template="/WEB-INF/jsp/layouts/lightLayout.jsp">
+    <definition name="liteLayout" template="/WEB-INF/jsp/layouts/lightLayout.jsp">
         
     </definition>
 
@@ -84,6 +84,14 @@
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/view.jsp"/>
     </definition>
 
+    <definition name="tickets/commentForm" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/commentForm.jsp"/>
+    </definition>
+
+    <definition name="tickets/commentThanks" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/commentThanks.jsp"/>
+    </definition>
+
     <!-- preferencje -->
     <definition name="preferences/lookAndFeel" extends="baseLayout">
         <put-attribute name="title" value="Edycja preferencji - lukendfil"/>
@@ -105,11 +113,11 @@
         <put-attribute name="content" value="/WEB-INF/jsp/preferences/personalData.jsp"/>
     </definition>
 
-    <definition name="preferences/password/form" extends="lightLayout">
+    <definition name="preferences/password/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/preferences/passwordForm.jsp"/>
     </definition>
     
-    <definition name="preferences/password/thanks" extends="lightLayout">
+    <definition name="preferences/password/thanks" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/preferences/passwordThanks.jsp"/>
     </definition>
 

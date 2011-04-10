@@ -136,17 +136,11 @@
                                                             <li><a href="#">następna &raquo;</a></li>
                                                         </ul>
                                                     </c:if>
-                                                    <form action="<c:url value="/tickets/${ticket.ticketId}/details.html"/>" method="post">
-                                                        <textarea id="addComm" name="addComm" rows="3" cols="40" class="addcomment" style="height: 120px;"></textarea>
-                                                        <br/>
-                                                        <input type="checkbox" name="notForPlainUser" value="true"/> - tylko dla pracowników helpdesku
-                                                        <br/><br/>
-                                                        <input type="submit" value="dodaj komentarz" class="btn" />
-                                                    </form>
+                                                    <a href="<c:url value="/tickets/${ticket.ticketId}/comments/new.html"/>"
+                                                       class="lightview" title=":: :: width: 400, height: 300, keyboard: true">Dodaj komentarz</a>
                                                 </td>
                                             </tr>
                                         </table>
-
                                     </div>
                                     <div id="panel_events" class="Page">
                                         <table width="100%" cellspacing="12" cellpadding="4">
