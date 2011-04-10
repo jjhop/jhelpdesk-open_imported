@@ -48,6 +48,7 @@
                                         </ul>
                                     </td>
                                 </tr>
+                                <c:if test="${hdticket.notifier != null}">
                                 <tr>
                                     <td class="wizardLabel">Użytkownik: </td>
                                     <td class="wizardContent">
@@ -59,7 +60,7 @@
                                         </c:if>
                                     </td>
                                     <td class="wizardAvatar" rowspan="3">
-                                        <img class="avatar" alt="avatar" src="http://www.gravatar.com/avatar/2cead66852e686d84eb4b1e7d4a9d416?d=mm&amp;s=96">
+                                        <img src="${hdticket.notifier.avatarURL}" alt="avatar" class="avatar" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,6 +79,7 @@
                                         </c:if>
                                     </td>
                                 </tr>
+                                </c:if>
                                 <tr>
                                     <td colspan="2"><input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/></td>
                                 </tr>
