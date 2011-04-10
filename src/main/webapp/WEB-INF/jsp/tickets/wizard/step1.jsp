@@ -50,7 +50,7 @@
                                 </tr>
                                 <c:if test="${hdticket.notifier != null}">
                                 <tr>
-                                    <td class="wizardAvatar" rowspan="3">
+                                    <td class="wizardAvatar" rowspan="4">
                                         <img src="${hdticket.notifier.avatarURL}" alt="avatar" class="avatar" />
                                     </td>
                                     <td class="wizardUser" colspan="2">
@@ -78,9 +78,20 @@
                                         </c:if>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="wizardLabel">
+
+                                    </td>
+                                    <td class="wizardContent">
+
+                                    </td>
+                                </tr>
                                 </c:if>
                                 <tr>
-                                    <td colspan="2" style="padding: 10px"><input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/></td>
+                                    <td colspan="3" style="padding: 10px">
+                                        <hr class="separator" />
+                                        <input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/>
+                                    </td>
                                 </tr>
                             </table>
                         </form>
