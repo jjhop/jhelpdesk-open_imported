@@ -809,11 +809,19 @@ div.buttons input {margin: 0 5px;}
 }
 #tableWizard td.wizardLabel {
     width: 20px;
-    padding: 0 5px 3px 15px;
+    padding: 0 5px 1px 15px;
     vertical-align: middle;
 }
+
+hr.separator {
+    border: 0;
+    background: #DDABBE;
+    height: 1px;
+    width: 100%;
+}
+
 #tableWizard td.wizardContent {
-    padding: 0 5px 3px 5px;
+    padding: 0 5px 1px 5px;
     vertical-align: middle;
 }
 

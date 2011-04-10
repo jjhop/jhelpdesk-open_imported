@@ -36,6 +36,7 @@
                                         </spring:bind>
                                 </li>
                                 <li>
+                                    <hr class="separator" />
                                     <input class="btn floatLeft" type="submit" name="_target1" value="&laquo; Cofnij"/> <input class="btn floatRight" type="submit" name="_target3" value="Dalej &raquo;"/>
                                 </li>
                             </ul>

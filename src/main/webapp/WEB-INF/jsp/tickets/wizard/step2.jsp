@@ -36,7 +36,7 @@
                                 </li>
                                 <li class="floatLeft">
                                     <label>Kategoria</label>
-                                    <form:select id="kategoria" cssClass="w275" path="ticketCategory" items="${categories}" itemValue="id" itemLabel="categoryName"/>
+                                    <form:select id="kategoria" cssClass="w300" path="ticketCategory" items="${categories}" itemValue="id" itemLabel="categoryName"/>
                                 </li>
                                 <li class="floatRight">
                                     <label>Ważność</label>
@@ -48,6 +48,7 @@
                                     <form:errors path="description" cssClass="formError errorBottom" />
                                 </li>
                                 <li>
+                                    <hr class="separator" />
                                     <input class="btn floatLeft" type="submit" name="_target0" value="&laquo; Cofnij"/> <input class="btn floatRight" type="submit" name="_target2" value="Dalej &raquo;"/>
                                 </li>
                             </ul>
