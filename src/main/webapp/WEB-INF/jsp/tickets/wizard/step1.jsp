@@ -28,49 +28,53 @@
                             <input type="hidden" name="currentPage" value="1"/>
                             <table id="table2" cellspacing="0">
                                 <tr>
-                                    <td class="tabtitle">Email:</td>
-                                    <td>
-                                        <spring:bind path="hdticket.notifier">
-                                            <c:choose>
-                                                <c:when test="${readOnly}">
-                                                    <c:out value="${status.expression}"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input class="textinput" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
-                                                           <c:if test="${not empty status.errorMessage}"> class="hintanchor"</c:if> />
-                                                    <input type="image" name="_checkLogin" alt="Znajdź" value="true" src="<c:url value="/themes/blue/i/find.gif"/>" style="border: 0" align="top" />
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </spring:bind>
+                                    <td colspan="2">
+                                        <ul class="formContainer">
+                                            <li>
+                                                <label>E-mail:</label>
+                                                <spring:bind path="hdticket.notifier">
+                                                    <c:choose>
+                                                        <c:when test="${readOnly}">
+                                                            <c:out value="${status.expression}"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input class="textinput" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
+                                                                   <c:if test="${not empty status.errorMessage}"> class="hintanchor"</c:if> />
+                                                            <input type="image" name="_checkLogin" alt="Znajdź" value="true" src="<c:url value="/themes/blue/i/btn_find.png"/>" style="border: 0" align="top" />
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </spring:bind>
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tabtitle">Imie:</td>
-                                    <td style="width: 240px">
+                                    <td class="wizardLabel">Imie:</td>
+                                    <td class="wizardContent" style="width: 240px">
                                         <c:if test="${ not empty hdticket.notifier }">
                                             <c:out value="${hdticket.notifier.firstName}" />
                                         </c:if>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tabtitle">Nazwisko: </td>
-                                    <td style="width: 240px">
+                                    <td class="wizardLabel">Nazwisko: </td>
+                                    <td class="wizardContent" style="width: 240px">
                                         <c:if test="${ not empty hdticket.notifier }">
                                             <c:out value="${hdticket.notifier.lastName}" />
                                         </c:if>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tabtitle">Telefon:</td>
-                                    <td>
+                                    <td class="wizardLabel">Telefon:</td>
+                                    <td class="wizardContent">
                                         <c:if test="${ not empty hdticket.notifier}">
                                             <c:out value="${hdticket.notifier.phone}"/>
                                         </c:if>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tabtitle">Telefon kom.:</td>
-                                    <td>
+                                    <td class="wizardLabel">Telefon kom.:</td>
+                                    <td class="wizardContent">
                                         <c:if test="${ not empty hdticket.notifier}">
                                             <c:out value="${hdticket.notifier.mobile}"/>
                                         </c:if>

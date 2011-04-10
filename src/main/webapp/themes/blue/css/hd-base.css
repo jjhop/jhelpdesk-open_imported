@@ -794,6 +794,11 @@ div.buttons input {margin: 0 5px;}
 #table2 td {
     padding: 3px 5px 4px;
 }
+#table2 td.wizardLabel, #table2 td.wizardContent {
+    width: 100px;
+    padding: 0 5px 10px 15px;
+    vertical-align: top;
+}
 #table2 table.mceEditor td {
     padding: 5px;
 }
