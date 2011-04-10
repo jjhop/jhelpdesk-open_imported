@@ -26,9 +26,9 @@
                     <td id="middlecenter">
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="1"/>
-                            <table id="table2" cellspacing="0">
+                            <table id="tableWizard" cellspacing="0">
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="3">
                                         <ul class="formContainer">
                                             <li>
                                                 <label>E-mail:</label>
@@ -38,7 +38,7 @@
                                                             <c:out value="${status.expression}"/>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <input class="textinput" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
+                                                            <input class="wizardEmail" type="text" name="<c:out value="${status.expression}"/>" value="<c:out value="${status.value}"/>"
                                                                    <c:if test="${not empty status.errorMessage}"> class="hintanchor"</c:if> />
                                                             <input type="image" name="_checkLogin" alt="Znajdź" value="true" src="<c:url value="/themes/blue/i/btn_find.png"/>" style="border: 0" align="top" />
                                                         </c:otherwise>
@@ -49,19 +49,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="wizardLabel">Imie:</td>
-                                    <td class="wizardContent" style="width: 240px">
+                                    <td class="wizardLabel">Użytkownik: </td>
+                                    <td class="wizardContent">
                                         <c:if test="${ not empty hdticket.notifier }">
                                             <c:out value="${hdticket.notifier.firstName}" />
                                         </c:if>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="wizardLabel">Nazwisko: </td>
-                                    <td class="wizardContent" style="width: 240px">
                                         <c:if test="${ not empty hdticket.notifier }">
                                             <c:out value="${hdticket.notifier.lastName}" />
                                         </c:if>
+                                    </td>
+                                    <td class="wizardAvatar" rowspan="3">
+                                        <img class="avatar" alt="avatar" src="http://www.gravatar.com/avatar/2cead66852e686d84eb4b1e7d4a9d416?d=mm&amp;s=96">
                                     </td>
                                 </tr>
                                 <tr>
