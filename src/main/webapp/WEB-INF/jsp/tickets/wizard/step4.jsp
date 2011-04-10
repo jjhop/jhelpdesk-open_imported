@@ -53,12 +53,13 @@
                                 </c:forEach>
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="4"/>
-                            <table class="upload" cellspacing="0">
+                            <table id="tableWizard" cellspacing="0">
                                 <tr>
                                     <td style="color: red; font-weight: bold; font-size: 15px">Do obczajenia jeszcze ten mechanizm!</td>
                                 </tr>
                                 <tr class="buttons">
                                     <td>
+                                        <hr class="separator" />
                                         <input class="btn" type="submit" name="_target2" value="&laquo; Cofnij"/>
                                         <input class="btn" type="submit" name="_target4" value="Dalej &raquo;"/>
                                     </td>
