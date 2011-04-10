@@ -809,11 +809,11 @@ div.buttons input {margin: 0 5px;}
 }
 #tableWizard td.wizardLabel {
     width: 20px;
-    padding: 0 5px 5px 15px;
+    padding: 0 5px 3px 15px;
     vertical-align: middle;
 }
 #tableWizard td.wizardContent {
-    padding: 0 5px 5px 5px;
+    padding: 0 5px 3px 5px;
     vertical-align: middle;
 }
 
