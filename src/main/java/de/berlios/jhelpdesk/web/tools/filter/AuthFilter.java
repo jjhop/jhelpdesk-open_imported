@@ -48,7 +48,7 @@ public class AuthFilter implements Filter {
         HttpSession sess = servletReq.getSession();
         Boolean logged = (Boolean) sess.getAttribute("logged");
 
-        if ((logged == null) || !logged.booleanValue()) {
+        if ((logged == null) || !logged) {
             int rp = servletReq.getContextPath().length();
             sess.setAttribute("requestURI", servletReq.getRequestURI().substring(rp));
             ((HttpServletResponse) res).sendRedirect(servletReq.getContextPath() + "/login.html");
