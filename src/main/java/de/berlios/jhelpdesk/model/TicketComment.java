@@ -57,7 +57,7 @@ public class TicketComment implements Serializable {
     @Column(name = "comment_date")
     private Date commentDate;
 
-    @Column(name="comment_text")
+    @Column(name = "comment_text", length = 4096)
     private String commentText;
 
     /**
