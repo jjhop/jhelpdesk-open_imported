@@ -50,8 +50,10 @@
                                 </tr>
                                 <c:if test="${hdticket.notifier != null}">
                                 <tr>
-                                    <td class="wizardLabel">Użytkownik: </td>
-                                    <td class="wizardContent">
+                                    <td class="wizardAvatar" rowspan="3">
+                                        <img src="${hdticket.notifier.avatarURL}" alt="avatar" class="avatar" />
+                                    </td>
+                                    <td class="wizardUser" colspan="2">
                                         <c:if test="${ not empty hdticket.notifier }">
                                             <c:out value="${hdticket.notifier.firstName}" />
                                         </c:if>
@@ -59,12 +61,9 @@
                                             <c:out value="${hdticket.notifier.lastName}" />
                                         </c:if>
                                     </td>
-                                    <td class="wizardAvatar" rowspan="3">
-                                        <img src="${hdticket.notifier.avatarURL}" alt="avatar" class="avatar" />
-                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="wizardLabel">Telefon:</td>
+                                    <td class="wizardLabel"><img src="<c:url value="/themes/blue/i/ico_phone.png"/>" alt="Telefon" /></td>
                                     <td class="wizardContent">
                                         <c:if test="${ not empty hdticket.notifier}">
                                             <c:out value="${hdticket.notifier.phone}"/>
@@ -72,7 +71,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="wizardLabel">Telefon kom.:</td>
+                                    <td class="wizardLabel"><img src="<c:url value="/themes/blue/i/ico_mobile.png"/>" alt="Telefon komórkowy" /></td>
                                     <td class="wizardContent">
                                         <c:if test="${ not empty hdticket.notifier}">
                                             <c:out value="${hdticket.notifier.mobile}"/>
@@ -81,7 +80,7 @@
                                 </tr>
                                 </c:if>
                                 <tr>
-                                    <td colspan="2"><input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/></td>
+                                    <td colspan="2" style="padding: 10px"><input class="btn" type="submit" name="_target1" value="Dalej &raquo;"/></td>
                                 </tr>
                             </table>
                         </form>

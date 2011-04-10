@@ -802,20 +802,24 @@ div.buttons input {margin: 0 5px;}
     width: 450px;
 }
 
-#tableWizard td.wizardLabel, #tableWizard td.wizardContent {
-    padding: 5px 5px 10px 15px;
-    vertical-align: top;
+#tableWizard td.wizardUser {
+    padding: 0 5px 0 15px;
+    font-weight:bold;
+    font-size: 14px;
 }
 #tableWizard td.wizardLabel {
-    width: 80px;
+    width: 20px;
+    padding: 0 5px 5px 15px;
+    vertical-align: middle;
 }
 #tableWizard td.wizardContent {
-/*    width: 125px;*/
+    padding: 0 5px 5px 5px;
+    vertical-align: middle;
 }
 
 #tableWizard td.wizardAvatar {
-    width: 95px;
-    padding-left: 5px;
+    width: 80px;
+    padding-left: 10px;
 }
 #tableWizard td.wizardAvatar img.avatar {
     width: 76px;
