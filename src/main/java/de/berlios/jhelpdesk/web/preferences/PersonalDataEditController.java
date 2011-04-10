@@ -40,6 +40,10 @@ import de.berlios.jhelpdesk.web.tools.UserDataValidator;
 @Controller
 public class PersonalDataEditController {
 
+    private static final String PD_FORM_VIEW = "preferences/personalData";
+    private static final String PD_PASSWORD_FORM_VIEW = "preferences/password/form";
+    private static final String PD_PASSWORD_THANKS_VIEW = "preferences/password/thanks";
+
     @Autowired
     private UserDAO userDAO;
 
@@ -53,7 +57,7 @@ public class PersonalDataEditController {
     @RequestMapping(value = "/preferences/personalData.html", method = RequestMethod.GET)
     public String prepareForm(HttpSession session, ModelMap map) {
         map.addAttribute("personalData", getUserFromSession(session));
-        return "preferences/personalData";
+        return PD_FORM_VIEW;
     }
 
     @RequestMapping(value = "/preferences/personalData/change.html", method = RequestMethod.POST)
@@ -64,17 +68,17 @@ public class PersonalDataEditController {
         validator.validate(user, result);
         if (result.hasErrors()) {
             map.addAttribute("user", user);
-            return "preferences/personalData";
+            return PD_FORM_VIEW;
         }
         user.setUserId(currentUser.getUserId());
         userDAO.saveOrUpdate(user);
-        return "preferences/personalData";
+        return PD_FORM_VIEW;
     }
 
     @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.GET)
     public String preparePasswordChange(HttpSession session, ModelMap map) throws Exception {
         map.addAttribute("passwordForm", new PasswordForm());
-        return "preferences/password/form";
+        return PD_PASSWORD_FORM_VIEW;
     }
 
     @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.POST)
@@ -91,10 +95,10 @@ public class PersonalDataEditController {
                 result.rejectValue("currentPassword", "passw.change.current.notValid");
             }
             map.addAttribute("passwordForm", form);
-            return "preferences/password/form";
+            return PD_PASSWORD_FORM_VIEW;
         }
         userDAO.updatePasswordAndSalt(currentUser, form.getNewPassword());
-        return "preferences/password/thanks";
+        return PD_PASSWORD_THANKS_VIEW;
     }
 
     private User getUserFromSession(HttpSession session) {

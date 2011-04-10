@@ -44,6 +44,7 @@ import de.berlios.jhelpdesk.model.Preferences;
 public class PreferencesEditController {
 
     private static final int SECONDS_BY_WEEK = 604800; // 24*3600*7
+    private static final String LAF_FROM_VIEW = "preferences/lookAndFeel";
 
     @Autowired
     private UserPreferencesDAO userPreferencesDAO;
@@ -57,7 +58,7 @@ public class PreferencesEditController {
     public String prepareForm(ModelMap map, HttpSession session) {
         User currentUser = (User) session.getAttribute("user");
         map.addAttribute("preferences", currentUser.getPreferences());
-        return "preferences/lookAndFeel";
+        return LAF_FROM_VIEW;
     }
 
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.POST)
@@ -73,7 +74,7 @@ public class PreferencesEditController {
             session.setAttribute("user", currentUser);
             map.addAttribute("preferences", preferences);
         }
-        return "preferences/lookAndFeel";
+        return LAF_FROM_VIEW;
     }
 
     private Cookie createCookie(HttpServletRequest req, Locale loc) {
