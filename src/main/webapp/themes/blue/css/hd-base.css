@@ -771,6 +771,12 @@ div.buttons input {margin: 0 5px;}
     font-family: "Trebuchet MS", Tahoma, sans-serif;
     line-height: 1.1;
 }
+#table1 td#jhdBanner {
+    width: 220px;
+    height: 25px;
+    border-left: 10px solid #D0DBFB;
+    background: none;
+}
 #table1 h3.firstStep {
 }
 #table1 .active h3 {
@@ -1267,7 +1273,11 @@ td.artnumber {
 .w99p { width: 99% }
 .w995p { width: 99.5% }
 .w100p { width: 100% }
-
+.rndCrn5px {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
 hr {
     width: 95%;
     margin: 15px auto 15px;
