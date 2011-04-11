@@ -59,27 +59,27 @@
                             </ul>
                         </form:form>
                     </td>
-                    <td id="middleright">&nbsp;
-                        <h2>Przyczyna zgłoszenia</h2>
-                        <p>
+                    <td id="middleright">
+                        <h2 class="wizardTip">Przyczyna zgłoszenia</h2>
+                        <p class="wizardTip">
                             Przyczyna zgłoszenia powinna być bardzo zwięzłym (maksymalnie 255 znaków) 
                             oznaczeniem występującego problemu, np. <i>kserokopiarka pozostawia smugi
                             na kopiach</i>.
                         </p>
-                        <h2>Kategoria problemu</h2>
-                        <p>
+                        <h2 class="wizardTip">Kategoria problemu</h2>
+                        <p class="wizardTip">
                             Koniecznie wybierz najlepszą Twoim zdaniem kategorię, do której należy
                             zgłaszany przez Ciebie problem. Jeśli po analizie w dziale helpdesk okaże
                             się, że trzeba ją zmienić to będzie to możliwe. Zmiana taka zostanie zapisana
                             w historii zgłoszenia.
                         </p>
-                        <h2>Ważność</h2>
-                        <p>
+                        <h2 class="wizardTip">Ważność</h2>
+                        <p class="wizardTip">
                             Wybierz możliwe najdokładniej ważność problemu. <strong>Ważność</strong>
                             traktuj jako wypadkową dokuczliwości i pilności rozwiązania.
                         </p>
-                        <h2>Opis zgłoszenia</h2>
-                        <p>
+                        <h2 class="wizardTip">Opis zgłoszenia</h2>
+                        <p class="wizardTip">
                             W tym polu należy zwięźle opisać w jakich okolicznościach zachodzą problemy.
                             Opis może być dość długi - maksymalnie 8192 znaki (8kb).
                         </p>
