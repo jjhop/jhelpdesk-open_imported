@@ -80,10 +80,8 @@
                                 </tr>
                                 <tr>
                                     <td class="wizardLabel">
-
                                     </td>
                                     <td class="wizardContent">
-
                                     </td>
                                 </tr>
                                 </c:if>
@@ -96,7 +94,14 @@
                             </table>
                         </form>
                     </td>
-                    <td id="middleright">&nbsp;</td>
+                    <td id="middleright">
+                        Aby sprawdzić użytkownika, wprowadź jego emaila do pola i kliknij <b>lupkę</b>.
+                        Jeśli jest zarejestrowany w systemie to poniżej pola pojawią się jego dodatkowe
+                        dane. Jeśli jednak nie zostatnie odnaleziony - pojawi się stosowny komunikat.<br/>
+                        Jeśli jesteś pewien, że użytkownik istnieje i wprowadzony email jest prawidłowy,
+                        możesz po prostu kliknąć przycisk <b>Dalej</b>, aby przejść do kolejnego kroku
+                        formularza zgłoszenia.
+                    </td>
                 </tr>
                 <tr class="bottom">
                     <td id="bottomleft">&nbsp;</td>

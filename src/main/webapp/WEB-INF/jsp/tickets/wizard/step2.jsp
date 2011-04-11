@@ -30,7 +30,10 @@
 
                             <ul class="formContainer">
                                 <li>
-                                    <label>Przyczyna zgłoszenia (max. 255 znaków)</label>
+                                    <label>
+                                        Przyczyna zgłoszenia (max. 255 znaków)
+                                        <span class="lblTip">(zasygnalizuj problem, zmieść w 255 znakach, pole wymagane)</span>
+                                    </label>
                                     <form:textarea id="treasonarea" cssErrorClass="w99p fieldError" cssClass="w99p" rows="2" path="subject"/>
                                     <form:errors path="subject" cssClass="formError errorBottom" />
                                 </li>
@@ -43,7 +46,9 @@
                                     <form:select id="waznosc" path="ticketPriority" items="${priorities}" itemValue="priorityId" itemLabel="priorityName"/>
                                 </li>
                                 <li class="clearFloat">
-                                    <label>Opis zgłoszenia</label>
+                                    <label>Opis zgłoszenia
+                                        <span class="lblTip">(opisz istotne objawy problemu, zmieść je w 8192 znakach, pole wymagane)</span>
+                                    </label>
                                     <form:textarea id="tdescarea" cssErrorClass="w99p fieldError" cssClass="mceEditor w99p" rows="10" path="description"/>
                                     <form:errors path="description" cssClass="formError errorBottom" />
                                 </li>
@@ -54,7 +59,31 @@
                             </ul>
                         </form:form>
                     </td>
-                    <td id="middleright">&nbsp;</td>
+                    <td id="middleright">&nbsp;
+                        <h2>Przyczyna zgłoszenia</h2>
+                        <p>
+                            Przyczyna zgłoszenia powinna być bardzo zwięzłym (maksymalnie 255 znaków) 
+                            oznaczeniem występującego problemu, np. <i>kserokopiarka pozostawia smugi
+                            na kopiach</i>.
+                        </p>
+                        <h2>Kategoria problemu</h2>
+                        <p>
+                            Koniecznie wybierz najlepszą Twoim zdaniem kategorię, do której należy
+                            zgłaszany przez Ciebie problem. Jeśli po analizie w dziale helpdesk okaże
+                            się, że trzeba ją zmienić to będzie to możliwe. Zmiana taka zostanie zapisana
+                            w historii zgłoszenia.
+                        </p>
+                        <h2>Ważność</h2>
+                        <p>
+                            Wybierz możliwe najdokładniej ważność problemu. <strong>Ważność</strong>
+                            traktuj jako wypadkową dokuczliwości i pilności rozwiązania.
+                        </p>
+                        <h2>Opis zgłoszenia</h2>
+                        <p>
+                            W tym polu należy zwięźle opisać w jakich okolicznościach zachodzą problemy.
+                            Opis może być dość długi - maksymalnie 8192 znaki (8kb).
+                        </p>
+                    </td>
                 </tr>
                 <tr class="bottom">
                     <td id="bottomleft">&nbsp;</td>
