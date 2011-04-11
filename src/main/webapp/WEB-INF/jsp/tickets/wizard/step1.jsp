@@ -95,12 +95,14 @@
                         </form>
                     </td>
                     <td id="middleright">
-                        Aby sprawdzić użytkownika, wprowadź jego emaila do pola i kliknij <b>lupkę</b>.
+                        <p class="wizardTip">
+                        Aby sprawdzić użytkownika, wprowadź jego emaila do pola i kliknij <b>lupkę</b>.<br />
                         Jeśli jest zarejestrowany w systemie to poniżej pola pojawią się jego dodatkowe
                         dane. Jeśli jednak nie zostatnie odnaleziony - pojawi się stosowny komunikat.<br/>
                         Jeśli jesteś pewien, że użytkownik istnieje i wprowadzony email jest prawidłowy,
                         możesz po prostu kliknąć przycisk <b>Dalej</b>, aby przejść do kolejnego kroku
                         formularza zgłoszenia.
+                        </p>
                     </td>
                 </tr>
                 <tr class="bottom">
