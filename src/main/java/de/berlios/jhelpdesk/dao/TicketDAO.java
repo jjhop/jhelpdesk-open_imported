@@ -155,4 +155,27 @@ public interface TicketDAO {
      * @throws DAOException
      */
     List<TicketEvent> getLastEvents(int howMuch) throws DAOException;
+
+    /**
+     * 
+     * @param ticketId
+     * @param page
+     * @param i
+     * @return
+     */
+    List<TicketComment> getCommentsForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
+
+    /**
+     * 
+     * @param ticketId
+     * @param page
+     * @param pageSize
+     * @return
+     * @throws DAOException
+     */
+    List<TicketEvent> getEventsForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
+
+    int countCommentsForTicket(Long ticketId) throws DAOException;
+
+    int countEventsForTicket(Long ticketId) throws DAOException;
 }
