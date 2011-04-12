@@ -69,6 +69,11 @@ table a.btn {
     font-weight: bold;
 }
 
+.btnPlainBox {
+    margin: 0 10px;
+}
+
+
 .btnMargin {
     margin: 10px 0;
 }
@@ -819,17 +824,31 @@ div.buttons input {margin: 0 5px;}
     vertical-align: middle;
 }
 
+#table1 .wizardTip  {
+    padding: 0 10px;
+}
+
 #table1 h2.wizardTip {
-    padding: 0 10px 5px 10px;
+    padding-bottom: 5px;
+}
+
+#table1 h2.wizardTip, #table1 .wizardTip dt {
     font-size: 13px;
+    font-weight: bold;
     color: #333;
 }
 
-#table1 p.wizardTip {
+#table1 p.wizardTip, #table1 .wizardTip dd {
     line-height: 1.5;
     font-size: 11px;
-    padding: 0 10px;
     color: #666;
+    margin: 0 0 15px 0;
+}
+
+#table1 .wizardTip dt {
+    font-family: "Trebuchet MS",Tahoma,Helvetica,sans-serif;
+    color: #444;
+    padding-bottom: 2px;
 }
 
 hr.separator {
@@ -923,6 +942,37 @@ hr.separator {
     padding: 2px 3px;
 }
 
+#table1 #aboutJHD {
+    padding: 15px 125px;
+}
+
+#table1 #aboutJHD h3 {
+    padding: 0 0 20px 0;
+    font-size: 16px;
+}
+#table1 #aboutJHD h3 span {
+    display: inline;
+    color: #999;
+}
+
+#table1 #aboutJHD h4 {
+    font-size:14px;
+    padding: 5px 0;
+}
+
+#table1 #aboutJHD ul {
+    padding: 0 15px;
+}
+
+#table1 #aboutJHD ul, #table1 #aboutJHD p {
+    margin: 5px 0 10px 0;
+}
+
+#table1 #aboutJHD ul li {
+    padding: 0 0 5px 0;
+    margin: 0;
+
+}
 
 /* PREFERENCJE */
 
@@ -1375,6 +1425,20 @@ ul.formContainer li input, ul.formContainer li textarea {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #677498;
+}
+
+ul.formContainer li input.notForPlainUser {
+    margin: 5px 7px 0 0;
+}
+
+ul.formContainer li textarea.addComment {
+    width: 380px;
+    height: 150px;
+}
+
+ul.formContainer li.modalButtons {
+    min-height: 30px;
+    padding-bottom: 0;
 }
 
 ul.formContainer li .counter {

@@ -55,7 +55,7 @@
                             Poniższa lista opisuje tylko kilka znaczników, które możesz wykorzystać
                             w swoim tekście. Więcej znajdziesz w <a href="">Pomocy</a>.
                         </p>
-                        <dl>
+                        <dl class="wizardTip">
                             <dt>paragraf</dt>
                             <dd>paragrafy zaznaczamy linią odstępu pomiędzy wierszami</dd>
                             <dt>emfaza</dt>
