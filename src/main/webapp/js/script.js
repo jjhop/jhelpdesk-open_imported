@@ -7,7 +7,6 @@ String.prototype.charCount = function (counter, ml) {
     (this.length >= percent) ? $(counter).show() : $(counter).hide();
 }
 
-
 String.prototype.charTextCount = function (counter, ml) {
     var charsLeft = ml - this.length;
     var percent = Math.ceil(ml * 0.90);
@@ -42,6 +41,20 @@ function updateDiv(triggerId, sourceUrl) {
         onComplete: function() {
             setTimeout(function () {
                 imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh.png');
+            }, 1000);
+        }
+    });
+}
+
+function remoteLoad(targetDiv, sourceURL) {
+    new Ajax.Updater(targetDiv, sourceURL, {
+        method: 'get',
+        onCreate: function() {
+//            imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh_loader.gif');
+        },
+        onComplete: function() {
+            setTimeout(function () {
+//                imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh.png');
             }, 1000);
         }
     });

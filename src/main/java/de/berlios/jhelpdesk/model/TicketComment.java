@@ -25,6 +25,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,6 +38,11 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ticket_comment") // -> ticket_comments
 @SequenceGenerator(name = "ticket_comment_sequence", sequenceName = "ticket_comment_id_seq", allocationSize = 1)
+@NamedQueries({
+    @NamedQuery(name = "TicketComment.getCommentsForTicketOrderByCreatedAtDESC",
+                query = "SELECT t FROM TicketComment t WHERE t.ticket.ticketId=?1 ORDER BY t.commentDate DESC"),
+    @NamedQuery(name = "TicketComment.countCommentsForTicket", query = "SELECT COUNT(tc) FROM TicketComment tc WHERE tc.ticket.ticketId=?1")
+})
 public class TicketComment implements Serializable {
 
     private static final long serialVersionUID = -29584625086517989L;

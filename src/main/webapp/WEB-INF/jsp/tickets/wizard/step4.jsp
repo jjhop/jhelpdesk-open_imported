@@ -7,7 +7,6 @@
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
-
             <table id="table1" cellspacing="0">
                 <tr class="top">
                     <td id="topleft">&nbsp;</td>
@@ -26,22 +25,9 @@
                     </td>
                     <td id="middlecenter">
                         <span>
-                            <script type="text/javascript" src="<c:url value="/js/jquery-1.3.1.min.js"/>"></script>
-                                <script type="text/javascript">
-                                    $(document).ready(function() {
-                                        $("a.group").fancybox({
-                                            'hideOnContentClick': false,
-                                            'hideOnOverlayClick': false,
-                                            'frameWidth' : 320,
-                                            'frameHeight' : 150
-                                        });
-                                    });
-                                </script>
-                                <script type="text/javascript" src="<c:url value="/js/jquery.easing.1.3.js"/>"></script>
-                                <link rel="stylesheet" type="text/css" href="<c:url value="/js/fancybox/fancybox.css"/>"/>
-                                <script type="text/javascript" src="<c:url value="/js/fancybox/fancybox1.js"/>"></script>
-                                <a class="group iframe"
-                                   href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>">Dołącz plik</a>
+                            <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
+                               rel="iframe" title=":: :: closeButton: false, width: 320, height: 390"
+                               class="lightview">Załącz plik(i)</a>
                         </span>
                         <c:forEach var="file" items="${hdticket.addFilesList}" varStatus="status">
                         <ul>
@@ -49,8 +35,8 @@
                             <td class="tdfile"><c:out value="${file.originalFileName}"/></td>
                             <td class="tdsize"><c:out value="${file.fileSize}"/></td>
                             <td class="tdlink lastcol"><input type="image" name="x" src="<c:url value="/themes/blue/i/delete.gif"/>" /></td>
-                            <ul>
-                                </c:forEach>
+                        </ul>
+                        </c:forEach>
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="4"/>
                             <table id="tableWizard" cellspacing="0">
@@ -67,7 +53,9 @@
                             </table>
                         </form>
                     </td>
-                    <td id="middleright">&nbsp;</td>
+                    <td id="middleright">
+                        help
+                    </td>
                 </tr>
                 <tr class="bottom">
                     <td id="bottomleft">&nbsp;</td>
@@ -75,7 +63,6 @@
                     <td id="bottomright"><div>&nbsp;</div></td>
                 </tr>
             </table>
-
         </div>
         <div class="contentbottom"></div>
     </div>

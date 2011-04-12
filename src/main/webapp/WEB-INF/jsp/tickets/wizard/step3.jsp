@@ -7,7 +7,6 @@
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
-
             <table id="table1" cellspacing="0">
                 <tr class="top">
                     <td id="topleft">&nbsp;</td>
@@ -27,12 +26,11 @@
                     <td id="middlecenter">
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="3"/>
-
                             <ul class="formContainer">
                                 <li>
                                     <label>Kroki by powtórzyć</label>
                                         <spring:bind path="hdticket.stepByStep">
-                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="15"><c:out value="${status.value}" /></textarea>
+                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="15" cols="40"><c:out value="${status.value}" /></textarea>
                                         </spring:bind>
                                 </li>
                                 <li>
@@ -43,7 +41,33 @@
 
                         </form>
                     </td>
-                    <td id="middleright">&nbsp;</td>
+                    <td id="middleright">
+                        <h2 class="wizardTip">Krok po kroku</h2>
+                        <p class="wizardTip">
+                            Jeśli zgłaszany problem ma charakter powtarzalny i potrafisz opisać,
+                            w jakich warunkach da się to zrobić, to opisz te warunki oraz kolejne
+                            kroki, które należy wykonac, aby go wywołać. Masz na to wiele miejsca
+                            (maksymalnie 16384 znaków - 16kb). Możesz używac znaczników 
+                            <strong>Markdown</strong>.
+                        </p>
+                        <h2 class="wizardTip">Znaczki Markdown</h2>
+                        <p class="wizardTip">
+                            Poniższa lista opisuje tylko kilka znaczników, które możesz wykorzystać
+                            w swoim tekście. Więcej znajdziesz w <a href="">Pomocy</a>.
+                        </p>
+                        <dl>
+                            <dt>paragraf</dt>
+                            <dd>paragrafy zaznaczamy linią odstępu pomiędzy wierszami</dd>
+                            <dt>emfaza</dt>
+                            <dd>*tekst do oznaczenia*</dd>
+                            <dt>podwójna emfaza</dt>
+                            <dd>**tekst do oznaczenia**</dd>
+                            <dt>lista numerowana</dt>
+                            <dd>listę numerowaną tworzymy dodając na początku wiersza liczbę</dd>
+                            <dt>lista nienumerowana</dt>
+                            <dd>listę numerowaną tworzymy dodając na początku wiersza znak * i odstęp po niej</dd>
+                        </dl>
+                    </td>
                 </tr>
                 <tr class="bottom">
                     <td id="bottomleft">&nbsp;</td>
@@ -51,7 +75,6 @@
                     <td id="bottomright"><div>&nbsp;</div></td>
                 </tr>
             </table>
-
         </div>
         <div class="contentbottom"></div>
     </div>

@@ -56,7 +56,10 @@ import javax.persistence.Transient;
     @NamedQuery(name = "TicketEvent.getByUserIdOrderByEventDateDESC",
                 query = "SELECT t FROM TicketEvent t WHERE t.evtAuthor.userId=?1 ORDER BY t.evtDate DESC"),
     @NamedQuery(name = "TicketEvent.getLastFewEventsOrderByEventDateDESC",
-                query = "SELECT t FROM TicketEvent t ORDER BY t.evtDate DESC")
+                query = "SELECT t FROM TicketEvent t ORDER BY t.evtDate DESC"),
+    @NamedQuery(name = "TicketEvent.getEventsForTicketOrderByEventDateDESC",
+                query = "SELECT t FROM TicketEvent t WHERE t.ticket.ticketId=?1 ORDER BY t.evtDate DESC"),
+    @NamedQuery(name = "TicketEvent.countEventsForTicket", query = "SELECT COUNT(evt) FROM TicketEvent evt WHERE evt.ticket.ticketId=?1")
 })
 public class TicketEvent implements Serializable {
 

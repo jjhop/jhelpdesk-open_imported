@@ -249,4 +249,69 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
+
+    public List<TicketComment> getCommentsForTicket(final Long ticketId, final int pageSize, final int offset) throws DAOException {
+        try {
+            return (List<TicketComment>)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "TicketComment.getCommentsForTicketOrderByCreatedAtDESC");
+                    q.setParameter(1, ticketId);
+                    q.setMaxResults(pageSize);
+                    q.setFirstResult(offset);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public List<TicketEvent> getEventsForTicket(final Long ticketId, final int pageSize, final int offset) throws DAOException {
+        try {
+            return (List<TicketEvent>)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "TicketEvent.getEventsForTicketOrderByEventDateDESC");
+                    q.setParameter(1, ticketId);
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countCommentsForTicket(final Long ticketId) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "TicketComment.countCommentsForTicket");
+                    q.setParameter(1, ticketId);
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countEventsForTicket(final Long ticketId) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "TicketEvent.countEventsForTicket");
+                    q.setParameter(1, ticketId);
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
 }

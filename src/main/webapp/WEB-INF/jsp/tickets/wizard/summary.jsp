@@ -7,7 +7,6 @@
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
-
             <table id="table1" cellspacing="0">
                 <tr class="top">
                     <td id="topleft">&nbsp;</td>
@@ -103,7 +102,9 @@
                             <input class="btn" type="submit" name="_finish" value="Zapisz"/>
                         </form>
                     </td>
-                    <td id="middleright">&nbsp;</td>
+                    <td id="middleright">
+                        help
+                    </td>
                 </tr>
                 <tr class="bottom">
                     <td id="bottomleft">&nbsp;</td>
@@ -111,7 +112,6 @@
                     <td id="bottomright"><div>&nbsp;</div></td>
                 </tr>
             </table>
-
         </div>
         <div class="contentbottom"></div>
     </div>
