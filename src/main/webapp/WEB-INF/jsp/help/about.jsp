@@ -14,7 +14,11 @@
 
                             <div id="aboutJHD">
 
-                                <h3>jHelpDesk <span>wersja 1.0.0-OSE.GA</span></h3>
+                                <h1>jHelpDesk <span>wersja 1.0.0-OSE.GA</span></h1>
+
+                                <p>
+                                    Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus.
+                                </p>
 
                                 <h4>Ważne adresy:</h4>
 
@@ -23,17 +27,25 @@
                                     <li><a href="https://bitbucket.org/buzzlers.com/jhelpdesk" target="_blank">bitbucket.org/buzzlers.com/jhelpdesk</a> - kod źródłowy, wiki, wsparcie, wersje instalacyjne</li>
                                 </ul>
 
-                                <p>
-                                    Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus.
-                                </p>
-
                                 <h4>Licencja:</h4>
 
                                 <p>
                                  Program rozprowadzany jest na podwójnej licencji. Szczegółowe informacje
                                 znajdują się pod adresem: <a href="http://www.jhelpdesk-online.com/licensing" target="_blank">jhelpdesk-online.com/licensing</a>
                                 </p>
-                            
+
+                                <div class="bottomLogos">
+
+                                    <a id="logoJHD" href="http://www.jhelpdesk-online.com" target="_blank">
+
+                                    </a>
+
+                                    <a id="logoBuzz" href="http://www.buzzlers.com" target="_blank">
+
+                                    </a>
+
+                                </div>
+
                             </div>
                         </td>
                         <td id="jhdBanner">

@@ -943,35 +943,64 @@ hr.separator {
 }
 
 #table1 #aboutJHD {
-    padding: 15px 125px;
+    padding: 15px 100px;
 }
 
-#table1 #aboutJHD h3 {
-    padding: 0 0 20px 0;
-    font-size: 16px;
+#table1 #aboutJHD h1 {
+    padding: 5px 0 15px 0;
+    margin: 0 0 10px 0;
+    font-size: 36px;
+    border-bottom: 1px solid #ccc;
 }
-#table1 #aboutJHD h3 span {
-    display: inline;
+#table1 #aboutJHD h1 span {
+    display: block;
     color: #999;
+    font-size: 14px;
+    padding: 10px 0 0 0;
 }
-
 #table1 #aboutJHD h4 {
-    font-size:14px;
+    font-size: 16px;
     padding: 5px 0;
 }
-
 #table1 #aboutJHD ul {
     padding: 0 15px;
 }
-
 #table1 #aboutJHD ul, #table1 #aboutJHD p {
-    margin: 5px 0 10px 0;
+    margin: 5px 0 15px 0;
 }
-
 #table1 #aboutJHD ul li {
     padding: 0 0 5px 0;
     margin: 0;
 
+}
+#table1 #aboutJHD .bottomLogos {
+    margin: 35px 0 0 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+#table1 #aboutJHD .bottomLogos a {
+    display: inline-block;
+    background: #F3F3F3 url(../i/bg_logos_sprite.png) no-repeat 0 0;
+    margin: 0 15px;
+}
+
+#table1 #aboutJHD .bottomLogos #logoJHD {
+    width: 100px;
+    height: 62px;
+    background-position: bottom left;
+}
+#table1 #aboutJHD .bottomLogos #logoJHD:hover {
+    background-position: 0 0;
+}
+#table1 #aboutJHD .bottomLogos #logoBuzz{
+    width: 234px;
+    height: 34px;
+    background-position: -103px -76px;
+    margin-bottom: 15px;
+}
+#table1 #aboutJHD .bottomLogos #logoBuzz:hover {
+    background-position: -103px -14px;
 }
 
 /* PREFERENCJE */
