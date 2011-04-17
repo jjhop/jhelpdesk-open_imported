@@ -78,14 +78,13 @@
                                                 <form:textarea rows="5" cols="40" cssClass="w99p" path="body"/>
                                                 <form:errors path="body" cssClass="cError"/>
                                             </li>
-                                            <li class="right">
-                                                <input type="submit" class="btn" value="Dodaj komentarz"/>
-                                            </li>
                                         </ul>
                                     </form:form>
                                 </td>
                             </tr>
                         </table>
+                        <input type="submit" class="btn btnMarginTop floatLeft" value="Dodaj komentarz"/>
+                        <div class="clearFloat"></div>
                     </div>
                     <div class="contentbottom"></div>
                 </div>
