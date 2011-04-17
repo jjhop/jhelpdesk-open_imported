@@ -7,7 +7,7 @@ body.lightPassView {
     background: #fff;
 }
 body.lightPassView .contentmiddle {
-    min-height: 326px;
+    min-height: 280px;
     margin: 0;
 }
 h1, h2, h3, h4, h5, h6 {margin: 0;padding: 0;font-family: "Trebuchet MS", Tahoma, Helvetica, sans-serif;line-height: 1;}
@@ -16,6 +16,9 @@ a {color: #4C609E;}
 a:hover {color: #344579;}
 img {border: none;behavior: url(iepngfix.htc);}
 input, select, textarea {font-size: 12px; font-family: Tahoma, Helvetica, sans-serif;}
+textarea {
+    resize: vertical;
+}
 .txtKB {
 width: 340px;
 }
@@ -997,7 +1000,7 @@ hr.separator {
     width: 234px;
     height: 34px;
     background-position: -103px -76px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 #table1 #aboutJHD .bottomLogos #logoBuzz:hover {
     background-position: -103px -14px;
@@ -1448,6 +1451,11 @@ ul.formContainer li {
     position: relative;
 }
 
+.lightPassView ul.formContainer li.chk {
+    min-height: 15px;
+    padding-top: 0;
+}
+
 ul.formContainer li input, ul.formContainer li textarea {
     padding: 4px 3px;
     -moz-border-radius: 5px;
@@ -1461,7 +1469,7 @@ ul.formContainer li input.notForPlainUser {
 }
 
 ul.formContainer li textarea.addComment {
-    width: 380px;
+    width: 435px;
     height: 150px;
 }
 
