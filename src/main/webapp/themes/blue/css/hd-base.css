@@ -1591,3 +1591,42 @@ ul.formContainer ul.legend li {
 .errorBottom {
     background-position: 0 6px;
 }
+
+.attachList {
+    margin: 0;
+    padding: 0;
+}
+
+.attachList li {
+    margin: 5px 5px 10px 20px;
+    padding: 0;
+    width: 310px;
+    min-height: 15px;
+    height: auto !important;
+    height: 15px;
+}
+
+.attachList li .attachSize {
+    color: #555;
+}
+
+.attachList li .attachName {
+    display: block;
+    padding-right: 75px;
+}
+
+.attachList li .attachMeta {
+
+    display:block;
+    color: #555;
+    padding: 1px 5px 1px 0;
+    font-size: 11px;
+}
+
+.attachList li .attachDel {
+    float: right;
+    text-decoration: none;
+    padding: 1px 0 1px 11px;
+    background: url(../i/btn_del_file.gif) 0px 5px no-repeat;
+
+}

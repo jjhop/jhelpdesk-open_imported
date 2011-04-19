@@ -67,8 +67,7 @@
                                             <li>
                                                 <label>Załączniki</label>
                                                 <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
-                                                   rel="iframe"
-                                                   title=":: :: closeButton: false, width: 320, height: 390"
+                                                   title=":: :: closeButton: false, width: 360, height: 390"
                                                    class="lightview">Dołącz plik</a>
                                             </li>
                                         </ul>
