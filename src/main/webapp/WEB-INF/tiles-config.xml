@@ -72,7 +72,9 @@
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/new.jsp"/>
     </definition>
 
-    <definition name="tickets/upload" template="/WEB-INF/jsp/tickets/upload.jsp"/>
+    <definition name="tickets/upload" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/upload.jsp"/>
+    </definition>
 
     <definition name="editTicket" extends="baseLayout">
         <put-attribute name="title" value="Dodawanie/edycja zgłoszenia"/>
