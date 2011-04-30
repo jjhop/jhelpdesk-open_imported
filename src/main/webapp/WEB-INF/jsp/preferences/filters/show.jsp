@@ -16,7 +16,7 @@
                         <table cellspacing="0" class="standardtable">
                             <tr>
                                 <td>
-                                    <ul class="formContainer">
+                                    <ul class="formContainer detailsView">
                                         <li class="w45p">
                                             <label>Nazwa</label>
                                             ${filter.name}
@@ -27,7 +27,7 @@
                                             ${filter.description}
                                         </li>
                                         </c:if>
-                                        <li class="floatLeft w45p">
+                                        <li class="clearFloat floatLeft w45p">
                                             <label>Od</label>
                                             ${filter.beginDate}
                                         </li>
@@ -35,11 +35,11 @@
                                             <label>Do</label>
                                             ${filter.endDate}
                                         </li>
-                                        <li class="floatLeft w45p">
+                                        <li class="clearFloat floatLeft w45p">
                                             <label>Status</label>
                                             <c:choose>
                                                 <c:when test="${not empty filter.ticketStatuses}">
-                                                    <ul>
+                                                    <ul class="nested">
                                                     <c:forEach items="${filter.ticketStatuses}" var="s">
                                                         <li>${s.statusName}</li>
                                                     </c:forEach>
@@ -54,7 +54,7 @@
                                             <label>Ważność</label>
                                             <c:choose>
                                                 <c:when test="${not empty filter.ticketPriorities}">
-                                                    <ul>
+                                                    <ul class="nested">
                                                     <c:forEach items="${filter.ticketPriorities}" var="p">
                                                         <li>${p.priorityName}</li>
                                                     </c:forEach>
@@ -65,11 +65,11 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </li>
-                                        <li class="floatLeft w45p">
+                                        <li class="clearFloat floatLeft w45p">
                                             <label>Rozwiązujący</label>
                                             <c:choose>
                                                 <c:when test="${not empty filter.saviours}">
-                                                    <ul>
+                                                    <ul class="nested">
                                                     <c:forEach items="${filter.saviours}" var="user">
                                                         <li>${user}</li>
                                                     </c:forEach>
@@ -84,7 +84,7 @@
                                             <label>Zgłaszający</label>
                                             <c:choose>
                                                 <c:when test="${not empty filter.notifiers}">
-                                                    <ul>
+                                                    <ul class="nested">
                                                     <c:forEach items="${filter.notifiers}" var="user">
                                                         <li>${user}</li>
                                                     </c:forEach>
@@ -99,7 +99,7 @@
                                             <label>Kategoria zgłoszenia</label>
                                             <c:choose>
                                                 <c:when test="${not empty filter.ticketCategories}">
-                                                    <ul>
+                                                    <ul class="nested">
                                                     <c:forEach items="${filter.ticketCategories}" var="c">
                                                         <li>${c.categoryName}</li>
                                                     </c:forEach>
