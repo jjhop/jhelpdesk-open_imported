@@ -28,12 +28,10 @@
                                         </li>
                                         </c:if>
                                         <li class="clearFloat floatLeft w45p">
-                                            <label>Od</label>
-                                            ${filter.beginDate}
+                                            <label>Od <span class="date">${filter.beginDate}</span></label>
                                         </li>
                                         <li class="floatRight w45p">
-                                            <label>Do</label>
-                                            ${filter.endDate}
+                                            <label>Do<span class="date">${filter.endDate}</span></label>
                                         </li>
                                         <li class="clearFloat floatLeft w45p">
                                             <label>Status</label>
