@@ -36,12 +36,23 @@ width: 340px;
     cursor: pointer;
 }
 
-
 .btn:hover {
     background: url("../i/buttonBgNavy.png") -260px -2px no-repeat;
     border: 2px solid #32415d;
 }
 * html .btn {width: auto;}
+
+.btnGray {
+    background: url("../i/buttonBgGray.png") -10px -10px no-repeat;
+    color: #000;
+    border: 2px solid #bebebe;
+}
+
+.btnGray:hover {
+    background: url("../i/buttonBgGray.png") -260px -2px no-repeat;
+    color: #fff;
+    border: 2px solid #8a8a8a;
+}
 
 a.btn {padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
@@ -1602,8 +1613,14 @@ ul.detailsView ul.nested li {
     margin: 10px 0 0 0;
 }
 
-.kbSearchItem .kbSearchItemMeta {
+.kbSearchItem .kbSearchItemMeta, .itemMeta {
     color: #666;
+}
+
+.entryLead {
+    padding: 0 0 10px 0;
+    color: #333;
+    font-size: 13px;
 }
 
 .formError {
