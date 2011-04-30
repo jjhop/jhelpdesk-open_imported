@@ -7,35 +7,27 @@
         <tr>
             <td class="rightcells">
                 <div id="pagecontentsubheader">
-                    <h3>
-                        <c:out value="${announcement.title}"/>
-                    </h3>
+                    <h3><c:out value="${announcement.title}"/></h3>
                 </div>
                 <div class="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <td class="lastcol">
+                                <td>
+                                    <p class="itemMeta"><c:out value="${announcement.createDate}"/></p>
                                     <div class="entryLead">
                                         <c:out value="${announcement.lead}"/>
                                     </div>
-                                    
                                     <c:out value="${announcement.body}"/>
-                                    <p class="itemMeta">
-                                        <c:out value="${announcement.createDate}"/>
-                                    </p>
                                 </td>
                             </tr>
                         </table>
                     </div>
                     <div class="contentbottom"></div>
                 </div>
-
             </td>
-            <td class="leftcells colNarrowRight">
-
-            </td>
+            <td class="leftcells colNarrowRight">&nbsp;</td>
         </tr>
     </table>
 </div>
