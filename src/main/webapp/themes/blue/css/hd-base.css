@@ -1554,6 +1554,11 @@ ul.detailsView li label {
     color: #000;
 }
 
+ul.detailsView li label .date {
+    color: #333;
+    font-weight: normal;
+}
+
 ul.detailsView li {
     color: #333;
 }
