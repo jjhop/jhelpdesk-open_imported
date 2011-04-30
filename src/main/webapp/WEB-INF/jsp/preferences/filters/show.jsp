@@ -111,6 +111,11 @@
                                     </ul>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" value="oblicz ilość pasujących zgłoszeń" class="btn btnGray btnMarginTop floatLeft"/>
+                                </td>
+                            </tr>
                         </table>
                         <a href="<c:url value="/preferences/filters/list.html"/>" class="btnPlain floatLeft">powrót do listy</a>
                         <div class="clearFloat"></div>
