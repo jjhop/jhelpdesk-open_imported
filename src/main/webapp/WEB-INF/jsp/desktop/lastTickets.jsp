@@ -8,9 +8,9 @@
                 <td class="lastcol">
                     <span class="entryMeta"><c:out value="${ticket.notifier}"/>, <fmt:formatDate value="${ticket.createdAt}" pattern="dd/MM/yyyy HH:mm"/></span>
                     <a href="<c:url value="/tickets/${ticket.ticketId}/details.html"/>"><c:out value="${ticket.subject}"/></a><br/>
-                    <span class="ticketPriority" title="<c:out value="${ticket.ticketPriority}"/>">
+                    <span class="ticketPriority  tp${ticket.ticketPriority}" title="<c:out value="${ticket.ticketPriority}"/>">
                     </span>
-
+                    <span class="ticketCategory">
                         <c:choose>
                             <c:when test="${ticket.ticketCategory.id == 0}">
                                 Brak
@@ -19,7 +19,7 @@
                                 <c:out value="${ticket.ticketCategory}"/>
                             </c:otherwise>
                         </c:choose>
-
+                    </span>
                 </td>
             </tr>
         </c:forEach>

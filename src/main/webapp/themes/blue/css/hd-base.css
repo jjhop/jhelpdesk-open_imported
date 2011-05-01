@@ -1238,6 +1238,32 @@ td.artnumber {
     padding-bottom: 2px;
 }
 
+.ticketPriority, .ticketCategory {
+    display: block;
+    float: left;
+    margin: 4px 4px 0 0;
+}
+.ticketPriority {
+    width: 16px;
+    height: 16px;
+    background: url(../i/bg_status.png) 0 0 no-repeat;
+}
+.tpLOW {
+    background-position: 0 0;
+}
+.tpNORMAL {
+    background-position: 0 -18px;
+}
+.tpIMPORTANT {
+    background-position: 0 -38px;
+}
+.tpMAJOR {
+    background-position: 0 -59px;
+}
+.tpCRITICAL {
+    background-position: bottom center;
+}
+
 .kbComments dd {
     margin: 0;
     padding: 0 0 20px 0;
