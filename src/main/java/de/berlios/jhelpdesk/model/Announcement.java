@@ -23,6 +23,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -63,6 +65,10 @@ public class Announcement implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false)
     private Date createdAt;
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "author", referencedColumnName = "user_id")
+    private User author;
 
     /**
      *
@@ -112,6 +118,14 @@ public class Announcement implements Serializable {
      */
     public void setCreateDate(Date createDate) {
         this.createdAt = createDate;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     /**
