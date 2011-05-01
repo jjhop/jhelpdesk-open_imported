@@ -1239,15 +1239,26 @@ td.artnumber {
 }
 
 .ticketPriority, .ticketCategory {
-    display: block;
     float: left;
-    margin: 4px 4px 0 0;
+    margin: 4px 0;
+    display: block;
 }
+
+.ticketCategory {
+    width: 500px;
+}
+
 .ticketPriority {
+    float: right;
     width: 16px;
     height: 16px;
     background: url(../i/bg_status.png) 0 0 no-repeat;
 }
+
+.ticketTitle {
+    clear: both;
+}
+
 .tpLOW {
     background-position: 0 0;
 }
