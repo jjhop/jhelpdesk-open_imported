@@ -6,7 +6,8 @@
         <c:forEach var="announcement" items="${announcements}">
             <tr>
                 <td class="lastcol">
-                    <span class="entryMeta">Rafał Kotusiewicz, <fmt:formatDate value="${announcement.createDate}" pattern="dd/MM/yyyy HH:mm"/></span>
+                    <span class="entryMeta">
+                        <c:out value="${announcement.author.fullName}"/>, <fmt:formatDate value="${announcement.createDate}" pattern="dd/MM/yyyy HH:mm"/></span>
                     <a href="<c:url value="/announcements/${announcement.id}/show.html"/>"><c:out value="${announcement.title}"/></a><br/>
                     <c:out value="${announcement.lead}"/>
                 </td>
