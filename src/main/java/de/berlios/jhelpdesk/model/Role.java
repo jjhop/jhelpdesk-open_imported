@@ -134,7 +134,7 @@ public enum Role {
 
     /**
      * Zwraca liczbową reprezenację roli. Zwrócona liczba jest identyfikatorem roli.
-     * Na jej podstawie można bezpieczenie odtworzyć role za pomocą {@link #fromInt(code)}.
+     * Na jej podstawie można bezpieczenie odtworzyć role za pomocą {@link #fromInt(int)}.
      *
      * @return liczbowa reprezentacja roli
      *
@@ -159,7 +159,7 @@ public enum Role {
 
     /**
      * Zwraca identyfikator roli. Na podstawie identyfikatora można bezpiecznie odtwarzać 
-     * role za pomocą {@link #fromInt(code)}.
+     * role za pomocą {@link #fromInt(int)}.
      *
      * @return identyfikator roli
      *

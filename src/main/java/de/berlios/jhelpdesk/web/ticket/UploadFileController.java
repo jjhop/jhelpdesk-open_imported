@@ -18,6 +18,8 @@ package de.berlios.jhelpdesk.web.ticket;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 import javax.servlet.http.HttpSession;
@@ -26,70 +28,107 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.model.AdditionalFile;
+import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.utils.FileUtils;
 import de.berlios.jhelpdesk.web.tools.FileUploadBean;
 
 /**
- *
+ * Wrzuca wszystkie załączniki do katalogu tymczasowego, będą tam odnalezione
+ * jeśli użytkownik zdecyduje się zapisać ticket, jeśli kliknie ANULUJ to zostaną
+ * usunięte, jeśli jednak gość nie zapisze ticketu i nie kliknie ANULUJ to zostaną
+ * usunięte przez mechanizm sprzątający sesję
+ * 
  * @author jjhop
  */
 @Controller
-@RequestMapping("/tickets/uploadFile.html")
 public class UploadFileController {
 
     private final static Logger log = LoggerFactory.getLogger(UploadFileController.class);
 
     private final static String TICKETS_UPLOAD_VIEW = "tickets/upload";
 
-    @Value("${tickets.attachments.tmpdir}")
-    private String attachmentsTmpDir;
+    @Autowired
+    private TicketDAO ticketDAO;
 
     @Autowired
     private FileUtils fileUtils;
 
-    @RequestMapping(method = RequestMethod.GET)
-    protected String prepareForm(ModelMap map) {
+    @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.GET)
+    protected String prepareFormForTicket(@PathVariable("ticketId") Long ticketId,
+                                          ModelMap map, HttpSession session) throws Exception {
+
+        Ticket ticket = ticketDAO.getTicketById(ticketId);
+        map.addAttribute("attachments", ticket.getAddFilesList());
         map.addAttribute("fileBean", new FileUploadBean());
         return TICKETS_UPLOAD_VIEW;
     }
 
-    // Wrzuca wszystkie załączniki do katalogu tymczasowego, będą tam odnalezione
-    // jeśli użytkownik zdecyduje się zapisać ticket, jeśli kliknie ANULUJ to zostaną
-    // usunięte, jeśli jednak gość nie zapisze ticketu i nie kliknie ANULUJ to zostaną
-    // usunięte przez mechanizm sprzątający
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.GET)
+    protected String prepareForm(@RequestParam("ticketstamp") String ticketstamp,
+                                 ModelMap map, HttpSession session) {
+        map.addAttribute("currentFiles", getFilesForTicketFromSession(ticketstamp, session));
+        map.addAttribute("fileBean", new FileUploadBean());
+        return TICKETS_UPLOAD_VIEW;
+    }
+
+
+    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.POST)
     protected String processSubmit(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
                                    @RequestParam("ticketstamp") String ticketstamp,
                                    ModelMap map, HttpSession session) {
 
+        File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
         MultipartFile file = uploadedFile.getFile();
         if (file != null) {
-            File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
             File targetFile = new File(targetDir, file.getOriginalFilename());
             addPathToSession(session, targetDir.getAbsolutePath());
-
-            try {
-                BufferedOutputStream buff =
-                        new BufferedOutputStream(new FileOutputStream(targetFile));
-                buff.write(uploadedFile.getFile().getBytes());
-                buff.flush();
-                buff.close();
-            } catch (Exception e) {
-                log.error("Wystąpił problem z przetworzeniem pliku.", e);
-                // obsługa wyjątku?
-            }
+            addFilenameToTicketInSession(ticketstamp, file.getOriginalFilename(),
+                                         FileUtils.toDisplaySize(file.getSize()), session);
+            copyUploadedToTemp(uploadedFile, targetFile);
         }
+        map.addAttribute("currentFiles", getFilesForTicketFromSession(ticketstamp, session));
         map.addAttribute("uploaded", Boolean.TRUE);
         return TICKETS_UPLOAD_VIEW;
+    }
+    
+    /**
+     * Podczas uploadowania plików do istniejącego ticketu od razu 
+     * zapisujemy pliki we właściwym miejscu.
+     */
+    @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.POST)
+    protected String processSubmitForTicket(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
+                                            @PathVariable("ticketId") Long ticketId,
+                                            ModelMap map, HttpSession session) throws Exception {
+
+        AdditionalFile addFile = creteFormUploadAndTicket(uploadedFile.getFile(), 
+                                                          ticketDAO.getTicketById(ticketId));
+        try {
+            MultipartFile mf = uploadedFile.getFile();
+            File f = new File(fileUtils.getAttachmentsDirectory(), addFile.getHashedFileName());
+            mf.transferTo(f);
+            ticketDAO.saveAdditionalFile(addFile);
+        } catch (Exception ex) {
+            // rollback?
+            throw new RuntimeException(ex);
+        }
+        
+        return TICKETS_UPLOAD_VIEW;
+    }
+    
+    private AdditionalFile creteFormUploadAndTicket(MultipartFile file, Ticket ticket) {
+        return AdditionalFile.create(file.getOriginalFilename(), file.getContentType(), 
+                                     file.getSize(), ticket);
     }
 
     private synchronized void addPathToSession(HttpSession session, String path) {
@@ -97,5 +136,36 @@ public class UploadFileController {
         if (!paths.contains(path)) {
             paths.add(path);
         }
+    }
+    
+    private List<FileInfo> getFilesForTicketFromSession(String ticketstamp, HttpSession session) {
+        return (List<FileInfo>) session.getAttribute(createAttrName(ticketstamp));
+    }
+
+    private void addFilenameToTicketInSession(String ticketstamp, String filename, String filesize,
+                                              HttpSession session) {
+        String attrName = createAttrName(ticketstamp);
+        List<FileInfo> files = (List<FileInfo>) session.getAttribute(attrName);
+        if (files == null) {
+            files = new ArrayList<FileInfo>();
+        }
+        files.add(new FileInfo(filename, filesize));
+        session.setAttribute(attrName, files);
+    }
+
+    private void copyUploadedToTemp(FileUploadBean uploadedFile, File targetFile) {
+        try {
+            BufferedOutputStream buff =
+                    new BufferedOutputStream(new FileOutputStream(targetFile));
+            buff.write(uploadedFile.getFile().getBytes());
+            buff.close();
+        } catch (Exception e) {
+            log.error("Wystąpił problem z przetworzeniem pliku.", e);
+            throw new RuntimeException(e);
+        }
+    }
+    
+    private String createAttrName(String ticketstamp) {
+        return ticketstamp + "_files";
     }
 }

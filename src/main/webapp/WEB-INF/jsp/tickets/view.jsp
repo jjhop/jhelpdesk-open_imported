@@ -79,25 +79,26 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <c:if test="${not empty ticket.addFilesList}">
-                        <div id="pagecontentsubheader"><h3>Pliki</h3></div>
-                        <div class="contenttop"></div>
-                        <div class="contentmiddle">
-                            <table cellspacing="0" class="standardtable">
+                    <div id="pagecontentsubheader"><h3>Pliki</h3></div>
+                    <div class="contenttop"></div>
+                    <div class="contentmiddle">
+                        <table cellspacing="0" class="standardtable">
+                            <tr>
+                                <th>Nazwa</th>
+                                <th class="lastcol">Rozmiar</th>
+                            </tr>
+                            <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
                                 <tr>
-                                    <th>Nazwa</th>
-                                    <th class="lastcol">Rozmiar</th>
+                                    <td><c:out value="${file.originalFileName}"/></td>
+                                    <td class="lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
                                 </tr>
-                                <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
-                                    <tr>
-                                        <td><c:out value="${file.originalFileName}"/></td>
-                                        <td class="lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </div>
-                        <div class="contentbottom"></div>
-                    </c:if>
+                            </c:forEach>
+                        </table>
+                        <a href="<c:url value="/tickets/${ticket.ticketId}/uploadFile.html"/>"
+                           title=":: :: closeButton: false, width: 360, height: 390"
+                           class="lightview">Dołącz plik</a>
+                    </div>
+                    <div class="contentbottom"></div>
                     <div class="chartcontainer">
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">

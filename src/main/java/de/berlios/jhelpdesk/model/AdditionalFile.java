@@ -26,8 +26,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -45,7 +45,18 @@ import org.apache.commons.io.FileUtils;
 public class AdditionalFile implements Serializable {
 
     private static final long serialVersionUID = -8228381982146548515L;
-
+    
+    public static AdditionalFile create(String fileName, String contentType, long size, 
+                                        Ticket ticket) {
+        AdditionalFile addFile = new AdditionalFile();
+        addFile.setOriginalFileName(fileName);
+        addFile.setContentType(contentType);
+        addFile.setFileSize(size);
+        addFile.setTicket(ticket);
+        addFile.calculateAndSetHash();
+        return addFile;
+    }
+    
 	/**
      * Identyfikator pliku
      */
@@ -83,12 +94,6 @@ public class AdditionalFile implements Serializable {
     @Column(name = "content_type", length = 64, nullable = false)
     private String contentType;
     
-    /**
-     * Zawartość pliku.
-     */
-    @Transient
-    private byte[] fileData;
-
     /**
      * Zwraca identyfikator pliku.
      * 
@@ -155,31 +160,6 @@ public class AdditionalFile implements Serializable {
      */
     public void setContentType(String contentType) {
         this.contentType = contentType;
-    }
-
-    /**
-     * Zwraca zawartość pliku w postaci tablicy surowych bajtów.
-     * 
-     * @return zawartość pliku
-     *
-     * @see #fileData
-     */
-    public byte[] getFileData() {
-        return fileData;
-    }
-
-    /**
-     * Zapisuje w obiekcie zawartość pliku. Plik z założenia jest niezmienny więc
-     * po zapisaniu go po raz pierwszy z tej metody powinnie korzystać tylko mechanizm
-     * przepisywania informacji z bazy danych.
-     * 
-     * @param fileData zawartość pliku
-     *
-     * @see #fileData
-     * @see #getFileData() 
-     */
-    public void setFileDate(byte[] fileData) {
-        this.fileData = fileData;
     }
 
     /**
@@ -270,5 +250,11 @@ public class AdditionalFile implements Serializable {
      */
     public void setOriginalFileName(String originalFileName) {
         this.originalFileName = originalFileName;
+    }
+    
+    private void calculateAndSetHash() {
+        this.hashedFileName = 
+            DigestUtils.shaHex(originalFileName + contentType + 
+                               ticket.getTicketId() + System.currentTimeMillis());
     }
 }

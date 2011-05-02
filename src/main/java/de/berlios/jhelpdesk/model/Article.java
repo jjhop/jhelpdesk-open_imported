@@ -165,7 +165,7 @@ public class Article implements Serializable {
     }
 
     /**
-     * @param setId The articleId to set.
+     * @param id The articleId to set.
      */
     public void setId(Long id) {
         this.id = id;
