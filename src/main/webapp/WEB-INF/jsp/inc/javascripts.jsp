@@ -10,3 +10,4 @@
 <script type="text/javascript" src="<c:url value="/js/script.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/stereotabs.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/lightview.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/accordion.js"/>"></script>

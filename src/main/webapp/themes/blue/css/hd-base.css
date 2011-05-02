@@ -1285,9 +1285,7 @@ td.artnumber {
 #ticketsIterator td .linker {
     display: none;
     position: absolute;
-
 }
-
 
 #hint {
     position: absolute;
@@ -1658,6 +1656,26 @@ ul.detailsView ul.nested li {
     padding: 0 0 10px 0;
     color: #333;
     font-size: 13px;
+}
+
+#faqList {
+    margin: 0;
+}
+
+#faqList dt {
+    margin: 0;
+    padding: 0 0 5px 0;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+#faqList dd {
+    display: none;
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #333;
+    line-height: 1.5;
+    font-size: 12px !important;
 }
 
 .formError {
