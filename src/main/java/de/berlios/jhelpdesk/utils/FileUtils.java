@@ -18,6 +18,8 @@ package de.berlios.jhelpdesk.utils;
 import java.io.File;
 import java.util.Collection;
 
+import static org.apache.commons.io.FileUtils.byteCountToDisplaySize;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +37,12 @@ public class FileUtils {
     private final static Logger log = LoggerFactory.getLogger(FileUtils.class);
 
     private File attachmentsTmpDirectory;
+    
+    private File attachmentsDirectory;
+
+    public static String toDisplaySize(long size) {
+        return byteCountToDisplaySize(size);
+    }
 
     public static void cleanPaths(Collection<String> paths) {
         for (String path : paths) {
@@ -48,6 +56,10 @@ public class FileUtils {
                 log.debug(" [not exists]");
             }
         }
+    }
+    
+    public File getAttachmentsDirectory() {
+        return attachmentsDirectory;
     }
 
     public File createTmpDirForTicketstamp(String ticketstamp) {
@@ -70,9 +82,20 @@ public class FileUtils {
             if (!attachmentsTmpDirectory.exists()) {
                 attachmentsTmpDirectory.mkdirs();
             }
-            log.info("Udało się!");
         } catch (Exception ex) {
-            log.error("Klapa! [" + ex.getMessage() + "]");
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    @Value("${tickets.attachments.dir}")
+    public void setAttachmentsDirectory(String attachmentsDir) {
+        log.info("Attempt to create directory: " + attachmentsDir);
+        try {
+            attachmentsDirectory = new File(attachmentsDir);
+            if (!attachmentsDirectory.exists()) {
+                attachmentsDirectory.mkdirs();
+            }
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }

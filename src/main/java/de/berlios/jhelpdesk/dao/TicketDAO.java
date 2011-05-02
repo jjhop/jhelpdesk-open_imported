@@ -17,6 +17,7 @@ package de.berlios.jhelpdesk.dao;
 
 import java.util.List;
 
+import de.berlios.jhelpdesk.model.AdditionalFile;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.TicketComment;
@@ -178,4 +179,12 @@ public interface TicketDAO {
     int countCommentsForTicket(Long ticketId) throws DAOException;
 
     int countEventsForTicket(Long ticketId) throws DAOException;
+    
+    void saveAdditionalFile(AdditionalFile file) throws DAOException;
+    
+    AdditionalFile getAdditionalFileById(Long id) throws DAOException;
+    
+    void removeAdditionalFile(AdditionalFile file) throws DAOException;
+
+    void removeAdditionalFile(Long id) throws DAOException;
 }
