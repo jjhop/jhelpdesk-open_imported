@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.model.AdditionalFile;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.TicketComment;
@@ -313,5 +314,41 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
+    
+    @Transactional(readOnly = false)
+    public void saveAdditionalFile(AdditionalFile file) throws DAOException {
+        try {
+            this.jpaTemplate.persist(file);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
 
+    public AdditionalFile getAdditionalFileById(Long id) throws DAOException {
+        try {
+            return this.jpaTemplate.find(AdditionalFile.class, id);
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+    
+    public void removeAdditionalFile(final AdditionalFile file) throws DAOException {
+        removeAdditionalFile(file.getFileId());
+    }
+    
+    @Transactional(readOnly = false)
+    public void removeAdditionalFile(final Long id) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("DELETE FROM AdditionalFile f WHERE f.fileId = ?1");
+                    q.setParameter(1, id);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
 }
