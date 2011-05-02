@@ -52,7 +52,7 @@
                                         direction : 'vertical',
                                         defaultSize : {
                                             height : null,
-                                            width : 524
+                                            width : 520
                                         }
                                     });
                                     faq.activate($$('#faqList .accordion_toggle')[0]);
