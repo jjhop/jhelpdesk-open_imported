@@ -1678,6 +1678,10 @@ ul.detailsView ul.nested li {
     font-size: 12px !important;
 }
 
+#faqList dd.current {
+    display:block;
+}
+
 .formError {
     padding: 3px 2px 3px 20px;
     color: red;
