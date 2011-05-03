@@ -18,29 +18,29 @@
 
                                     <dl id="faqList">
 
-                                        <dt class="accordion_toggle"><a href="">Co aplikacja potrafi a czego nie?</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:;">Co aplikacja potrafi a czego nie?</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Jak korzystać z mozliwości filtrowania danych?</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Jak korzystać z mozliwości filtrowania danych?</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Szybki podglad zgłoszenia o znanym identyfikatorze.</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Szybki podglad zgłoszenia o znanym identyfikatorze.</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Dodawanie zgłoszenia, walidacja danych.</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Dodawanie zgłoszenia, walidacja danych.</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Dodawnia komentarza do zgłoszenia.</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Dodawnia komentarza do zgłoszenia.</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Zmiany danych zgłoszenia.</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Zmiany danych zgłoszenia.</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">Przypisywania do siebie wolnych zgłoszeń.</a></dt>
+                                        <dt class="accordion_toggle"><a href="javascript:">Przypisywania do siebie wolnych zgłoszeń.</a></dt>
                                         <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
-                                        <dt class="accordion_toggle"><a href="">"Zrzucanie" zgłoszeń niemożliwych do obslużenia.</a></dt>
-                                        <dd class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
+                                        <dt class="accordion_toggle"><a href="javascript:">"Zrzucanie" zgłoszeń niemożliwych do obslużenia.</a></dt>
+                                        <dd id="last" class="accordion_content">Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur.</dd>
 
                                     </dl>
 
@@ -48,14 +48,13 @@
                             </tr>
                         </table>
                                     <script type="text/javascript">
-                                    var faq = new accordion('faqList', {
-                                        direction : 'vertical',
-                                        defaultSize : {
-                                            height : null,
-                                            width : 520
+
+
+                                        Event.observe(window,'load',init,false);
+                                        function init() {
+                                            accordion = new Accordion('faqList', 'accordion_toggle a');
                                         }
-                                    });
-                                    faq.activate($$('#faqList .accordion_toggle')[0]);
+
                                     </script>
                     </div>
                     <div class="contentbottom"></div>
