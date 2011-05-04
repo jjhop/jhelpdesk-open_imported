@@ -18,6 +18,11 @@ package de.berlios.jhelpdesk.web.ticket;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import info.jjhop.deimos.DeimosRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,10 +34,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.dao.UserDAO;
+import de.berlios.jhelpdesk.model.AdditionalFile;
 import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
+import java.io.BufferedInputStream;
 
 import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
@@ -53,6 +60,9 @@ public class TicketDetailsController {
 
     @Autowired
     private TicketCategoryDAO ticketCategoryDAO;
+    
+    @Autowired
+    private DeimosRepository repository;
 
     @RequestMapping(value = "/tickets/{ticketId}/details.html", method = RequestMethod.GET)
     public String showTicket(@PathVariable("ticketId") Long ticketId,
@@ -87,6 +97,29 @@ public class TicketDetailsController {
         mav.addAllAttributes(processEvents(ticketId, currentPage));
         mav.addAttribute("ticketId", ticketId);
         return "panelEvents";
+    }
+    
+    @RequestMapping(value = "/tickets/{ticketId}/attachments/{attachmentId}/get.html", method = RequestMethod.GET)
+    public void getAttachment(@PathVariable("attachmentId") Long attachmentId,
+                              HttpServletResponse response) throws Exception {
+        
+        AdditionalFile addFile = ticketDAO.getAdditionalFileById(attachmentId);
+        response.setContentType(addFile.getContentType());
+        response.addHeader("Content-Disposition", "attachment; filename=\"" + addFile.getOriginalFileName() + "\"");
+        response.setContentLength(addFile.getFileSize().intValue());
+        
+        ServletOutputStream outputStream = response.getOutputStream();
+        BufferedInputStream inputStream = 
+            new BufferedInputStream(repository.getInputStream(addFile.getHashedFileName(), 
+                                                              addFile.getDigest()));
+        
+        byte[] buffer = new byte[4096];
+        while (inputStream.read(buffer) != -1) {
+            outputStream.write(buffer);
+            outputStream.flush();
+        }
+        inputStream.close();
+        outputStream.close();
     }
 
     private Map<String, Object> processComments(Long ticketId, Integer currentPage) throws Exception {
