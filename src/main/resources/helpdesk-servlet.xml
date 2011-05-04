@@ -42,6 +42,16 @@
             </list>
         </property>
     </bean>
+    
+    <bean id="repository" class="info.jjhop.deimos.DeimosRepository">
+        <constructor-arg index="0">
+            <bean class="java.io.File">
+                <constructor-arg index="0">
+                    <value>${deimos.repository.dir}</value>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <bean id="tilesConfigurator"
           class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">

@@ -89,7 +89,9 @@
                             </tr>
                             <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
                                 <tr>
-                                    <td><c:out value="${file.originalFileName}"/></td>
+                                    <td>
+                                        <a href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
+                                    </td>
                                     <td class="lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
                                 </tr>
                             </c:forEach>

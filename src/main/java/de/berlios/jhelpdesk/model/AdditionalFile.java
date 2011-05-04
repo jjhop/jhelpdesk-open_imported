@@ -74,6 +74,9 @@ public class AdditionalFile implements Serializable {
      */
     @Column(name = "original_filename", length = 128, nullable = false)
     private String originalFileName;
+    
+    @Column(name = "digest", length = 62, nullable = false)
+    private String digest;
 
     /**
      * Skrót z nazwy pliku i identyfikatora. Pozwala przechowywać wiele plików
@@ -201,6 +204,14 @@ public class AdditionalFile implements Serializable {
      */
     public String getHumanReadableFileSize() {
         return FileUtils.byteCountToDisplaySize(getFileSize());
+    }
+
+    public String getDigest() {
+        return digest;
+    }
+
+    public void setDigest(String digest) {
+        this.digest = digest;
     }
 
     /**

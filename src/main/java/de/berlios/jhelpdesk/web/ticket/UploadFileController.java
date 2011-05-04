@@ -17,12 +17,15 @@ package de.berlios.jhelpdesk.web.ticket;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
 import javax.servlet.http.HttpSession;
+
+import info.jjhop.deimos.DeimosRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +66,9 @@ public class UploadFileController {
 
     @Autowired
     private FileUtils fileUtils;
+    
+    @Autowired
+    private DeimosRepository repository;
 
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.GET)
     protected String prepareFormForTicket(@PathVariable("ticketId") Long ticketId,
@@ -115,8 +121,8 @@ public class UploadFileController {
                                                           ticketDAO.getTicketById(ticketId));
         try {
             MultipartFile mf = uploadedFile.getFile();
-            File f = new File(fileUtils.getAttachmentsDirectory(), addFile.getHashedFileName());
-            mf.transferTo(f);
+            String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
+            addFile.setDigest(digest);
             ticketDAO.saveAdditionalFile(addFile);
         } catch (Exception ex) {
             // rollback?
