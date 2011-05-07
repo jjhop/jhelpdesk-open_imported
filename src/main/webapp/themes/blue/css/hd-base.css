@@ -301,6 +301,9 @@ table a.btn {
 
 #desktop #lastEvents .eventType {
     float: left;
+    display: block;
+    width: 16px;
+    height: 16px;
     padding: 0 5px 0 0;
 }
 
