@@ -319,6 +319,7 @@ public class TicketDAOJpa implements TicketDAO {
     public void saveAdditionalFile(AdditionalFile addFile) throws DAOException {
         try {
             final TicketEvent event = TicketEvent.attachmentAdded(addFile);
+            this.jpaTemplate.persist(event);
             this.jpaTemplate.persist(addFile);
         } catch(Exception ex) {
             throw new DAOException(ex);
