@@ -68,6 +68,10 @@ public class AdditionalFile implements Serializable {
     @ManyToOne
     @JoinColumn(name="ticket_id")
     private Ticket ticket;
+    
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User creator;
 
     /**
      * Nazwa pliku.
@@ -137,6 +141,14 @@ public class AdditionalFile implements Serializable {
      */
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     /**

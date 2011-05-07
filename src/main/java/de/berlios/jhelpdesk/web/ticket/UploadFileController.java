@@ -17,7 +17,6 @@ package de.berlios.jhelpdesk.web.ticket;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.AdditionalFile;
 import de.berlios.jhelpdesk.model.Ticket;
+import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.utils.FileUtils;
 import de.berlios.jhelpdesk.web.tools.FileUploadBean;
 
@@ -123,6 +123,7 @@ public class UploadFileController {
             MultipartFile mf = uploadedFile.getFile();
             String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
             addFile.setDigest(digest);
+            addFile.setCreator((User) session.getAttribute("user"));
             ticketDAO.saveAdditionalFile(addFile);
         } catch (Exception ex) {
             // rollback?
