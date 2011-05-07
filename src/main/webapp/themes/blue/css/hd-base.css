@@ -1271,30 +1271,41 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
+#desktop #lastTickets .entryMeta {
+    background: #eaeaea;
+    padding: 2px 4px;
+}
+#desktop #lastTickets .standardtable td {
+     padding: 0 0 7px;
+}
 
 .ticketPriority, .ticketCategory {
     float: left;
-    margin: 4px 0;
+    margin: 0 0 4px 0;
     display: block;
+    background: #eaeaea;
 }
 
 .ticketCategory {
-    width: 500px;
+    width: 510px;
+    padding: 2px 0 2px 4px;
 }
 
 .ticketPriority {
     float: right;
     width: 16px;
     height: 16px;
-    background: url(../i/bg_status.png) 0 0 no-repeat;
+    background: #eaeaea url(../i/bg_status.png) 0 2px no-repeat;
+    padding: 2px 4px 2px 0;
 }
 
 .ticketTitle {
     clear: both;
+    padding-left: 4px;
 }
 
 .tpLOW {
-    background-position: 0 0;
+    background-position: 0 2px;
 }
 .tpNORMAL {
     background-position: 0 -18px;
@@ -1306,7 +1317,7 @@ td.artnumber {
     background-position: 0 -59px;
 }
 .tpCRITICAL {
-    background-position: bottom center;
+    background-position: 0 -77px;
 }
 
 .kbComments dd {
