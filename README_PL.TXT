@@ -10,7 +10,7 @@ INSTALL.SQL. Zawiera on skrypt DDL tworzący początkową strukturę bazy danych
  * definicje procedur
  * definicje wyzwalaczy
 a także ustawiający początkowe wartości jeśli takie są potrzebne. W szczególności
-dodaje pierwszego użytkownika systemu (jest to użytkownik 'admin' z hasłem 'admin').
+dodaje pierwszego użytkownika systemu (jest to użytkownik 'admin@localhost.localdomain' z hasłem 'admin').
 Jest dość dokładnie skomentowany więc wszelkie problemy (które nie powinny wystąpić)
 najpewniej da się rozwiązać przeglądając komentarze.
 
@@ -35,4 +35,9 @@ powrót do linii poleceń a tuż przed nim odnajdziemy linię podobną do poniż
 [INFO] BUILD SUCCESSFUL
 ...
 
-to znaczy, że wszystko działa jak należy. 
+to znaczy, że wszystko działa jak należy.
+
+Pierwsze uruchomienie jHelpDesk
+
+ Domyślny użytkownik aplikacji to admin@localhost.localdomain i hasło dla niego "admin". PO zalogowaniu się
+ możemy je niemal dowolnie zmieniąć (aplikacja narzuca pewne ograniczenia na email i hasło.
