@@ -137,6 +137,15 @@ public class TicketEvent implements Serializable {
         event.setTicket(comment.getTicket());
         return event;
     }
+    
+    public static TicketEvent attachmentAdded(AdditionalFile addFile) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.ATTACHMENTADD);
+        event.setEvtAuthor(addFile.getCreator());
+        event.setEvtDate(new Date());
+        event.setTicket(addFile.getTicket());
+        return event;
+    }
 
     /**
      * @return Returns the ticketEventId.
