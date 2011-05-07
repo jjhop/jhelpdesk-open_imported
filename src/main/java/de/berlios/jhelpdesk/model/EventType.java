@@ -173,15 +173,4 @@ public enum EventType {
         }
     }
 
-    /**
-     * Zwraca łańcuchową reprezentację typu zdarzenia.
-     *
-     * @return łańcuchowa reprezentacja typu zdarzenia
-     *
-     * @see #eventNameCode
-     */
-    @Override
-    public String toString() {
-        return eventNameCode;
-    }
 }
