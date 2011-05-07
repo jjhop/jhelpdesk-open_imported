@@ -31,47 +31,52 @@ public enum EventType {
     /**
      * 
      */
-    CREATE(1, "eventType.create"),
+    CREATE(1, "eventType.create"), // page_add
 
     /**
      *
      */
-    ASSIGN(2, "eventType.assign"),
+    ASSIGN(2, "eventType.assign"), // page_go
 
     /**
      *
      */
-    REASSIGN(3, "eventType.reassign"),
+    REASSIGN(3, "eventType.reassign"), // page_refresh
 
     /**
      *
      */
-    CLOSE(4, "eventType.close"),
+    CLOSE(4, "eventType.close"), // page_green
 
     /**
      *
      */
-    REJECT(5, "eventType.reject"),
+    REJECT(5, "eventType.reject"), // page_delete
 
     /**
      * 
      */
-    CATEGORYCHANGE(6, "eventType.categoryChange"),
+    CATEGORYCHANGE(6, "eventType.categoryChange"), // page_code
 
     /**
      *
      */
-    PRIORITYCHANGE(7, "eventType.priorityChange"),
+    PRIORITYCHANGE(7, "eventType.priorityChange"),  // page_lightning
 
     /**
      *
      */
-    STATUSCHANGE(8, "eventType.statusChange"),
+    STATUSCHANGE(8, "eventType.statusChange"), // page_gear
 
     /**
      *
      */
-    COMMENTADD(9, "eventType.commentAdd");
+    COMMENTADD(9, "eventType.commentAdd"), // page_paintbrush
+    
+    /**
+     * 
+     */
+    ATTACHMENTADD(10, "eventType.attachmentAdd"); // page_attach
 
     /**
      * Liczbowy identyfikator zdarzenia. Za jego pomocą można
