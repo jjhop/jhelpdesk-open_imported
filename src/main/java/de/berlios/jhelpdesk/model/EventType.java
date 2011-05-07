@@ -168,6 +168,8 @@ public enum EventType {
                 return STATUSCHANGE;
             case 9:
                 return COMMENTADD;
+            case 10:
+                return ATTACHMENTADD;
             default:
                 throw new RuntimeException("Nieznany typ zdarzenia.");
         }
