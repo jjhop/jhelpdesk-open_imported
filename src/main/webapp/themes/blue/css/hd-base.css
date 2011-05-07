@@ -302,11 +302,42 @@ table a.btn {
 #desktop #lastEvents .eventType {
     float: left;
     display: block;
-    width: 16px;
+    width: 18px;
     height: 16px;
     padding: 0 5px 0 0;
+    background: url(../i/bg_eventtype.png) 0 0 no-repeat;
 }
 
+#desktop #lastEvents .etCREATE {
+    background-position: 0 0;
+}
+#desktop #lastEvents .etASSIGN {
+    background-position: 0 -22px;
+}
+#desktop #lastEvents .etREASSIGN {
+    background-position: 0 -44px;
+}
+#desktop #lastEvents .etCLOSE {
+    background-position: 0 -66px;
+}
+#desktop #lastEvents .etREJECT {
+    background-position: 0 -88px;
+}
+#desktop #lastEvents .etCATEGORYCHANGE {
+    background-position: 0 -110px;
+}
+#desktop #lastEvents .etPRIORITYCHANGE {
+    background-position: 0 -132px;
+}
+#desktop #lastEvents .etSTATUSCHANGE {
+    background-position: 0 -154px;
+}
+#desktop #lastEvents .etCOMMENTADD {
+    background-position: 0 -176px;
+}
+#desktop #lastEvents .etATTACHMENTADD {
+    background-position: 0 -198px;
+}
 #pagecontentheader td {
     padding: 0;
 }
