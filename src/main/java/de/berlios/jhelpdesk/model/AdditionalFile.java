@@ -176,6 +176,26 @@ public class AdditionalFile implements Serializable {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
+    
+    public String getContentTypeClass() {
+        if (contentType.contains("pdf")) {
+            return "PDF";
+        }
+        if (contentType.contains("msword")) {
+            return "MSWORD";
+        }
+        if (contentType.contains("zip")) {
+            return "ARCHIVE";
+        }
+        if (contentType.equalsIgnoreCase("text/plain")) {
+            return "TEXT";
+        }
+        
+        if (contentType.contains("image")) {
+            return "IMAGE";
+        }
+        return "UNKNOWN";
+    }
 
     /**
      * Zwraca rozmiar pliku w bajtach. Jest to właściwie rozmiar tablicy z danymi<br/>
