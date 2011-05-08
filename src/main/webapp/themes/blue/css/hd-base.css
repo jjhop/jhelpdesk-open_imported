@@ -301,7 +301,10 @@ table a.btn {
 
 #desktop #lastEvents .eventTitle {
     display: block;
-    padding: 5px
+    position: relative;
+    min-height: 16px;
+    height: auto;
+    padding: 5px 25px 5px 5px;
 }
 
 #desktop #lastEvents .eventTitle:hover {
@@ -310,7 +313,9 @@ table a.btn {
 
 #desktop #lastEvents .eventType {
     display: block;
-    float: right;
+    position: absolute;
+    top: 5px;
+    right: 5px;
     width: 18px;
     height: 16px;
     margin: -2px 0 0 0;
