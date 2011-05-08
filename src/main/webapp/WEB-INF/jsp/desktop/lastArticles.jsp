@@ -7,7 +7,7 @@
             <tr>
                 <td class="lastcol">
                     <span class="entryMeta">Rafał Kotusiewicz, <fmt:formatDate value="${article.createdAt}" pattern="dd/MM/yyyy HH:mm"/></span>
-                    <a href="<c:url value="/help/base/articles/${article.id}/show.html"/>"><c:out value="${article.title}"/></a>
+                    <a class="desktopAnchor" href="<c:url value="/help/base/articles/${article.id}/show.html"/>"><c:out value="${article.title}"/></a>
                 </td>
             </tr>
         </c:forEach>
