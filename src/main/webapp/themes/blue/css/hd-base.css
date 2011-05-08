@@ -300,43 +300,45 @@ table a.btn {
 }
 
 #desktop #lastEvents .eventType {
-    float: left;
     display: block;
-    width: 18px;
+    width: 309px;
     height: 16px;
-    padding: 0 5px 0 0;
-    background: url(../i/bg_eventtype.png) 0 0 no-repeat;
+    padding: 5px 20px 5px 5px;
+    overflow: hidden;
+    background: url(../i/bg_eventtype.png) 100% 5px no-repeat;
 }
-
+#desktop #lastEvents .eventType:hover {
+    background-color: #DEE2ED;
+}
 #desktop #lastEvents .etCREATE {
-    background-position: 0 0;
+    background-position: 100% 5px;
 }
 #desktop #lastEvents .etASSIGN {
-    background-position: 0 -22px;
+    background-position: 100% -17px;
 }
 #desktop #lastEvents .etREASSIGN {
-    background-position: 0 -44px;
+    background-position: 100% -39px;
 }
 #desktop #lastEvents .etCLOSE {
-    background-position: 0 -66px;
+    background-position: 100% -61px;
 }
 #desktop #lastEvents .etREJECT {
-    background-position: 0 -88px;
+    background-position: 100% -83px;
 }
 #desktop #lastEvents .etCATEGORYCHANGE {
-    background-position: 0 -110px;
+    background-position: 100% -105px;
 }
 #desktop #lastEvents .etPRIORITYCHANGE {
-    background-position: 0 -132px;
+    background-position: 100% -127px;
 }
 #desktop #lastEvents .etSTATUSCHANGE {
-    background-position: 0 -154px;
+    background-position: 100% -149px;
 }
 #desktop #lastEvents .etCOMMENTADD {
-    background-position: 0 -176px;
+    background-position: 100% -171px;
 }
 #desktop #lastEvents .etATTACHMENTADD {
-    background-position: 0 -198px;
+    background-position: 100% -193px;
 }
 #pagecontentheader td {
     padding: 0;
@@ -1271,18 +1273,22 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop #lastTickets .entryMeta {
-    padding: 5px 5px 2px 5px;
+#desktop .entryMeta {
+    padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
 }
-#desktop #lastTickets .standardtable td {
-     padding: 0 0 7px;
+#desktop .entryText {
+    display: block;
+    padding: 2px 0 2px 5px;
+    background: #eaeaea;
+}
+#desktop .standardtable td {
+     padding: 0;
 }
 
 .ticketPriority, .ticketCategory {
     float: left;
-    margin: 0 0 4px 0;
     display: block;
     background: #eaeaea;
 }
@@ -1301,9 +1307,14 @@ td.artnumber {
     padding: 2px 5px 2px 0;
 }
 
-.ticketTitle {
+.desktopAnchor {
     clear: both;
-    padding: 1px 5px;
+    padding: 5px;
+    display: block;
+}
+
+.desktopAnchor:hover {
+    background: #DEE2ED;
 }
 
 .tpLOW {

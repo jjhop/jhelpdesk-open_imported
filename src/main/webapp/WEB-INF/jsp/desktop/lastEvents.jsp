@@ -10,8 +10,7 @@
             <tr>
                 <td class="lastcol">
                     <span class="entryMeta"><fmt:formatDate value="${event.evtDate}" pattern="dd/MM/yyyy HH:mm"/></span>
-                    <span class="eventType et<c:out value="${event.eventType}"/>" title="<c:out value="${event.eventType}"/>"></span>
-                    <a href="<c:url value="/tickets/${event.ticket.ticketId}/details.html"/>">
+                    <a class="eventType et<c:out value="${event.eventType}"/>" href="<c:url value="/tickets/${event.ticket.ticketId}/details.html"/>">
                         <% TicketEvent evt = (TicketEvent)pageContext.getAttribute("event");%>
                         <%= evt.getEvtSubject(user.getPreferredLocale()) %>
                     </a>

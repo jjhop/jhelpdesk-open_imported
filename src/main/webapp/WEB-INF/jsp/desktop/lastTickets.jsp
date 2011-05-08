@@ -22,7 +22,7 @@
                     <span class="ticketPriority  tp${ticket.ticketPriority}" title="<c:out value="${ticket.ticketPriority}"/>">
                     </span>
 
-                    <a class="ticketTitle" href="<c:url value="/tickets/${ticket.ticketId}/details.html"/>"><c:out value="${ticket.subject}"/></a>
+                    <a class="desktopAnchor" href="<c:url value="/tickets/${ticket.ticketId}/details.html"/>"><c:out value="${ticket.subject}"/></a>
                 </td>
             </tr>
         </c:forEach>
