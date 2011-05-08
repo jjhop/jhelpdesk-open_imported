@@ -231,6 +231,10 @@ public class TicketEvent implements Serializable {
                 return String.format(locale,
                                      names.getString("ticketEvent.status.change"),
                                      ticket.getTicketId());
+            case ATTACHMENTADD:
+                return String.format(locale,
+                                     names.getString("ticketEvent.attachmentAdd"),
+                                     evtAuthor, ticket.getTicketId());
         }
         throw new RuntimeException("Nieznany rodzaj zdarzenia.");
     }
