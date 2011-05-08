@@ -703,6 +703,14 @@ div.buttons input {margin: 0 5px;}
     min-height: 180px;
     margin-bottom: 10px;
 }
+#ticketdetails #ticketPanelFiles.contentmiddle {
+    min-height: 20px;
+}
+
+#ticketdetails #ticketPanelFiles p.noFiles {
+    margin: 0 0 10px 0;
+}
+
 * html #ticketdetails .contentmiddle {
     height: 200px;
 }
@@ -1490,6 +1498,9 @@ td.artnumber {
 .w99p { width: 99% }
 .w995p { width: 99.5% }
 .w100p { width: 100% }
+.marginBot10p {
+    margin-bottom: 10px;
+}
 .rndCrn5px {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
