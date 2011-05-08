@@ -299,46 +299,54 @@ table a.btn {
 
 }
 
-#desktop #lastEvents .eventType {
+#desktop #lastEvents .eventTitle {
     display: block;
-    width: 309px;
-    height: 16px;
-    padding: 5px 20px 5px 5px;
-    overflow: hidden;
-    background: url(../i/bg_eventtype.png) 100% 5px no-repeat;
+    padding: 5px
 }
-#desktop #lastEvents .eventType:hover {
+
+#desktop #lastEvents .eventTitle:hover {
     background-color: #DEE2ED;
 }
+
+#desktop #lastEvents .eventType {
+    display: block;
+    float: right;
+    width: 18px;
+    height: 16px;
+    margin: -2px 0 0 0;
+    padding: 2px 0;
+    background: url(../i/bg_eventtype.png) 0 2px no-repeat;
+}
+
 #desktop #lastEvents .etCREATE {
-    background-position: 312px 5px;
+    background-position: 0 2px;
 }
 #desktop #lastEvents .etASSIGN {
-    background-position: 312px -17px;
+    background-position: 0 -20px;
 }
 #desktop #lastEvents .etREASSIGN {
-    background-position: 312px -39px;
+    background-position: 0 -42px;
 }
 #desktop #lastEvents .etCLOSE {
-    background-position: 312px -61px;
+    background-position: 0 -64px;
 }
 #desktop #lastEvents .etREJECT {
-    background-position: 312px -83px;
+    background-position: 0 -86px;
 }
 #desktop #lastEvents .etCATEGORYCHANGE {
-    background-position: 312px -105px;
+    background-position: 0 -108px;
 }
 #desktop #lastEvents .etPRIORITYCHANGE {
-    background-position: 312px -127px;
+    background-position: 0 -130px;
 }
 #desktop #lastEvents .etSTATUSCHANGE {
-    background-position: 312px -149px;
+    background-position: 0 -152px;
 }
 #desktop #lastEvents .etCOMMENTADD {
-    background-position: 312px -171px;
+    background-position: 0 -174px;
 }
 #desktop #lastEvents .etATTACHMENTADD {
-    background-position: 312px -193px;
+    background-position: 0 -196px;
 }
 #pagecontentheader td {
     padding: 0;
