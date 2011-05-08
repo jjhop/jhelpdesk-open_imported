@@ -49,7 +49,7 @@ public class TicketValidator implements Validator {
         }
     }
 
-    private void validateNotifier(Ticket ticketToValidate, Errors errors) {
+    public void validateNotifier(Ticket ticketToValidate, Errors errors) {
         if (ticketToValidate.getNotifier() == null) {
             errors.rejectValue("notifier", "ticket.notifier.error");
         }
