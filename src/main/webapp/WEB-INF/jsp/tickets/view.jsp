@@ -81,8 +81,8 @@
                     <div class="contentbottom"></div>
                     <div id="pagecontentsubheader"><h3>Pliki</h3></div>
                     <div class="contenttop"></div>
-                    <div class="contentmiddle">
-                        <table cellspacing="0" class="standardtable">
+                    <div id="ticketPanelFiles" class="contentmiddle">
+                        <table cellspacing="0" class="standardtable marginBot10p">
                             <tr>
                                 <th>Nazwa</th>
                                 <th class="w75 right lastcol">Rozmiar</th>
@@ -96,9 +96,13 @@
                                 </tr>
                             </c:forEach>
                         </table>
+                        <!-- no files found text -->
+                        <p class="noFiles">
+                            Nie znaleziono plików...
+                        </p>
                         <a href="<c:url value="/tickets/${ticket.ticketId}/uploadFile.html"/>"
                            title=":: :: closeButton: false, width: 360, height: 390"
-                           class="btn btnMarginTop lightview">Dołącz plik</a>
+                           class="btn lightview">Dołącz plik</a>
                         <div class="clearFloat"></div>
                     </div>
                     <div class="contentbottom"></div>
