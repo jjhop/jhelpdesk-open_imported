@@ -15,6 +15,7 @@
  */
 package de.berlios.jhelpdesk.web.ticket;
 
+import com.lowagie.text.Element;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -46,6 +47,10 @@ import de.berlios.jhelpdesk.web.tools.TicketCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.TicketPriorityEditor;
 import de.berlios.jhelpdesk.web.tools.TicketValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
+import java.util.Enumeration;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Kontroler obsługujący jednokrokowe dodawnie zgłoszenia.
@@ -105,7 +110,13 @@ public class TicketNewController {
 
     @RequestMapping(value = "/tickets/new.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("ticket") Ticket ticket, BindingResult result,
-                                SessionStatus status, HttpSession session) throws DAOException {
+                                HttpServletRequest request, SessionStatus status, 
+                                HttpSession session) throws DAOException {
+        
+        if (isCheckLoginRequest(request)) { // only checkUser
+            validator.validateNotifier(ticket, result);
+            return NEW_TICKET_VIEW;
+        }
         validator.validate(ticket, result);
         if (!result.hasErrors()) {
             ticketDAO.save(ticket);
@@ -118,7 +129,18 @@ public class TicketNewController {
         }
         return "redirect:/tickets/" + ticket.getTicketId() + "/details.html";
     }
-
+    
+    private boolean isCheckLoginRequest(HttpServletRequest req) {
+        Enumeration<String> pnames = req.getParameterNames();
+        while(pnames.hasMoreElements()) {
+            String p = pnames.nextElement();
+            if (p.startsWith("_checkLogin")) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void cleanTicketTempDir(Collection<String> paths, String ticketstamp) {
         List<String> a = new ArrayList<String>();
         out: for (String path : paths) {
