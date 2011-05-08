@@ -82,6 +82,8 @@
                     <div id="pagecontentsubheader"><h3>Pliki</h3></div>
                     <div class="contenttop"></div>
                     <div id="ticketPanelFiles" class="contentmiddle">
+                        <c:choose>
+                        <c:when test="${not empty ticket.addFilesList}">
                         <table cellspacing="0" class="standardtable marginBot10p">
                             <tr>
                                 <th>Nazwa</th>
@@ -96,10 +98,13 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                        <!-- no files found text -->
+                        </c:when>
+                        <c:otherwise>
                         <p class="noFiles">
-                            Nie znaleziono plików...
+                            Możesz załączyć pierwszy plik...
                         </p>
+                        </c:otherwise>
+                        </c:choose>
                         <a href="<c:url value="/tickets/${ticket.ticketId}/uploadFile.html"/>"
                            title=":: :: closeButton: false, width: 360, height: 390"
                            class="btn lightview">Dołącz plik</a>
