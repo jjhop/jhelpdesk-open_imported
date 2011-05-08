@@ -1272,8 +1272,9 @@ td.artnumber {
     padding-bottom: 2px;
 }
 #desktop #lastTickets .entryMeta {
+    padding: 5px 5px 2px 5px;
     background: #eaeaea;
-    padding: 2px 4px;
+    border-top: 1px solid #eee;
 }
 #desktop #lastTickets .standardtable td {
      padding: 0 0 7px;
@@ -1287,8 +1288,9 @@ td.artnumber {
 }
 
 .ticketCategory {
-    width: 510px;
-    padding: 2px 0 2px 4px;
+    width: 508px;
+    height: 16px;
+    padding: 2px 0 2px 5px;
 }
 
 .ticketPriority {
@@ -1296,12 +1298,12 @@ td.artnumber {
     width: 16px;
     height: 16px;
     background: #eaeaea url(../i/bg_status.png) 0 2px no-repeat;
-    padding: 2px 4px 2px 0;
+    padding: 2px 5px 2px 0;
 }
 
 .ticketTitle {
     clear: both;
-    padding-left: 4px;
+    padding: 1px 5px;
 }
 
 .tpLOW {
