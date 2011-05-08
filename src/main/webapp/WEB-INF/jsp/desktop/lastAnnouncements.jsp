@@ -8,10 +8,10 @@
                 <td class="lastcol">
                     <span class="entryMeta">
                         <c:out value="${announcement.author.fullName}"/>, <fmt:formatDate value="${announcement.createDate}" pattern="dd/MM/yyyy HH:mm"/></span>
+                    <a class="desktopAnchor" href="<c:url value="/announcements/${announcement.id}/show.html"/>"><c:out value="${announcement.title}"/></a>
                     <span class="entryText">
                         <c:out value="${announcement.lead}"/>
                     </span>
-                    <a class="desktopAnchor" href="<c:url value="/announcements/${announcement.id}/show.html"/>"><c:out value="${announcement.title}"/></a>
 
                 </td>
             </tr>

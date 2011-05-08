@@ -311,34 +311,34 @@ table a.btn {
     background-color: #DEE2ED;
 }
 #desktop #lastEvents .etCREATE {
-    background-position: 100% 5px;
+    background-position: 312px 5px;
 }
 #desktop #lastEvents .etASSIGN {
-    background-position: 100% -17px;
+    background-position: 312px -17px;
 }
 #desktop #lastEvents .etREASSIGN {
-    background-position: 100% -39px;
+    background-position: 312px -39px;
 }
 #desktop #lastEvents .etCLOSE {
-    background-position: 100% -61px;
+    background-position: 312px -61px;
 }
 #desktop #lastEvents .etREJECT {
-    background-position: 100% -83px;
+    background-position: 312px -83px;
 }
 #desktop #lastEvents .etCATEGORYCHANGE {
-    background-position: 100% -105px;
+    background-position: 312px -105px;
 }
 #desktop #lastEvents .etPRIORITYCHANGE {
-    background-position: 100% -127px;
+    background-position: 312px -127px;
 }
 #desktop #lastEvents .etSTATUSCHANGE {
-    background-position: 100% -149px;
+    background-position: 312px -149px;
 }
 #desktop #lastEvents .etCOMMENTADD {
-    background-position: 100% -171px;
+    background-position: 312px -171px;
 }
 #desktop #lastEvents .etATTACHMENTADD {
-    background-position: 100% -193px;
+    background-position: 312px -193px;
 }
 #pagecontentheader td {
     padding: 0;
@@ -1281,7 +1281,6 @@ td.artnumber {
 #desktop .entryText {
     display: block;
     padding: 2px 0 2px 5px;
-    background: #eaeaea;
 }
 #desktop .standardtable td {
      padding: 0;
