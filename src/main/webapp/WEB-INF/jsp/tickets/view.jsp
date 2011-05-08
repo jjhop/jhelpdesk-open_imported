@@ -85,20 +85,21 @@
                         <table cellspacing="0" class="standardtable">
                             <tr>
                                 <th>Nazwa</th>
-                                <th class="lastcol">Rozmiar</th>
+                                <th class="w75 right lastcol">Rozmiar</th>
                             </tr>
                             <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
                                 <tr>
                                     <td>
                                         <a href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
                                     </td>
-                                    <td class="lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
+                                    <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
                                 </tr>
                             </c:forEach>
                         </table>
                         <a href="<c:url value="/tickets/${ticket.ticketId}/uploadFile.html"/>"
                            title=":: :: closeButton: false, width: 360, height: 390"
-                           class="lightview">Dołącz plik</a>
+                           class="btn btnMarginTop lightview">Dołącz plik</a>
+                        <div class="clearFloat"></div>
                     </div>
                     <div class="contentbottom"></div>
                     <div class="chartcontainer">
