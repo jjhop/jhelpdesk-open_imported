@@ -711,6 +711,28 @@ div.buttons input {margin: 0 5px;}
     margin: 0 0 10px 0;
 }
 
+#ticketdetails #ticketPanelFiles .fileType {
+    padding: 1px 0 1px 25px;
+    background: url(../i/bg_filetype.png) 0 -108px no-repeat;
+}
+#ticketdetails #ticketPanelFiles .ftPDF {
+    background-position: 0 2px;
+}
+#ticketdetails #ticketPanelFiles .ftMSWORD {
+    background-position: 0 -20px;
+}
+#ticketdetails #ticketPanelFiles .ftARCHIVE {
+    background-position: 0 -64px;
+}
+#ticketdetails #ticketPanelFiles .ftTEXT {
+    background-position: 0 -86px;
+}
+#ticketdetails #ticketPanelFiles .ftIMAGE {
+    background-position: 0 -42px;
+}
+#ticketdetails #ticketPanelFiles .ftUNKNOWN {
+    background-position: 0 -108px;
+}
 * html #ticketdetails .contentmiddle {
     height: 200px;
 }

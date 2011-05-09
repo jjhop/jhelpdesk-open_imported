@@ -92,7 +92,7 @@
                             <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
                                 <tr>
                                     <td>
-                                        <a href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
+                                        <a class="fileType ft<c:out value="${file.contentTypeClass}"/>" href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
                                     </td>
                                     <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
                                 </tr>
