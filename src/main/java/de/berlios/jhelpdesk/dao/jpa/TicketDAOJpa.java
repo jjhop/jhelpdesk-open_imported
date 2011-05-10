@@ -221,11 +221,13 @@ public class TicketDAOJpa implements TicketDAO {
         try {
             User assigner = this.jpaTemplate.find(User.class, assignerId);
             final TicketEvent event = TicketEvent.ticketAssigned(getTicketById(ticketId), assigner);
+
             this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
-                    Query q = em.createNativeQuery("UPDATE ticket SET saviour=?1 WHERE id=?2");
+                    Query q = em.createNativeQuery("UPDATE ticket SET saviour=?1, status=?2 WHERE id=?3");
                     q.setParameter(1, userId);
-                    q.setParameter(2, ticketId);
+                    q.setParameter(2, TicketStatus.ASSIGNED.toInt());
+                    q.setParameter(3, ticketId);
                     q.executeUpdate();
                     em.persist(event);
                     return null;
