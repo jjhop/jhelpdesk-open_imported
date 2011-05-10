@@ -7,51 +7,18 @@
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">
                 <td class="rightcells lastTickets">
-                    <div id="pagecontentsubheader"><h3>Opis problemu</h3></div>
+                    <div id="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
-                                <th colspan="3" style="width: 258px;">Identyfikator</th>
-                                <th colspan="3" class="lastcol">Data</th>
+                                <th colspan="2">Data zgłoszenia</th>
+                                <th colspan="2">Ważność</th>
+                                <th colspan="2" class="lastcol">Status</th>
                             </tr>
                             <tr>
-                                <td colspan="3" style="width: 258px; font-weight: bold;"><c:out value="${ticket.ticketId}"/></td>
-                                <td colspan="3" class="lastcol" style="font-weight: bold;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
-                            </tr>
-                            <tr>
-                                <th colspan="6" class="lastcol">Przyczyna</th>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class="lastcol"><c:out value="${ticket.subject}" /></td>
-                            </tr>
-                            <tr>
-                                <th colspan="2">Status</th>
-                                <th colspan="2">Kategoria</th>
-                                <th colspan="2" class="lastcol">Ważność</th>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="width: 170px;">
-                                    ${ticket.ticketStatus.statusName}
-                                    <!--<select size="1">
-                                        <c:forEach var="status" items="${ticketStatuses}">
-                                            <option value="${status.statusId}" <c:if test="${status.statusId == ticket.ticketStatus.statusId}">selected="selected"</c:if>>
-                                                <c:out value="${status}" />
-                                            </option>
-                                        </c:forEach>
-                                    </select>-->
-                                </td>
-                                <td colspan="2" style="width: 170px;">
-                                    ${ticket.ticketCategory}
-                                    <!--<select size="1">
-                                        <c:forEach var="category" items="${ticketCategories}">
-                                            <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
-                                                <c:out value="${category}" />
-                                            </option>
-                                        </c:forEach>
-                                    </select>-->
-                                </td>
-                                <td colspan="2" class="lastcol">
+                                <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
+                                <td colspan="2" style="font-weight: bold;">
                                     ${ticket.ticketPriority.priorityName}
                                     <!--<select size="1">
                                         <c:forEach var="priority" items="${ticketPriorities}">
@@ -61,6 +28,37 @@
                                         </c:forEach>
                                     </select>-->
                                 </td>
+                                <td colspan="2" class="lastcol" style="font-weight: bold;">
+                                    ${ticket.ticketStatus.statusName}
+                                    <!--<select size="1">
+                                        <c:forEach var="status" items="${ticketStatuses}">
+                                            <option value="${status.statusId}" <c:if test="${status.statusId == ticket.ticketStatus.statusId}">selected="selected"</c:if>>
+                                                <c:out value="${status}" />
+                                            </option>
+                                        </c:forEach>
+                                    </select>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="6" class="lastcol">Kategoria</th>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    ${ticket.ticketCategory}
+                                    <!--<select size="1">
+                                        <c:forEach var="category" items="${ticketCategories}">
+                                            <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
+                                                <c:out value="${category}" />
+                                            </option>
+                                        </c:forEach>
+                                    </select>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="6" class="lastcol">Przyczyna</th>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="lastcol"><c:out value="${ticket.subject}" /></td>
                             </tr>
                             <tr>
                                 <th colspan="6" class="lastcol">Opis</th>
@@ -92,7 +90,8 @@
                             <c:forEach var="file" items="${ticket.addFilesList}" varStatus="status">
                                 <tr>
                                     <td>
-                                        <a class="fileType ft<c:out value="${file.contentTypeClass}"/>" href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
+                                        <a class="fileType ft<c:out value="${file.contentTypeClass}"/>"
+                                           href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
                                     </td>
                                     <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
                                 </tr>
