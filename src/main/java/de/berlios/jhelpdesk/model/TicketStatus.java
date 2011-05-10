@@ -32,27 +32,28 @@ public enum TicketStatus {
     /**
      *
      */
-    NOTIFIED(1, "ZGŁOSZONY", "desc", "FF4040", true),
+    NOTIFIED(1, "ZGŁOSZONY", "desc", "FF4040", true), // lightbulb
     
     /**
      * 
      */
-    ASSIGNED(2, "PRZYPISANY", "desc", "FFC843", true),
+    ASSIGNED(2, "PRZYPISANY", "desc", "FFC843", true), // cog
     
     /**
      * 
      */
-    REJECTED(3, "ODRZUCONY", "desc", "4D61A9", true),
+    REJECTED(3, "ODRZUCONY", "desc", "4D61A9", true), // exclamation
     
     /**
      * 
      */
-    RESOLVED(4, "ROZWIĄZANY", "desc", "228664", true),
+    RESOLVED(4, "ROZWIĄZANY", "desc", "228664", true), // tick
     
     /**
      * 
      */
-    CLOSED(5, "ZAMKNIĘTY", "desc", "228664", true);
+    CLOSED(5, "ZAMKNIĘTY", "desc", "228664", true); // accept
+    
 
     private static final Logger log = LoggerFactory.getLogger(TicketStatus.class);
 
