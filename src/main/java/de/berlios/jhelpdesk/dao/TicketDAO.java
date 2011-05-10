@@ -160,8 +160,8 @@ public interface TicketDAO {
     /**
      * 
      * @param ticketId
-     * @param page
-     * @param i
+     * @param pageSize
+     * @param offset
      * @return
      */
     List<TicketComment> getCommentsForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
@@ -169,8 +169,8 @@ public interface TicketDAO {
     /**
      * 
      * @param ticketId
-     * @param page
      * @param pageSize
+     * @param offset
      * @return
      * @throws DAOException
      */
