@@ -1352,14 +1352,11 @@ td.artnumber {
     padding: 2px 5px 2px 0;
 }
 
-.desktopAnchor {
-    clear: both;
-    padding: 5px;
-    display: block;
-}
-
-.desktopAnchor:hover {
-    background: #DEE2ED;
+#ticketdetails .ticketPriority {
+    float: none;
+    width: auto;
+    background-color: transparent;
+    padding: 1px 5px 2px 25px;
 }
 
 .tpLOW {
@@ -1376,6 +1373,47 @@ td.artnumber {
 }
 .tpCRITICAL {
     background-position: 0 -77px;
+}
+
+.ticketStatus {
+    float: right;
+    width: 16px;
+    height: 16px;
+    background: #eaeaea url(../i/bg_ticketstatus.png) 0 1px no-repeat;
+    padding: 2px;
+}
+
+#ticketdetails .ticketStatus {
+    float: none;
+    width: auto;
+    background-color: transparent;
+    padding: 1px 5px 2px 25px;
+}
+
+.tsNOTIFIED {
+    background-position: 0 1px;
+}
+.tsASSIGNED {
+    background-position: 0 -20px;
+}
+.tsREJECTED {
+    background-position: 0 -41px;
+}
+.tsRESOLVED {
+    background-position: 0 -62px;
+}
+.tsCLOSED {
+    background-position: 0 -81px;
+}
+
+.desktopAnchor {
+    clear: both;
+    padding: 5px;
+    display: block;
+}
+
+.desktopAnchor:hover {
+    background: #DEE2ED;
 }
 
 .kbComments dd {

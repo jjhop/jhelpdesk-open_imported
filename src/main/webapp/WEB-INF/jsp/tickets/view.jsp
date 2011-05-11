@@ -19,7 +19,9 @@
                             <tr>
                                 <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                                 <td colspan="2" style="font-weight: bold;">
+                                    <span class="ticketPriority  tp${ticket.ticketPriority}">
                                     ${ticket.ticketPriority.priorityName}
+                                    </span>
                                     <!--<select size="1">
                                         <c:forEach var="priority" items="${ticketPriorities}">
                                             <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
@@ -29,7 +31,10 @@
                                     </select>-->
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
-                                    ${ticket.ticketStatus.statusName}
+
+                                    <span class="ticketStatus ts${ticket.ticketStatus}">
+                                        ${ticket.ticketStatus.statusName}
+                                    </span>
                                     <!--<select size="1">
                                         <c:forEach var="status" items="${ticketStatuses}">
                                             <option value="${status.statusId}" <c:if test="${status.statusId == ticket.ticketStatus.statusId}">selected="selected"</c:if>>

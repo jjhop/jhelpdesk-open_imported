@@ -33,11 +33,13 @@
                     <fmt:formatDate value="${ticketsIterator.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                 </display:column>
                 <display:column title="Status" class="status" headerClass="status">
-                    <span style="font-weight: bold; color: <c:out value="\#${ticketsIterator.ticketStatus.bgColor}"/>">
-                        <c:out value="${ticketsIterator.ticketStatus}" />
+                    <span class="ticketStatus ts<c:out value="${ticketsIterator.ticketStatus.statusName}" />" title="<c:out value="${ticketsIterator.ticketStatus}" />">
                     </span>
                 </display:column>
-                <display:column property="ticketPriority" title="Ważność" class="priority" headerClass="priority" />
+                <display:column title="Ważność" class="priority" headerClass="priority">
+                    <span class="ticketPriority tp<c:out value="${ticketsIterator.ticketPriority.priorityName}" />" title="<c:out value="${ticketsIterator.ticketPriority}" />">
+                    </span>
+                </display:column>
                 <display:column property="notifier" title="Zgłaszający" class="notifier" headerClass="notifier ticketView" />
 
                 <display:setProperty name="paging.banner.no_items_found">
