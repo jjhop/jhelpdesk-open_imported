@@ -155,9 +155,4 @@ public enum TicketPriority {
     public static List<TicketPriority> getPriorities() {
         return ps;
     }
-
-    @Override
-    public String toString() {
-        return this.priorityName;
-    }
 }
