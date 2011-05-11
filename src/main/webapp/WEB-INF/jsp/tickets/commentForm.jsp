@@ -28,8 +28,8 @@
                 </td>
             </tr>
         </table>
-                            <input type="submit" value="dodaj komentarz" class="btn btnMarginTop floatLeft" />
-                            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
+        <input type="submit" value="dodaj komentarz" class="btn btnMarginTop floatLeft"/>
+        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
         <div class="clearFloat"></div>
     </form:form>
 </div>
