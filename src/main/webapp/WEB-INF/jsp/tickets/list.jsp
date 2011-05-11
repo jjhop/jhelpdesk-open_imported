@@ -33,11 +33,11 @@
                     <fmt:formatDate value="${ticketsIterator.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                 </display:column>
                 <display:column title="Status" class="status" headerClass="status">
-                    <span class="ticketStatus ts<c:out value="${ticketsIterator.ticketStatus.statusName}" />" title="<c:out value="${ticketsIterator.ticketStatus}" />">
+                    <span class="ticketStatus ts<c:out value="${ticketsIterator.ticketStatus}" />" title="<c:out value="${ticketsIterator.ticketStatus.statusName}" />">
                     </span>
                 </display:column>
                 <display:column title="Ważność" class="priority" headerClass="priority">
-                    <span class="ticketPriority tp<c:out value="${ticketsIterator.ticketPriority.priorityName}" />" title="<c:out value="${ticketsIterator.ticketPriority}" />">
+                    <span class="ticketPriority tp<c:out value="${ticketsIterator.ticketPriority}" />" title="<c:out value="${ticketsIterator.ticketPriority.priorityName}" />">
                     </span>
                 </display:column>
                 <display:column property="notifier" title="Zgłaszający" class="notifier" headerClass="notifier ticketView" />
