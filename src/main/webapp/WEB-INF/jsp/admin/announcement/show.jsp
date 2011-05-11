@@ -6,7 +6,7 @@
     <table  cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader">
+                <div class="pagecontentsubheader">
                     <h3><c:out value="${announcement.title}"/></h3>
                 </div>
                 <div class="content">

@@ -7,7 +7,7 @@
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">
                 <td class="rightcells lastTickets">
-                    <div id="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
+                    <div class="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -82,7 +82,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Pliki</h3></div>
+                    <div class="pagecontentsubheader"><h3>Pliki</h3></div>
                     <div class="contenttop"></div>
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <c:choose>
@@ -136,7 +136,7 @@
                     </div>
                 </td>
                 <td class="leftcells">
-                    <div id="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
+                    <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -157,7 +157,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
+                    <div class="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
@@ -178,7 +178,7 @@
                         </table>
                     </div>
                     <div class="contentbottom"></div>
-                    <div id="pagecontentsubheader">
+                    <div class="pagecontentsubheader">
                         <h3>Rozwiązuje 
                             <c:if test="${ticket.saviour != null}">
                                 <img src="${ticket.saviour.avatarURL}" alt="avatar" class="avatar" />

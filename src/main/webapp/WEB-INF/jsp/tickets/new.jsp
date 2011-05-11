@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader">
+                <div class="pagecontentsubheader">
                     <h3>Zgłaszanie problemu
                         <a href="#help"
                            class="lightview" title=":: :: width: 400, height: 300, keyboard: true"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a>

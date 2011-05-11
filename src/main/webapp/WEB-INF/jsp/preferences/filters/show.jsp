@@ -6,7 +6,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader">
+                <div class="pagecontentsubheader">
                     <h3>Zarządzanie filtrami
                     </h3>
                 </div>

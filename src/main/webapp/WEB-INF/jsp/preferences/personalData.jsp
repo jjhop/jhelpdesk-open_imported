@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Ustawienia danych osobowych</h3></div>
+                <div class="pagecontentsubheader"><h3>Ustawienia danych osobowych</h3></div>
                 <div id="content">
                     <div class="contentmiddle">
                         <c:url value="/preferences/personalData/change.html" var="formURL"/>

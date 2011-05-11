@@ -149,7 +149,7 @@ table a.btn {
     font-size: 22px;
     text-transform: uppercase;
 }
-#pagecontentsubheader {
+.pagecontentsubheader {
     position: relative;
     z-index: 2;
     margin-bottom: 4px;
@@ -158,7 +158,7 @@ table a.btn {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
-#pagecontentsubheader h3 {
+.pagecontentsubheader h3 {
     padding: 10px 50px 12px;
     background: transparent url(../i/icons/gnome-graphics.png) no-repeat 10px 50%;
     font-weight: bold;
@@ -166,7 +166,7 @@ table a.btn {
     position: relative;
 }
 
-#pagecontentsubheader h3 .refresh {
+.pagecontentsubheader h3 .refresh {
     display: block;
     position: absolute;
     top: 50%;
@@ -182,15 +182,15 @@ table a.btn {
     text-align: center;
 }
 
-#pagecontentsubheader h3 .refresh:hover {
+.pagecontentsubheader h3 .refresh:hover {
     border: 1px solid #614261;
 }
 
-#pagecontentsubheader h3 .refresh img {
+.pagecontentsubheader h3 .refresh img {
     border: 0;
 }
 
-#pagecontentsubheader h3 span, #pagecontentsubheader h3 img.avatar {
+.pagecontentsubheader h3 span, .pagecontentsubheader h3 img.avatar {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1340,7 +1340,13 @@ td.artnumber {
     height: 16px;
     padding: 2px 0 2px 5px;
 }
-
+.ticketslist .ticketCategory {
+    width: 100%;
+    background-color: transparent;
+    padding: 0 0 3px 0;
+    font-weight: normal;
+    color: #666;
+}
 .ticketPriority {
     float: right;
     width: 16px;

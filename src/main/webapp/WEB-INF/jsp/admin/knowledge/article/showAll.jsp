@@ -6,7 +6,7 @@
     <table class="w100p" cellspacing="0">
         <tr>
             <td class="">
-                <div id="pagecontentsubheader"><h3>Baza wiedzy - artykuły</h3></div>
+                <div class="pagecontentsubheader"><h3>Baza wiedzy - artykuły</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

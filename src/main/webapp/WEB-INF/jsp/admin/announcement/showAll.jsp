@@ -6,7 +6,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Wiadomości</h3></div>
+                <div class="pagecontentsubheader"><h3>Wiadomości</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

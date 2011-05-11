@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div id="pagecontentsubheader"><h3>Zmiana hasła</h3></div>
+<div class="pagecontentsubheader"><h3>Zmiana hasła</h3></div>
 <div class="contentmiddle">
     <c:url value="/preferences/personalData/password/change.html" var="formURL"/>
     <form:form commandName="passwordForm" action="${formURL}" method="post">

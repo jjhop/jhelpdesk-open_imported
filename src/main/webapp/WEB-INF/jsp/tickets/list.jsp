@@ -8,7 +8,7 @@
 
 <div id="alltickets" class="ticketslist">
     <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
-    <div id="pagecontentsubheader">
+    <div class="pagecontentsubheader">
         <fmt:message key="tickets.list.custom" var="custom"/>
         <h3><c:out value="${filter.name}" default="${custom}"/></h3>
         <a id="filterbutton" class="btn" href="javascript:toggleForm();">Filtr</a>
@@ -24,11 +24,13 @@
                     <c:out value="${ticketsIterator_rowNum + offset}"/>
                 </display:column>
                 <display:column title="Przyczyna zgłoszenia" class="ticketsDetail" headerClass="ticketsDetail">
+                    <span class="ticketCategory">
+                        <em>Kategoria: </em><c:out value="${ticketsIterator.ticketCategory}"/>
+                    </span>
                     <a href="<c:url value="/tickets/${ticketsIterator.ticketId}/details.html"/>">
                         <c:out value="${ticketsIterator.subject}"/>
                     </a>
                 </display:column>
-                <display:column property="ticketCategory" title="Kategoria" class="category" headerClass="category" />
                 <display:column title="Data" class="createDate" headerClass="createDate">
                     <fmt:formatDate value="${ticketsIterator.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                 </display:column>

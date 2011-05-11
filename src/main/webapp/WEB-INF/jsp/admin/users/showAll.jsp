@@ -6,7 +6,7 @@
     <table cellspacing="0" class="w100p">
         <tr>
             <td class="">
-                <div id="pagecontentsubheader"><h3>Użytkownicy</h3></div>
+                <div class="pagecontentsubheader"><h3>Użytkownicy</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

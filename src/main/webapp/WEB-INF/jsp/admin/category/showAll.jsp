@@ -6,7 +6,7 @@
     <table class="w100p" cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>Kategorie zgłoszeń</h3></div>
+                <div class="pagecontentsubheader"><h3>Kategorie zgłoszeń</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

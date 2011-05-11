@@ -7,7 +7,7 @@
     <table  cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div id="pagecontentsubheader"><h3>a co tutaj?</h3></div>
+                <div class="pagecontentsubheader"><h3>a co tutaj?</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
@@ -59,7 +59,7 @@
                 </div>
             </td>
             <td class="leftcells colNarrowRight">
-                <div id="pagecontentsubheader"><h3>Kategorie</h3></div>
+                <div class="pagecontentsubheader"><h3>Kategorie</h3></div>
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
                     <ul class="kbList">

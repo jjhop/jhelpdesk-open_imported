@@ -3,7 +3,7 @@
 
 <div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
 
-<div id="pagecontentsubheader"><h3>Artykuły w kategorii: <strong>${category.categoryName}</strong></h3></div>
+<div class="pagecontentsubheader"><h3>Artykuły w kategorii: <strong>${category.categoryName}</strong></h3></div>
 
 
 <c:if test="${fn:length(articles) > 0}">
