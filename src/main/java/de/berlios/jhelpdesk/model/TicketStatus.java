@@ -212,14 +212,4 @@ public enum TicketStatus {
     public String getBgColor() {
         return bgColor;
     }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return statusName;
-    }
-
 }
