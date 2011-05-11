@@ -502,11 +502,8 @@ td.rightcells {
 }
 #ticketsIterator td.createDate {
 }
-#ticketsIterator .status {
-    width: 85px;
-}
-#ticketsIterator .priority {
-    width: 85px;
+#ticketsIterator .status, #ticketsIterator .priority {
+    width: 50px;
 }
 #ticketsIterator .notifier {
     width: 100px;
@@ -1404,6 +1401,16 @@ td.artnumber {
 }
 .tsCLOSED {
     background-position: 0 -81px;
+}
+
+.ticketslist .ticketStatus, .ticketslist .ticketPriority {
+    display: block;
+    float: none;
+    padding: 2px 0;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+    margin-left: 17px;
 }
 
 .desktopAnchor {
