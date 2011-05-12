@@ -140,7 +140,7 @@
                     <div class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     
                     <div class="contentmiddle">
-
+                        <a href="#" class="rndCrn5px btnTicketAction">Rozwiąż</a>
                     </div>
 
                     <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
