@@ -1,5 +1,15 @@
-<%@page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
+<%@ page import="de.berlios.jhelpdesk.model.Ticket" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%
+    User currentUser = (User) session.getAttribute("user");
+    Ticket ticket = (Ticket) request.getAttribute("ticket");
+%>
 
 <div id="ticketdetails">
     <div id="pagecontentheader"><h2>Podgląd zgłoszenia</h2></div>
@@ -20,7 +30,10 @@
                                 <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                                 <td colspan="2" style="font-weight: bold;">
                                     <span class="ticketPriority  tp${ticket.ticketPriority}">
-                                    ${ticket.ticketPriority.priorityName}
+                                    <%
+                                        TicketPriority priority = ticket.getTicketPriority();
+                                        out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
+                                    %>
                                     </span>
                                     <!--<select size="1">
                                         <c:forEach var="priority" items="${ticketPriorities}">
@@ -31,9 +44,11 @@
                                     </select>-->
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
-
                                     <span class="ticketStatus ts${ticket.ticketStatus}">
-                                        ${ticket.ticketStatus.statusName}
+                                    <%
+                                        TicketStatus status = ticket.getTicketStatus();
+                                        out.print(status.getStatusName(currentUser.getPreferredLocale()));
+                                    %>
                                     </span>
                                     <!--<select size="1">
                                         <c:forEach var="status" items="${ticketStatuses}">
