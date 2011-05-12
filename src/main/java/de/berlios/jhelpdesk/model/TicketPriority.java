@@ -18,6 +18,8 @@ package de.berlios.jhelpdesk.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,27 +33,27 @@ public enum TicketPriority {
     /**
      *
      */
-    CRITICAL(1, "krytyczny"),
+    CRITICAL(1, "ticketPriority.critical"),
 
     /**
      *
      */
-    MAJOR(2, "bardzo wazny"),
+    MAJOR(2, "ticketPriority.major"),
 
     /**
      *
      */
-    IMPORTANT(3, "wazny"),
+    IMPORTANT(3, "ticketPriority.important"),
 
     /**
      *
      */
-    NORMAL(4, "normalny"),
+    NORMAL(4, "ticketPriority.normal"),
 
     /**
      *
      */
-    LOW(5, "niski");
+    LOW(5, "ticketPriority.low");
 
     private static final Logger log = LoggerFactory.getLogger(TicketPriority.class);
 
@@ -74,16 +76,20 @@ public enum TicketPriority {
     /**
      *
      */
+    @Deprecated
     private final String priorityName;
+
+    private final String priorityNameCode;
 
     /**
      * 
      * @param id
-     * @param name
+     * @param priorityNameCode
      */
-    private TicketPriority(int id, String name) {
+    private TicketPriority(int id, String priorityNameCode) {
         this.priorityId = id;
-        this.priorityName = name;
+        this.priorityName = priorityNameCode;
+        this.priorityNameCode = priorityNameCode;
     }
 
     /**
@@ -99,8 +105,14 @@ public enum TicketPriority {
      *
      * @return
      */
+    @Deprecated
     public String getPriorityName() {
         return this.priorityName;
+    }
+
+    public String getPriorityName(Locale locale) {
+        ResourceBundle names = ResourceBundle.getBundle("priorityName", locale);
+        return names.getString(priorityNameCode);
     }
 
     /**
