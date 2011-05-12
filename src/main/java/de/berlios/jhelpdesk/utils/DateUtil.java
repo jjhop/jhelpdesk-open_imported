@@ -105,10 +105,10 @@ public class DateUtil {
         return formatter.format(cal.getTime());
     }
 
-    public String get3MonthsEarlierDate() {
+    public String getXMonthsEarlierDate(int months) {
         cal.setTime(target);
         cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.roll(Calendar.MONTH, -3);
+        cal.roll(Calendar.MONTH, - months);
         return formatter.format(cal.getTime());
     }
 

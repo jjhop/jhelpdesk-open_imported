@@ -15,7 +15,7 @@
     <tx:annotation-driven />
 
     <mvc:annotation-driven/>
-    <mvc:view-controller path="/" view-name="welcome"/>
+    <mvc:view-controller path="/" view-name="index.jsp"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
