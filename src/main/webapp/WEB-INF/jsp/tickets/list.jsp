@@ -1,6 +1,16 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
+<%@ page import="de.berlios.jhelpdesk.model.Ticket" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%
+    User current = (User) session.getAttribute("user");
+%>
 
 <c:if test="${not empty message}">
     <c:out value="${message}"/>
@@ -33,11 +43,19 @@
                     <fmt:formatDate value="${ticketsIterator.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                 </display:column>
                 <display:column title="Status" class="status" headerClass="status">
-                    <span class="ticketStatus ts<c:out value="${ticketsIterator.ticketStatus}" />" title="<c:out value="${ticketsIterator.ticketStatus.statusName}" />">
+                    <span class="ticketStatus ts<c:out value="${ticketsIterator.ticketStatus}" />"
+                          title="<%
+                        TicketStatus status = ((Ticket) ticketsIterator).getTicketStatus();
+                        out.print(status.getStatusName(current.getPreferredLocale()));
+                    %>">
                     </span>
                 </display:column>
                 <display:column title="Ważność" class="priority" headerClass="priority">
-                    <span class="ticketPriority tp<c:out value="${ticketsIterator.ticketPriority}" />" title="<c:out value="${ticketsIterator.ticketPriority.priorityName}" />">
+                    <span class="ticketPriority tp<c:out value="${ticketsIterator.ticketPriority}" />"
+                          title="<%
+                        TicketPriority priority = ((Ticket) ticketsIterator).getTicketPriority();
+                        out.print(priority.getPriorityName(current.getPreferredLocale()));
+                    %>">
                     </span>
                 </display:column>
                 <display:column property="notifier" title="Zgłaszający" class="notifier" headerClass="notifier ticketView" />
