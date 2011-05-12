@@ -18,6 +18,8 @@ package de.berlios.jhelpdesk.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,27 +34,27 @@ public enum TicketStatus {
     /**
      *
      */
-    NOTIFIED(1, "ZGŁOSZONY", "desc", "FF4040", true), // lightbulb
+    NOTIFIED(1, "ticketStatus.notified", "desc", "FF4040", true), // lightbulb ZGŁOSZONY
     
     /**
      * 
      */
-    ASSIGNED(2, "PRZYPISANY", "desc", "FFC843", true), // cog
+    ASSIGNED(2, "ticketStatus.assigned", "desc", "FFC843", true), // cog PRZYPISANY
     
     /**
      * 
      */
-    REJECTED(3, "ODRZUCONY", "desc", "4D61A9", true), // exclamation
+    REJECTED(3, "ticketStatus.rejected", "desc", "4D61A9", true), // exclamation ODRZUCONY
     
     /**
      * 
      */
-    RESOLVED(4, "ROZWIĄZANY", "desc", "228664", true), // tick
+    RESOLVED(4, "ticketStatus.resolved", "desc", "228664", true), // tick ROZWIĄZANY
     
     /**
      * 
      */
-    CLOSED(5, "ZAMKNIĘTY", "desc", "228664", true); // accept
+    CLOSED(5, "ticketStatus.closed", "desc", "228664", true); // accept ZAMKNIĘTY
     
 
     private static final Logger log = LoggerFactory.getLogger(TicketStatus.class);
@@ -62,10 +64,7 @@ public enum TicketStatus {
      */
     private final int statusId;
 
-    /**
-     *
-     */
-    private final String statusName;
+    private final String statusNameCode;
 
     /**
      *
@@ -96,16 +95,16 @@ public enum TicketStatus {
     /**
      *
      * @param id
-     * @param name
+     * @param statusNameCode
      * @param desc
      * @param bgColor
      * @param active
      */
-    private TicketStatus(int id, String name, String desc, String bgColor, boolean active) {
+    private TicketStatus(int id, String statusNameCode, String desc, String bgColor, boolean active) {
         this.isActive = active;
         this.statusDesc = desc;
         this.statusId = id;
-        this.statusName = name;
+        this.statusNameCode = statusNameCode;
         this.bgColor = bgColor;
     }
 
@@ -201,8 +200,14 @@ public enum TicketStatus {
      *
      * @return
      */
+    @Deprecated
     public String getStatusName() {
-        return statusName;
+        return statusNameCode;
+    }
+
+    public String getStatusName(Locale locale) {
+        ResourceBundle names = ResourceBundle.getBundle("statusName", locale);
+        return names.getString(statusNameCode);
     }
 
     /**

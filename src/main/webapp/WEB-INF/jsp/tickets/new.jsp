@@ -1,6 +1,14 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%
+    User currentUser = (User) session.getAttribute("user");
+%>
 
 <div id="editcategory" class="management">
     <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
@@ -23,7 +31,7 @@
                                     <td>
                                         <ul class="formContainer">
                                             <li class="w75p">
-                                                <label>Zgłaszający 
+                                                <label>Zgłaszający
                                                     <span class="lblTip">(wprowadź email, aby sprawdzić czy użytkownik istnieje)</span>
                                                 </label>
                                                 <form:input onkeyup="this.value.charCount('notifierCounter', 128)" onblur="$('notifierCounter').hide()" path="notifier" cssErrorClass="w90p fieldError" cssClass="w90p" maxlength="128"/>
@@ -38,8 +46,16 @@
                                             </li>
                                             <li class="floatRight">
                                                 <label>Ważność</label>
-                                                <form:select cssClass="w20" path="ticketPriority" items="${priorities}" 
-                                                             itemValue="priorityId" itemLabel="priorityName" />
+                                                <select id="ticketPriority" name="ticketPriority" class="w20">
+                                                <c:forEach var="priority" items="${priorities}">
+                                                    <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
+                                                    <%
+                                                        TicketPriority priority = (TicketPriority) pageContext.getAttribute("priority");
+                                                        out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
+                                                    %>
+                                                    </option>
+                                                </c:forEach>
+                                                </select>
                                             </li>
                                             <li class="clearFloat">
                                                 <label>Przyczyna
