@@ -152,10 +152,13 @@
                 </td>
                 <td class="leftcells">
 
-                    <div class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
+                    <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     
-                    <div class="contentmiddle">
-                        <a href="#" class="rndCrn5px btnTicketAction">Rozwiąż</a>
+                    <div id="pnlTicketActions" class="contentmiddle">
+                        <a href="#" class="btnTicketAction btnTicketResolve rndCrn5px">Rozwiąż</a>
+                        <a href="#" class="btnTicketAction btnTicketReject rndCrn5px">Odrzuć</a>
+                        <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
+                        <a href="#" class="btnTicketAction btnTicketReopen rndCrn5px">Otwórz ponownie</a>
                     </div>
 
                     <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
