@@ -739,6 +739,14 @@ div.buttons input {margin: 0 5px;}
 * html #ticketdetails .leftcells .contentmiddle {
     height: 110px;
 }
+
+
+#ticketdetails .leftcells #pnlTicketActions.contentmiddle, #ticketdetails #headTicketActions.pagecontentsubheader {
+    background-color: #d7d7d7;
+}
+#ticketdetails .leftcells #pnlTicketActions.contentmiddle {
+    min-height: 30px;
+}
 #ticketdetails .leftcells .contentbottom {
     height: 30px;
     background: #F3F3F3 url(../i/hd-contentbottomdesktop.jpg) no-repeat 0 0;
@@ -792,11 +800,48 @@ div.buttons input {margin: 0 5px;}
     display: inline-block;
     width: auto;
     height: 20px;
-    padding: 8px 15px 7px 35px;
-    border: 1px solid #97b8c3;
+    padding: 7px 15px 8px 35px;
+    border: 1px solid #5b8030;
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     background: url(../i/bg_ticketaction.png) -5px 0 no-repeat;
+    color: #fff;
+}
+#ticketdetails .btnTicketAction:hover {
+    color: #fff;
+}
+
+#ticketdetails .btnTicketResolve {
+    background-position: -5px 0;
+}
+#ticketdetails .btnTicketResolve:hover {
+    background-position: -5px -35px;
+    border-color: #709345;
+}
+#ticketdetails .btnTicketReopen {
+    background-position: -5px -70px;
+    border-color: #df5d1f;
+}
+#ticketdetails .btnTicketReopen:hover {
+    background-position: -5px -105px;
+    border-color: #f27b42;
+}
+#ticketdetails .btnTicketReject {
+    background-position: -5px -140px;
+    border-color: #bc0000;
+}
+#ticketdetails .btnTicketReject:hover {
+    background-position: -5px -175px;
+    border-color: #d22626;
+}
+#ticketdetails .btnTicketClose {
+    background-position: -5px -210px;
+    border-color: #5b5b5b;
+}
+#ticketdetails .btnTicketClose:hover {
+    background-position: -5px -245px;
+    border-color: #797979;
 }
 
 /* NOWE ZG�?OSZENIE */
