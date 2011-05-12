@@ -8,7 +8,7 @@
             <tr class="desktoppanelstableheader">
                 <td class="rightcells lastTickets">
                     <div class="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
-                    <div class="contenttop"></div>
+                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -81,9 +81,9 @@
                             </c:if>
                         </table>
                     </div>
-                    <div class="contentbottom"></div>
+                    
                     <div class="pagecontentsubheader"><h3>Pliki</h3></div>
-                    <div class="contenttop"></div>
+                    
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <c:choose>
                         <c:when test="${not empty ticket.addFilesList}">
@@ -114,7 +114,7 @@
                            class="btn lightview">Dołącz plik</a>
                         <div class="clearFloat"></div>
                     </div>
-                    <div class="contentbottom"></div>
+                    
                     <div class="chartcontainer">
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
@@ -122,7 +122,7 @@
                                     <a href="#comments" id="tab_comments" class="tab"><span>Lista komentarzy</span></a>
                                     <a href="#events" id="tab_events" class="tab"><span>Historia zgłoszenia</span></a>
                                 </div>
-                                <div class="contenttop"></div>
+                                
                                 <div class="Pages">
                                     <div id="panel_comments" class="Page">
                                         <tiles:insertDefinition name="panelComments"/>
@@ -136,8 +136,15 @@
                     </div>
                 </td>
                 <td class="leftcells">
+
+                    <div class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
+                    
+                    <div class="contentmiddle">
+
+                    </div>
+
                     <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
-                    <div class="contenttop"></div>
+                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -156,9 +163,9 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="contentbottom"></div>
+                    
                     <div class="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
-                    <div class="contenttop"></div>
+                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -177,7 +184,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="contentbottom"></div>
+                    
                     <div class="pagecontentsubheader">
                         <h3>Rozwiązuje 
                             <c:if test="${ticket.saviour != null}">
@@ -185,7 +192,7 @@
                             </c:if>
                         </h3>
                     </div>
-                    <div class="contenttop"></div>
+                    
                     <div class="contentmiddle">
                         <c:if test="${ticket.saviour != null}">
                             <table cellspacing="0" class="standardtable">
@@ -221,7 +228,7 @@
                             </form>
                         </c:if>
                     </div>
-                    <div class="contentbottom"></div>
+                    
                 </td>
             </tr>
         </table>

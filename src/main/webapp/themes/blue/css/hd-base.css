@@ -734,7 +734,7 @@ div.buttons input {margin: 0 5px;}
     height: 200px;
 }
 #ticketdetails .leftcells .contentmiddle {
-    min-height: 110px;
+    min-height: 96px;
 }
 * html #ticketdetails .leftcells .contentmiddle {
     height: 110px;
