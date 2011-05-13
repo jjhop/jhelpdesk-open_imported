@@ -18,7 +18,6 @@
             <tr class="desktoppanelstableheader">
                 <td class="rightcells lastTickets">
                     <div class="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
-                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -96,9 +95,7 @@
                             </c:if>
                         </table>
                     </div>
-                    
                     <div class="pagecontentsubheader"><h3>Pliki</h3></div>
-                    
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <c:choose>
                         <c:when test="${not empty ticket.addFilesList}">
@@ -129,7 +126,6 @@
                            class="btn lightview">Dołącz plik</a>
                         <div class="clearFloat"></div>
                     </div>
-                    
                     <div class="chartcontainer">
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
@@ -151,18 +147,18 @@
                     </div>
                 </td>
                 <td class="leftcells">
-
                     <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
-                    
                     <div id="pnlTicketActions" class="contentmiddle">
-                        <a href="#" class="btnTicketAction btnTicketResolve rndCrn5px">Rozwiąż</a>
-                        <a href="#" class="btnTicketAction btnTicketReject rndCrn5px">Odrzuć</a>
-                        <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
-                        <a href="#" class="btnTicketAction btnTicketReopen rndCrn5px">Otwórz ponownie</a>
+                        <% if (ticket.getTicketStatus() == TicketStatus.ASSIGNED) { %>
+                            <a href="#" class="btnTicketAction btnTicketResolve rndCrn5px">Rozwiąż</a>
+                            <a href="#" class="btnTicketAction btnTicketReject rndCrn5px">Odrzuć</a>
+                        <% } %>
+                        <% if (ticket.getTicketStatus() == TicketStatus.RESOLVED) { %>
+                            <a href="#" class="btnTicketAction btnTicketReopen rndCrn5px">Otwórz ponownie</a>
+                            <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
+                        <% } %>
                     </div>
-
                     <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
-                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -181,9 +177,7 @@
                             </tr>
                         </table>
                     </div>
-                    
                     <div class="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
-                    
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -202,7 +196,6 @@
                             </tr>
                         </table>
                     </div>
-                    
                     <div class="pagecontentsubheader">
                         <h3>Rozwiązuje 
                             <c:if test="${ticket.saviour != null}">
@@ -210,7 +203,6 @@
                             </c:if>
                         </h3>
                     </div>
-                    
                     <div class="contentmiddle">
                         <c:if test="${ticket.saviour != null}">
                             <table cellspacing="0" class="standardtable">
@@ -246,7 +238,6 @@
                             </form>
                         </c:if>
                     </div>
-                    
                 </td>
             </tr>
         </table>
