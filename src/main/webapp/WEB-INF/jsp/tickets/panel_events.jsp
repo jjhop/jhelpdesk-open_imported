@@ -11,19 +11,21 @@
             <c:if test="${not empty events}">
                 <table cellspacing="0" class="standardtable">
                     <tr>
-                        <th>Lp.</th>
                         <th>Zdarzenie</th>
                         <th width="100" class="lastcol">Data</th>
                     </tr>
                     <% User user = (User) session.getAttribute("user");%>
                     <c:forEach var="event" items="${events}" varStatus="status">
                     <tr>
-                        <td class="scount"><c:out value="${status.count}"/></td>
                         <td>
+                            <span class="eventType et<c:out value="${event.eventType}"/>"></span>
                             <% TicketEvent evt = (TicketEvent) pageContext.getAttribute("event");%>
                             <%= evt.getEvtSubject(user.getPreferredLocale())%>
                         </td>
-                        <td class="lastcol"><fmt:formatDate value="${event.evtDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+                        <td class="lastcol">
+                            <fmt:formatDate value="${event.evtDate}" pattern="yyyy-MM-dd HH:mm"/>
+
+                        </td>
                     </tr>
                     </c:forEach>
                 </table>
