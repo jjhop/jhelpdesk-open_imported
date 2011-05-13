@@ -752,6 +752,8 @@ div.buttons input {margin: 0 5px;}
 }
 #ticketdetails .leftcells #pnlTicketActions.contentmiddle {
     min-height: 30px;
+    text-align: center;
+    padding-bottom: 0;
 }
 #ticketdetails .leftcells .contentbottom {
     height: 30px;
@@ -806,6 +808,7 @@ div.buttons input {margin: 0 5px;}
     display: inline-block;
     width: auto;
     height: 20px;
+    margin: 0 0 10px 0;
     padding: 7px 15px 8px 35px;
     border: 1px solid #5b8030;
     font-size: 14px;
