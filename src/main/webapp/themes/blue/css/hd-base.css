@@ -277,6 +277,11 @@ table a.btn {
     border-bottom: 1px solid #CCCCCC;
 }
 
+.standardtable td .entryBlock {
+    display: block;
+    padding: 5px;
+}
+
 .standardtable .lastcol {
     border-right: 0;
 }
@@ -1381,7 +1386,7 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop .entryMeta {
+#desktop .entryMeta, #panel_comments .entryMeta {
     padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
@@ -1390,7 +1395,7 @@ td.artnumber {
     display: block;
     padding: 2px 0 2px 5px;
 }
-#desktop .standardtable td {
+#desktop .standardtable td, #panel_comments .standardtable td {
      padding: 0;
 }
 
