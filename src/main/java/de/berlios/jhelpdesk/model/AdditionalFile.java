@@ -204,8 +204,6 @@ public class AdditionalFile implements Serializable {
      * @return rozmiar pliku w bajtach
      *
      * @see #fileSize
-     * @see #fileData
-     * @see #getFileData()
      */
     public Long getFileSize() {
         return fileSize;
@@ -220,8 +218,6 @@ public class AdditionalFile implements Serializable {
      *
      * @see #fileSize
      * @see #getFileSize()
-     * @see #fileData
-     * @see #getFileData() 
      */
     public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
