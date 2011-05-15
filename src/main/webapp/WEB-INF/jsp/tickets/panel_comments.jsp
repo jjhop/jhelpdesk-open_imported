@@ -7,16 +7,18 @@
         <td>
             <c:if test="${not empty comments}">
                 <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
-                    <tr>
-                        <th>Autor</th>
-                        <th>Data</th>
-                        <th class="lastcol">Treść</th>
-                    </tr>
                     <c:forEach var="comment" items="${comments}" varStatus="status">
                     <tr>
-                        <td class="tit"><c:out value="${comment.commentAuthor}"/></td>
-                        <td><fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/></td>
-                        <td class="bod"><c:out value="${comment.commentText}" escapeXml="false"/></td>
+
+                        <td>
+                            <span class="entryMeta">
+                                <c:out value="${comment.commentAuthor}"/>, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
+                            </span>
+                            <span class="entryBlock">
+                                <c:out value="${comment.commentText}" escapeXml="false"/>
+                            </span>
+                        </td>
+
                     </tr>
                     </c:forEach>
                 </table>
