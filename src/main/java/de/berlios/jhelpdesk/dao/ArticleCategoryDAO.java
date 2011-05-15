@@ -103,7 +103,7 @@ public interface ArticleCategoryDAO {
     /**
      * Zapisuje lub uaktualnia podany obiekt ArticleCategory. Operacja do
      * wykonania wybierana jest na podstawie wartości
-     * {@link ArticleCategory#articleCategoryId} dostarczonego obiektu. Jeśli
+     * {@link ArticleCategory#id} dostarczonego obiektu. Jeśli
      * jest on równy {@code null} to obiekt zapisywany jest jako nowy a
      * identyfikator jest uzupełniany. Jeśli dostarczony obiekt posiada już
      * identyfikator({@code category.getArticleCategoryId() != null}) to w bazie
