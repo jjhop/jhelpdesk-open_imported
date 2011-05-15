@@ -147,17 +147,19 @@
                     </div>
                 </td>
                 <td class="leftcells">
+                    <% if (status != TicketStatus.NOTIFIED && status != TicketStatus.CLOSED) { %>
                     <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     <div id="pnlTicketActions" class="contentmiddle">
-                        <% if (ticket.getTicketStatus() == TicketStatus.ASSIGNED) { %>
+                        <% if (status == TicketStatus.ASSIGNED) { %>
                             <a href="#" class="btnTicketAction btnTicketResolve rndCrn5px">Rozwiąż</a>
                             <a href="#" class="btnTicketAction btnTicketReject rndCrn5px">Odrzuć</a>
                         <% } %>
-                        <% if (ticket.getTicketStatus() == TicketStatus.RESOLVED) { %>
+                        <% if (status == TicketStatus.RESOLVED) { %>
                             <a href="#" class="btnTicketAction btnTicketReopen rndCrn5px">Otwórz ponownie</a>
                             <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
                         <% } %>
                     </div>
+                    <% } %>
                     <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
