@@ -277,6 +277,11 @@ table a.btn {
     border-bottom: 1px solid #CCCCCC;
 }
 
+.standardtable td .entryBlock {
+    display: block;
+    padding: 5px;
+}
+
 .standardtable .lastcol {
     border-right: 0;
 }
@@ -314,7 +319,7 @@ table a.btn {
     background-color: #DEE2ED;
 }
 
-#desktop #lastEvents .eventType {
+.eventType {
     display: block;
     position: absolute;
     top: 5px;
@@ -325,35 +330,41 @@ table a.btn {
     padding: 2px 0;
     background: url(../i/bg_eventtype.png) 0 2px no-repeat;
 }
-
-#desktop #lastEvents .etCREATE {
+#panel_events .eventType {
+    position: relative;
+    float: left;
+    top: 0;
+    left: 0;
+    margin: 0 5px 0 0;
+}
+.etCREATE {
     background-position: 0 2px;
 }
-#desktop #lastEvents .etASSIGN {
+.etASSIGN {
     background-position: 0 -20px;
 }
-#desktop #lastEvents .etREASSIGN {
+.etREASSIGN {
     background-position: 0 -42px;
 }
-#desktop #lastEvents .etCLOSE {
+.etCLOSE {
     background-position: 0 -64px;
 }
-#desktop #lastEvents .etREJECT {
+.etREJECT {
     background-position: 0 -86px;
 }
-#desktop #lastEvents .etCATEGORYCHANGE {
+.etCATEGORYCHANGE {
     background-position: 0 -108px;
 }
-#desktop #lastEvents .etPRIORITYCHANGE {
+.etPRIORITYCHANGE {
     background-position: 0 -130px;
 }
-#desktop #lastEvents .etSTATUSCHANGE {
+.etSTATUSCHANGE {
     background-position: 0 -152px;
 }
-#desktop #lastEvents .etCOMMENTADD {
+.etCOMMENTADD {
     background-position: 0 -174px;
 }
-#desktop #lastEvents .etATTACHMENTADD {
+.etATTACHMENTADD {
     background-position: 0 -196px;
 }
 #pagecontentheader td {
@@ -746,6 +757,8 @@ div.buttons input {margin: 0 5px;}
 }
 #ticketdetails .leftcells #pnlTicketActions.contentmiddle {
     min-height: 30px;
+    text-align: center;
+    padding-bottom: 0;
 }
 #ticketdetails .leftcells .contentbottom {
     height: 30px;
@@ -800,6 +813,7 @@ div.buttons input {margin: 0 5px;}
     display: inline-block;
     width: auto;
     height: 20px;
+    margin: 0 0 10px 0;
     padding: 7px 15px 8px 35px;
     border: 1px solid #5b8030;
     font-size: 14px;
@@ -1372,7 +1386,7 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop .entryMeta {
+#desktop .entryMeta, #panel_comments .entryMeta {
     padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
@@ -1381,7 +1395,7 @@ td.artnumber {
     display: block;
     padding: 2px 0 2px 5px;
 }
-#desktop .standardtable td {
+#desktop .standardtable td, #panel_comments .standardtable td {
      padding: 0;
 }
 
