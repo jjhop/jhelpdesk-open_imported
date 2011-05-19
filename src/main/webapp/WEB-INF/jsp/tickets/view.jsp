@@ -13,6 +13,31 @@
 
 <div id="ticketdetails">
     <div id="pagecontentheader"><h2>Podgląd zgłoszenia</h2></div>
+
+    <div id="ticketAttention" class="contentmiddle contentAttention">
+        <p>
+            UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.
+        </p>
+        <div id="ticketAttentionAssign">
+            <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+        </div>
+    </div>
+
+    <div id="ticketAttention" class="contentmiddle contentAttention">
+        <p>
+            UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.
+        </p>
+        <div id="ticketAttentionAssign">
+            <form method="post" action="/" id="userSelection">
+                <select id="ddlUser">
+                    <option>User one</option>
+                    <option>User two</option>
+                </select>
+                <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#" onclick="document.forms['userSelection'].submit()">Zleć</a><span class="btnSeparator"> lub </span><a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+            </form>
+        </div>
+    </div>
+
     <div id="desktoppanels">
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">
