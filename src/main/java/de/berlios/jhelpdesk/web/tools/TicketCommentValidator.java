@@ -31,9 +31,9 @@ public class TicketCommentValidator implements Validator {
     }
 
     public void validate(Object target, Errors errors) {
-        TicketComment category = (TicketComment) target;
+        TicketComment comment = (TicketComment) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "commentText", "errors.ticket.comment.commentText");
-        if (category.getCommentText() != null && category.getCommentText().length() > 4096) {
+        if (comment.getCommentText() != null && comment.getCommentText().length() > 4096) {
             errors.rejectValue("commentText", "errors.ticket.comment.commentText.toolong");
         }
     }

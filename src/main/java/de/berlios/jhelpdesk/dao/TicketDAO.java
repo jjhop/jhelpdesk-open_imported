@@ -187,4 +187,10 @@ public interface TicketDAO {
     void removeAdditionalFile(AdditionalFile file) throws DAOException;
 
     void removeAdditionalFile(Long id) throws DAOException;
+
+    void resolveWithComment(TicketComment comment) throws DAOException;
+
+    void reopenWithComment(TicketComment comment) throws DAOException;
+
+    void rejectWithComment(TicketComment comment) throws DAOException;
 }

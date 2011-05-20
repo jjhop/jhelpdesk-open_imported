@@ -107,6 +107,7 @@
                         **/*TicketPriority.class,
                         **/*TicketEvent$1.class,
                         **/*TicketStatus.class,
+                        **/*CommentType.class,
                         **/*EventType.class,
                         **/*NotifyFrequency.class,
                         **/*Role.class,

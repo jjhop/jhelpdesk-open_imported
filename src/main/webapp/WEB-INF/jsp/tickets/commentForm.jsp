@@ -1,6 +1,5 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:url value="/tickets/${ticketId}/comments/save.html" var="formURL"/>
 <div class="contentmiddle">
@@ -11,7 +10,7 @@
                     <ul class="formContainer">
                         <li>
                             <label>Komentarz
-                                <span class="lblTip">(wprowadź email, aby sprawdzić czy użytkownik istnieje)</span>
+                                <span class="lblTip">(!!!!!!!!!!!!!!)</span>
                             </label>
                             <form:textarea id="addComm" path="commentText"
                                    cssClass="addComment" cssErrorClass="addComment fieldError"

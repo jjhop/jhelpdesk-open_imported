@@ -42,7 +42,6 @@ import de.berlios.jhelpdesk.model.TicketStatus;
 import de.berlios.jhelpdesk.model.User;
 
 /**
- *
  * @author jjhop
  */
 @Repository
@@ -237,7 +236,74 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
-    
+
+    @Transactional(readOnly = false)
+    public void resolveWithComment(final TicketComment comment) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET status=?1 WHERE id=?2");
+                    q.setParameter(1, TicketStatus.RESOLVED.toInt());
+                    q.setParameter(2, comment.getTicket().getTicketId());
+                    q.executeUpdate();
+
+                    Ticket ticket  = comment.getTicket();
+                    User user = comment.getCommentAuthor();
+
+                    em.persist(TicketEvent.ticketResolved(ticket, user));
+                    em.persist(comment);
+                    return null;
+                };
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public void rejectWithComment(final TicketComment comment) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET status=?1 WHERE id=?2");
+                    q.setParameter(1, TicketStatus.REJECTED.toInt());
+                    q.setParameter(2, comment.getTicket().getTicketId());
+                    q.executeUpdate();
+
+                    Ticket ticket  = comment.getTicket();
+                    User user = comment.getCommentAuthor();
+
+                    em.persist(TicketEvent.ticketRejected(ticket, user));
+                    em.persist(comment);
+                    return null;
+                };
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public void reopenWithComment(final TicketComment comment) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET status=?1 WHERE id=?2");
+                    q.setParameter(1, TicketStatus.ASSIGNED.toInt());
+                    q.setParameter(2, comment.getTicket().getTicketId());
+                    q.executeUpdate();
+
+                    Ticket ticket  = comment.getTicket();
+                    User user = comment.getCommentAuthor();
+
+                    em.persist(TicketEvent.ticketReopened(ticket, user));
+                    em.persist(comment);
+                    return null;
+                };
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public List<TicketEvent> getLastEvents(final int howMuch) throws DAOException {
         try {
             return (List<TicketEvent>)this.jpaTemplate.execute(new JpaCallback() {

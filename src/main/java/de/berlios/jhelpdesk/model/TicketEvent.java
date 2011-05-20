@@ -65,9 +65,6 @@ public class TicketEvent implements Serializable {
 
     private static final long serialVersionUID = 357930254796886251L;
 
-    /**
-     *
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_event_sequence")
     @Column(name = "event_id")
@@ -77,16 +74,10 @@ public class TicketEvent implements Serializable {
     @JoinColumn(name="ticket_id")
     private Ticket ticket;
 
-    /**
-     *
-     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "event_date")
     private Date evtDate;
 
-    /**
-     *
-     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User evtAuthor;
@@ -124,6 +115,34 @@ public class TicketEvent implements Serializable {
         TicketEvent event = new TicketEvent();
         event.setEventType(EventType.ASSIGN);
         event.setEvtAuthor(assigner);
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
+
+    public static TicketEvent ticketResolved(Ticket ticket, User user) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.RESOLVE);
+        event.setEvtAuthor(user);
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent ticketRejected(Ticket ticket, User user) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.REJECT);
+        event.setEvtAuthor(user);
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent ticketReopened(Ticket ticket, User user) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.REOPEN);
+        event.setEvtAuthor(user);
         event.setEvtDate(new Date());
         event.setTicket(ticket);
         return event;
@@ -222,6 +241,14 @@ public class TicketEvent implements Serializable {
             case REASSIGN:
                 return String.format(locale,
                                      names.getString("ticketEvent.reassign"),
+                                     evtAuthor, ticket.getTicketId());
+            case RESOLVE:
+                return String.format(locale,
+                                     names.getString("ticketEvent.resolve"),
+                                     evtAuthor, ticket.getTicketId());
+            case REOPEN:
+                return String.format(locale,
+                                     names.getString("ticketEvent.reopen"),
                                      evtAuthor, ticket.getTicketId());
             case REJECT:
                 return String.format(locale,

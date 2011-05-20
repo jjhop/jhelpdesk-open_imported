@@ -28,45 +28,51 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.CommentType;
-import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.tools.TicketCommentValidator;
 
+/**
+ * @author jjhop
+ */
 @Controller
-public class TicketCommentsController {
-    
+public class TicketReopenController {
+
+    private static final String FORM_VIEW = "/tickets/reopen/form";
+    private static final String RESULT_VIEW = "/tickets/reopen/result";
+
+    @Autowired
+    private TicketCommentValidator validator;
+
     @Autowired
     private TicketDAO ticketDAO;
 
-    @Autowired
-    private TicketCommentValidator commentValidator;
-
-    @RequestMapping(value = "/tickets/{ticketId}/comments/save.html", method = RequestMethod.POST)
-    public String processForm(@PathVariable("ticketId") Long ticketId,
-                              @ModelAttribute("comment") TicketComment comment,
-                              BindingResult result, ModelMap map, HttpSession session) throws Exception {
-
-        commentValidator.validate(comment, result);
-        if (result.hasErrors()) {
-            map.addAttribute("comment", comment);
-            map.addAttribute("ticketId", ticketId);
-            return "tickets/commentForm";
-        }
-
-        Ticket ticket = ticketDAO.getTicketById(ticketId);
-        comment.setTicket(ticket);
-        comment.setCommentAuthor((User) session.getAttribute("user"));
-        comment.setCommentType(CommentType.NORMAL);
-        ticket.addComment(comment);
-        ticketDAO.addComment(comment);
-        return "tickets/commentThanks";
-    }
-
-    @RequestMapping(value = "/tickets/{ticketId}/comments/new.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/tickets/{ticketId}/reopen.html", method = RequestMethod.GET)
     public String prepareForm(@PathVariable("ticketId") Long ticketId, ModelMap map) {
         map.addAttribute("ticketId", ticketId);
         map.addAttribute("comment", new TicketComment());
-        return "tickets/commentForm";
+        return FORM_VIEW;
     }
+
+    @RequestMapping(value = "/tickets/{ticketId}/reopen.html", method = RequestMethod.POST)
+    public String processRequest(@ModelAttribute("comment") TicketComment comment, BindingResult result,
+                                 @PathVariable("ticketId") Long ticketId, ModelMap map,
+                                 HttpSession session) throws Exception {
+        validator.validate(comment, result);
+        if (result.hasErrors()) {
+            map.addAttribute("ticketId", ticketId);
+            map.addAttribute("comment", comment);
+            return FORM_VIEW;
+        }
+        
+        comment.setTicket(ticketDAO.getTicketById(ticketId));
+        comment.setCommentType(CommentType.REOPEN);
+        comment.setNotForPlainUser(false);
+        comment.setCommentAuthor((User) session.getAttribute("user"));
+
+        ticketDAO.reopenWithComment(comment);
+
+        return RESULT_VIEW;
+    }
+
 }

@@ -76,6 +76,29 @@
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/upload.jsp"/>
     </definition>
 
+    <definition name="/tickets/resolve/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/resolve_form.jsp"/>
+    </definition>
+
+    <definition name="/tickets/resolve/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/resolve_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/reject/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/reject_form.jsp"/>
+    </definition>
+
+    <definition name="/tickets/reject/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/reject_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/reopen/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/reopen_form.jsp"/>
+    </definition>
+    <definition name="/tickets/reopen/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/reopen_result.jsp"/>
+    </definition>
+
     <definition name="editTicket" extends="baseLayout">
         <put-attribute name="title" value="Dodawanie/edycja zgłoszenia"/>
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/edit.jsp"/>

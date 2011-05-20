@@ -9,7 +9,6 @@
                 <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
                     <c:forEach var="comment" items="${comments}" varStatus="status">
                     <tr>
-
                         <td>
                             <span class="entryMeta">
                                 <c:out value="${comment.commentAuthor}"/>, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
@@ -18,7 +17,6 @@
                                 <c:out value="${comment.commentText}" escapeXml="false"/>
                             </span>
                         </td>
-
                     </tr>
                     </c:forEach>
                 </table>

@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -50,5 +50,3 @@
     <br/>
     <a href="javascript:window.parent.eval('Lightview.hide()');" class="">zamknij</a>
 </div>
-
-

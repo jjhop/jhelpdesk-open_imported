@@ -18,6 +18,7 @@ package de.berlios.jhelpdesk.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,10 +28,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * @author jjhop
@@ -49,8 +53,8 @@ public class TicketComment implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_comment_sequence")
-    @Column(name = "comment_id")
-    private Long ticketCommentId;
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name="ticket_id")
@@ -67,6 +71,13 @@ public class TicketComment implements Serializable {
     @Column(name = "comment_text", length = 4096)
     private String commentText;
 
+    @Transient
+    private CommentType commentType;
+
+    @Basic
+    @Column(name = "comment_type")
+    private int commentTypeAsInt;
+
     /**
      * Warto to zmienic na private lub coś w ten deseń...
      */
@@ -79,17 +90,17 @@ public class TicketComment implements Serializable {
     }
 
     /**
-     * @return Returns the ticketCommentId.
+     * @return Returns the id.
      */
-    public Long getTicketCommentId() {
-        return ticketCommentId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param ticketCommentId The ticketCommentId to set.
+     * @param id The id to set.
      */
-    public void setTicketCommentId(Long ticketCommentId) {
-        this.ticketCommentId = ticketCommentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Ticket getTicket() {
@@ -142,6 +153,14 @@ public class TicketComment implements Serializable {
         this.commentText = commentText;
     }
 
+    public CommentType getCommentType() {
+        return commentType;
+    }
+
+    public void setCommentType(CommentType commentType) {
+        this.commentType = commentType;
+    }
+
     /**
      * @param notForPlainUser The notForPlainUser to set.
      */
@@ -154,5 +173,15 @@ public class TicketComment implements Serializable {
      */
     public boolean isNotForPlainUser() {
         return notForPlainUser;
+    }
+
+    @PrePersist
+    protected void populateCommentTypeDB() {
+        this.commentTypeAsInt = this.commentType.toInt();
+    }
+
+    @PostLoad
+    protected void populateCommentTypeTransient() {
+        this.commentType = CommentType.fromInt(commentTypeAsInt);
     }
 }

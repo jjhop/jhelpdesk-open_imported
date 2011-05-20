@@ -151,11 +151,20 @@
                     <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     <div id="pnlTicketActions" class="contentmiddle">
                         <% if (status == TicketStatus.ASSIGNED) { %>
-                            <a href="#" class="btnTicketAction btnTicketResolve rndCrn5px">Rozwiąż</a>
-                            <a href="#" class="btnTicketAction btnTicketReject rndCrn5px">Odrzuć</a>
+
+                            <a href="<c:url value="/tickets/${ticketId}/resolve.html"/>"
+                               class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Rozwiąż</a>
+
+                            <a href="<c:url value="/tickets/${ticketId}/reject.html"/>"
+                               class="lightview btnTicketAction btnTicketReject rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Odrzuć</a>
                         <% } %>
                         <% if (status == TicketStatus.RESOLVED) { %>
-                            <a href="#" class="btnTicketAction btnTicketReopen rndCrn5px">Otwórz ponownie</a>
+                            <a href="<c:url value="/tickets/${ticketId}/reopen.html"/>"
+                               class="lightview btnTicketAction btnTicketReopen rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Otwórz ponownie</a>
+
                             <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
                         <% } %>
                     </div>
