@@ -13,6 +13,28 @@
 
 <div id="ticketdetails">
     <div id="pagecontentheader"><h2>Podgląd zgłoszenia</h2></div>
+
+    <% if (ticket.getTicketStatus().equals(TicketStatus.NOTIFIED)) { %>
+    <div id="ticketAttention" class="contentmiddle contentAttention">
+        <p>UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.</p>
+        <div id="ticketAttentionAssign">
+        <% if (currentUser.isTicketKiller()) { %>
+            <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+        <% } else if (currentUser.isManager()) { %>
+            <form method="post" action="/" id="userSelection">
+                <select id="ddlUser">
+                    <c:forEach items="${saviours}" var="u">
+                        <option value="${u.userId}">${u.fullName}</option>
+                    </c:forEach>
+                </select>
+                <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#" onclick="document.forms['userSelection'].submit()">Zleć</a>
+                    <span class="btnSeparator">lub</span>
+                <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+            </form>
+        <% } %>
+        </div>
+    </div>
+    <% } %>
     <div id="desktoppanels">
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">

@@ -226,6 +226,10 @@ public class User implements Serializable {
         return DigestUtils.shaHex(password);
     }
 
+    public boolean isTicketKiller() {
+        return userRole.equals(Role.TICKETKILLER);
+    }
+
     public boolean isManager() {
         return userRole.equals(Role.MANAGER);
     }
