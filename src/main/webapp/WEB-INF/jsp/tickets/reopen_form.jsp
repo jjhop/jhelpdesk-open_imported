@@ -17,7 +17,7 @@
                                 <span class="lblTip">(komentarz jest wymagany, jego maksymalna długość do 4096 znaków)</span>
                             </label>
                             <form:textarea id="comment" path="commentText"
-                                   cssClass="comment" cssErrorClass="comment fieldError"
+                                   cssClass="addComment" cssErrorClass="addComment fieldError"
                                    onkeyup="charTextCount(this.form.comment, 'commentCounter', 4096)" onblur="$('commentCounter').hide()"
                                    rows="3" cols="40"/>
                             <form:errors cssClass="formError errorBottom" path="commentText"/>
