@@ -95,8 +95,13 @@
     <definition name="/tickets/reopen/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/reopen_form.jsp"/>
     </definition>
+
     <definition name="/tickets/reopen/result" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/reopen_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/assignto/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/assignto_form.jsp"/>
     </definition>
 
     <definition name="editTicket" extends="baseLayout">

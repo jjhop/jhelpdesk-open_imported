@@ -47,4 +47,10 @@ public class TicketAssignController {
 
         return "redirect:/tickets/" + ticketId + "/details.html";
     }
+
+    public String assignTo(@PathVariable("tId") Long ticketId, @RequestParam("uId") Long userId,
+                           HttpSession session) throws Exception {
+
+        return "/tickets/assignto/form";
+    }
 }

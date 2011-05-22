@@ -19,9 +19,10 @@
         <p>UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.</p>
         <div id="ticketAttentionAssign">
         <% if (currentUser.isTicketKiller()) { %>
-            <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+            <a class="btnTicketAction btnTicketResolve rndCrn5px"
+               href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
         <% } else if (currentUser.isManager()) { %>
-            <form method="post" action="/" id="userSelection">
+            <form method="get" action="/" id="userSelection">
                 <select id="ddlUser">
                     <c:forEach items="${saviours}" var="u">
                         <option value="${u.userId}">${u.fullName}</option>
@@ -29,7 +30,8 @@
                 </select>
                 <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#" onclick="document.forms['userSelection'].submit()">Zleć</a>
                     <span class="btnSeparator">lub</span>
-                <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#">Przypisz do mnie</a>
+                <a class="btnTicketAction btnTicketResolve rndCrn5px"
+                   href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
             </form>
         <% } %>
         </div>
