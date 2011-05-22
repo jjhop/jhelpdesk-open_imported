@@ -24,7 +24,7 @@
         <% } else if (currentUser.isManager()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
-               title=":: :: closeButton: false, width: 460, height: 430">Zleć</a>
+               title=":: :: closeButton: false, width: 500, height: 430">Zleć</a>
             <span class="btnSeparator">lub</span>
             <a class="btnTicketAction btnTicketResolve rndCrn5px"
             href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
