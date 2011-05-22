@@ -15,13 +15,12 @@
  */
 package de.berlios.jhelpdesk.web.ticket;
 
+import java.io.BufferedInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-
-import info.jjhop.deimos.DeimosRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,8 +38,8 @@ import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
-import java.io.BufferedInputStream;
 
+import info.jjhop.deimos.DeimosRepository;
 import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
 /**

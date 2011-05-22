@@ -17,8 +17,6 @@ package de.berlios.jhelpdesk.web.ticket;
 
 import javax.servlet.http.HttpSession;
 
-import de.berlios.jhelpdesk.model.CommentType;
-import de.berlios.jhelpdesk.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.tags.BindErrorsTag;
 
 import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.model.CommentType;
 import de.berlios.jhelpdesk.model.TicketComment;
+import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.tools.TicketCommentValidator;
 
 /**
