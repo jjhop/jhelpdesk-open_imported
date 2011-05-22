@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.dao.UserDAO;
+import de.berlios.jhelpdesk.model.AssignForm;
 import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.User;
 
@@ -58,6 +60,18 @@ public class TicketAssignController {
     public String assignTo(@PathVariable("tId") Long ticketId, ModelMap map, HttpSession session) throws Exception {
 
         map.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
+        map.addAttribute("assignForm", new AssignForm());
+        map.addAttribute("ticketId", ticketId);
+        return "/tickets/assignto/form";
+    }
+
+    @RequestMapping(value = "/tickets/{tId}/assignTo.html", method = RequestMethod.POST)
+    public String processAssignTo(@PathVariable("tId") Long ticketId,
+                                  @ModelAttribute("assignForm") AssignForm form,
+                                  ModelMap map, HttpSession session) throws Exception {
+
+        map.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
+        map.addAttribute("ticketId", ticketId);
         return "/tickets/assignto/form";
     }
 }
