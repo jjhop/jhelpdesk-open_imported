@@ -5,7 +5,7 @@
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%
     User currentUser = (User) session.getAttribute("user");
     Ticket ticket = (Ticket) request.getAttribute("ticket");
@@ -22,17 +22,12 @@
             <a class="btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
         <% } else if (currentUser.isManager()) { %>
-            <form method="get" action="/" id="userSelection">
-                <select id="ddlUser">
-                    <c:forEach items="${saviours}" var="u">
-                        <option value="${u.userId}">${u.fullName}</option>
-                    </c:forEach>
-                </select>
-                <a class="btnTicketAction btnTicketResolve rndCrn5px" href="#" onclick="document.forms['userSelection'].submit()">Zleć</a>
-                    <span class="btnSeparator">lub</span>
-                <a class="btnTicketAction btnTicketResolve rndCrn5px"
-                   href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
-            </form>
+            <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+               href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
+               title=":: :: closeButton: false, width: 460, height: 430">Zleć</a>
+            <span class="btnSeparator">lub</span>
+            <a class="btnTicketAction btnTicketResolve rndCrn5px"
+            href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
         <% } %>
         </div>
     </div>
