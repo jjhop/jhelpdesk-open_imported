@@ -1,6 +1,12 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
+
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+
+<% User currentUser = (User) session.getAttribute("user"); %>
 
 <form:form modelAttribute="filter" action="list.html" method="post" id="filterForm">
     <div id="boxShadow" class="shadow">
@@ -60,8 +66,9 @@
                                     <option value="${tp}"
                                             <c:forEach items="${filter.ticketPriorities}" var="ftp">
                                                 <c:if test="${tp eq ftp}">selected="selected"</c:if>
-                                            </c:forEach>
-                                            >${tp.priorityName}</option>
+                                            </c:forEach>>
+                                        <% out.print(((TicketPriority)pageContext.getAttribute("tp")).getPriorityName(currentUser.getPreferredLocale())); %>
+                                    </option>
                                 </c:forEach>
                             </select>
                             <input id="_ticketPriorities" type="hidden" name="_ticketPriorities" value="1"/>
@@ -77,7 +84,7 @@
                                             <c:forEach items="${filter.ticketCategories}" var="ftc">
                                                 <c:if test="${tc eq ftc}">selected="selected"</c:if>
                                             </c:forEach>
-                                            >${tc.categoryName}</option>
+                                    70>${tc.categoryName}</option>
                                 </c:forEach>
                             </select>
                             <input id="_ticketCategories" type="hidden" name="_ticketCategories" value="1"/>
@@ -94,8 +101,9 @@
                                     <option value="${ts}"
                                             <c:forEach items="${filter.ticketStatuses}" var="fts">
                                                 <c:if test="${ts eq fts}">selected="selected"</c:if>
-                                            </c:forEach>
-                                            >${ts.statusName}</option>
+                                            </c:forEach>>
+                                        <% out.print(((TicketStatus)pageContext.getAttribute("ts")).getStatusName(currentUser.getPreferredLocale())); %>
+                                    </option>
                                 </c:forEach>
                             </select>
                             <input id="_ticketStatuses" type="hidden" name="_ticketStatuses" value="1"/>
