@@ -860,7 +860,6 @@ div.buttons input {margin: 0 5px;}
     display: inline-block;
     width: auto;
     height: 20px;
-    margin: 0;
     padding: 7px 15px 8px 35px;
     border: 1px solid #5b8030;
     font-size: 14px;
@@ -1695,6 +1694,9 @@ td.artnumber {
 .w100p { width: 100% }
 .marginBot10p {
     margin-bottom: 10px;
+}
+.marginTop10p {
+    margin-top: 10px;
 }
 .rndCrn5px {
     -moz-border-radius: 5px;

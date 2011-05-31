@@ -254,7 +254,10 @@
                         </c:if>
                         <c:if test="${not user.plain}">
                             <%-- przypisywanie nie dla zwykłych użytkowników --%>
-                            <a href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a><br/>
+                            <div class="center">
+                                <a class="btnTicketAction marginTop10p rndCrn5px" href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
+                                <a class="btnTicketAction marginTop10p rndCrn5px" href="#">Zleć</a>
+                            </div>
                         </c:if>
                         <c:if test="${user.manager}">
                             <%-- formularz tylko dla managera --%>
