@@ -41,7 +41,7 @@ import javax.persistence.Transient;
 /**
  * @author jjhop
  */
-@Entity
+ @Entity
 @Table(name = "ticket_event")
 @SequenceGenerator(name = "ticket_event_sequence", sequenceName = "ticket_event_id_seq", allocationSize = 1)
 @NamedQueries({

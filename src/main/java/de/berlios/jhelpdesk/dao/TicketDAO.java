@@ -176,9 +176,13 @@ public interface TicketDAO {
      */
     List<TicketEvent> getEventsForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
 
+    List<AdditionalFile> getAttachmentsForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
+    
     int countCommentsForTicket(Long ticketId) throws DAOException;
 
     int countEventsForTicket(Long ticketId) throws DAOException;
+    
+    int countAttachmentsForTicket(Long ticketId) throws DAOException;
     
     void saveAdditionalFile(AdditionalFile file) throws DAOException;
     
@@ -193,4 +197,6 @@ public interface TicketDAO {
     void reopenWithComment(TicketComment comment) throws DAOException;
 
     void rejectWithComment(TicketComment comment) throws DAOException;
+
+
 }
