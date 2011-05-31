@@ -908,7 +908,21 @@ div.buttons input {margin: 0 5px;}
     background-position: -5px -245px;
     border-color: #797979;
 }
-
+#ticketdetails #btnAssignActions {
+    display: inline-block;
+    width: auto;
+    margin: 10px auto 0;
+    padding: 2px 0 2px 22px;
+    background: url(../i/arrow_switch.png) 0 3px no-repeat;
+    font-weight: bold;
+}
+#ticketdetails #assignActions {
+    text-align: center;
+    padding: 10px 0 0 0;
+    display: block;
+    width: auto;
+    height: 37px;
+}
 /* NOWE ZG�?OSZENIE */
 
 #table1, #table2 {
