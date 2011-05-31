@@ -116,6 +116,7 @@
 
     <definition name="panelEvents" template="/WEB-INF/jsp/tickets/panel_events.jsp"/>
     <definition name="panelComments" template="/WEB-INF/jsp/tickets/panel_comments.jsp"/>
+    <definition name="panelAttachments" template="/WEB-INF/jsp/tickets/panel_attachments.jsp"/>
 
     <definition name="tickets/commentForm" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/commentForm.jsp"/>
