@@ -16,6 +16,7 @@
 package de.berlios.jhelpdesk.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +25,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
@@ -42,6 +47,12 @@ import org.apache.commons.io.FileUtils;
 @Table(name = "ticket_additional_files")
 @SequenceGenerator(name = "ticket_add_files_id_seq",
     sequenceName= "ticket_add_files_id_seq", allocationSize = 1)
+@NamedQueries({
+    @NamedQuery(name = "AdditionalFile.countAttachmentsForTicket", 
+                query = "SELECT COUNT(f) FROM AdditionalFile f WHERE f.ticket.ticketId=?1"),
+    @NamedQuery(name = "AdditionalFile.getAttachmentsForTicketOrderByEventDateDESC", 
+                query = "SELECT f FROM AdditionalFile f WHERE f.ticket.ticketId=?1 ORDER BY f.createdAt DESC")
+})
 public class AdditionalFile implements Serializable {
 
     private static final long serialVersionUID = -8228381982146548515L;
@@ -53,6 +64,7 @@ public class AdditionalFile implements Serializable {
         addFile.setContentType(contentType);
         addFile.setFileSize(size);
         addFile.setTicket(ticket);
+        addFile.setCreatedAt(new Date());
         addFile.calculateAndSetHash();
         return addFile;
     }
@@ -64,6 +76,10 @@ public class AdditionalFile implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_add_files_id_seq")
     @Column(name = "id")
     private Long fileId;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name="ticket_id")
@@ -123,6 +139,14 @@ public class AdditionalFile implements Serializable {
      */
     public void setFileId(Long fileId) {
         this.fileId = fileId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     /**

@@ -35,7 +35,7 @@ public class DesktopViewController {
     /**
      * Stała określająca liczbę wyświetlanych na biurku zdarzeń.
      */
-    private static int NUMBER_OF_EVENTS_IN_DESKTOP = 5;
+    private static int NUMBER_OF_EVENTS_IN_DESKTOP = 7;
 
     /**
      * Stała określająca liczbę wyświetlanych na biurku
@@ -53,7 +53,7 @@ public class DesktopViewController {
      * Stała określająca liczbę wyświetalnych na biurku 
      * ostatnio dodanych ogłoszeń.
      */
-    private static int NUMBER_OF_LAST_ANNOUNCEMENTS = 5;
+    private static int NUMBER_OF_LAST_ANNOUNCEMENTS = 3;
 
     @Autowired
     private TicketDAO ticketDAO;
