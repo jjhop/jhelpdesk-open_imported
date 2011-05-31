@@ -227,21 +227,28 @@
                         </c:if>
                         <c:if test="${not user.plain}">
                             <%-- przypisywanie nie dla zwykłych użytkowników --%>
-                            <div class="center">
-                                <a class="btnTicketAction marginTop10p rndCrn5px" href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
-                                <a class="btnTicketAction marginTop10p rndCrn5px" href="#">Zleć</a>
+                            <a id="btnAssignActions" href="#" onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle(); return false;">Zmień</a>
+                            <div id="assignActions">
+                                <a class="btnTicketAction rndCrn5px" href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
+                                <a class="btnTicketAction rndCrn5px" href="#">Zleć</a>
                             </div>
+                            <script type="text/javascript">
+                                function textToggle() {
+                                    var disp = $('assignActions').style.display;
+                                    var text = "Zmień";
+                                    if(disp == 'none') {
+                                        text = "Anuluj";
+                                    }
+                                    else {
+                                        text = "Zmień";
+                                    }
+                                    $('btnAssignActions').innerHTML = text;
+                                }
+                                $('assignActions').hide();
+                            </script>
                         </c:if>
                         <c:if test="${user.manager}">
-                            <%-- formularz tylko dla managera --%>
-                            <form action="<c:url value="/tickets/${ticket.ticketId}/assign.html"/>">
-                                <select name="uId">
-                                    <c:forEach items="${saviours}" var="u">
-                                        <option value="${u.userId}">${u.fullName}</option>
-                                    </c:forEach>
-                                </select>
-                                <input type="submit" value="Przypisz"/>
-                            </form>
+
                         </c:if>
                     </div>
                 </td>
