@@ -38,9 +38,9 @@ import de.berlios.jhelpdesk.model.Role;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
+import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
 import info.jjhop.deimos.DeimosRepository;
-import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
 /**
  *
@@ -76,6 +76,7 @@ public class TicketDetailsController {
 
         mav.addAllAttributes(processComments(ticketId, 1));
         mav.addAllAttributes(processEvents(ticketId, 1));
+        mav.addAllAttributes(processAttachments(ticketId, 1));
 
         return "ticketDetails";
     }
@@ -154,12 +155,12 @@ public class TicketDetailsController {
     
     private Map<String, Object> processAttachments(Long ticketId, Integer currentPage) throws Exception {
         int attachmentsCount = ticketDAO.countAttachmentsForTicket(ticketId);
-        int offset = calculateOffset(PAGE_SIZE, currentPage);
-        
+        int TMP_PAGE_SIZE = 1;
+        int offset = calculateOffset(TMP_PAGE_SIZE, currentPage);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("attachmentsPages", calculatePages(attachmentsCount, PAGE_SIZE));
+        result.put("attachmentsPages", calculatePages(attachmentsCount, TMP_PAGE_SIZE));
         result.put("currentAttachmentsPage", currentPage);
-        result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, PAGE_SIZE, offset));
+        result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, TMP_PAGE_SIZE, offset));
         return result;
     }
 }
