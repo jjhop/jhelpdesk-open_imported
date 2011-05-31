@@ -319,7 +319,8 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
-    public List<TicketComment> getCommentsForTicket(final Long ticketId, final int pageSize, final int offset) throws DAOException {
+    public List<TicketComment> getCommentsForTicket(final Long ticketId, final int pageSize, 
+                                                    final int offset) throws DAOException {
         try {
             return (List<TicketComment>)this.jpaTemplate.execute(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
@@ -336,12 +337,31 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
-    public List<TicketEvent> getEventsForTicket(final Long ticketId, final int pageSize, final int offset) throws DAOException {
+    public List<TicketEvent> getEventsForTicket(final Long ticketId, final int pageSize, 
+                                                final int offset) throws DAOException {
         try {
             return (List<TicketEvent>)this.jpaTemplate.execute(new JpaCallback() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
                     Query q = em.createNamedQuery(
                             "TicketEvent.getEventsForTicketOrderByEventDateDESC");
+                    q.setParameter(1, ticketId);
+                    q.setFirstResult(offset);
+                    q.setMaxResults(pageSize);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public List<AdditionalFile> getAttachmentsForTicket(final Long ticketId, final int pageSize, 
+                                                        final int offset) throws DAOException {
+        try {
+            return (List<AdditionalFile>)this.jpaTemplate.execute(new JpaCallback() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "AdditionalFile.getAttachmentsForTicketOrderByEventDateDESC");
                     q.setParameter(1, ticketId);
                     q.setFirstResult(offset);
                     q.setMaxResults(pageSize);
@@ -382,6 +402,22 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
+
+    public int countAttachmentsForTicket(final Long ticketId) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNamedQuery(
+                            "AdditionalFile.countAttachmentsForTicket");
+                    q.setParameter(1, ticketId);
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+    
     
     @Transactional(readOnly = false)
     public void saveAdditionalFile(AdditionalFile addFile) throws DAOException {

@@ -98,6 +98,15 @@ public class TicketDetailsController {
         return "panelEvents";
     }
     
+    @RequestMapping(value = "/tickets/{ticketId}/attachments.html", method = RequestMethod.GET)
+    public String showAttachments(@PathVariable("ticketId") Long ticketId, 
+                                  @RequestParam("page") Integer currentPage,
+                                  ModelMap map) throws Exception {
+        map.addAllAttributes(processAttachments(ticketId, currentPage));
+        map.addAttribute("ticketId", ticketId);
+        return "panelAttachments";
+    }
+    
     @RequestMapping(value = "/tickets/{ticketId}/attachments/{attachmentId}/get.html", method = RequestMethod.GET)
     public void getAttachment(@PathVariable("attachmentId") Long attachmentId,
                               HttpServletResponse response) throws Exception {
@@ -140,6 +149,17 @@ public class TicketDetailsController {
         result.put("eventsPages", calculatePages(eventsCount, PAGE_SIZE));
         result.put("currentEventsPage", currentPage);
         result.put("events", ticketDAO.getEventsForTicket(ticketId, PAGE_SIZE, offset));
+        return result;
+    }
+    
+    private Map<String, Object> processAttachments(Long ticketId, Integer currentPage) throws Exception {
+        int attachmentsCount = ticketDAO.countAttachmentsForTicket(ticketId);
+        int offset = calculateOffset(PAGE_SIZE, currentPage);
+        
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("attachmentsPages", calculatePages(attachmentsCount, PAGE_SIZE));
+        result.put("currentAttachmentsPage", currentPage);
+        result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, PAGE_SIZE, offset));
         return result;
     }
 }
