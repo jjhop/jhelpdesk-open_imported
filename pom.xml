@@ -111,7 +111,8 @@
                         **/*EventType.class,
                         **/*NotifyFrequency.class,
                         **/*Role.class,
-                        **/*PasswordForm.class
+                        **/*PasswordForm.class,
+                        **/*AssignForm.class
                     </excludes>
                     <addDefaultConstructor>true</addDefaultConstructor>
                     <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
