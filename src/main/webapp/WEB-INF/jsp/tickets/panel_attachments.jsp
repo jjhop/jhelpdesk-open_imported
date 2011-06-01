@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <a class="fileType ft<c:out value="${file.contentTypeClass}"/>"
-                       href="<c:url value="/tickets/${ticket.ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
+                       href="<c:url value="/tickets/${ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
                 </td>
                 <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
             </tr>
