@@ -910,11 +910,15 @@ div.buttons input {margin: 0 5px;}
 }
 #ticketdetails #btnAssignActions {
     display: inline-block;
+    min-width: 40px;
     width: auto;
-    margin: 10px auto 0;
-    padding: 2px 0 2px 22px;
-    background: url(../i/arrow_switch.png) 0 3px no-repeat;
+    margin: 0 0 0 -50px;
+    padding: 5px 5px 5px 27px;
+    background: #D0DBFB url(../i/arrow_switch.png) 6px 6px no-repeat;
     font-weight: bold;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
 }
 #ticketdetails #assignActions {
     text-align: center;
