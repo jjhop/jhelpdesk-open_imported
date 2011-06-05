@@ -227,23 +227,12 @@
                         </c:if>
                         <c:if test="${not user.plain}">
                             <%-- przypisywanie nie dla zwykłych użytkowników --%>
-                            <a id="btnAssignActions" class="rndCrn5px" href="#" onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle(); return false;">Zmień</a>
+                            <a id="btnAssignActions" class="rndCrn5px" href="#" onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle('Zmień', 'Anuluj'); return false;">Zmień</a>
                             <div id="assignActions">
                                 <a class="btnTicketAction rndCrn5px" href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
                                 <a class="btnTicketAction rndCrn5px" href="#">Zleć</a>
                             </div>
                             <script type="text/javascript">
-                                function textToggle() {
-                                    var disp = $('assignActions').style.display;
-                                    var text = "Zmień";
-                                    if(disp == 'none') {
-                                        text = "Anuluj";
-                                    }
-                                    else {
-                                        text = "Zmień";
-                                    }
-                                    $('btnAssignActions').innerHTML = text;
-                                }
                                 $('assignActions').hide();
                             </script>
                         </c:if>
