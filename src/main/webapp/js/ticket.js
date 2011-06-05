@@ -15,3 +15,15 @@ function loadTabs() {
     });
     tabs.autoActivate($('tab_comments'));
 }
+
+function textToggle(txtChange, txtCancel) {
+    var disp = $('assignActions').style.display;
+    var text = txtChange;
+    if(disp == 'none') {
+        text = txtCancel;
+    }
+    else {
+        text = txtChange;
+    }
+    $('btnAssignActions').innerHTML = text;
+}
