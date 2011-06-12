@@ -141,10 +141,16 @@
                     </div>
                 </td>
                 <td class="leftcells">
-                    <% if (status != TicketStatus.NOTIFIED && status != TicketStatus.CLOSED) { %>
+                    <%
+                        boolean ASSIGNED_TO_CURRENT_USER =
+                                    status == TicketStatus.ASSIGNED && ticket.getSaviour().equals(currentUser);
+                        boolean RESOLVED_AND_NOTIFIED_BY_CURRENT_USER =
+                                    status == TicketStatus.RESOLVED && ticket.getNotifier().equals(currentUser);
+                    %>
+                    <% if (ASSIGNED_TO_CURRENT_USER || RESOLVED_AND_NOTIFIED_BY_CURRENT_USER) { %>
                     <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     <div id="pnlTicketActions" class="contentmiddle">
-                        <% if (status == TicketStatus.ASSIGNED && ticket.getSaviour().equals(currentUser)) { %>
+                        <% if (ASSIGNED_TO_CURRENT_USER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/resolve.html"/>"
                                class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Rozwiąż</a>
@@ -153,7 +159,7 @@
                                class="lightview btnTicketAction btnTicketReject rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Odrzuć</a>
                         <% } %>
-                        <% if (status == TicketStatus.RESOLVED) { %>
+                        <% if (RESOLVED_AND_NOTIFIED_BY_CURRENT_USER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/reopen.html"/>"
                                class="lightview btnTicketAction btnTicketReopen rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Otwórz ponownie</a>
@@ -229,7 +235,8 @@
                                 </tr>
                             </table>
                         </c:if>
-                        <c:if test="${user.manager}">
+                        <% boolean ASSIGNABLE = status == TicketStatus.NOTIFIED || status == TicketStatus.ASSIGNED; %>
+                        <% if (currentUser.isManager() &&  ASSIGNABLE) { %>
                             <a id="btnAssignActions" class="rndCrn5px" href="#"
                                onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle('Zmień', 'Anuluj'); return false;">Zmień</a>
                             <div id="assignActions">
@@ -245,7 +252,7 @@
                             <script type="text/javascript">
                                 $('assignActions').hide();
                             </script>
-                        </c:if>
+                        <% } %>
                     </div>
                     </c:if>
                 </td>

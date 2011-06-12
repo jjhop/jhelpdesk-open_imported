@@ -155,12 +155,11 @@ public class TicketDetailsController {
     
     private Map<String, Object> processAttachments(Long ticketId, Integer currentPage) throws Exception {
         int attachmentsCount = ticketDAO.countAttachmentsForTicket(ticketId);
-        int TMP_PAGE_SIZE = 1;
-        int offset = calculateOffset(TMP_PAGE_SIZE, currentPage);
+        int offset = calculateOffset(PAGE_SIZE, currentPage);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("attachmentsPages", calculatePages(attachmentsCount, TMP_PAGE_SIZE));
+        result.put("attachmentsPages", calculatePages(attachmentsCount, PAGE_SIZE));
         result.put("currentAttachmentsPage", currentPage);
-        result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, TMP_PAGE_SIZE, offset));
+        result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, PAGE_SIZE, offset));
         return result;
     }
 }

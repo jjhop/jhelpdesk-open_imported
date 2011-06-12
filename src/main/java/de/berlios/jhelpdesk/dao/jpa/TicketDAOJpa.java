@@ -219,7 +219,12 @@ public class TicketDAOJpa implements TicketDAO {
     public void assignTicket(final Long ticketId, final Long userId, final Long assignerId) throws DAOException {
         try {
             User assigner = this.jpaTemplate.find(User.class, assignerId);
-            final TicketEvent event = TicketEvent.ticketAssigned(getTicketById(ticketId), assigner);
+            User saviour = this.jpaTemplate.find(User.class, userId);
+            Ticket ticket = getTicketById(ticketId);
+            final TicketEvent event =
+                    ticket.getSaviour() != null
+                        ? TicketEvent.ticketReassigned(ticket, saviour, assigner)
+                        : TicketEvent.ticketAssigned(ticket, saviour, assigner);
 
             this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
@@ -241,7 +246,11 @@ public class TicketDAOJpa implements TicketDAO {
     public void assignTicket(final Long ticketId, final Long userId) throws DAOException {
         try {
             User assigner = this.jpaTemplate.find(User.class, userId);
-            final TicketEvent event = TicketEvent.ticketAssigned(getTicketById(ticketId), assigner);
+            Ticket ticket = getTicketById(ticketId);
+            final TicketEvent event =
+                    (ticket.getSaviour() != null)
+                        ? TicketEvent.ticketReassigned(ticket, assigner)
+                        : TicketEvent.ticketAssigned(ticket, assigner);
 
             this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {

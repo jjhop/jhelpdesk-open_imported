@@ -82,6 +82,9 @@ public class TicketEvent implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User evtAuthor;
 
+    @Column(name = "event_data")
+    private String eventData;
+
     /**
      * @see #eventTypeAsInt
      * @see #populateEventTypeDB()
@@ -116,10 +119,40 @@ public class TicketEvent implements Serializable {
         event.setEventType(EventType.ASSIGN);
         event.setEvtAuthor(assigner);
         event.setEvtDate(new Date());
+        event.setEventData(assigner);
         event.setTicket(ticket);
         return event;
     }
 
+    public static TicketEvent ticketAssigned(Ticket ticket, User saviour, User assigner) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.ASSIGN);
+        event.setEvtAuthor(assigner);
+        event.setEvtDate(new Date());
+        event.setEventData(saviour);
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent ticketReassigned(Ticket ticket, User assigner) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.REASSIGN);
+        event.setEvtAuthor(assigner);
+        event.setEvtDate(new Date());
+        event.setEventData(assigner);
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static TicketEvent ticketReassigned(Ticket ticket, User saviour, User assigner) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.REASSIGN);
+        event.setEvtAuthor(assigner);
+        event.setEvtDate(new Date());
+        event.setEventData(saviour);
+        event.setTicket(ticket);
+        return event;
+    }
 
     public static TicketEvent ticketResolved(Ticket ticket, User user) {
         TicketEvent event = new TicketEvent();
@@ -162,6 +195,7 @@ public class TicketEvent implements Serializable {
         event.setEventType(EventType.ATTACHMENTADD);
         event.setEvtAuthor(addFile.getCreator());
         event.setEvtDate(new Date());
+        event.setEventData(addFile);
         event.setTicket(addFile.getTicket());
         return event;
     }
@@ -208,6 +242,18 @@ public class TicketEvent implements Serializable {
         this.evtDate = evtDate;
     }
 
+    public void setEventData(Object data) {
+        if (data instanceof User) {
+            this.eventData = ((User)data).getFullName();
+        } else if (data instanceof AdditionalFile) {
+            this.eventData = ((AdditionalFile) data).getOriginalFileName();
+        }
+    }
+
+    public Object getEventData() {
+        return eventData;
+    }
+
     /**
      * @return Returns the evtSubject.
      */
@@ -217,7 +263,7 @@ public class TicketEvent implements Serializable {
             case ASSIGN:
                 return String.format(locale,
                                      names.getString("ticketEvent.assign"),
-                                     ticket.getTicketId(), evtAuthor);
+                                     ticket.getTicketId(), eventData, evtAuthor);
             case CATEGORYCHANGE:
                 return String.format(locale,
                                      names.getString("ticketEvent.category.change"),
@@ -241,7 +287,7 @@ public class TicketEvent implements Serializable {
             case REASSIGN:
                 return String.format(locale,
                                      names.getString("ticketEvent.reassign"),
-                                     evtAuthor, ticket.getTicketId());
+                                     evtAuthor, ticket.getTicketId(), eventData);
             case RESOLVE:
                 return String.format(locale,
                                      names.getString("ticketEvent.resolve"),
@@ -261,7 +307,7 @@ public class TicketEvent implements Serializable {
             case ATTACHMENTADD:
                 return String.format(locale,
                                      names.getString("ticketEvent.attachmentAdd"),
-                                     evtAuthor, ticket.getTicketId());
+                                     evtAuthor, eventData, ticket.getTicketId());
         }
         throw new RuntimeException("Nieznany rodzaj zdarzenia.");
     }
