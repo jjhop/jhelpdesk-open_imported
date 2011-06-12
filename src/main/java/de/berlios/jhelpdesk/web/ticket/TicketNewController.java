@@ -15,11 +15,12 @@
  */
 package de.berlios.jhelpdesk.web.ticket;
 
-import java.util.Enumeration;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,6 @@ import de.berlios.jhelpdesk.web.tools.TicketCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.TicketPriorityEditor;
 import de.berlios.jhelpdesk.web.tools.TicketValidator;
 import de.berlios.jhelpdesk.web.tools.UserEditor;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Kontroler obsługujący jednokrokowe dodawnie zgłoszenia.

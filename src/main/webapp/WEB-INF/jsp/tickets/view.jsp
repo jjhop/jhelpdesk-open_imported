@@ -19,15 +19,17 @@
         <p>UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.</p>
         <div id="ticketAttentionAssign">
         <% if (currentUser.isTicketKiller()) { %>
-            <a class="btnTicketAction btnTicketResolve rndCrn5px"
-               href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
+            <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+               href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
+               title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
         <% } else if (currentUser.isManager()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
                title=":: :: closeButton: false, width: 500, height: 430">Zleć</a>
             <span class="btnSeparator">lub</span>
-            <a class="btnTicketAction btnTicketResolve rndCrn5px"
-            href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
+            <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+               href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
+               title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
         <% } %>
         </div>
     </div>
@@ -142,8 +144,7 @@
                     <% if (status != TicketStatus.NOTIFIED && status != TicketStatus.CLOSED) { %>
                     <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
                     <div id="pnlTicketActions" class="contentmiddle">
-                        <% if (status == TicketStatus.ASSIGNED) { %>
-
+                        <% if (status == TicketStatus.ASSIGNED && ticket.getSaviour().equals(currentUser)) { %>
                             <a href="<c:url value="/tickets/${ticketId}/resolve.html"/>"
                                class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Rozwiąż</a>
@@ -199,14 +200,17 @@
                             </tr>
                         </table>
                     </div>
+                    <c:if test="${ticket.assigned}">
                     <div class="pagecontentsubheader">
-                        <h3>Rozwiązuje 
+                        <h3>Rozwiązuje
+                            <!-- TODO: ten "if" do usunięcia po uspójnieniu bazy danych -->
                             <c:if test="${ticket.saviour != null}">
                                 <img src="${ticket.saviour.avatarURL}" alt="avatar" class="avatar" />
                             </c:if>
                         </h3>
                     </div>
                     <div class="contentmiddle">
+                        <!-- TODO: ten "if" do usunięcia po uspójnieniu bazy danych -->
                         <c:if test="${ticket.saviour != null}">
                             <table cellspacing="0" class="standardtable">
                                 <tr>
@@ -225,21 +229,25 @@
                                 </tr>
                             </table>
                         </c:if>
-                        <c:if test="${not user.plain}">
-                            <%-- przypisywanie nie dla zwykłych użytkowników --%>
-                            <a id="btnAssignActions" class="rndCrn5px" href="#" onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle('Zmień', 'Anuluj'); return false;">Zmień</a>
+                        <c:if test="${user.manager}">
+                            <a id="btnAssignActions" class="rndCrn5px" href="#"
+                               onclick="Effect.toggle('assignActions', 'appear', { duration: 0.5 }); textToggle('Zmień', 'Anuluj'); return false;">Zmień</a>
                             <div id="assignActions">
-                                <a class="btnTicketAction rndCrn5px" href="<c:url value="/tickets/${ticket.ticketId}/assign.html?uId=${user.userId}"/>">Przypisz do mnie</a>
-                                <a class="btnTicketAction rndCrn5px" href="#">Zleć</a>
+                                <% if (!ticket.getSaviour().equals(currentUser)) { %>
+                                <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+                                   href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
+                                   title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
+                                <% } %>
+                                <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+                                   href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
+                                   title=":: :: closeButton: false, width: 500, height: 430">Zleć</a>
                             </div>
                             <script type="text/javascript">
                                 $('assignActions').hide();
                             </script>
                         </c:if>
-                        <c:if test="${user.manager}">
-
-                        </c:if>
                     </div>
+                    </c:if>
                 </td>
             </tr>
         </table>

@@ -67,7 +67,7 @@ public class TicketEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ticket_event_sequence")
-    @Column(name = "event_id")
+    @Column(name = "id")
     private Long ticketEventId;
 
     @ManyToOne

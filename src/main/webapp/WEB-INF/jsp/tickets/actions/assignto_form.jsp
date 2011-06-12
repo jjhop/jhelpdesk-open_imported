@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3>Komentarz do odrzucenia</h3>
+    <h3>Komentarz do zlecenia</h3>
 </div>
 
 <div class="contentmiddle">
@@ -15,13 +15,10 @@
                         <li>
                             <label>
                                 Odbiorca zlecenia
-                                <span class="lblTip">tutaj jakiś komentarz do pola</span>
+                                <span class="lblTip">(wybierz z listy osobę odpowiedzialną za rozwiązanie problemu)</span>
                             </label>
-                            <select id="ddlUser">
-                                <c:forEach items="${saviours}" var="u">
-                                    <option value="${u.userId}">${u.fullName}</option>
-                                </c:forEach>
-                            </select>
+                            <form:select id="ddlUser" path="user"
+                                         items="${saviours}" itemValue="email" itemLabel="fullName"/>
                         </li>
                         <li>
                             <label>Komentarz
@@ -39,7 +36,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="Rozwiąż" class="btn btnMarginTop floatLeft"/>
+        <input type="submit" value="Zleć" class="btn btnMarginTop floatLeft"/>
         <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
     </form:form>
     <div class="clearFloat"></div>
