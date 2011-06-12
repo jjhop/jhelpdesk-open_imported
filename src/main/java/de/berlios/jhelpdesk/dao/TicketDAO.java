@@ -147,7 +147,9 @@ public interface TicketDAO {
      * @param userId
      * @throws DAOException
      */
-    public void assignTicket(Long ticketId, Long userId, Long assignerId) throws DAOException;
+    void assignTicket(Long ticketId, Long userId, Long assignerId) throws DAOException;
+
+    void assignTicket(Long ticketId, Long userId) throws DAOException;
 
     /**
      * 

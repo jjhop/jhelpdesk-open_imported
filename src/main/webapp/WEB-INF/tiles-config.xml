@@ -101,7 +101,17 @@
     </definition>
 
     <definition name="/tickets/assignto/form" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/assignto_form.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assignto_form.jsp"/>
+    </definition>
+    <definition name="/tickets/assignto/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assignto_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/assigntome/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_form.jsp"/>
+    </definition>
+    <definition name="/tickets/assigntome/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_result.jsp"/>
     </definition>
 
     <definition name="editTicket" extends="baseLayout">

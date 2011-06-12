@@ -13,29 +13,26 @@
  *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.model;
+package de.berlios.jhelpdesk.mail.impl;
 
-/**
- * @author jjhop
- */
-public class AssignForm {
+import org.springframework.stereotype.Component;
+
+import de.berlios.jhelpdesk.mail.MailerService;
+
+@Component
+public class MailerServiceImpl implements MailerService {
     
-    private User user;
-    private String commentText;
+    public void send(String recipient, String subject, String body) {
 
-    public User getUser() {
-        return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void sendNotificationForTicketAssignEvent(Long ticketId) {
+        // maile wrzucamy do kolejki może jakoś? a stamtąd będziemy je
+        // jakimś mechanizmem pobierać i wysyłać...
+        System.out.println("Wyslałem mail zwiazany z ticketem #" + ticketId);
     }
 
-    public String getCommentText() {
-        return commentText;
-    }
-
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
+    public void sendNotificationForTicketRejectEvent(Long ticketId, Long rejectorId) {
+        // j.w.
     }
 }

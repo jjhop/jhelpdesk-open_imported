@@ -622,6 +622,10 @@ public class Ticket implements Serializable {
         this.comments.add(comm);
     }
 
+    public boolean isAssigned() {
+        return saviour != null;
+    }
+
     @PrePersist
     protected void populateTicketEnumsDB() {
         this.ticketStatusAsInt = this.ticketStatus.toInt();
