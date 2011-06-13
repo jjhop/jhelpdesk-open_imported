@@ -720,7 +720,7 @@ div.buttons input {margin: 0 5px;}
 }
 
 #ticketdetails #ticketPanelFiles .fileType {
-    padding: 1px 0 1px 25px;
+    padding: 2px 0 2px 25px;
     background: url(../i/bg_filetype.png) 0 -108px no-repeat;
 }
 #ticketdetails #ticketPanelFiles .ftPDF {
