@@ -116,8 +116,17 @@ table a.btn {
 }
 #pageheader {
     padding: 10px 20px 20px;
-    background: #667CC0 url(../i/hd-pageheadertop.jpg) no-repeat 0 0;;
+    background: #667CC0 url(../i/hd-pageheadertop.jpg) no-repeat 0 0;
+    position: relative;
 }
+
+#pageheader #loggedUser {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #D0DBFB;
+}
+
 #pageheader a {
     font-size: 24px;
     color: #FFFFFF;
