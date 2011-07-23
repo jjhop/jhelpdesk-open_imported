@@ -53,11 +53,9 @@
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
-                                    %><a id="btnChangePr" class="lightview btn" href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
+                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
                                     </span>
-                                    <script type="text/javascript">
-                                        $('btnChangePr').hide();
-                                    </script>
+
                                     <!--<select size="1">
                                         <c:forEach var="priority" items="${ticketPriorities}">
                                             <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
@@ -86,8 +84,9 @@
                                 <th colspan="6" class="lastcol">Kategoria</th>
                             </tr>
                             <tr>
-                                <td colspan="6">
-                                    ${ticket.ticketCategory}
+                                <td colspan="6" onmouseover="$('btnChangeCat').show();" onmouseout="$('btnChangeCat').hide()">
+                                    <span class="ticketCategoryChange">
+                                        ${ticket.ticketCategory}
                                     <!--<select size="1">
                                         <c:forEach var="category" items="${ticketCategories}">
                                             <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
@@ -95,6 +94,8 @@
                                             </option>
                                         </c:forEach>
                                     </select>-->
+                                        <a id="btnChangeCat" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>

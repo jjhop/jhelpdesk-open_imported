@@ -1523,7 +1523,7 @@ td.artnumber {
     height: 30px;
 }
 
-#ticketdetails .ticketPriority #btnChangePr {
+#ticketdetails .btnChange {
     position: absolute;
     top: 0;
     right: 0;
@@ -1533,8 +1533,14 @@ td.artnumber {
     border: 1px solid #d85a1e;
 }
 
-#ticketdetails .ticketPriority #btnChangePr:hover {
+#ticketdetails .btnChange:hover {
     background-position: center -123px;
+}
+
+#ticketdetails .ticketCategoryChange {
+    position: relative;
+    width: auto;
+    padding-right: 55px;
 }
 
 .ticketStatus {
