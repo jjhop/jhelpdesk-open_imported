@@ -16,7 +16,7 @@
         <div id="pagecontainer">
             <div id="pageheader"><a href="<c:url value="/"/>">jHelpDesk</a>
                 <div id="loggedUser">
-                    Zalogowany jako: ${user.fullName} ${user.email}
+                    Zalogowany jako: <b>${user.fullName} &lt;${user.email}&gt;</b>
                 </div>
             </div>
             <div id="pagemenu"><tiles:insertAttribute name="menuPanel" /></div>
