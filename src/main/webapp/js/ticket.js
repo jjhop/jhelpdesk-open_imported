@@ -27,3 +27,5 @@ function textToggle(txtChange, txtCancel) {
     }
     $('btnAssignActions').innerHTML = text;
 }
+$('btnChangePr').hide();
+$('btnChangeCat').hide();
