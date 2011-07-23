@@ -1541,6 +1541,11 @@ td.artnumber {
     position: relative;
     width: auto;
     padding-right: 55px;
+    display: block;
+}
+
+#ticketdetails .highlight:hover {
+    background: #DEE2ED;
 }
 
 .ticketStatus {

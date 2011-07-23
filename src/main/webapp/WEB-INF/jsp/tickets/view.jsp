@@ -48,7 +48,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
-                                <td id="tdTicketPriority" colspan="2" style="font-weight: bold;" onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()">
+                                <td id="tdTicketPriority" class="highlight" colspan="2" style="font-weight: bold;" onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()">
                                     <span class="ticketPriority  tp${ticket.ticketPriority}">
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
@@ -84,7 +84,7 @@
                                 <th colspan="6" class="lastcol">Kategoria</th>
                             </tr>
                             <tr>
-                                <td colspan="6" onmouseover="$('btnChangeCat').show();" onmouseout="$('btnChangeCat').hide()">
+                                <td class="highlight" colspan="6" onmouseover="$('btnChangeCat').show();" onmouseout="$('btnChangeCat').hide()">
                                     <span class="ticketCategoryChange">
                                         ${ticket.ticketCategory}
                                     <!--<select size="1">
