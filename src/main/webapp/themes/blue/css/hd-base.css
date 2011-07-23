@@ -1499,6 +1499,7 @@ td.artnumber {
     width: auto;
     background-color: transparent;
     padding: 1px 5px 2px 25px;
+    position: relative;
 }
 
 .tpLOW {
@@ -1515,6 +1516,25 @@ td.artnumber {
 }
 .tpCRITICAL {
     background-position: 0 -77px;
+}
+
+#ticketdetails #tdTicketPriority {
+    width: 100px;
+    height: 30px;
+}
+
+#ticketdetails .ticketPriority #btnChangePr {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 7px 2px;
+    font-size: 11px;
+    background: url("../i/bg_ticketaction.png") center -88px no-repeat;
+    border: 1px solid #d85a1e;
+}
+
+#ticketdetails .ticketPriority #btnChangePr:hover {
+    background-position: center -123px;
 }
 
 .ticketStatus {
