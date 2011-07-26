@@ -15,11 +15,17 @@
  */
 package de.berlios.jhelpdesk.mail;
 
+import de.berlios.jhelpdesk.model.User;
+
 public interface MailerService {
 
     void send(String recipient, String subject, String body);
 
     void sendNotificationForTicketAssignEvent(Long ticketId);
 
-    void sendNotificationForTicketRejectEvent(Long ticketId, Long rejectorId); // :)
+    void sendNotificationForTicketRejectEvent(Long ticketId, User rejector, String comment); // :)
+
+    void sendNotificationForTicketCloseEvent(Long ticketId, User user, String comment);
+
+    void sendNotificationForTicketResolveEvent(Long ticketId, User user, String comment);
 }
