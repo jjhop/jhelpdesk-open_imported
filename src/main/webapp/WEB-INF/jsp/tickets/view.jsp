@@ -49,11 +49,11 @@
                             <tr>
                                 <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                                 <td id="tdTicketPriority" class="highlight" colspan="2" style="font-weight: bold;" onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()">
-                                    <span class="ticketPriority  tp${ticket.ticketPriority}">
+                                    <span class="ticketPriority tp${ticket.ticketPriority}">
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
-                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
+                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
                                     </span>
 
                                     <!--<select size="1">
@@ -94,7 +94,9 @@
                                             </option>
                                         </c:forEach>
                                     </select>-->
-                                        <a id="btnChangeCat" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>" title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
+                                        <a id="btnChangeCat" class="lightview btn btnChange"
+                                           href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
+                                           title=":: :: closeButton: false, width: 500, height: 430">zmień</a>
                                     </span>
                                 </td>
                             </tr>
@@ -213,14 +215,12 @@
                     <c:if test="${ticket.assigned}">
                     <div class="pagecontentsubheader">
                         <h3>Rozwiązuje
-                            <!-- TODO: ten "if" do usunięcia po uspójnieniu bazy danych -->
                             <c:if test="${ticket.saviour != null}">
                                 <img src="${ticket.saviour.avatarURL}" alt="avatar" class="avatar" />
                             </c:if>
                         </h3>
                     </div>
                     <div class="contentmiddle">
-                        <!-- TODO: ten "if" do usunięcia po uspójnieniu bazy danych -->
                         <c:if test="${ticket.saviour != null}">
                             <table cellspacing="0" class="standardtable">
                                 <tr>

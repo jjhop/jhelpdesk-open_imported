@@ -31,6 +31,7 @@ import de.berlios.jhelpdesk.model.CommentType;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.web.tools.TicketCommentValidator;
+import de.berlios.jhelpdesk.mail.MailerService;
 
 /**
  * @author jjhop
@@ -47,6 +48,9 @@ public class TicketRejectController {
     @Autowired
     private TicketDAO ticketDAO;
 
+    @Autowired
+    private MailerService mailer;
+
     @RequestMapping(value = "/tickets/{ticketId}/reject.html", method = RequestMethod.GET)
     public String prepareForm(@PathVariable("ticketId") Long ticketId, ModelMap map) {
 
@@ -59,6 +63,7 @@ public class TicketRejectController {
     public String processRequest(@ModelAttribute("comment") TicketComment comment, BindingResult result,
                                  @PathVariable("ticketId") Long ticketId, ModelMap map,
                                  HttpSession session) throws Exception {
+
         validator.validate(comment, result);
         if (result.hasErrors()) {
             map.addAttribute("ticketId", ticketId);
@@ -66,13 +71,15 @@ public class TicketRejectController {
             return FORM_VIEW;
         }
 
+        User currentUser = (User) session.getAttribute("user");
+        
         comment.setTicket(ticketDAO.getTicketById(ticketId));
         comment.setCommentType(CommentType.REOPEN);
         comment.setNotForPlainUser(false);
-        comment.setCommentAuthor((User) session.getAttribute("user"));
+        comment.setCommentAuthor(currentUser);
 
         ticketDAO.rejectWithComment(comment);
-
+        mailer.sendNotificationForTicketRejectEvent(ticketId, currentUser, comment.getCommentText());
         return RESULT_VIEW;
     }
 

@@ -70,6 +70,38 @@ public class UploadFileController {
     @Autowired
     private DeimosRepository repository;
 
+    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.GET)
+    protected String prepareForm(@RequestParam("ticketstamp") String ticketstamp,
+                                 ModelMap map, HttpSession session) {
+        map.addAttribute("currentFiles", getFilesForTicketFromSession(ticketstamp, session));
+        map.addAttribute("fileBean", new FileUploadBean());
+        return TICKETS_UPLOAD_VIEW;
+    }
+
+    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.POST)
+    protected String processSubmit(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
+                                   @RequestParam("ticketstamp") String ticketstamp,
+                                   ModelMap map, HttpSession session) {
+
+        File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
+        MultipartFile file = uploadedFile.getFile();
+        if (file != null) {
+            File targetFile = new File(targetDir, file.getOriginalFilename() +
+                                                    "-" + Thread.currentThread().getName() +
+                                                    "-" + System.currentTimeMillis());
+            addPathToSession(session, targetDir.getAbsolutePath());
+            addFilenameToTicketInSession(ticketstamp, file.getOriginalFilename(),
+                                         file.getContentType(), file.getSize(),
+                                         targetFile.getAbsolutePath(), session);
+            copyUploadedToTemp(uploadedFile, targetFile);
+        }
+        List<FileInfo> currentFiles = getFilesForTicketFromSession(ticketstamp, session);
+        session.setAttribute("currentUploadedFiles", currentFiles);
+        map.addAttribute("currentFiles", currentFiles);
+        map.addAttribute("uploaded", Boolean.TRUE);
+        return TICKETS_UPLOAD_VIEW;
+    }
+
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.GET)
     protected String prepareFormForTicket(@PathVariable("ticketId") Long ticketId,
                                           ModelMap map, HttpSession session) throws Exception {
@@ -80,34 +112,6 @@ public class UploadFileController {
         return TICKETS_UPLOAD_VIEW;
     }
 
-    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.GET)
-    protected String prepareForm(@RequestParam("ticketstamp") String ticketstamp,
-                                 ModelMap map, HttpSession session) {
-        map.addAttribute("currentFiles", getFilesForTicketFromSession(ticketstamp, session));
-        map.addAttribute("fileBean", new FileUploadBean());
-        return TICKETS_UPLOAD_VIEW;
-    }
-
-
-    @RequestMapping(value="/tickets/uploadFile.html", method = RequestMethod.POST)
-    protected String processSubmit(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
-                                   @RequestParam("ticketstamp") String ticketstamp,
-                                   ModelMap map, HttpSession session) {
-
-        File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
-        MultipartFile file = uploadedFile.getFile();
-        if (file != null) {
-            File targetFile = new File(targetDir, file.getOriginalFilename());
-            addPathToSession(session, targetDir.getAbsolutePath());
-            addFilenameToTicketInSession(ticketstamp, file.getOriginalFilename(),
-                                         FileUtils.toDisplaySize(file.getSize()), session);
-            copyUploadedToTemp(uploadedFile, targetFile);
-        }
-        map.addAttribute("currentFiles", getFilesForTicketFromSession(ticketstamp, session));
-        map.addAttribute("uploaded", Boolean.TRUE);
-        return TICKETS_UPLOAD_VIEW;
-    }
-    
     /**
      * Podczas uploadowania plików do istniejącego ticketu od razu 
      * zapisujemy pliki we właściwym miejscu.
@@ -117,7 +121,7 @@ public class UploadFileController {
                                             @PathVariable("ticketId") Long ticketId,
                                             ModelMap map, HttpSession session) throws Exception {
 
-        AdditionalFile addFile = creteFormUploadAndTicket(uploadedFile.getFile(), 
+        AdditionalFile addFile = createFormUploadAndTicket(uploadedFile.getFile(),
                                                           ticketDAO.getTicketById(ticketId));
         try {
             MultipartFile mf = uploadedFile.getFile();
@@ -126,14 +130,13 @@ public class UploadFileController {
             addFile.setCreator((User) session.getAttribute("user"));
             ticketDAO.saveAdditionalFile(addFile);
         } catch (Exception ex) {
-            // rollback?
             throw new RuntimeException(ex);
         }
         
         return TICKETS_UPLOAD_VIEW;
     }
     
-    private AdditionalFile creteFormUploadAndTicket(MultipartFile file, Ticket ticket) {
+    private AdditionalFile createFormUploadAndTicket(MultipartFile file, Ticket ticket) {
         return AdditionalFile.create(file.getOriginalFilename(), file.getContentType(), 
                                      file.getSize(), ticket);
     }
@@ -149,14 +152,14 @@ public class UploadFileController {
         return (List<FileInfo>) session.getAttribute(createAttrName(ticketstamp));
     }
 
-    private void addFilenameToTicketInSession(String ticketstamp, String filename, String filesize,
-                                              HttpSession session) {
+    private void addFilenameToTicketInSession(String ticketstamp, String filename, String contentType,
+                                              long size, String tmpFilePath, HttpSession session) {
         String attrName = createAttrName(ticketstamp);
         List<FileInfo> files = (List<FileInfo>) session.getAttribute(attrName);
         if (files == null) {
             files = new ArrayList<FileInfo>();
         }
-        files.add(new FileInfo(filename, filesize));
+        files.add(new FileInfo(filename, tmpFilePath, contentType, size));
         session.setAttribute(attrName, files);
     }
 

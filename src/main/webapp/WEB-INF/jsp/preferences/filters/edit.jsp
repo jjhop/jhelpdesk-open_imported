@@ -1,6 +1,9 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<% User user = (User) session.getAttribute("user"); %>
 
 <div id="editcategory" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
@@ -86,7 +89,9 @@
                                                                 <c:forEach items="${filter.ticketStatuses}" var="fts">
                                                                     <c:if test="${ts eq fts}">selected="selected"</c:if>
                                                                 </c:forEach>
-                                                                >${ts.statusName}</option>
+                                                                >
+                                                                <% out.print(((TicketStatus) pageContext.getAttribute("ts")).getStatusName(user.getPreferredLocale())); %>
+                                                        </option>
                                                     </c:forEach>
                                                 </select>
                                                 <input id="_ticketStatuses" type="hidden" name="_ticketStatuses" value="1"/>
@@ -102,7 +107,9 @@
                                                                 <c:forEach items="${filter.ticketPriorities}" var="ftp">
                                                                     <c:if test="${tp eq ftp}">selected="selected"</c:if>
                                                                 </c:forEach>
-                                                                >${tp.priorityName}</option>
+                                                                >
+                                                                <% out.print(((TicketPriority) pageContext.getAttribute("tp")).getPriorityName(user.getPreferredLocale())); %>
+                                                        </option>
                                                     </c:forEach>
                                                 </select>
                                                 <input id="_ticketPriorities" type="hidden" name="_ticketPriorities" value="1"/>

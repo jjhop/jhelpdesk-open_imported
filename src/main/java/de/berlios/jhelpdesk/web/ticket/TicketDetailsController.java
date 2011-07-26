@@ -22,6 +22,8 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import info.jjhop.deimos.DeimosRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,8 +41,6 @@ import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
 import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
-
-import info.jjhop.deimos.DeimosRepository;
 
 /**
  *
@@ -116,7 +116,7 @@ public class TicketDetailsController {
         response.setContentType(addFile.getContentType());
         response.addHeader("Content-Disposition", "attachment; filename=\"" + addFile.getOriginalFileName() + "\"");
         response.setContentLength(addFile.getFileSize().intValue());
-        
+
         ServletOutputStream outputStream = response.getOutputStream();
         BufferedInputStream inputStream = 
             new BufferedInputStream(repository.getInputStream(addFile.getHashedFileName(), 

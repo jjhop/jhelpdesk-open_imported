@@ -189,6 +189,26 @@ public class TicketEvent implements Serializable {
         event.setTicket(comment.getTicket());
         return event;
     }
+
+    public static TicketEvent categoryChange(Ticket ticket, User author, TicketCategory category) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.CATEGORYCHANGE);
+        event.setEvtAuthor(author);
+        event.setEvtDate(new Date());
+        event.setEventData(category);
+        event.setTicket(ticket);
+        return event;
+    }
+
+    public static Object priorityChange(Ticket ticket, User author, TicketPriority priority) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.PRIORITYCHANGE);
+        event.setEvtAuthor(author);
+        event.setEvtDate(new Date());
+        event.setEventData(priority);
+        event.setTicket(ticket);
+        return event;
+    }
     
     public static TicketEvent attachmentAdded(AdditionalFile addFile) {
         TicketEvent event = new TicketEvent();
@@ -247,6 +267,10 @@ public class TicketEvent implements Serializable {
             this.eventData = ((User)data).getFullName();
         } else if (data instanceof AdditionalFile) {
             this.eventData = ((AdditionalFile) data).getOriginalFileName();
+        } else if (data instanceof TicketCategory) {
+            this.eventData = ((TicketCategory)data).getCategoryName();
+        } else if(data instanceof TicketPriority) {
+            this.eventData = String.valueOf(((TicketPriority) data).toInt());
         }
     }
 

@@ -16,6 +16,7 @@
 package de.berlios.jhelpdesk.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -165,6 +166,6 @@ public enum TicketPriority {
     }
 
     public static List<TicketPriority> getPriorities() {
-        return ps;
+        return Collections.unmodifiableList(ps);
     }
 }

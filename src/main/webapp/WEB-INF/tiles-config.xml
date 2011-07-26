@@ -6,7 +6,7 @@
 
     <definition name="javascripts" template="/WEB-INF/jsp/inc/javascripts.jsp"/>
 
-    <definition name="liteLayout" template="/WEB-INF/jsp/layouts/lightLayout.jsp">
+    <definition name="liteLayout" template="/WEB-INF/jsp/layouts/liteLayout.jsp">
         
     </definition>
 
@@ -112,6 +112,20 @@
     </definition>
     <definition name="/tickets/assigntome/result" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/categoryChange/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/categoryChange_form.jsp"/>
+    </definition>
+    <definition name="/tickets/categoryChange/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/categoryChange_result.jsp"/>
+    </definition>
+
+    <definition name="/tickets/priorityChange/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/priorityChange_form.jsp"/>
+    </definition>
+    <definition name="/tickets/priorityChange/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/priorityChange_result.jsp"/>
     </definition>
 
     <definition name="editTicket" extends="baseLayout">

@@ -68,7 +68,7 @@ public class AdditionalFile implements Serializable {
         addFile.calculateAndSetHash();
         return addFile;
     }
-    
+
 	/**
      * Identyfikator pliku
      */
