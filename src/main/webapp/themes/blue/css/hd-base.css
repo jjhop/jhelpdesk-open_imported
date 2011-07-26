@@ -314,7 +314,13 @@ table a.btn {
     color: #fff;
     
 }
-
+.lightPassView p.question {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
 /* BIURKO */
 
 #desktop table {

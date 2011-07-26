@@ -12,7 +12,7 @@
         <table class="standardtable" cellspacing="0">
             <tr>
                 <td>
-                    <p>
+                    <p class="question">
                         Czy jesteś pewien?
                     </p>
                     <p>
