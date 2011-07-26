@@ -15,6 +15,7 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -32,6 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.AdditionalFile;
+import de.berlios.jhelpdesk.model.CommentType;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.TicketComment;
@@ -291,6 +293,7 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
+    @Transactional(readOnly = false)
     public void rejectWithComment(final TicketComment comment) throws DAOException {
         try {
             this.jpaTemplate.execute(new JpaCallback<Object>() {
@@ -313,6 +316,7 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
+    @Transactional(readOnly = false)
     public void reopenWithComment(final TicketComment comment) throws DAOException {
         try {
             this.jpaTemplate.execute(new JpaCallback<Object>() {
@@ -329,6 +333,66 @@ public class TicketDAOJpa implements TicketDAO {
                     em.persist(comment);
                     return null;
                 };
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void changeCategoryWithComment(final Ticket ticket, final TicketCategory category,
+                                          final String commentText, final User user) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET ticket_category=?1 WHERE id=?2");
+                    q.setParameter(1, category.getId());
+                    q.setParameter(2, ticket.getTicketId());
+                    q.executeUpdate();
+
+                    em.persist(TicketEvent.categoryChange(ticket, user, category));
+
+                    TicketComment comment = new TicketComment();
+                    comment.setCommentAuthor(user);
+                    comment.setTicket(ticket);
+                    comment.setCommentDate(new Date());
+                    comment.setCommentType(CommentType.CATEGORY_CHANGE);
+                    comment.setCommentText(commentText);
+                    comment.setNotForPlainUser(false);
+                    em.persist(comment);
+                    
+                    return null;
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void changePriorityWithComment(final Ticket ticket, final TicketPriority priority,
+                                          final String commentText, final User user) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET priority=?1 WHERE id=?2");
+                    q.setParameter(1, priority.toInt());
+                    q.setParameter(2, ticket.getTicketId());
+                    q.executeUpdate();
+
+                    em.persist(TicketEvent.priorityChange(ticket, user, priority));
+
+                    TicketComment comment = new TicketComment();
+                    comment.setCommentAuthor(user);
+                    comment.setTicket(ticket);
+                    comment.setCommentDate(new Date());
+                    comment.setCommentType(CommentType.PRIORITY_CHANGE);
+                    comment.setCommentText(commentText);
+                    comment.setNotForPlainUser(false);
+                    em.persist(comment);
+                    
+                    return null;
+                }
             });
         } catch (Exception ex) {
             throw new DAOException(ex);
