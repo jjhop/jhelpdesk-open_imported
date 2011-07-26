@@ -21,15 +21,15 @@
         <% if (currentUser.isTicketKiller()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
-               title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
+               title=":: :: closeButton: false, width: 500, height: 450">Przypisz do mnie</a>
         <% } else if (currentUser.isManager()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
-               title=":: :: closeButton: false, width: 500, height: 430">Zleć</a>
+               title=":: :: closeButton: false, width: 500, height: 450">Zleć</a>
             <span class="btnSeparator">lub</span>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
-               title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
+               title=":: :: closeButton: false, width: 500, height: 165">Przypisz do mnie</a>
         <% } %>
         </div>
     </div>
@@ -251,7 +251,7 @@
                                 <% } %>
                                 <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                    href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
-                                   title=":: :: closeButton: false, width: 500, height: 430">Zleć</a>
+                                   title=":: :: closeButton: false, width: 500, height: 450">Zleć</a>
                             </div>
                             <script type="text/javascript">
                                 $('assignActions').hide();
