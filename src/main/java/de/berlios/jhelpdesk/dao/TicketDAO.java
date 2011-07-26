@@ -200,5 +200,7 @@ public interface TicketDAO {
 
     void rejectWithComment(TicketComment comment) throws DAOException;
 
+    void changeCategoryWithComment(Ticket currentTicket, TicketCategory category, String commentText, User user) throws DAOException;
 
+    void changePriorityWithComment(Ticket currentTicket, TicketPriority priority, String commentText, User user) throws DAOException;
 }
