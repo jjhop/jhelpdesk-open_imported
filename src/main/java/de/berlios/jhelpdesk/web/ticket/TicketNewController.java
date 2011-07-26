@@ -78,6 +78,9 @@ public class TicketNewController {
     @Autowired
     private TicketCategoryEditor categoryEditor;
 
+    @Autowired
+    private AttachmentUtils attachmentUtils;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(User.class, "notifier", userEditor);
@@ -108,7 +111,7 @@ public class TicketNewController {
     @RequestMapping(value = "/tickets/new.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("ticket") Ticket ticket, BindingResult result,
                                 HttpServletRequest request, SessionStatus status, 
-                                HttpSession session) throws DAOException {
+                                HttpSession session) throws Exception {
         
         if (isCheckLoginRequest(request)) { // only checkUser
             validator.validateNotifier(ticket, result);
@@ -116,10 +119,14 @@ public class TicketNewController {
         }
         validator.validate(ticket, result);
         if (!result.hasErrors()) {
+            attachmentUtils.storeToRepositoryAndBindWithTicket(
+                ticket,
+                (User) session.getAttribute("user"),
+                (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
             ticketDAO.save(ticket);
             // tutaj ustalamy pojedynczą ścieżkę
             Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
-            cleanTicketTempDir(paths, ticket.getTicketstamp());
+            FileUtils.cleanPathsForTicketstamp(paths, ticket.getTicketstamp());
             status.setComplete();
         } else {
             return NEW_TICKET_VIEW;
@@ -136,17 +143,5 @@ public class TicketNewController {
             }
         }
         return false;
-    }
-    
-    private void cleanTicketTempDir(Collection<String> paths, String ticketstamp) {
-        List<String> a = new ArrayList<String>();
-        out: for (String path : paths) {
-            if (path.endsWith(ticketstamp)) {
-                a.add(path);        // dodajemy do kolekcji do usuniecią
-                paths.remove(path); // i usuwamy z kolekcji w sesji
-                break out;
-            }
-        }
-        FileUtils.cleanPaths(a);
     }
 }

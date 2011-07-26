@@ -26,17 +26,15 @@
                     <td id="middlecenter">
                         <span>
                             <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
-                               rel="iframe" title=":: :: closeButton: false, width: 320, height: 390"
+                               rel="iframe" title=":: :: closeButton: false, width: 380, height: 390"
                                class="lightview">Załącz plik(i)</a>
                         </span>
-                        <c:forEach var="file" items="${hdticket.addFilesList}" varStatus="status">
                         <ul>
-                            <td class="tdnumber"><c:out value="${status.count}"/></td>
-                            <td class="tdfile"><c:out value="${file.originalFileName}"/></td>
-                            <td class="tdsize"><c:out value="${file.fileSize}"/></td>
-                            <td class="tdlink lastcol"><input type="image" name="x" src="<c:url value="/themes/blue/i/delete.gif"/>" /></td>
+                            <c:forEach var="file" items="${currentUploadedFiles}" varStatus="status">
+                            <li><c:out value="${file.filename}"/> <c:out value="${file.filesize}"/>
+                                <input type="image" name="x" src="<c:url value="/themes/blue/i/delete.gif"/>" /></li>
+                            </c:forEach>
                         </ul>
-                        </c:forEach>
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="4"/>
                             <table id="tableWizard" cellspacing="0">

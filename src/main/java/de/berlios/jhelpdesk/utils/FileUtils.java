@@ -16,7 +16,9 @@
 package de.berlios.jhelpdesk.utils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static org.apache.commons.io.FileUtils.byteCountToDisplaySize;
 
@@ -56,6 +58,18 @@ public class FileUtils {
                 log.debug(" [not exists]");
             }
         }
+    }
+
+    public static void cleanPathsForTicketstamp(Collection<String> paths, String ticketstamp) {
+        List<String> pathsToDelete = new ArrayList<String>();
+        out: for (String path : paths) {
+            if (path.endsWith(ticketstamp)) {
+                pathsToDelete.add(path);        // dodajemy do kolekcji do usuniecią
+                paths.remove(path); // i usuwamy z kolekcji w sesji
+                break out;
+            }
+        }
+        cleanPaths(pathsToDelete);
     }
     
     public File getAttachmentsDirectory() {

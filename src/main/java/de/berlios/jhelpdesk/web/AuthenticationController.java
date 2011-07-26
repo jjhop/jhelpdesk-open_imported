@@ -46,7 +46,12 @@ public class AuthenticationController {
      * @return identyfikator widoku formularza
      */
     @RequestMapping(value = "/login.html", method = RequestMethod.GET)
-    public String setupLoginForm(ModelMap map) {
+    public String setupLoginForm(ModelMap map, HttpSession session) {
+        User loggedUser = null;
+        boolean isLooged = session.getAttribute("logged") != null && (Boolean) session.getAttribute("logged");
+        if (isLooged && (loggedUser = (User) session.getAttribute("user")) != null) {
+            return "redirect:" + loggedUser.getWelcomePage();
+        }
         map.addAttribute("user", new User());
         return "login";
     }
@@ -72,7 +77,7 @@ public class AuthenticationController {
             session.setAttribute("logged", Boolean.TRUE);
             String requestURI = (String) session.getAttribute("requestURI");
             session.removeAttribute("requestURI");
-            return "redirect:" + (requestURI != null && requestURI.length() > 0
+            return "redirect:" + (isTargetURIValid(requestURI)
                                     ? requestURI
                                     : loggedUser.getWelcomePage());
         }
@@ -90,5 +95,9 @@ public class AuthenticationController {
     public String processLogout(HttpSession session) {
         session.invalidate();
         return "redirect:/login.html";
+    }
+
+    private boolean isTargetURIValid(String targetURI) {
+        return targetURI != null && targetURI.length() > 0 && !targetURI.contains("logout.html");
     }
 }

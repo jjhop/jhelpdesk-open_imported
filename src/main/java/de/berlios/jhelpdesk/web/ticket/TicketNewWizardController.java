@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,6 +48,7 @@ import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.TicketStatus;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.utils.FileUtils;
 import de.berlios.jhelpdesk.utils.StampUtils;
 import de.berlios.jhelpdesk.web.tools.TicketCategoryEditor;
 import de.berlios.jhelpdesk.web.tools.TicketPartialValidator;
@@ -89,6 +91,9 @@ public class TicketNewWizardController {
 
     @Autowired
     private TicketCategoryEditor ticketCategoryEditor;
+
+    @Autowired
+    private AttachmentUtils attachmentUtils;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -136,13 +141,13 @@ public class TicketNewWizardController {
     @RequestMapping(value = "/tickets/wizzard.html", method = RequestMethod.POST)
     public String processRequest(@ModelAttribute("hdticket") Ticket ticket,
                                  BindingResult result, SessionStatus status,
-                                 HttpServletRequest request) throws Exception {
+                                 HttpServletRequest request, HttpSession session) throws Exception {
 
         int currentPage = getCurrentPage(request);
         int targetPage = getTarget(request, currentPage);
         this.validatePage(ticket, request, result, currentPage);
         if (isFinish(request)) {
-            return this.processFinnish(ticket, status);
+            return this.processFinnish(ticket, status, session);
         }
         int viewIndex = !result.hasErrors() || targetPage <= currentPage
                 ? targetPage : currentPage;
@@ -202,11 +207,15 @@ public class TicketNewWizardController {
         return false;
     }
     
-    private String processFinnish(Ticket ticket, SessionStatus status) throws Exception {
+    private String processFinnish(Ticket ticket, SessionStatus status, HttpSession session) throws Exception {
+        attachmentUtils.storeToRepositoryAndBindWithTicket(
+                ticket,
+                (User) session.getAttribute("user"),
+                (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
         ticketDAO.save(ticket);
         status.setComplete();
+        Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
+        FileUtils.cleanPathsForTicketstamp(paths, ticket.getTicketstamp());
         return "redirect:/tickets/" + ticket.getTicketId() + "/details.html";
     }
-
 }
-

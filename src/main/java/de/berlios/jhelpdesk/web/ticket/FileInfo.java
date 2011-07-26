@@ -1,6 +1,9 @@
 package de.berlios.jhelpdesk.web.ticket;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import de.berlios.jhelpdesk.utils.FileUtils;
 
@@ -11,16 +14,17 @@ import de.berlios.jhelpdesk.utils.FileUtils;
 public class FileInfo {
 
     private String filename;
+    private String contentType;
     private String filesize;
+    private long size;
+    private String fullPathToTmpFile;
 
-    FileInfo(String filename, String filesize) {
+    FileInfo(String filename, String fullPathToTmpFile, String contentType, long size) {
         this.filename = filename;
-        this.filesize = filesize;
-    }
-
-    FileInfo(File file) {
-        this.filename = file.getName();
-        this.filesize = FileUtils.toDisplaySize(file.length());
+        this.fullPathToTmpFile = fullPathToTmpFile;
+        this.contentType = contentType;
+        this.filesize = FileUtils.toDisplaySize(size);
+        this.size = size;
     }
 
     public String getFilename() {
@@ -30,4 +34,21 @@ public class FileInfo {
     public String getFilesize() {
         return filesize;
     }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public File getFile() throws IOException {
+        return new File(fullPathToTmpFile);
+    }
+
+    public InputStream getInputStream() throws IOException {
+        return new FileInputStream(fullPathToTmpFile);
+    }
+
 }

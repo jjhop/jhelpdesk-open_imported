@@ -73,7 +73,7 @@
                                         <td class="lastcol" colspan="2"><c:out value="${hdticket.stepByStep}" escapeXml="false"/></td>
                                     </tr>
                                 </c:if>
-                                <c:if test="${not empty hdticket.addFilesList}">
+                                <c:if test="${not empty currentUploadedFiles}">
                                     <tr>
                                         <td class="desc">Lista plikow</td>
                                         <td class="lastcol">
@@ -84,12 +84,12 @@
                                                     <th class="tdsize">Rozmiar</th>
                                                     <th class="tdlink lastcol">D</th>
                                                 </tr>
-                                                <c:forEach var="file" items="${hdticket.addFilesList}" varStatus="status">
+                                                <c:forEach var="file" items="${currentUploadedFiles}" varStatus="status">
                                                     <tr>
                                                         <td class="tdnumber"><c:out value="${status.count}"/></td>
-                                                        <td class="tdfile"><c:out value="${file.originalFileName}"/></td>
-                                                        <td class="tdsize"><c:out value="${file.fileSize}"/></td>
-                                                        <td class="tdlink lastcol"><input type="image" name="x" src="<c:url value="/i/delete.gif"/>" /></td>
+                                                        <td class="tdfile"><c:out value="${file.filename}"/></td>
+                                                        <td class="tdsize"><c:out value="${file.filesize}"/></td>
+                                                        <td class="tdlink lastcol"><input type="image" name="x" src="<c:url value="/themes/blue/i/delete.gif"/>" /></td>
                                                     </tr>
                                                 </c:forEach>
                                             </table>
