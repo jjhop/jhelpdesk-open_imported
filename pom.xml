@@ -111,8 +111,7 @@
                         **/*EventType.class,
                         **/*NotifyFrequency.class,
                         **/*Role.class,
-                        **/*PasswordForm.class,
-                        **/*AssignForm.class
+                        **/*Form.class
                     </excludes>
                     <addDefaultConstructor>true</addDefaultConstructor>
                     <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
@@ -143,7 +142,7 @@
                         </connector>
                     </connectors>
                     <stopKey>STOP_JH</stopKey>
-                    <stopPort>9876</stopPort>
+                    <stopPort>9877</stopPort>
                 </configuration>
             </plugin>
         </plugins>
@@ -175,7 +174,7 @@
         <dependency>
             <groupId>info.jjhop.deimos</groupId>
             <artifactId>deimos-repository</artifactId>
-            <version>0.1</version>
+            <version>0.2</version>
         </dependency>
         <dependency>
             <groupId>org.pegdown</groupId>
