@@ -20,7 +20,9 @@ public enum CommentType {
     REJECT(1),
     RESOLVE(2),
     REOPEN(3),
-    CLOSE(4);
+    CLOSE(4),
+    CATEGORY_CHANGE(5),
+    PRIORITY_CHANGE(6);
 
     private final int id;
 
