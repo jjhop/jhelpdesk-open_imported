@@ -85,7 +85,7 @@ public class UploadFileController {
 
         File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
         MultipartFile file = uploadedFile.getFile();
-        if (file != null) {
+        if (file != null && !file.isEmpty()) {
             File targetFile = new File(targetDir, file.getOriginalFilename() +
                                                     "-" + Thread.currentThread().getName() +
                                                     "-" + System.currentTimeMillis());
@@ -125,10 +125,12 @@ public class UploadFileController {
                                                           ticketDAO.getTicketById(ticketId));
         try {
             MultipartFile mf = uploadedFile.getFile();
-            String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
-            addFile.setDigest(digest);
-            addFile.setCreator((User) session.getAttribute("user"));
-            ticketDAO.saveAdditionalFile(addFile);
+            if (mf != null && !mf.isEmpty()) {
+                String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
+                addFile.setDigest(digest);
+                addFile.setCreator((User) session.getAttribute("user"));
+                ticketDAO.saveAdditionalFile(addFile);
+            }
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
