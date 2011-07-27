@@ -43,10 +43,6 @@ public class FileInfo {
         return size;
     }
 
-    public File getFile() throws IOException {
-        return new File(fullPathToTmpFile);
-    }
-
     public InputStream getInputStream() throws IOException {
         return new FileInputStream(fullPathToTmpFile);
     }

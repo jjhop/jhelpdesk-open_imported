@@ -104,7 +104,7 @@ public class UploadFileController {
 
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.GET)
     protected String prepareFormForTicket(@PathVariable("ticketId") Long ticketId,
-                                          ModelMap map, HttpSession session) throws Exception {
+                                          ModelMap map) throws Exception {
 
         Ticket ticket = ticketDAO.getTicketById(ticketId);
         map.addAttribute("attachments", ticket.getAddFilesList());
@@ -119,7 +119,7 @@ public class UploadFileController {
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.POST)
     protected String processSubmitForTicket(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
                                             @PathVariable("ticketId") Long ticketId,
-                                            ModelMap map, HttpSession session) throws Exception {
+                                            HttpSession session) throws Exception {
 
         AdditionalFile addFile = createFormUploadAndTicket(uploadedFile.getFile(),
                                                           ticketDAO.getTicketById(ticketId));
