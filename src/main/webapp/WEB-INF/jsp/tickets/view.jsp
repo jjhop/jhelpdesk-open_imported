@@ -55,14 +55,6 @@
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
                                     %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>" title=":: :: closeButton: false, width: 500, height: 500">zmień</a>
                                     </span>
-
-                                    <!--<select size="1">
-                                        <c:forEach var="priority" items="${ticketPriorities}">
-                                            <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
-                                                <c:out value="${priority}" />
-                                            </option>
-                                        </c:forEach>
-                                    </select>-->
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
                                     <span class="ticketStatus ts${ticket.ticketStatus}">
@@ -71,13 +63,6 @@
                                         out.print(status.getStatusName(currentUser.getPreferredLocale()));
                                     %>
                                     </span>
-                                    <!--<select size="1">
-                                        <c:forEach var="status" items="${ticketStatuses}">
-                                            <option value="${status.statusId}" <c:if test="${status.statusId == ticket.ticketStatus.statusId}">selected="selected"</c:if>>
-                                                <c:out value="${status}" />
-                                            </option>
-                                        </c:forEach>
-                                    </select>-->
                                 </td>
                             </tr>
                             <tr>
@@ -87,13 +72,6 @@
                                 <td class="highlight" colspan="6" onmouseover="$('btnChangeCat').show();" onmouseout="$('btnChangeCat').hide()">
                                     <span class="ticketCategoryChange">
                                         ${ticket.ticketCategory}
-                                    <!--<select size="1">
-                                        <c:forEach var="category" items="${ticketCategories}">
-                                            <option value="${category.id}" <c:if test="${category.id == ticket.ticketCategory.id}">selected="selected"</c:if>>
-                                                <c:out value="${category}" />
-                                            </option>
-                                        </c:forEach>
-                                    </select>-->
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
                                            title=":: :: closeButton: false, width: 500, height: 515">zmień</a>
