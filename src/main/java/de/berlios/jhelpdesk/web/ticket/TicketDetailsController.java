@@ -22,8 +22,6 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import info.jjhop.deimos.DeimosRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -61,7 +59,7 @@ public class TicketDetailsController {
     private TicketCategoryDAO ticketCategoryDAO;
     
     @Autowired
-    private DeimosRepository repository;
+    private AttachmentUtils attachmentUtils;
 
     @RequestMapping(value = "/tickets/{ticketId}/details.html", method = RequestMethod.GET)
     public String showTicket(@PathVariable("ticketId") Long ticketId,
@@ -118,10 +116,7 @@ public class TicketDetailsController {
         response.setContentLength(addFile.getFileSize().intValue());
 
         ServletOutputStream outputStream = response.getOutputStream();
-        BufferedInputStream inputStream = 
-            new BufferedInputStream(repository.getInputStream(addFile.getHashedFileName(), 
-                                                              addFile.getDigest()));
-        
+        BufferedInputStream inputStream = new BufferedInputStream(attachmentUtils.getInputStream(addFile));
         byte[] buffer = new byte[4096];
         while (inputStream.read(buffer) != -1) {
             outputStream.write(buffer);

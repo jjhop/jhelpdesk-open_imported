@@ -34,7 +34,7 @@
     </auth:check>
     <li class="submenu"><a href="javascript:none();"><span><fmt:message key="main.menu.help"/></span></a>
         <ul class="level2">
-            <li class="first"><a href="<c:url value="/help/index.html"/>"><span><fmt:message key="main.menu.help.toc"/></span></a></li>
+            <%--<li class="first"><a href="<c:url value="/help/index.html"/>"><span><fmt:message key="main.menu.help.toc"/></span></a></li>--%>
             <li><a href="<c:url value="/help/kb/index.html"/>"><span><fmt:message key="main.menu.help.kb"/></span></a></li>
             <li class="last"><a href="<c:url value="/help/about.html"/>"><span><fmt:message key="main.menu.help.about"/></span></a></li>
         </ul>
