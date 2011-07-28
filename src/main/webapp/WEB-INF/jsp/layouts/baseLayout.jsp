@@ -17,14 +17,10 @@
             <div id="pageheader"><a href="<c:url value="/"/>"><img src="<c:url value="/themes/blue/i/logo_jhd_beta.png"/>" alt="jHelpDesk (beta)" /></a>
                 <ul id="loggedUser">
                     <li>
-                        <b>${user.fullName}</b>
-                        <ul id="loggedUserInfo">
-                            <li>
-                                <img src="http://www.gravatar.com/avatar/2cead66852e686d84eb4b1e7d4a9d416?d=mm&s=30" alt="${user.fullName}" />
-                                <span class="userInfo">Rola: administrator</span>
-                                <span class="userInfo">E-mail: ${user.email}</span>
-                            </li>
-                        </ul>
+                        <img src="http://www.gravatar.com/avatar/2cead66852e686d84eb4b1e7d4a9d416?d=mm&s=45" alt="${user.fullName}" />
+                        <span class="userInfo userName">${user.fullName}</span>
+                        <span class="userInfo userRole">Administrator</span>
+                        <span class="userInfo">${user.email}</span>
                     </li>
                 </ul>
             </div>
