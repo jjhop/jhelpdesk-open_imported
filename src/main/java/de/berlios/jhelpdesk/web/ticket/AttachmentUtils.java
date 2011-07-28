@@ -1,6 +1,7 @@
 package de.berlios.jhelpdesk.web.ticket;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +34,9 @@ public class AttachmentUtils {
             }
             ticket.setAddFilesList(additionalFiles);
         }
+    }
+
+    public InputStream getInputStream(AdditionalFile file) throws IOException {
+        return repository.getInputStream(file.getHashedFileName(), file.getDigest());
     }
 }

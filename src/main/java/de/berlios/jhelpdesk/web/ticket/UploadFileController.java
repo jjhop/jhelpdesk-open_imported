@@ -85,7 +85,7 @@ public class UploadFileController {
 
         File targetDir = fileUtils.createTmpDirForTicketstamp(ticketstamp);
         MultipartFile file = uploadedFile.getFile();
-        if (file != null) {
+        if (file != null && !file.isEmpty()) {
             File targetFile = new File(targetDir, file.getOriginalFilename() +
                                                     "-" + Thread.currentThread().getName() +
                                                     "-" + System.currentTimeMillis());
@@ -104,7 +104,7 @@ public class UploadFileController {
 
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.GET)
     protected String prepareFormForTicket(@PathVariable("ticketId") Long ticketId,
-                                          ModelMap map, HttpSession session) throws Exception {
+                                          ModelMap map) throws Exception {
 
         Ticket ticket = ticketDAO.getTicketById(ticketId);
         map.addAttribute("attachments", ticket.getAddFilesList());
@@ -119,16 +119,18 @@ public class UploadFileController {
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.POST)
     protected String processSubmitForTicket(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
                                             @PathVariable("ticketId") Long ticketId,
-                                            ModelMap map, HttpSession session) throws Exception {
+                                            HttpSession session) throws Exception {
 
         AdditionalFile addFile = createFormUploadAndTicket(uploadedFile.getFile(),
                                                           ticketDAO.getTicketById(ticketId));
         try {
             MultipartFile mf = uploadedFile.getFile();
-            String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
-            addFile.setDigest(digest);
-            addFile.setCreator((User) session.getAttribute("user"));
-            ticketDAO.saveAdditionalFile(addFile);
+            if (mf != null && !mf.isEmpty()) {
+                String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
+                addFile.setDigest(digest);
+                addFile.setCreator((User) session.getAttribute("user"));
+                ticketDAO.saveAdditionalFile(addFile);
+            }
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
