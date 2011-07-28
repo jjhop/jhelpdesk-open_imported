@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+import de.berlios.jhelpdesk.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import de.berlios.jhelpdesk.dao.ArticleCategoryDAO;
 import de.berlios.jhelpdesk.dao.ArticleDAO;
+import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
 import de.berlios.jhelpdesk.model.User;
@@ -60,6 +62,15 @@ public class HelpViewController {
     private final static String HELP_KB_CATEGORY = "help/kb/category";
     private final static String HELP_KB_ARTICLE = "help/base/one"; // zamienić na help/kb/one
     private final static String HELP_KB_SEARCH_RESULT = "help/kb/searchResult";
+
+    private final static String HELP_KB_COMMENT_FORM = "/help/kb/comment/form";
+    private final static String HELP_KB_COMMENT_RESULT = "/help/kb/comment/result";
+
+    private final static String HELP_KB_TICKET_ASSIGN_FORM = "/help/kb/ticketAssign/form";
+    private final static String HELP_KB_TICKET_ASSIGN_RESULT = "/help/kb/ticketAssign/result";
+
+    @Autowired
+    private TicketDAO ticketDAO;
 
     @Autowired
     private ArticleDAO articleDAO;
@@ -168,22 +179,49 @@ public class HelpViewController {
         return HELP_KB_ARTICLE;
     }
 
-    @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.POST)
-    public String kBAddComment(@PathVariable("aId") Long articleId,
-                               @ModelAttribute("comment") ArticleComment comment, 
-                               BindingResult errors, ModelMap map,
-                               HttpSession session) throws Exception {
+    @RequestMapping(value = "/help/base/articles/{aId}/comments/new.html", method = RequestMethod.GET)
+    public String prepareCommentForm(@PathVariable("aId") Long articleId, ModelMap map) {
+        map.addAttribute("comment", new ArticleComment());
+        return HELP_KB_COMMENT_FORM;
+    }
 
+    @RequestMapping(value = "/help/base/articles/{aId}/comments/new.html", method = RequestMethod.POST)
+    public String processCommentForm(@PathVariable("aId") Long articleId,
+                                     @ModelAttribute("comment") ArticleComment comment,
+                                     BindingResult errors, ModelMap map, HttpSession session) throws Exception {
+        validator.validate(comment, errors);
+        if (errors.hasErrors()) {
+            map.addAttribute("comment", comment);
+            return HELP_KB_COMMENT_FORM;
+        }
         comment.setCreateDate(new Date());
         comment.setArticle(articleDAO.getById(articleId));
         comment.setAuthorId((User) session.getAttribute("user"));
-        validator.validate(comment, errors);
-        if (errors.hasErrors()) {
-            map.addAttribute("article", articleDAO.getById(articleId));
-            map.addAttribute("comment", comment);
-            return HELP_KB_ARTICLE;
-        }
         articleDAO.saveArticleComment(comment);
-        return "redirect:/help/base/articles/" + articleId + "/show.html#c" + comment.getId();
+        return HELP_KB_COMMENT_RESULT;
+    }
+
+    @RequestMapping(value = "/help/base/articles/{aId}/tickets/new.html", method = RequestMethod.GET)
+    public String prepareArticleTicketForm(@PathVariable("aId") Long articleId,
+                                           @RequestParam(value = "tId", required = false) Long ticketId,
+                                           ModelMap map) throws Exception {
+        if (ticketId != null) {
+            Ticket ticket = ticketDAO.getTicketById(ticketId);
+            if (ticket != null) {
+                map.addAttribute("ticket", ticket);
+            } else {
+                map.addAttribute("message", "Nie znaleziono");
+            }
+        }
+        return HELP_KB_TICKET_ASSIGN_FORM;
+    }
+
+    @RequestMapping(value = "/help/base/articles/{aId}/tickets/new.html", method = RequestMethod.POST)
+    public String processArticleTicketForm(@PathVariable("aId") Long articleId,
+                                           @RequestParam(value = "tId") Long ticketId) throws Exception {
+
+        articleDAO.assignWithTicket(articleId, ticketId);
+        // todo: co jeszcze?
+        return HELP_KB_TICKET_ASSIGN_RESULT;
     }
 }
