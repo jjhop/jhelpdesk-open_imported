@@ -53,7 +53,7 @@
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
-                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>" title=":: :: closeButton: false, width: 500, height: 500">zmień</a>
+                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>" title=":: :: closeButton: false, width: 500, height: 505">zmień</a>
                                     </span>
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
@@ -74,7 +74,7 @@
                                         ${ticket.ticketCategory}
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
-                                           title=":: :: closeButton: false, width: 500, height: 515">zmień</a>
+                                           title=":: :: closeButton: false, width: 500, height: 505, autosize: true">zmień</a>
                                     </span>
                                 </td>
                             </tr>
