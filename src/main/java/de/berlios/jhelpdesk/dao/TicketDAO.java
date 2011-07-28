@@ -18,6 +18,7 @@ package de.berlios.jhelpdesk.dao;
 import java.util.List;
 
 import de.berlios.jhelpdesk.model.AdditionalFile;
+import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
 import de.berlios.jhelpdesk.model.TicketComment;
@@ -203,4 +204,8 @@ public interface TicketDAO {
     void changeCategoryWithComment(Ticket currentTicket, TicketCategory category, String commentText, User user) throws DAOException;
 
     void changePriorityWithComment(Ticket currentTicket, TicketPriority priority, String commentText, User user) throws DAOException;
+
+    int countAssignedArticlesForTicket(Long ticketId) throws DAOException;
+
+    List<Article> getAssignedArticlesForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
 }

@@ -53,6 +53,8 @@ import de.berlios.jhelpdesk.utils.MarkdownTranslator;
     @NamedQuery(name = "Article.getForCategory", 
         query = "SELECT a FROM Article a WHERE a.category.id=?1 ORDER BY a.createdAt DESC")
 })
+// @NamedQuery(name = "TicketComment.countCommentsForTicket",
+// query = "SELECT COUNT(tc) FROM TicketComment tc WHERE tc.ticket.ticketId=?1")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 6398694944488620526L;
@@ -124,15 +126,16 @@ public class Article implements Serializable {
      */
     public Article() {
         this.comments = new HashSet<ArticleComment>();
+        this.associatedTickets = new HashSet<Ticket>();
         this.createdAt = new Date();
     }
 
     public Article(Long id, String title, String lead, Date createdAt) {
+        this();
         this.id = id;
         this.createdAt = createdAt;
         this.title = title;
         this.lead = lead;
-        this.comments = new HashSet<ArticleComment>();
     }
 
     /**

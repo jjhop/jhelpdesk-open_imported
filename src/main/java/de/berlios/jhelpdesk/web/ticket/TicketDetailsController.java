@@ -30,14 +30,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
+import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.dao.UserDAO;
 import de.berlios.jhelpdesk.model.AdditionalFile;
-import de.berlios.jhelpdesk.model.Role;
+import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.Ticket;
-import de.berlios.jhelpdesk.model.TicketPriority;
-import de.berlios.jhelpdesk.model.TicketStatus;
+
 import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
 
 /**
@@ -56,8 +55,8 @@ public class TicketDetailsController {
     private TicketDAO ticketDAO;
 
     @Autowired
-    private TicketCategoryDAO ticketCategoryDAO;
-    
+    private ArticleDAO articleDAO;
+
     @Autowired
     private AttachmentUtils attachmentUtils;
 
@@ -65,18 +64,30 @@ public class TicketDetailsController {
     public String showTicket(@PathVariable("ticketId") Long ticketId,
                              ModelMap mav) throws Exception {
         Ticket ticket = ticketDAO.getTicketById(ticketId);
-        mav.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
         mav.addAttribute("ticket", ticket);
         mav.addAttribute("ticketId", ticket.getTicketId());
-        mav.addAttribute("ticketPriorities", TicketPriority.values());
-        mav.addAttribute("ticketStatuses", TicketStatus.values());
-        mav.addAttribute("ticketCategories", ticketCategoryDAO.getAllCategories());
 
         mav.addAllAttributes(processComments(ticketId, 1));
         mav.addAllAttributes(processEvents(ticketId, 1));
         mav.addAllAttributes(processAttachments(ticketId, 1));
+        mav.addAllAttributes(processAssignedArticles(ticketId, 1));
 
         return "ticketDetails";
+    }
+
+    @RequestMapping(value = "/tickets/{ticketId}/articles/new.html", method = RequestMethod.GET)
+    public String prepareTicketArticleForm(@PathVariable("ticketId") Long ticketId,
+                                           @RequestParam(value = "articleId", required = false) Long articleId,
+                                           ModelMap map) throws Exception {
+        if (articleId != null) {
+            Article article = articleDAO.getById(articleId);
+            if (article != null) {
+                map.addAttribute("article", article);
+            } else {
+                map.addAttribute("message", "Nie znaleziono");
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/tickets/{ticketId}/comments.html", method = RequestMethod.GET)
@@ -126,6 +137,15 @@ public class TicketDetailsController {
         outputStream.close();
     }
 
+    @RequestMapping(value = "/tickets/{ticketId}/articles.html", method = RequestMethod.GET)
+    public String showArticles(@PathVariable("ticketId") Long ticketId,
+                               @RequestParam("page") Integer page,
+                               ModelMap map) throws Exception {
+        map.addAttribute(processAssignedArticles(ticketId, page));
+        map.addAttribute("ticketId", ticketId);
+        return "panelAssignedArticles";
+    }
+
     private Map<String, Object> processComments(Long ticketId, Integer currentPage) throws Exception {
         int commentsCount = ticketDAO.countCommentsForTicket(ticketId);
         int offset = calculateOffset(PAGE_SIZE, currentPage);
@@ -155,6 +175,16 @@ public class TicketDetailsController {
         result.put("attachmentsPages", calculatePages(attachmentsCount, PAGE_SIZE));
         result.put("currentAttachmentsPage", currentPage);
         result.put("attachments", ticketDAO.getAttachmentsForTicket(ticketId, PAGE_SIZE, offset));
+        return result;
+    }
+
+    public Map<String, Object> processAssignedArticles(Long ticketId, Integer currentPage) throws Exception {
+        int kbArticlesCount = ticketDAO.countAssignedArticlesForTicket(ticketId);
+        int offset = calculateOffset(PAGE_SIZE, currentPage);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("kbArticlesPages", calculatePages(kbArticlesCount, PAGE_SIZE));
+        result.put("currentKBArticlesPage", currentPage);
+        result.put("kbArticles", ticketDAO.getAssignedArticlesForTicket(ticketId, PAGE_SIZE, offset));
         return result;
     }
 }
