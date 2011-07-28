@@ -141,6 +141,7 @@
     <definition name="panelEvents" template="/WEB-INF/jsp/tickets/panel_events.jsp"/>
     <definition name="panelComments" template="/WEB-INF/jsp/tickets/panel_comments.jsp"/>
     <definition name="panelAttachments" template="/WEB-INF/jsp/tickets/panel_attachments.jsp"/>
+    <definition name="panelAssignedArticles" template="/WEB-INF/jsp/tickets/panel_assignedArticles.jsp"/>
 
     <definition name="tickets/commentForm" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/commentForm.jsp"/>
@@ -295,6 +296,13 @@
     </definition>
     <definition name="/help/kb/comment/result" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/kb/comment_result.jsp"/>
+    </definition>
+
+    <definition name="/help/kb/ticketAssign/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/ticketAssign_form.jsp"/>
+    </definition>
+    <definition name="/help/kb/ticketAssign/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/ticketAssign_result.jsp"/>
     </definition>
 
     <definition name="help/index" extends="baseLayout">

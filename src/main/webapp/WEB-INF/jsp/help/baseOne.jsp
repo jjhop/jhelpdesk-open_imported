@@ -46,6 +46,7 @@
                                class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj komentarz</a>
                         <br/>
+                        <br/>
                         <c:choose>
                         <c:when test="${fn:length(article.comments) > 0}">
                             <table cellspacing="0" class="standardtable">
@@ -77,14 +78,25 @@
                 <div class="pagecontentsubheader"><h3>Powiązane zgłoszenia</h3></div>
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
+                    <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
+                               class="lightview btnTicketAction btnTicketResolve rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj powiązane zgłoszenie...</a>
+                    <br/>
+                    <br/>
                     <ul class="kbList">
-                        <c:forEach items="${article.associatedTickets}" var="ticket">
-                            <li>
-                                <a href="<c:url value="/ticketDetails.html?ticketId=${ticket.ticketId}"/>"><c:out value="${ticket.subject}"/></a>
-                                <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
-                            </li>
-                        </c:forEach>
-                        <li>Brak powiązanych zdarzeń.</li>
+                        <c:choose>
+                            <c:when test="${article.associatedTickets != null && fn:length(article.associatedTickets) > 0}">
+                                <c:forEach items="${article.associatedTickets}" var="ticket">
+                                    <li>
+                                        <a href="<c:url value="/tickets/${ticket.ticketId}/details.html"/>"><c:out value="${ticket.subject}"/></a>
+                                        <span class="eventInfo">2011.01.09 / Lorem ipsum</span>
+                                    </li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li>Brak powiązanych zdarzeń.</li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
                 <div class="contentbottom"></div>

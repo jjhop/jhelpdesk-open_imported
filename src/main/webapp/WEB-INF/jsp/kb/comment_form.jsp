@@ -1,13 +1,12 @@
 <%@page contentType="text/html;charset=UTF-8" %>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
+<c:url value="/help/base/articles/${article.id}/comments/new.html" var="formURL"/>
 <form:form action="${formURL}" commandName="comment" id="commentForm">
     <table cellspacing="0" class="standardtable">
         <tr>
             <td class="lastcol">
                 <h3>Dodaj komentarz</h3>
-                <c:url var="formURL" value="/help/base/articles/${article.id}/show.html#commentForm"/>
-
                 <ul class="formContainer">
                     <li>
                         <form:label path="title">
