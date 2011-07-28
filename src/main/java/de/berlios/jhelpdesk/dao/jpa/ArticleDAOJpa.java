@@ -189,6 +189,24 @@ public class ArticleDAOJpa implements ArticleDAO {
     }
 
     @Transactional(readOnly = false)
+    public void assignWithTicket(final Long articleId, final Long ticketId) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery(
+                        "INSERT INTO article_ticket (article_id, ticket_id) VALUES (?1, ?2)");
+                    q.setParameter(1, articleId);
+                    q.setParameter(2, ticketId);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
     public void moveDown(final Long articleId) throws DAOException {
         this.jpaTemplate.execute(new JpaCallback<Object>() {
             public Object doInJpa(EntityManager em) throws PersistenceException {

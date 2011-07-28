@@ -15,6 +15,7 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.AdditionalFile;
+import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.CommentType;
 import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketCategory;
@@ -468,6 +470,24 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
+    public List<Article> getAssignedArticlesForTicket(final Long ticketId, final int pageSize,
+                                                      final int offset) throws DAOException {
+        try {
+            return (List<Article>) this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("SELECT article_id FROM article_ticket WHERE ticket_id = ?1");
+                    q.setParameter(1, ticketId);
+                    List articleIds = q.getResultList();
+                    q = em.createQuery("SELECT a FROM Article a WHERE a.id IN(?1) ORDER BY a.createdAt DESC");
+                    q.setParameter(1, articleIds);
+                    return q.getResultList();
+                }
+            });
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public int countCommentsForTicket(final Long ticketId) throws DAOException {
         try {
             return (this.jpaTemplate.execute(new JpaCallback<Long>() {
@@ -512,8 +532,21 @@ public class TicketDAOJpa implements TicketDAO {
             throw new DAOException(ex);
         }
     }
-    
-    
+
+    public int countAssignedArticlesForTicket(final Long ticketId) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("SELECT COUNT(*) FROM article_ticket WHERE ticket_id=?1");
+                    q.setParameter(1, ticketId);
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     @Transactional(readOnly = false)
     public void saveAdditionalFile(AdditionalFile addFile) throws DAOException {
         try {

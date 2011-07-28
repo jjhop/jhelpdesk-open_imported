@@ -190,7 +190,6 @@ public class Ticket implements Serializable {
     /**
      * Kolekcja plików dołączonych do zgłoszenia.
      * 
-     * TODO: obsłużyć zapisywanie i usuwanie tych plików
      */
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
     private List<AdditionalFile> addFilesList;

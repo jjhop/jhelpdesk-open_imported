@@ -100,6 +100,11 @@
                             </c:if>
                         </table>
                     </div>
+                    <div class="pagecontentsubheader"><h3>Powiązane artykuły w bazie wiedzy</h3></div>
+                    <div id="panel_articles" class="contentmiddle">
+                        <tiles:insertDefinition name="panelAssignedArticles"/>
+                    </div>
+
                     <div class="pagecontentsubheader"><h3>Pliki</h3></div>
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <tiles:insertDefinition name="panelAttachments"/>
