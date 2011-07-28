@@ -61,6 +61,9 @@ public class HelpViewController {
     private final static String HELP_KB_ARTICLE = "help/base/one"; // zamienić na help/kb/one
     private final static String HELP_KB_SEARCH_RESULT = "help/kb/searchResult";
 
+    private final static String HELP_KB_COMMENT_FORM = "/help/kb/comment/form";
+    private final static String HELP_KB_COMMENT_RESULT = "/help/kb/comment/result";
+
     @Autowired
     private ArticleDAO articleDAO;
     
@@ -168,22 +171,25 @@ public class HelpViewController {
         return HELP_KB_ARTICLE;
     }
 
-    @RequestMapping(value = "/help/base/articles/{aId}/show.html", method = RequestMethod.POST)
-    public String kBAddComment(@PathVariable("aId") Long articleId,
-                               @ModelAttribute("comment") ArticleComment comment, 
-                               BindingResult errors, ModelMap map,
-                               HttpSession session) throws Exception {
+    @RequestMapping(value = "/help/base/articles/{aId}/comments/new.html", method = RequestMethod.GET)
+    public String prepareCommentForm(@PathVariable("aId") Long articleId, ModelMap map) {
+        map.addAttribute("comment", new ArticleComment());
+        return HELP_KB_COMMENT_FORM;
+    }
 
+    @RequestMapping(value = "/help/base/articles/{aId}/comments/new.html", method = RequestMethod.POST)
+    public String processCommentForm(@PathVariable("aId") Long articleId,
+                                     @ModelAttribute("comment") ArticleComment comment,
+                                     BindingResult errors, ModelMap map, HttpSession session) throws Exception {
+        validator.validate(comment, errors);
+        if (errors.hasErrors()) {
+            map.addAttribute("comment", comment);
+            return HELP_KB_COMMENT_FORM;
+        }
         comment.setCreateDate(new Date());
         comment.setArticle(articleDAO.getById(articleId));
         comment.setAuthorId((User) session.getAttribute("user"));
-        validator.validate(comment, errors);
-        if (errors.hasErrors()) {
-            map.addAttribute("article", articleDAO.getById(articleId));
-            map.addAttribute("comment", comment);
-            return HELP_KB_ARTICLE;
-        }
         articleDAO.saveArticleComment(comment);
-        return "redirect:/help/base/articles/" + articleId + "/show.html#c" + comment.getId();
+        return HELP_KB_COMMENT_RESULT;
     }
 }

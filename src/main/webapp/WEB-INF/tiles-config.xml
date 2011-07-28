@@ -290,6 +290,13 @@
         <put-attribute name="content" value="/WEB-INF/jsp/help/baseOne.jsp"/>
     </definition>
 
+    <definition name="/help/kb/comment/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/comment_form.jsp"/>
+    </definition>
+    <definition name="/help/kb/comment/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/comment_result.jsp"/>
+    </definition>
+
     <definition name="help/index" extends="baseLayout">
         <put-attribute name="title" value="jHelpDesk - pomoc"/>
         <put-attribute name="content" value="/WEB-INF/jsp/help/index.jsp"/>
