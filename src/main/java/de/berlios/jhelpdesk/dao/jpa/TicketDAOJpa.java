@@ -488,6 +488,33 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
+    public List<Ticket> searchWithQuery(final String query) throws DAOException {
+        try {
+            return this.jpaTemplate.execute(new JpaCallback<List<Ticket>>() {
+                public List<Ticket> doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("SELECT t FROM Ticket t WHERE t.subject LIKE '%" + query + "%'");
+                    q.setMaxResults(5);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public int countWithQuery(final String query) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("SELECT COUNT(t) FROM Ticket t WHERE t.subject LIKE '%" + query + "%'");
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public int countCommentsForTicket(final Long ticketId) throws DAOException {
         try {
             return (this.jpaTemplate.execute(new JpaCallback<Long>() {

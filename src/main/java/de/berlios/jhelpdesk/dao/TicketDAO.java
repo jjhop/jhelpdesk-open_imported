@@ -208,4 +208,8 @@ public interface TicketDAO {
     int countAssignedArticlesForTicket(Long ticketId) throws DAOException;
 
     List<Article> getAssignedArticlesForTicket(Long ticketId, int pageSize, int offset) throws DAOException;
+
+    List<Ticket> searchWithQuery(String query) throws DAOException;
+    
+    int countWithQuery(final String query) throws DAOException;
 }
