@@ -15,13 +15,13 @@
  */
 package de.berlios.jhelpdesk.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
-import de.berlios.jhelpdesk.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -38,6 +38,7 @@ import de.berlios.jhelpdesk.dao.ArticleDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.model.Article;
 import de.berlios.jhelpdesk.model.ArticleComment;
+import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.web.search.LuceneIndexer;
 import de.berlios.jhelpdesk.web.search.SearchException;
@@ -68,6 +69,7 @@ public class HelpViewController {
 
     private final static String HELP_KB_TICKET_ASSIGN_FORM = "/help/kb/ticketAssign/form";
     private final static String HELP_KB_TICKET_ASSIGN_RESULT = "/help/kb/ticketAssign/result";
+    private final static String HELP_KB_TICKET_SEARCH = "/help/base/articles/searchTickets";
 
     @Autowired
     private TicketDAO ticketDAO;
@@ -223,5 +225,35 @@ public class HelpViewController {
         articleDAO.assignWithTicket(articleId, ticketId);
         // todo: co jeszcze?
         return HELP_KB_TICKET_ASSIGN_RESULT;
+    }
+
+    @RequestMapping("/help/base/articles/searchTickets.html")
+    public String searchTickets(@RequestParam(value = "q", defaultValue = "") String query,
+                                ModelMap map) throws Exception {
+        if (query.startsWith("#")) {
+            try {
+                long ticketId = Long.parseLong(query.substring(1));
+                List<Ticket> result = new ArrayList<Ticket>();
+                result.add(ticketDAO.getTicketById(ticketId));
+                map.addAttribute("resultList", result);
+                return HELP_KB_TICKET_SEARCH;
+            } catch (Exception ex) {
+                // todo: widok z informację, ze nic nie ma...
+                return "jakisInnyWidok";
+            }
+        }
+
+        int count = ticketDAO.countWithQuery(query);
+        if (count > 0) {
+            List<Ticket> result = ticketDAO.searchWithQuery(query);
+            map.addAttribute("resultList", result);
+            if (count > result.size()) {
+                map.addAttribute("moreResultCount", count - result.size());
+            }
+        } else {
+            // todo: widok z informację, ze nic nie ma...
+            // return ....
+        }
+        return HELP_KB_TICKET_SEARCH;
     }
 }

@@ -77,7 +77,7 @@ public class TicketDetailsController {
 
     @RequestMapping(value = "/tickets/{ticketId}/articles/new.html", method = RequestMethod.GET)
     public String prepareTicketArticleForm(@PathVariable("ticketId") Long ticketId,
-                                           @RequestParam(value = "articleId", required = false) Long articleId,
+                                           @RequestParam(value = "aId", required = false) Long articleId,
                                            ModelMap map) throws Exception {
         if (articleId != null) {
             Article article = articleDAO.getById(articleId);
@@ -89,6 +89,14 @@ public class TicketDetailsController {
         }
         map.addAttribute("ticketId", ticketId);
         return "/ticket/articles/assign/form";
+    }
+
+    @RequestMapping(value = "/tickets/{ticketId}/articles/new.html", method = RequestMethod.POST)
+    public String processTicketArticleForm(@PathVariable("ticketId") Long ticketId,
+                                           @RequestParam(value = "aId") Long articleId) throws Exception {
+        articleDAO.assignWithTicket(articleId, ticketId);
+
+        return "/ticket/articles/assign/result";
     }
 
     @RequestMapping(value = "/tickets/{ticketId}/comments.html", method = RequestMethod.GET)
