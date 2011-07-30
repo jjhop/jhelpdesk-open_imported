@@ -11,6 +11,10 @@ body.lightPassView .contentmiddle {
     margin: 0;
 }
 
+body.lightPassView .h335 {
+    height: 335px;
+}
+
 .hAuto {
     height: auto;
     min-height: 30px;
@@ -612,7 +616,7 @@ td.rightcells {
 #box {
     width: 561px;
     position: absolute;
-    top: 2px;
+    top: 38px;
     right: 1px;
 }
 div.panelsBg {
@@ -1518,7 +1522,7 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop .entryMeta, #panel_comments .entryMeta {
+#desktop .entryMeta, #panel_comments .entryMeta, #selectedTicketInfo .entryMeta {
     padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
@@ -1527,7 +1531,7 @@ td.artnumber {
     display: block;
     padding: 2px 0 2px 5px;
 }
-#desktop .standardtable td, #panel_comments .standardtable td {
+#desktop .standardtable td, #panel_comments .standardtable td, #selectedTicket .standardtable td  {
      padding: 0;
 }
 
@@ -2165,11 +2169,38 @@ ul.detailsView ul.nested li {
   list-style-type:none;
   display:block;
   margin:0;
-  padding:2px;
+  padding: 2px 5px;
   cursor:pointer;
   font-size: 11px;
   border-top: 1px solid #888;
 }
-#selectedTicket {
-    padding: 5px 0;
+
+.autocomplete ul li .entryCategory {
+    display: none;
+}
+
+#selectedTicketInfo .entryText {
+    display: block;
+    padding: 2px 5px;
+}
+
+#selectedTicketInfo .entryCategory {
+    display: block;
+    padding: 1px 5px 5px 5px;
+    color: #000;
+    background: #EAEAEA;
+}
+#selectedTicketInfo .entryAssigned {
+    display: block;
+    padding: 2px 5px;
+    margin: 5px 0 0 0;
+    color: #333;
+    background: #e0e0e0;
+}
+.moreResults {
+    padding: 1px 5px;
+    font-size: 11px;
+    font-weight: bold;
+    background:#888;
+    color: #fff;
 }
