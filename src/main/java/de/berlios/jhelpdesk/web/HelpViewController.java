@@ -215,6 +215,7 @@ public class HelpViewController {
                 map.addAttribute("message", "Nie znaleziono");
             }
         }
+        map.addAttribute("articleId", articleId);
         return HELP_KB_TICKET_ASSIGN_FORM;
     }
 
@@ -227,9 +228,11 @@ public class HelpViewController {
         return HELP_KB_TICKET_ASSIGN_RESULT;
     }
 
-    @RequestMapping("/help/base/articles/searchTickets.html")
-    public String searchTickets(@RequestParam(value = "q", defaultValue = "") String query,
+    @RequestMapping("/help/base/articles/{aId}/searchTickets.html")
+    public String searchTickets(@PathVariable("aId") Long articleId,
+                                @RequestParam(value = "q", defaultValue = "") String query,
                                 ModelMap map) throws Exception {
+        map.addAttribute("article", articleDAO.getById(articleId));
         if (query.startsWith("#")) {
             try {
                 long ticketId = Long.parseLong(query.substring(1));

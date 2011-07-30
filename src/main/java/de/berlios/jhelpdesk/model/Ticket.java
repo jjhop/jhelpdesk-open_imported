@@ -382,6 +382,15 @@ public class Ticket implements Serializable {
         return subject;
     }
 
+    public String getShortSubject() {
+        if (subject.length() > 128) {
+            String s = subject.substring(0, 128);
+            int lastSpace = s.lastIndexOf(' ');
+            return s.substring(0, lastSpace);
+        }
+        return subject;
+    }
+
     /**
      * Ustawia krótki opis zgłoszenia. Metoda powinna być wykorzystywana
      * tylko podczas przepisywania danych o zgłoszeniu z bazy danych.
