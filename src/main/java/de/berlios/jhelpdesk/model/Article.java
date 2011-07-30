@@ -278,6 +278,16 @@ public class Article implements Serializable {
         this.associatedTickets = associatedTickets;
     }
 
+    public boolean isAssociatedWithTicket(Long ticketId) {
+        assert ticketId != null;
+        for (Ticket ticket : associatedTickets) {
+            if (ticket.getTicketId().equals(ticketId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setTranslator(MarkdownTranslator translator) {
         this.translator = translator;
     }

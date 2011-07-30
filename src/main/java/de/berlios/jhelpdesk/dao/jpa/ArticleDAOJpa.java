@@ -206,6 +206,35 @@ public class ArticleDAOJpa implements ArticleDAO {
         }
     }
 
+    public int countWithQuery(final String query) throws DAOException {
+        try {
+            return (this.jpaTemplate.execute(new JpaCallback<Long>() {
+                public Long doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT COUNT(a) FROM Article a WHERE a.title LIKE '%" + query + "%'");
+                    return (Long)q.getSingleResult();
+                }
+            })).intValue();
+        } catch(Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    public List<Article> searchWithQuery(final String query) throws DAOException {
+        try {
+            return this.jpaTemplate.execute(new JpaCallback<List<Article>>() {
+                public List<Article> doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery(
+                        "SELECT a FROM Article a WHERE a.title LIKE '%" + query + "%'");
+                    q.setMaxResults(5);
+                    return q.getResultList();
+                }
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     @Transactional(readOnly = false)
     public void moveDown(final Long articleId) throws DAOException {
         this.jpaTemplate.execute(new JpaCallback<Object>() {

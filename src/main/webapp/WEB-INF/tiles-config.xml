@@ -301,6 +301,9 @@
     <definition name="/help/base/articles/searchTickets"
                 template="/WEB-INF/jsp/kb/searchTickets.jsp"/>
 
+    <definition name="/tickets/articles/searchArticles"
+                template="/WEB-INF/jsp/tickets/searchArticles.jsp"/>
+
     <definition name="/help/kb/comment/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/kb/comment_form.jsp"/>
     </definition>

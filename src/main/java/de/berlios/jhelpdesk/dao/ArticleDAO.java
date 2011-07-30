@@ -120,4 +120,8 @@ public interface ArticleDAO {
     void moveUp(Long categoryId) throws DAOException;
 
     void moveDown(Long categoryId) throws DAOException;
+
+    int countWithQuery(String query) throws DAOException;
+
+    List<Article> searchWithQuery(String query) throws DAOException;
 }

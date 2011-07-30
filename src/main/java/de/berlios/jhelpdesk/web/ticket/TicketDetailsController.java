@@ -16,7 +16,9 @@
 package de.berlios.jhelpdesk.web.ticket;
 
 import java.io.BufferedInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
@@ -97,6 +99,37 @@ public class TicketDetailsController {
         articleDAO.assignWithTicket(articleId, ticketId);
 
         return "/ticket/articles/assign/result";
+    }
+
+    @RequestMapping("/tickets/{ticketId}/articles/search.html")
+    public String searchTickets(@RequestParam(value = "q", defaultValue = "") String query,
+                                @PathVariable("ticketId") Long ticketId, ModelMap map) throws Exception {
+
+        map.addAttribute("ticketId", ticketId);
+        if (query.startsWith("#")) {
+            try {
+                long articleId = Long.parseLong(query.substring(1));
+                List<Article> result = new ArrayList<Article>();
+                result.add(articleDAO.getById(articleId));
+                map.addAttribute("resultList", result);
+                return "/tickets/articles/searchArticles";
+            } catch (Exception ex) {
+                // todo: widok z informację, ze nic nie ma...
+                return "jakisInnyWidok";
+            }
+        }
+        int count = articleDAO.countWithQuery(query);
+        if (count > 0) {
+            List<Article> result = articleDAO.searchWithQuery(query);
+            map.addAttribute("resultList", result);
+            if (count > result.size()) {
+                map.addAttribute("moreResultCount", count - result.size());
+            }
+        } else {
+            // todo: widok z informację, ze nic nie ma...
+            // return ....
+        }
+        return "/tickets/articles/searchArticles";
     }
 
     @RequestMapping(value = "/tickets/{ticketId}/comments.html", method = RequestMethod.GET)
