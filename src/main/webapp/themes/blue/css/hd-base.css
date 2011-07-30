@@ -11,6 +11,11 @@ body.lightPassView .contentmiddle {
     margin: 0;
 }
 
+.hAuto {
+    height: auto;
+    min-height: 30px;
+}
+
 body.lightPassView .hAuto {
     min-height: 100px;
     height: auto;
@@ -763,6 +768,12 @@ div.buttons input {margin: 0 5px;}
     min-height: 180px;
     margin-bottom: 10px;
 }
+
+#ticketdetails .hAuto {
+    height: auto;
+    min-height: 20px;
+}
+
 #ticketdetails #ticketPanelFiles.contentmiddle {
     min-height: 20px;
 }
@@ -1449,7 +1460,7 @@ td.artnumber {
 }
 
 #knowledgebase ul.kbList {
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 10px 10px 5px 10px;
     list-style: none;
     background: #F3F3F3;
@@ -1886,7 +1897,9 @@ ul.formContainer li {
     min-height: 55px;
     position: relative;
 }
-
+ul.formContainer li.single {
+    padding: 0 10px;
+}
 .lightPassView ul.formContainer li.chk {
     min-height: 15px;
     padding-top: 0;
@@ -1937,7 +1950,9 @@ ul.formContainer li .btn {
     padding: 2px 15px 5px 15px;
     border: 2px solid #59709A;
 }
-
+ul.formContainer li .btnMedium {
+    padding: 1px 10px 2px;
+}
 ul.formContainer li .btn:hover {
     border: 2px solid #32415d;
 }
@@ -2127,4 +2142,34 @@ ul.detailsView ul.nested li {
     padding: 270px 10px 70px;
     background: url(../i/bg_envelope.png) top center no-repeat;
     font-size: 14px;
+}
+#autocompleteContainer {
+    position: relative;
+}
+.autocomplete {
+  position:absolute;
+  width:425px !important;
+  background-color:white;
+  border:1px solid #888;
+  border-top: 0;
+  margin:0;
+  padding:0;
+}
+.autocomplete ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+.autocomplete ul li.selected { background-color: #ffb;}
+.autocomplete ul li {
+  list-style-type:none;
+  display:block;
+  margin:0;
+  padding:2px;
+  cursor:pointer;
+  font-size: 11px;
+  border-top: 1px solid #888;
+}
+#selectedTicket {
+    padding: 5px 0;
 }
