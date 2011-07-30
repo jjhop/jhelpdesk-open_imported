@@ -13,7 +13,7 @@
  * 
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.web.desktop;
+package de.berlios.jhelpdesk.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

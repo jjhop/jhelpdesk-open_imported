@@ -17,14 +17,8 @@
     <mvc:annotation-driven/>
     <mvc:view-controller path="/" view-name="index.jsp"/>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:props.properties</value>
-                <value>classpath:directories.properties</value>
-            </list>
-        </property>
-    </bean>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="classpath:application.properties"/>
 
     <!-- mapowanie kontrolerów -->
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
@@ -54,19 +48,15 @@
     </bean>
 
     <bean id="tilesConfigurator"
-          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-        <property name="preparerFactoryClass"
-                  value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
-        <property name="definitions">
-            <value>/WEB-INF/tiles-config.xml</value>
-        </property>
+          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
+          p:preparerFactoryClass="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory"
+          p:definitions="/WEB-INF/tiles-config.xml">
     </bean>
 
     <bean id="tilesViewResolver"
-          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
-        <property name="requestContextAttribute" value="rc"/>
-    </bean>
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView"
+          p:requestContextAttribute="rc"/>
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
