@@ -5,7 +5,7 @@
     <c:choose>
         <c:when test="${fn:length(resultList) > 0}">
             <c:forEach items="${resultList}" var="t">
-                <li>${t.ticketId} : ${t.createdAt} : ${t.subject}</li>
+                <li id="tid${t.ticketId}">#${t.ticketId} : ${t.subject} <span class="entryMeta">${t.createdAt}</span></li>
             </c:forEach>
         </c:when>
         <c:otherwise>
@@ -13,7 +13,9 @@
         </c:otherwise>
     </c:choose>
 
-    <c:if test="${moreResultCount != null}">
-        <li>więcej o ${moreResultCount}</li>
-    </c:if>
 </ul>
+<c:if test="${moreResultCount != null}">
+<div>
+    więcej o ${moreResultCount}
+</div>
+</c:if>

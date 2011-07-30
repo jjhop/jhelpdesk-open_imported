@@ -42,33 +42,32 @@
                 <div class="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <a href="<c:url value="/help/base/articles/${article.id}/comments/new.html"/>"
-                               class="lightview btnTicketAction btnTicketResolve rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj komentarz</a>
-                        <br/>
-                        <br/>
-                        <c:choose>
-                        <c:when test="${fn:length(article.comments) > 0}">
-                            <table cellspacing="0" class="standardtable">
+                            <table cellspacing="0" class="standardtable marginBot10p">
                                 <tr>
                                     <td class="lastcol">
-                                        <dl class="kbComments">
-                                            <c:forEach items="${article.comments}" var="comment">
-                                                <dt id="c${comment.id}">
-                                                    <span class="kbCommentsMeta">Autor: asdsadasdasd; Dodano: 2011.01.30</span>
-                                                    <c:out value="${comment.title}"/>
-                                                </dt>
-                                                <dd><c:out value="${comment.body}"/></dd>
-                                            </c:forEach>
-                                        </dl>
+                                        <c:choose>
+                                        <c:when test="${fn:length(article.comments) > 0}">
+                                            <dl class="kbComments">
+                                                <c:forEach items="${article.comments}" var="comment">
+                                                    <dt id="c${comment.id}">
+                                                        <span class="kbCommentsMeta">Autor: asdsadasdasd; Dodano: 2011.01.30</span>
+                                                        <c:out value="${comment.title}"/>
+                                                    </dt>
+                                                    <dd><c:out value="${comment.body}"/></dd>
+                                                </c:forEach>
+                                            </dl>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>Nic tu jeszcze nie ma...</p>
+                                        </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                             </table>
-                        </c:when>
-                        <c:otherwise>
-                            Nic tu jeszcze nie ma...
-                        </c:otherwise>
-                        </c:choose>
+
+                        <a href="<c:url value="/help/base/articles/${article.id}/comments/new.html"/>"
+                               class="lightview btn"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj komentarz</a>
                         <div class="clearFloat"></div>
                     </div>
                     <div class="contentbottom"></div>
@@ -78,11 +77,6 @@
                 <div class="pagecontentsubheader"><h3>Powiązane zgłoszenia</h3></div>
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
-                    <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
-                               class="lightview btnTicketAction btnTicketResolve rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj powiązane zgłoszenie...</a>
-                    <br/>
-                    <br/>
                     <ul class="kbList">
                         <c:choose>
                             <c:when test="${article.associatedTickets != null && fn:length(article.associatedTickets) > 0}">
@@ -98,6 +92,10 @@
                             </c:otherwise>
                         </c:choose>
                     </ul>
+                    <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
+                               class="lightview btn rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj powiązane zgłoszenie...</a>
+                    <div class="clearFloat"></div>
                 </div>
                 <div class="contentbottom"></div>
             </td>

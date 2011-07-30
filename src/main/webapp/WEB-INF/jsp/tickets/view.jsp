@@ -101,7 +101,7 @@
                         </table>
                     </div>
                     <div class="pagecontentsubheader"><h3>Powiązane artykuły w bazie wiedzy</h3></div>
-                    <div id="panel_articles" class="contentmiddle">
+                    <div id="panel_articles" class="contentmiddle hAuto">
                         <tiles:insertDefinition name="panelAssignedArticles"/>
                     </div>
 
