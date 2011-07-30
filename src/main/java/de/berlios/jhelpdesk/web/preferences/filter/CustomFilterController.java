@@ -84,7 +84,7 @@ public class CustomFilterController {
     }
 
     @RequestMapping(value = "/preferences/filters/{filterId}/delete.html", method = RequestMethod.GET)
-    public String deleteFilter(@PathVariable("filterId") Long filterId,  ModelMap map,
+    public String deleteFilter(@PathVariable("filterId") Long filterId,
                                HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("user");
         TicketFilter filter = ticketFilterDAO.getById(filterId);

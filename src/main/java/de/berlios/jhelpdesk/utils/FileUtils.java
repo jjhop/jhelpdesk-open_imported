@@ -64,8 +64,8 @@ public class FileUtils {
         List<String> pathsToDelete = new ArrayList<String>();
         out: for (String path : paths) {
             if (path.endsWith(ticketstamp)) {
-                pathsToDelete.add(path);        // dodajemy do kolekcji do usuniecią
-                paths.remove(path); // i usuwamy z kolekcji w sesji
+                pathsToDelete.add(path); // dodajemy do kolekcji do usuniecią
+                paths.remove(path);      // i usuwamy z kolekcji w sesji
                 break out;
             }
         }

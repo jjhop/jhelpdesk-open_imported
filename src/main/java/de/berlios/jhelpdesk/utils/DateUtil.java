@@ -29,18 +29,10 @@ public class DateUtil {
     private Calendar cal = Calendar.getInstance();
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    /**
-     * Default constructor. Create object with current time.
-     */
     public DateUtil() {
         target = new Date(System.currentTimeMillis());
     }
 
-    /**
-     * Constructor with a date as string
-     *
-     * @param dateToParse target date (with expected format as yyyy-MM-dd)
-     */
     public DateUtil(String dateToParse) {
         try {
             target = formatter.parse(dateToParse);
@@ -49,20 +41,10 @@ public class DateUtil {
         }
     }
 
-    /**
-     * Constructor with a date as param.
-     *
-     * @param date target date
-     */
     public DateUtil(Date date) {
         target = date;
     }
 
-    /**
-     * Return date of first day for week with a choosed day
-     *
-     * @return - date as string formatted as yyyy-MM-dd
-     */
     public String getWeekStartDate() {
         cal.setTime(target);
         cal.setFirstDayOfWeek(Calendar.MONDAY);
@@ -70,11 +52,6 @@ public class DateUtil {
         return formatter.format(cal.getTime());
     }
 
-    /**
-     * Return date of last day for week with a choosed day
-     *
-     * @return - date as string formatted as yyyy-MM-dd
-     */
     public String getWeekEndDate() {
         cal.setTime(target);
         cal.setFirstDayOfWeek(Calendar.MONDAY);
@@ -83,22 +60,12 @@ public class DateUtil {
         return formatter.format(cal.getTime());
     }
 
-    /**
-     * Return date of first day of month with a choosed day
-     *
-     * @return - date as string formatted as yyyy-MM-dd
-     */
     public String getMonthStartDate() {
         cal.setTime(target);
         cal.set(Calendar.DAY_OF_MONTH, 1);
         return formatter.format(cal.getTime());
     }
 
-    /**
-     * Return date of last day of month with a choosed day
-     *
-     * @return - date as string formatted as yyyy-MM-dd
-     */
     public String getMonthEndDate() {
         cal.setTime(target);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
