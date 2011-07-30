@@ -17,10 +17,11 @@
                            out.print("class=\"connected\"");
                        }
                     %>>
-                    <span>#${t.ticketId}</span>
-                    <span>${t.shortSubject}</span>
-                    <span class="category">${t.ticketCategory.categoryName}</span>
-                    <span class="entryMeta">${t.createdAt}</span>
+                    <span class="entryMeta">
+                        ${t.createdAt}
+                    </span>
+                    <span class="entryCategory">${t.ticketCategory.categoryName}</span>
+                    <span class="entryText">#${t.ticketId} : ${t.shortSubject}...</span>
                 </li>
             </c:forEach>
         </c:when>
@@ -30,5 +31,5 @@
     </c:choose>
 </ul>
 <c:if test="${moreResultCount != null}">
-    <div>więcej o ${moreResultCount}</div>
+    <div class="moreResults">więcej o ${moreResultCount}</div>
 </c:if>

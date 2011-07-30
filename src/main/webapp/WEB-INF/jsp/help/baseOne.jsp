@@ -94,7 +94,7 @@
                     </ul>
                     <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
                                class="lightview btn rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj powiązane zgłoszenie...</a>
+                               title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj powiązane zgłoszenie...</a>
                     <div class="clearFloat"></div>
                 </div>
                 <div class="contentbottom"></div>
