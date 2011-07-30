@@ -2152,7 +2152,7 @@ ul.detailsView ul.nested li {
 }
 .autocomplete {
   position:absolute;
-  width:425px !important;
+  width:441px !important;
   background-color:white;
   border:1px solid #888;
   border-top: 0;
@@ -2169,24 +2169,25 @@ ul.detailsView ul.nested li {
   list-style-type:none;
   display:block;
   margin:0;
-  padding: 2px 5px;
+  padding: 1px 5px;
   cursor:pointer;
   font-size: 11px;
   border-top: 1px solid #888;
 }
-
 .autocomplete ul li .entryCategory {
     display: none;
 }
-
+.autocomplete ul li .entryText {
+    font-size: 12px;
+}
 #selectedTicketInfo .entryText {
     display: block;
     padding: 2px 5px;
+    font-size: 12px;
 }
-
 #selectedTicketInfo .entryCategory {
     display: block;
-    padding: 1px 5px 5px 5px;
+    padding: 1px 5px;
     color: #000;
     background: #EAEAEA;
 }
@@ -2198,7 +2199,7 @@ ul.detailsView ul.nested li {
     background: #e0e0e0;
 }
 .moreResults {
-    padding: 1px 5px;
+    padding: 0 5px;
     font-size: 11px;
     font-weight: bold;
     background:#888;
