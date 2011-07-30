@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
         <tiles:insertDefinition name="javascripts" flush="true"/>
+
         <link rel="stylesheet" type="text/css" href="<c:url value="/themes/blue/css/hd-base.css"/>"/>
     </head>
     <body class="lightPassView">
