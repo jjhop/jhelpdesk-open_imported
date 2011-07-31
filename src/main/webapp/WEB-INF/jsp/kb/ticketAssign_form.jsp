@@ -29,15 +29,20 @@
             </tr>
         </table>
     </div>
-    <div id="initialInfo">
+    <p id="initialInfo">
         tutaj jakas informacja, ze cos trzeba znalezc...<br/>
         obstylowana...
+    </p>
+    <p id="isAssigned" style="display: none;">
+        Wybrane zgłoszenie jest już powiązane
+    </p>
+    <div class="bottomButtons">
+        <form method="post" action="/">
+            <input type="hidden" id="tid" name="tid"/>
+            <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn floatLeft marginTop10p"/>
+            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain floatLeft">anuluj</a>
+        </form>
     </div>
-    <form method="post" action="/">
-        <input type="hidden" id="tid" name="tid"/>
-        <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn floatLeft marginTop10p"/>
-        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain floatLeft">anuluj</a>
-    </form>
 </div>
 
 <script type="text/javascript">
@@ -47,23 +52,28 @@
     });
 
     function getTicket(text, li) {
-        var ticketID = li.id;
-        var ticketText = li.innerHTML;
 
-        $("tid").value = ticketID.substr(3);
+        var ticketID = li.id.substr(3);
+        $("tid").value = ticketID;
+
+        var selected;
+        var ticketCat = li.getElementsByClassName('entryCategory')[0].innerHTML;
+        var ticketText = li.getElementsByClassName('entryFullText')[0].innerHTML;
+        var ticketMeta = li.getElementsByClassName('entryMeta')[0].innerHTML;
+        selected = '<span class="entryID">Zgłoszenie #' + ticketID + '</span>';
+        selected += '<span class="entryCategory">Kategoria<span class="name">' + ticketCat + '</span></span>';
+        selected += '<span class="entryText">' + ticketText + '</span>';
+        selected += '<span class="entryMeta">' + ticketMeta + '</span>';
+
 
         if (li.hasClassName("connected")) {
-            $("btnAssignTicket").writeAttribute('disabled', 'disabled');
-            ticketText += '<span class="entryAssigned">Wybrane zgłoszenie jest już powiązane</span>';
+            $("btnAssignTicket").writeAttribute('disabled', 'disabled').addClassName('btnDisabled');
+            $("isAssigned").show();
         }
-        $("selectedTicketInfo").innerHTML = ticketText;
+        $("selectedTicketInfo").innerHTML = selected;
         $("selectedTicket").show();
         $("initialInfo").hide();
         $("autocomplete").value = "";
 
-        var stringerek = li.getElementsByClassName('entryText')[0].innerHTML + ' : ' +
-                li.getElementsByClassName('entryCategory')[0].innerHTML + ' : ' +
-                li.getElementsByClassName('entryMeta')[0].innerHTML
-        alert(stringerek)
     }
 </script>
