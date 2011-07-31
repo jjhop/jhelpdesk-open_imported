@@ -39,6 +39,20 @@ public class Preferences implements Serializable {
 
     private static final long serialVersionUID = 7120658431650439152L;
 
+    public static Preferences getDefault() {
+        Preferences p = new Preferences();
+        p.setWelcomePage("desktop");
+        p.setAnnouncementsListSize(10);
+        p.setArticlesListSize(10);
+        p.setFiltersListSize(10);
+        p.setNewTicketFormView("form");
+        p.setPreferredLocale(Locale.getDefault());
+        p.setSearchResultLimit(10);
+        p.setTicketsListSize(10);
+        p.setUsersListSize(10);
+        return p;
+    }
+
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_preferences_sequence")
     @Column(name = "id")
@@ -171,5 +185,4 @@ public class Preferences implements Serializable {
     public void setSearchResultLimit(Integer searchResultLimit) {
         this.searchResultLimit = searchResultLimit;
     }
-
 }
