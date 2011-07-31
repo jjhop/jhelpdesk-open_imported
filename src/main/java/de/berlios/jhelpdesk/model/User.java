@@ -533,6 +533,9 @@ public class User implements Serializable {
     @PrePersist
     protected void populateRoleDB() {
         this.roleAsInt = this.userRole.toInt();
+        Preferences p = Preferences.getDefault();
+        p.setUser(this);
+        this.setPreferences(Preferences.getDefault());
     }
 
     @PostLoad
