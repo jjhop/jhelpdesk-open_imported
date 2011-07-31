@@ -17,6 +17,7 @@
     <% if (ticket.getTicketStatus().equals(TicketStatus.NOTIFIED)) { %>
     <div id="ticketAttention" class="contentmiddle contentAttention">
         <p>UWAGA: to zgłoszenie nie jest aktualnie rozwiązywane.</p>
+        <% if (!currentUser.isPlain()) { %>
         <div id="ticketAttentionAssign">
         <% if (currentUser.isTicketKiller()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
@@ -32,6 +33,7 @@
                title=":: :: closeButton: false, width: 500, height: 165">Przypisz do mnie</a>
         <% } %>
         </div>
+        <% } %>
     </div>
     <% } %>
     <div id="desktoppanels">
