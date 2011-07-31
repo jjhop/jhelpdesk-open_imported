@@ -31,7 +31,7 @@
                                     <td class="t2"><form:input id="f_date_start" path="beginDate" readonly="1"/></td>
                                     <td>
                                         <img alt="" src="<c:url value="/themes/blue/i/cal.gif"/>" id="f_trigger_c"
-                                             style="cursor: pointer; border: 0px;" title="Date selector"/>
+                                             style="cursor: pointer; border: 0;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
                                                 inputField: "f_date_start", ifFormat: "%Y-%m-%d", button: "f_trigger_c", align: "BR", singleClick: true
@@ -46,7 +46,7 @@
                                     <td class="t2"><form:input id="f_date_end" path="endDate" readonly="1"/></td>
                                     <td>
                                         <img alt="" src="<c:url value="/themes/blue/i/cal.gif"/>" id="f_trigger_d"
-                                             style="cursor: pointer; border: 0px;" title="Date selector"/>
+                                             style="cursor: pointer; border: 0;" title="Date selector"/>
                                         <script type="text/javascript">
                                             Calendar.setup({
                                                 inputField: "f_date_end", ifFormat: "%Y-%m-%d", button: "f_trigger_d", align: "BR", singleClick: true
@@ -84,7 +84,7 @@
                                             <c:forEach items="${filter.ticketCategories}" var="ftc">
                                                 <c:if test="${tc eq ftc}">selected="selected"</c:if>
                                             </c:forEach>
-                                    70>${tc.categoryName}</option>
+                                    >${tc.categoryName}</option>
                                 </c:forEach>
                             </select>
                             <input id="_ticketCategories" type="hidden" name="_ticketCategories" value="1"/>

@@ -5,7 +5,6 @@
 
 <div class="pagecontentsubheader"><h3>Artykuły w kategorii: <strong>${category.categoryName}</strong></h3></div>
 
-
 <c:if test="${fn:length(articles) > 0}">
     <c:forEach var="article" items="${articles}" varStatus="idx">
         <div class="kbSearchItem">
