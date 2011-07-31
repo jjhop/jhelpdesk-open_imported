@@ -17,7 +17,8 @@
                            out.print("class=\"connected\"");
                        }
                     %>>
-                    <span class="entryText">${t.shortSubject}...</span>
+                    <span class="entryText">${t.shortSubject}</span>
+                    <span class="entryFullText">${t.subject}</span>
                     <span class="entryCategory">${t.ticketCategory.categoryName}</span>
                     <span class="entryMeta">Zgłoszony <strong><fmt:formatDate value="${t.createdAt}" pattern="yyyy-MM-dd HH:mm" /></strong> przez <strong>${t.notifier}</strong></span>
                 </li>
