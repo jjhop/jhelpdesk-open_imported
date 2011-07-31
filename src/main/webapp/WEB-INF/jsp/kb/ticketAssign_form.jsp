@@ -20,7 +20,7 @@
             </td>
         </tr>
     </table>
-    <div id="selectedTicket">
+    <div id="selectedTicket" style="display: none">
         <table id="" class="standardtable marginTop10p" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="lastcol">
@@ -28,17 +28,16 @@
                 </td>
             </tr>
         </table>
-
-        <form method="post" action="/">
-            <input type="hidden" id="tid" name="tid"/>
-            <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn floatLeft marginTop10p" />
-            <a class="btnPlain floatLeft" href="#">anuluj</a>
-        </form>
-
     </div>
-    <script type="text/javascript">
-        $('selectedTicket').hide();
-    </script>
+    <div id="initialInfo">
+        tutaj jakas informacja, ze cos trzeba znalezc...<br/>
+        obstylowana...
+    </div>
+    <form method="post" action="/">
+        <input type="hidden" id="tid" name="tid"/>
+        <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn floatLeft marginTop10p"/>
+        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain floatLeft">anuluj</a>
+    </form>
 </div>
 
 <script type="text/javascript">
@@ -53,15 +52,18 @@
 
         $("tid").value = ticketID.substr(3);
 
-        if(li.hasClassName("connected"))
-        {
+        if (li.hasClassName("connected")) {
             $("btnAssignTicket").writeAttribute('disabled', 'disabled');
             ticketText += '<span class="entryAssigned">Wybrane zgłoszenie jest już powiązane</span>';
         }
         $("selectedTicketInfo").innerHTML = ticketText;
         $("selectedTicket").show();
+        $("initialInfo").hide();
         $("autocomplete").value = "";
 
+        var stringerek = li.getElementsByClassName('entryText')[0].innerHTML + ' : ' +
+                li.getElementsByClassName('entryCategory')[0].innerHTML + ' : ' +
+                li.getElementsByClassName('entryMeta')[0].innerHTML
+        alert(stringerek)
     }
 </script>
-
