@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <html>
     <head>
@@ -17,9 +18,12 @@
             <div id="pageheader"><a href="<c:url value="/"/>"><img src="<c:url value="/themes/blue/i/logo_jhd_beta.png"/>" alt="jHelpDesk (beta)" /></a>
                 <ul id="loggedUser">
                     <li>
-                        <img src="http://www.gravatar.com/avatar/2cead66852e686d84eb4b1e7d4a9d416?d=mm&s=45" alt="${user.fullName}" />
+                        <img src="${user.avatarURL}" alt="${user.fullName}" />
                         <span class="userInfo userName">${user.fullName}</span>
-                        <span class="userInfo userRole">Administrator</span>
+                        <span class="userInfo userRole"><%
+                            User u = (User) session.getAttribute("user");
+                            out.print(u.getUserRole().getRoleName(u.getPreferredLocale()));
+                        %></span>
                         <span class="userInfo">${user.email}</span>
                     </li>
                 </ul>
