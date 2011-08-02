@@ -16,97 +16,6 @@
 --- W tym pliku znajdują się wszystkie definicje obiektów bazy danych
 --- potrzebnych do uruchomienia systemu jHelpdesk.
 
---- PROCEDURY
-
-CREATE OR REPLACE FUNCTION category_move_down(bigint)
-  RETURNS integer AS
-$BODY$
-DECLARE
-	SECTION_ID ALIAS FOR $1;
-	CURR_REC RECORD;
-	DOWN_REC RECORD;
-BEGIN
-	LOCK TABLE article_category IN EXCLUSIVE MODE;
-
-	SELECT INTO CURR_REC category_position,article_category_id
-		FROM article_category
-		WHERE article_category_id = SECTION_ID
-		LIMIT 1;
-
-	SELECT INTO DOWN_REC  category_position,article_category_id
-		FROM article_category
-		WHERE category_position < CURR_REC.category_position
-		ORDER BY category_position DESC
-		LIMIT 1;
-
-	IF DOWN_REC.article_category_id IS NOT NULL THEN
-		UPDATE article_category
-			SET category_position = DOWN_REC.category_position
-			WHERE article_category_id = CURR_REC.article_category_id;
-		UPDATE article_category
-			SET category_position = CURR_REC.category_position
-			WHERE article_category_id = DOWN_REC.article_category_id;
-	END IF;
-
-	RETURN 1;
-END;
-$BODY$
-  LANGUAGE 'plpgsql'
-;
-
-CREATE OR REPLACE FUNCTION category_move_up(bigint)
-  RETURNS integer AS
-$BODY$
-DECLARE
-	SECTION_ID ALIAS FOR $1;
-	CURR_REC RECORD;
-	UP_REC RECORD;
-BEGIN
-	LOCK TABLE article_category IN EXCLUSIVE MODE;
-
-	SELECT INTO CURR_REC category_position,article_category_id
-		FROM article_category
-		WHERE article_category_id = SECTION_ID
-		LIMIT 1;
-
-	SELECT INTO UP_REC category_position,article_category_id
-		FROM article_category
-		WHERE category_position > CURR_REC.category_position
-		ORDER BY category_position ASC
-		LIMIT 1;
-
-	IF UP_REC.article_category_id IS NOT NULL THEN
-		UPDATE article_category
-			SET category_position = UP_REC.category_position
-			WHERE article_category_id = CURR_REC.article_category_id;
-		UPDATE article_category
-			SET category_position = CURR_REC.category_position
-			WHERE article_category_id = UP_REC.article_category_id;
-	END IF;
-
-	RETURN 1;
-END;
-$BODY$
-  LANGUAGE 'plpgsql'
-;
-
---- PROCEDURY DO TRIGGER�W
-
-CREATE OR REPLACE FUNCTION set_category_position()
-  RETURNS trigger AS
-$BODY$
-  DECLARE
-    POSITION_FOR_NEW_CATEGORY integer;
-  BEGIN
-    LOCK TABLE article_category IN EXCLUSIVE MODE;
-    SELECT INTO POSITION_FOR_NEW_CATEGORY COALESCE((SELECT max(category_position) FROM article_category)+1,0);
-    NEW.category_position := POSITION_FOR_NEW_CATEGORY;
-    RETURN NEW;
-  END;
-$BODY$
-  LANGUAGE 'plpgsql'
-;
-
 --- TABELE i SEKWENCJE
 
 --- ### użytkownicy
@@ -139,18 +48,19 @@ CREATE SEQUENCE ticket_category_id_seq
 
 CREATE TABLE ticket_category (
   id integer NOT NULL DEFAULT nextval(('public.ticket_category_id_seq'::text)::regclass),
-  parent_category integer,
   category_name character varying(64) NOT NULL,
   category_desc character varying(255),
   is_active boolean NOT NULL DEFAULT true,
-  t_left bigint,
-  t_right bigint,
-  t_depth integer,
-  CONSTRAINT ticket_category_pkey PRIMARY KEY (id),
-  CONSTRAINT ticket_category_parent_category_fkey FOREIGN KEY (parent_category)
-      REFERENCES ticket_category (id) MATCH SIMPLE
-      ON UPDATE RESTRICT ON DELETE RESTRICT
+  ord integer NOT NULL DEFAULT 1,
+  tickets_count integer NOT NULL DEFAULT 0,
+  CONSTRAINT ticket_category_pkey PRIMARY KEY (id)
 ) WITH (OIDS=FALSE)
+;
+
+CREATE INDEX ticket_category_is_active_idx
+  ON ticket_category
+  USING btree
+  (is_active)
 ;
 
 INSERT INTO ticket_category (id, category_name, category_desc, t_left, t_right, t_depth) 
@@ -165,28 +75,20 @@ CREATE SEQUENCE ticket_id_seq
 
 CREATE TABLE ticket (
   id integer NOT NULL DEFAULT nextval(('public.ticket_id_seq'::text)::regclass),
-  add_phone character varying(20),
-  ticket_category integer NOT NULL DEFAULT 0, 
-  ticket_priority smallint NOT NULL,
-  ticket_status integer NOT NULL,
+  ticket_category integer NOT NULL,
+  priority smallint NOT NULL,
+  status integer NOT NULL,
   saviour integer,
-  notifyier integer,
-  inputer integer,
+  notifier integer NOT NULL,
+  inputer integer NOT NULL,
   create_date timestamp with time zone,
-  description text,
-  step_by_step text,
   subject character varying(255) NOT NULL,
-  department character varying(30),
+  description character varying(8192) NOT NULL,
+  step_by_step character varying(16384),
   CONSTRAINT ticket_pkey PRIMARY KEY (id),
   CONSTRAINT ticket_category_id_fk FOREIGN KEY (ticket_category)
     REFERENCES ticket_category (id) MATCH SIMPLE
     ON UPDATE NO ACTION ON DELETE NO ACTION
-) WITH (OIDS=FALSE);
-
-CREATE TABLE ticket_desc (
-  id bigint NOT NULL,
-  description text NOT NULL,
-  CONSTRAINT ticket_desc_pkey PRIMARY KEY (ticket_id)
 ) WITH (OIDS=FALSE);
 
 --- ### zdarzenia zgłoszeń
@@ -197,14 +99,30 @@ CREATE SEQUENCE ticket_event_id_seq
 ;
 
 CREATE TABLE ticket_event (
-  event_id integer NOT NULL DEFAULT nextval(('public.ticket_event_id_seq'::text)::regclass),
+  id integer NOT NULL DEFAULT nextval(('public.ticket_event_id_seq'::text)::regclass),
   ticket_id integer NOT NULL,
-  event_subject character varying(255) NOT NULL,
   event_date timestamp with time zone NOT NULL,
   user_id integer NOT NULL,
   event_type smallint NOT NULL DEFAULT 0,
-  CONSTRAINT ticket_event_pkey PRIMARY KEY (event_id)
+  event_data character varying(255),
+  CONSTRAINT ticket_event_pkey PRIMARY KEY (id),
+  CONSTRAINT ticket_event_ticket_id_fk FOREIGN KEY (ticket_id)
+      REFERENCES ticket (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT ticket_event_user_id_fk FOREIGN KEY (user_id)
+      REFERENCES users (user_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 ) WITH (OIDS=FALSE)
+;
+CREATE INDEX fki_ticket_event_ticket_id_fk
+  ON ticket_event
+  USING btree
+  (ticket_id)
+;
+CREATE INDEX fki_ticket_event_user_id_fk
+  ON ticket_event
+  USING btree
+  (user_id)
 ;
 
 --- ### komentarze do zgłoszeń
@@ -214,14 +132,15 @@ CREATE SEQUENCE ticket_comment_id_seq
 ;
 
 CREATE TABLE ticket_comment (
-  comment_id integer NOT NULL DEFAULT nextval(('public.ticket_comment_id_seq'::text)::regclass),
-  comment_author integer NOT NULL,
+  id integer NOT NULL DEFAULT nextval(('public.ticket_comment_id_seq'::text)::regclass),
+  user_id integer NOT NULL,
   comment_date timestamp with time zone NOT NULL,
-  comment_text text,
+  comment_text character varying(4096) NOT NULL,
+  comment_type integer NOT NULL DEFAULT 0,
   not_for_plain_user boolean NOT NULL DEFAULT false,
   ticket_id integer NOT NULL,
-  CONSTRAINT ticket_comment_pkey PRIMARY KEY (comment_id),
-  CONSTRAINT ticket_comment_comment_author_fkey FOREIGN KEY (comment_author)
+  CONSTRAINT ticket_comment_pkey PRIMARY KEY (id),
+  CONSTRAINT ticket_comment_comment_author_fkey FOREIGN KEY (user_id)
       REFERENCES users (user_id) MATCH SIMPLE
       ON UPDATE RESTRICT ON DELETE RESTRICT
 ) WITH (OIDS=FALSE)
@@ -282,7 +201,7 @@ CREATE TABLE article_comment (
 ) WITH (OIDS=FALSE)
 ;
 
---- ### wiazanie zgloszen z artykul�ami w bazie wiedzy
+--- ### wiazanie zgloszen z artykulami w bazie wiedzy
 
 CREATE TABLE article_ticket
 (
@@ -309,26 +228,23 @@ CREATE TABLE announcement (
   id integer NOT NULL DEFAULT nextval(('public.announcement_id_seq'::text)::regclass),
   create_date date NOT NULL,
   title character varying(255) NOT NULL,
-  lead text NOT NULL,
+  lead character varying(4096) NOT NULL,
   CONSTRAINT announcement_pkey PRIMARY KEY (id)
 ) WITH (OIDS=FALSE)
 ;
 
+CREATE INDEX announcement_create_date_idx
+  ON announcement
+  USING btree
+  (created_at)
+;
+
 CREATE TABLE announcement_body (
   id integer NOT NULL,
-  body text NOT NULL,
-  CONSTRAINT announcement_body_announcement_id_fkey FOREIGN KEY (announcement_id)
-      REFERENCES announcement (announcement_id) MATCH SIMPLE
+  body character varying(16384) NOT NULL,
+  CONSTRAINT announcement_body_announcement_id_fkey FOREIGN KEY (id)
+      REFERENCES announcement (id) MATCH SIMPLE
       ON UPDATE RESTRICT ON DELETE RESTRICT,
   CONSTRAINT announcement_body_announcement_id_key UNIQUE (id)
 ) WITH (OIDS=FALSE)
-;
-
---- TRIGGERY DO TABEL
-
-CREATE TRIGGER set_category_position_trg
-  BEFORE INSERT
-  ON article_category
-  FOR EACH ROW
-  EXECUTE PROCEDURE set_category_position()
 ;

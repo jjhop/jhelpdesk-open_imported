@@ -22,6 +22,9 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -54,6 +57,8 @@ import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
  */
 @Controller
 public class HelpViewController {
+
+    private final static Logger log = LoggerFactory.getLogger(HelpViewController.class);
 
     private final static int NUM_OF_LAST_ADDED_ARTICLES = 10;
 
@@ -221,10 +226,16 @@ public class HelpViewController {
 
     @RequestMapping(value = "/help/base/articles/{aId}/tickets/new.html", method = RequestMethod.POST)
     public String processArticleTicketForm(@PathVariable("aId") Long articleId,
-                                           @RequestParam(value = "tId") Long ticketId) throws Exception {
+                                           @RequestParam(value = "tId") Long ticketId,
+                                           ModelMap map) throws Exception {
 
-        articleDAO.assignWithTicket(articleId, ticketId);
-        // todo: co jeszcze?
+        Article article = articleDAO.getById(articleId);
+        if (article != null && !article.isAssociatedWithTicket(ticketId)) {
+            articleDAO.assignWithTicket(articleId, ticketId);
+            map.addAttribute("message", "Artykuł został powiązany.");
+        } else {
+            map.addAttribute("message", "Nie można powiązać zgłoszenia ze wskazanych artykułem.");
+        }
         return HELP_KB_TICKET_ASSIGN_RESULT;
     }
 
@@ -237,12 +248,15 @@ public class HelpViewController {
             try {
                 long ticketId = Long.parseLong(query.substring(1));
                 List<Ticket> result = new ArrayList<Ticket>();
-                result.add(ticketDAO.getTicketById(ticketId));
+                Ticket ticket = ticketDAO.getTicketById(ticketId);
+                if (ticket != null) {
+                    result.add(ticket);
+                }
                 map.addAttribute("resultList", result);
                 return HELP_KB_TICKET_SEARCH;
             } catch (Exception ex) {
-                // todo: widok z informację, ze nic nie ma...
-                return "jakisInnyWidok";
+                log.error(ex.getMessage(), ex);
+                return HELP_KB_TICKET_SEARCH;
             }
         }
 
@@ -253,9 +267,6 @@ public class HelpViewController {
             if (count > result.size()) {
                 map.addAttribute("moreResultCount", count - result.size());
             }
-        } else {
-            // todo: widok z informację, ze nic nie ma...
-            // return ....
         }
         return HELP_KB_TICKET_SEARCH;
     }
