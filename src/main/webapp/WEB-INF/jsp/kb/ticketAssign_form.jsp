@@ -38,7 +38,7 @@
     </p>
     <div class="bottomButtons">
         <form method="post" action="<c:url value="/help/base/articles/${articleId}/tickets/new.html"/>">
-            <input type="hidden" id="tid" name="tId"/>
+            <input type="hidden" id="tId" name="tId"/>
             <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn floatLeft marginTop10p"/>
             <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain floatLeft">anuluj</a>
         </form>
