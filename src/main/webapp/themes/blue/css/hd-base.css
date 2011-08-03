@@ -1528,7 +1528,7 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop .entryMeta, #panel_comments .entryMeta, #selectedTicketInfo .entryMeta {
+#desktop .entryMeta, #panel_comments .entryMeta, #selectedItemInfo .entryMeta {
     padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
@@ -1537,7 +1537,7 @@ td.artnumber {
     display: block;
     padding: 2px 0 2px 5px;
 }
-#desktop .standardtable td, #panel_comments .standardtable td, #selectedTicket .standardtable td  {
+#desktop .standardtable td, #panel_comments .standardtable td, #selectedItem .standardtable td  {
      padding: 0;
 }
 
@@ -1864,7 +1864,7 @@ hr {
 }
 
 .panelPager {
-    margin: 0 0 10px 0;
+    margin: 10px 0 5px 0;
     padding: 0;
     list-style: none;
 }
@@ -2187,22 +2187,22 @@ ul.detailsView ul.nested li {
 .autocomplete ul li .entryText {
     font-size: 12px;
 }
-#selectedTicketInfo .entryText {
+#selectedItemInfo .entryText {
     display: block;
     padding: 5px;
     font-size: 12px;
 }
-#selectedTicketInfo .entryCategory {
+#selectedItemInfo .entryCategory {
     display: block;
     padding: 1px 5px;
     color: #666;
     background: #EAEAEA;
 }
-#selectedTicketInfo .entryCategory .name {
+#selectedItemInfo .entryCategory .name {
     color: #000;
     display: block;
 }
-#selectedTicketInfo .entryID {
+#selectedItemInfo .entryID {
     display: block;
     padding: 0 5px 4px 5px;
     font-weight: bold;
@@ -2210,7 +2210,7 @@ ul.detailsView ul.nested li {
     background: #677498;
     color: #fff;
 }
-#selectedTicketInfo .entryAssigned {
+#selectedItemInfo .entryAssigned {
     display: block;
     padding: 5px;
     margin: 0;
