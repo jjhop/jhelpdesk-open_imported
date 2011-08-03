@@ -16,6 +16,27 @@
 --- W tym pliku znajdują się wszystkie definicje obiektów bazy danych
 --- potrzebnych do uruchomienia systemu jHelpdesk.
 
+-- DOMENY BAZY
+
+CREATE DOMAIN ticket_status AS smallint
+CHECK(VALUE BETWEEN 1 AND 5);
+  
+CREATE DOMAIN comment_type AS SMALLINT
+CHECK(VALUE BETWEEN 0 AND 6);
+
+CREATE DOMAIN event_type AS SMALLINT
+CHECK(  VALUE BETWEEN 1 AND  12);
+  
+CREATE DOMAIN user_role AS SMALLINT
+DEFAULT 1
+CHECK(VALUE IN(1, 10, 100));
+
+CREATE DOMAIN ticket_priority AS SMALLINT
+CHECK(VALUE BETWEEN 1 AND 5);
+
+CREATE DOMAIN ticket_status AS SMALLINT
+CHECK(VALUE BETWEEN 1 AND 5)
+
 --- TABELE i SEKWENCJE
 
 --- ### użytkownicy
