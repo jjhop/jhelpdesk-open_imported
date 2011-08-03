@@ -95,7 +95,7 @@ public class TicketDetailsController {
 
     @RequestMapping(value = "/tickets/{ticketId}/articles/new.html", method = RequestMethod.POST)
     public String processTicketArticleForm(@PathVariable("ticketId") Long ticketId,
-                                           @RequestParam(value = "aId") Long articleId) throws Exception {
+                                           @RequestParam("aId") Long articleId) throws Exception {
         articleDAO.assignWithTicket(articleId, ticketId);
 
         return "/ticket/articles/assign/result";
@@ -110,7 +110,10 @@ public class TicketDetailsController {
             try {
                 long articleId = Long.parseLong(query.substring(1));
                 List<Article> result = new ArrayList<Article>();
-                result.add(articleDAO.getById(articleId));
+                Article article = articleDAO.getById(articleId);
+                if (article != null) {
+                    result.add(article);
+                }
                 map.addAttribute("resultList", result);
                 return "/tickets/articles/searchArticles";
             } catch (Exception ex) {
