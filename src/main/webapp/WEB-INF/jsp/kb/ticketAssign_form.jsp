@@ -20,17 +20,17 @@
             </td>
         </tr>
     </table>
-    <div id="selectedTicket" style="display: none">
+    <div id="selectedItem" style="display: none">
         <table id="" class="standardtable marginTop10p" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="lastcol">
-                    <div id="selectedTicketInfo"></div>
+                    <div id="selectedItemInfo"></div>
                 </td>
             </tr>
         </table>
     </div>
     <p id="initialInfo">
-        Skorzystaj z powyższego formularza, aby wyszukać zgłoszenie, które chcesz powiązać
+        Użyj powyższego formularza, aby wyszukać zgłoszenie, które chcesz powiązać
         z bieżacym artykułem. Jeśli zaczniesz od znaku <strong>#</strong> wszystko co wpiszesz za nim
         potraktujemy jako identyfikator zgłoszenia i spróbujemy je odnaleźć (powinnien to być ciąg cyfr).
         <br/>
@@ -76,8 +76,8 @@
             $("btnAssignTicket").writeAttribute('disabled', 'disabled').addClassName('btnDisabled');
             $("isAssigned").show();
         }
-        $("selectedTicketInfo").innerHTML = selected;
-        $("selectedTicket").show();
+        $("selectedItemInfo").innerHTML = selected;
+        $("selectedItem").show();
         $("initialInfo").hide();
         $("autocomplete").value = "";
     }
