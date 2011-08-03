@@ -2226,6 +2226,22 @@ ul.detailsView ul.nested li {
     background: #F3F3F3;
     color: #333;
 }
+
+#initialInfo p {
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+#initialInfo ul {
+    margin: 0 10px 5px 15px;
+    padding: 0;
+}
+
+#initialInfo ul li {
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
 #isAssigned {
     background: url("../i/bg_status.png") 2px 1px no-repeat;
     color: #CC3366;

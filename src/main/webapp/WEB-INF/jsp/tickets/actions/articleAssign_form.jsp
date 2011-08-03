@@ -34,17 +34,26 @@
             </tr>
         </table>
     </div>
-    <p id="initialInfo">
+    <div id="initialInfo">
+        <p>
         Skorzystaj z powyższego formularza, aby wyszukać zgłoszenie, które chcesz powiązać
-        z bieżacym artykułem. Jeśli zaczniesz od znaku <strong>#</strong> wszystko co wpiszesz za nim
+        z bieżacym artykułem. Jeśli:
+        </p>
+        <ul>
+            <li>
+                zaczniesz od znaku <strong>#</strong> wszystko co wpiszesz za nim
         potraktujemy jako identyfikator zgłoszenia i spróbujemy je odnaleźć (powinnien to być ciąg cyfr).
-        <br/>
-        Jeśli wpiszesz cokolwiek, co nie zaczyna się od znaku <strong>#</strong>, będziemy tego szukać w polu
+            </li>
+            <li>
+                wpiszesz cokolwiek, co nie zaczyna się od znaku <strong>#</strong>, będziemy tego szukać w polu
         <strong>Przyczyna zgłoszenia</strong>.
-        <br/>
+            </li>
+        </ul>
+        <p>
         W obu wypadkach zaczynamy szukać dopiero, gdy wpiszesz drugi znak. Informacja o wynikach
         będzie uaktualniana wraz z każdym wpisanym znakiem.
-    </p>
+        </p>
+    </div>
     <p id="isAssigned" style="display: none;">
         Wybrany artykuł jest już powiązane
     </p>
