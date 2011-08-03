@@ -118,7 +118,7 @@
                                     <a href="#comments" id="tab_comments" class="tab"><span>Lista komentarzy</span></a>
                                     <a href="#events" id="tab_events" class="tab"><span>Historia zgłoszenia</span></a>
                                 </div>
-                                
+
                                 <div class="Pages">
                                     <div id="panel_comments" class="Page">
                                         <tiles:insertDefinition name="panelComments"/>

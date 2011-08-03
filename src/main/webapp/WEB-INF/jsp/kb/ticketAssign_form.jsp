@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3>Komentarz do zlecenia</h3>
+    <h3>Powiąż zgłoszenie z artykułem</h3>
 </div>
 <div class="contentmiddle h335">
     <table class="standardtable" cellpadding="0" cellspacing="0">
@@ -30,8 +30,15 @@
         </table>
     </div>
     <p id="initialInfo">
-        tutaj jakas informacja, ze cos trzeba znalezc...<br/>
-        obstylowana...
+        Skorzystaj z powyższego formularza, aby wyszukać zgłoszenie, które chcesz powiązać
+        z bieżacym artykułem. Jeśli zaczniesz od znaku <strong>#</strong> wszystko co wpiszesz za nim
+        potraktujemy jako identyfikator zgłoszenia i spróbujemy je odnaleźć (powinnien to być ciąg cyfr).
+        <br/>
+        Jeśli wpiszesz cokolwiek, co nie zaczyna się od znaku <strong>#</strong>, będziemy tego szukać w polu
+        <strong>Przyczyna zgłoszenia</strong>.
+        <br/>
+        W obu wypadkach zaczynamy szukać dopiero, gdy wpiszesz drugi znak. Informacja o wynikach
+        będzie uaktualniana wraz z każdym wpisanym znakiem.
     </p>
     <p id="isAssigned" style="display: none;">
         Wybrane zgłoszenie jest już powiązane
@@ -54,7 +61,7 @@
     function getTicket(text, li) {
 
         var ticketID = li.id.substr(3);
-        $("tid").value = ticketID;
+        $("tId").value = ticketID;
 
         var selected;
         var ticketCat = li.getElementsByClassName('entryCategory')[0].innerHTML;
@@ -65,7 +72,6 @@
         selected += '<span class="entryText">' + ticketText + '</span>';
         selected += '<span class="entryMeta">' + ticketMeta + '</span>';
 
-
         if (li.hasClassName("connected")) {
             $("btnAssignTicket").writeAttribute('disabled', 'disabled').addClassName('btnDisabled');
             $("isAssigned").show();
@@ -74,6 +80,5 @@
         $("selectedTicket").show();
         $("initialInfo").hide();
         $("autocomplete").value = "";
-
     }
 </script>
