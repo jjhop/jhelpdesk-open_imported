@@ -278,24 +278,24 @@
         <put-attribute name="content" value="/WEB-INF/jsp/help/about.jsp"/>
     </definition>
 
-    <definition name="help/base" extends="baseLayout">
+    <definition name="help/kb/index" extends="baseLayout">
         <put-attribute name="title" value="Baza wiedzy"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/help/base.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/index.jsp"/>
     </definition>
 
     <definition name="help/kb/category" extends="baseLayout">
         <put-attribute name="title" value="Baza wiedzy :: Artykuły w kategorii"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/help/baseCategory.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/baseCategory.jsp"/>
     </definition>
 
     <definition name="help/kb/searchResult" extends="baseLayout">
         <put-attribute name="title" value="Baza wiedzy - wyniki wyszukiwania"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/help/searchResult.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/searchResult.jsp"/>
     </definition>
 
-    <definition name="help/base/one" extends="baseLayout">
+    <definition name="help/kb/one" extends="baseLayout">
         <put-attribute name="title" value="Baza wiedzy"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/help/baseOne.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/kb/baseOne.jsp"/>
     </definition>
 
     <definition name="/help/base/articles/searchTickets"
@@ -313,10 +313,5 @@
     </definition>
     <definition name="/help/kb/ticketAssign/result" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/kb/ticketAssign_result.jsp"/>
-    </definition>
-
-    <definition name="help/index" extends="baseLayout">
-        <put-attribute name="title" value="jHelpDesk - pomoc"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/help/index.jsp"/>
     </definition>
 </tiles-definitions>

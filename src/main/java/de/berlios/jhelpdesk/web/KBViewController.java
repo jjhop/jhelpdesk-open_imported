@@ -56,17 +56,16 @@ import static de.berlios.jhelpdesk.web.commons.PagingTools.*;
  * @author jjhop
  */
 @Controller
-public class HelpViewController {
+public class KBViewController {
 
-    private final static Logger log = LoggerFactory.getLogger(HelpViewController.class);
+    private final static Logger log = LoggerFactory.getLogger(KBViewController.class);
 
     private final static int NUM_OF_LAST_ADDED_ARTICLES = 10;
 
-    private final static String HELP_INDEX = "help/index";
     private final static String HELP_ABOUT = "help/about";
-    private final static String HELP_KB_INDEX = "help/base"; // zamienić na help/kb/index
+    private final static String HELP_KB_INDEX = "help/kb/index";
     private final static String HELP_KB_CATEGORY = "help/kb/category";
-    private final static String HELP_KB_ARTICLE = "help/base/one"; // zamienić na help/kb/one
+    private final static String HELP_KB_ARTICLE = "help/kb/one"; // zamienić na help/kb/one
     private final static String HELP_KB_SEARCH_RESULT = "help/kb/searchResult";
 
     private final static String HELP_KB_COMMENT_FORM = "/help/kb/comment/form";
@@ -93,16 +92,6 @@ public class HelpViewController {
 
     @Autowired
     private MessageSource ms;
-
-    /**
-     * Wyświetla pomoc do programu.
-     * 
-     * @return identyfikator widoku pomocy
-     */
-    @RequestMapping("/help/index.html")
-    public String indexView() {
-        return HELP_INDEX;
-    }
 
     /**
      * Wyświetla stronę z informacjami o programie.
@@ -232,7 +221,7 @@ public class HelpViewController {
         Article article = articleDAO.getById(articleId);
         if (article != null && !article.isAssociatedWithTicket(ticketId)) {
             articleDAO.assignWithTicket(articleId, ticketId);
-            map.addAttribute("message", "Artykuł został powiązany.");
+            map.addAttribute("success", Boolean.TRUE);
         } else {
             map.addAttribute("message", "Nie można powiązać zgłoszenia ze wskazanych artykułem.");
         }

@@ -18,53 +18,42 @@ import de.berlios.jhelpdesk.model.ArticleCategory;
  *
  * @author jjhop
  */
-public class HelpViewControllerTest {
+public class KBViewControllerTest {
 
     /**
-     * Test of indexView method, of class HelpViewController.
-     */
-    @Test
-    public void testIndexView() {
-        HelpViewController instance = new HelpViewController();
-        String expResult = "help/index";
-        String result = instance.indexView();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of aboutView method, of class HelpViewController.
+     * Test of aboutView method, of class KBViewController.
      */
     @Test
     public void testAboutView() {
-        HelpViewController instance = new HelpViewController();
+        KBViewController instance = new KBViewController();
         String expResult = "help/about";
         String result = instance.aboutView();
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of knowledgeBaseView method, of class HelpViewController.
+     * Test of knowledgeBaseView method, of class KBViewController.
      */
     @Test
     public void testKnowledgeBaseView() throws Exception {
         ModelMap map = new ModelMap();
-        HelpViewController controllerInstance = new HelpViewController();
+        KBViewController controllerInstance = new KBViewController();
         ArticleCategoryDAO articleCategoryDAOMock = EasyMock.createMock(ArticleCategoryDAO.class);
         EasyMock.expect(articleCategoryDAOMock.getAllCategories())
                 .andReturn(Collections.<ArticleCategory>emptyList());
         EasyMock.replay(articleCategoryDAOMock);
 
         ArticleDAO articleDAOMock = EasyMock.createMock(ArticleDAO.class);
-        // 10 to => HelpViewController.NUM_OF_LAST_ADDED_ARTICLES (private)
+        // 10 to => KBViewController.NUM_OF_LAST_ADDED_ARTICLES (private)
         EasyMock.expect(articleDAOMock.getLastArticles(10))
                 .andReturn(Collections.<Article>emptyList());
         EasyMock.replay(articleDAOMock);
 
-        Field f = HelpViewController.class.getDeclaredField("articleCategoryDAO");
+        Field f = KBViewController.class.getDeclaredField("articleCategoryDAO");
         f.setAccessible(true);
         f.set(controllerInstance, articleCategoryDAOMock);
 
-        Field f2 = HelpViewController.class.getDeclaredField("articleDAO");
+        Field f2 = KBViewController.class.getDeclaredField("articleDAO");
         f2.setAccessible(true);
         f2.set(controllerInstance, articleDAOMock);
 
@@ -76,13 +65,13 @@ public class HelpViewControllerTest {
     }
 
     /**
-     * Test of knowledgeBaseItemView method, of class HelpViewController.
+     * Test of knowledgeBaseItemView method, of class KBViewController.
      */
     @Test
     public void testKnowledgeBaseItemView() throws Exception {
         Long id = 1L;
         ModelMap map = new ModelMap();
-        HelpViewController controllerInstance = new HelpViewController();
+        KBViewController controllerInstance = new KBViewController();
 
         Article toReturn = new Article();
         toReturn.setId(id);
@@ -92,7 +81,7 @@ public class HelpViewControllerTest {
         EasyMock.expect(articleDAOMock.getById(id)).andReturn(toReturn);
         EasyMock.replay(articleDAOMock);
 
-        Field f = HelpViewController.class.getDeclaredField("articleDAO");
+        Field f = KBViewController.class.getDeclaredField("articleDAO");
         f.setAccessible(true);
         f.set(controllerInstance, articleDAOMock);
 
