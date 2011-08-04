@@ -1,7 +1,7 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@page import="de.berlios.jhelpdesk.model.TicketEvent"%>
-<%@page import="de.berlios.jhelpdesk.model.User"%>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketEvent"%>
+<%@ page import="de.berlios.jhelpdesk.model.User"%>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:if test="${not empty lastEvents}">
     <table cellspacing="0" class="standardtable">
