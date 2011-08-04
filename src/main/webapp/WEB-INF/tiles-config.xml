@@ -24,10 +24,10 @@
         <put-attribute name="content" value="/WEB-INF/jsp/desktop/main.jsp"/>
     </definition>
 
-    <definition name="/desktop/lastEvents" template="/WEB-INF/jsp/desktop/lastEvents.jsp"/>
-    <definition name="/desktop/lastTickets" template="/WEB-INF/jsp/desktop/lastTickets.jsp"/>
-    <definition name="/desktop/lastArticles" template="/WEB-INF/jsp/desktop/lastArticles.jsp"/>
-    <definition name="/desktop/lastAnnouncements" template="/WEB-INF/jsp/desktop/lastAnnouncements.jsp"/>
+    <definition name="/desktop/lastEvents" template="/WEB-INF/jsp/desktop/panels/lastEvents.jsp"/>
+    <definition name="/desktop/lastTickets" template="/WEB-INF/jsp/desktop/panels/lastTickets.jsp"/>
+    <definition name="/desktop/lastArticles" template="/WEB-INF/jsp/desktop/panels/lastArticles.jsp"/>
+    <definition name="/desktop/lastAnnouncements" template="/WEB-INF/jsp/desktop/panels/lastAnnouncements.jsp"/>
     
     
     <!-- Kreator zgłoszenia -->
