@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:if test="${not empty announcements}">
     <table cellspacing="0" class="standardtable">
@@ -12,7 +12,6 @@
                     <span class="entryText">
                         <c:out value="${announcement.lead}"/>
                     </span>
-
                 </td>
             </tr>
         </c:forEach>
