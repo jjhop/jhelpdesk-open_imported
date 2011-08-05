@@ -20,11 +20,8 @@ import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -33,8 +30,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "user_preferences")
-@SequenceGenerator(name = "user_preferences_sequence",
-                   sequenceName = "user_preferences_id_seq", allocationSize = 1)
 public class Preferences implements Serializable {
 
     private static final long serialVersionUID = 7120658431650439152L;
@@ -54,7 +49,6 @@ public class Preferences implements Serializable {
     }
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_preferences_sequence")
     @Column(name = "id")
     private Long id;
 
@@ -73,7 +67,7 @@ public class Preferences implements Serializable {
     @Column(name = "new_ticket_form_view")
     private String newTicketFormView;
 
-    @Column(name = "tickest_list_size")
+    @Column(name = "tickets_list_size")
     private Integer ticketsListSize;
 
     @Column(name = "announcements_list_size")

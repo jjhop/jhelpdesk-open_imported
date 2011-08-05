@@ -16,7 +16,10 @@
 package de.berlios.jhelpdesk.web.manager.users;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,23 +80,11 @@ public class UserEditController {
      * @see WebDataBinder
      */
     @InitBinder
-    public void initBinder(WebDataBinder binder) {
+    protected void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Role.class, "userRole", roleEditor);
         binder.registerCustomEditor(Long.class, null, 
             new CustomNumberEditor(Long.class, NumberFormat.getNumberInstance(), true));
         binder.registerCustomEditor(Boolean.class, null, new CustomBooleanEditor(true));
-    }
-
-    /**
-     * Dołącza do modelu widoku listę ról dostępnych w systemie.
-     *
-     * @return lista ról dostępnych w systemie
-     *
-     * @see Role
-     */
-    @ModelAttribute("roles")
-    public List<Role> populateRoles() {
-        return Role.getRoles();
     }
 
     /**
@@ -104,20 +95,24 @@ public class UserEditController {
      * @return identyfikator widoku
      */
     @RequestMapping(value = "/manage/users/{userId}/edit.html", method = RequestMethod.GET)
-    protected String prepareForm(@PathVariable("userId") Long userId, ModelMap map) {
+    public String prepareForm(@PathVariable("userId") Long userId, ModelMap map, HttpSession session) {
+        User currentUser = (User)session.getAttribute("user");
         try {
-            map.addAttribute("user", userDAO.getById(userId));
+            map.addAttribute("userForm", userDAO.getById(userId));
+            map.addAttribute("roles", getRolesForModel(currentUser));
         } catch (DAOException ex) {
             log.error("Komunikat....", ex);
             throw new RuntimeException(ex);
         }
-        return "manager/users/edit";
+        return "/users/edit";
     }
 
     @RequestMapping(value = "/manage/users/new.html", method = RequestMethod.GET)
-    protected String prepareForm(ModelMap map) {
-        map.addAttribute(new User());
-        return "manager/users/edit";
+    public String prepareForm(ModelMap map, HttpSession session) {
+        User currentUser = (User)session.getAttribute("user");
+        map.addAttribute("userForm", new User());
+        map.addAttribute("roles", getRolesForModel(currentUser));
+        return "/users/edit";
     }
     
     /**
@@ -129,18 +124,32 @@ public class UserEditController {
      * @return identyfikator widoku do wyświetlenia
      * 
      */
-    @RequestMapping(value = "/manage/users/save.html", method = RequestMethod.POST)
-    protected String processSubmit(@ModelAttribute("user") User user, BindingResult result) {
+    @RequestMapping(value = {"/manage/users/new.html", "/manage/users/{userId}/edit.html"},
+                    method = RequestMethod.POST)
+    public String processSubmit(@ModelAttribute("userForm") User user, BindingResult result,
+                                ModelMap map, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
         validator.validate(user, result);
         if (result.hasErrors()) {
-            return "manager/users/edit";
+            map.addAttribute("roles", getRolesForModel(currentUser));
+            return "/users/edit";
         }
         try {
             userDAO.saveOrUpdate(user);
-        }catch (DAOException ex) {
+        } catch (DAOException ex) {
             log.error("Komunikat....", ex);
             throw new RuntimeException(ex);
         }
         return "redirect:/manage/users/" + user.getUserId() + "/show.html";
+    }
+
+    private List<Role> getRolesForModel(User currentUser) {
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(Role.CLIENT);
+        roles.add(Role.TICKETKILLER);
+        if (currentUser.isManager()) {
+            roles.add(Role.MANAGER);
+        }
+        return roles;
     }
 }

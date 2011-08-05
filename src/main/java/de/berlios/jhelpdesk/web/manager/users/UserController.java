@@ -64,7 +64,7 @@ public class UserController {
             log.error("Komunikat....", ex);
             throw new RuntimeException(ex);
         }
-        return "manager/users/show";
+        return "/users/show";
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserController {
             log.error("Komunikat....", ex);
             throw new RuntimeException(ex);
         }
-        return "manager/users/showAll";
+        return "/users/showAll";
     }
 
     /**

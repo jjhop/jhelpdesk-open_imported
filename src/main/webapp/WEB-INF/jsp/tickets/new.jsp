@@ -4,7 +4,6 @@
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
     User currentUser = (User) session.getAttribute("user");
@@ -30,8 +29,9 @@
                                 <tr>
                                     <td>
                                         <ul class="formContainer">
+                                            <% if (!currentUser.isPlain()) { %>
                                             <li class="w75p">
-                                                <label>Zgłaszający
+                                            <label>Zgłaszający
                                                     <span class="lblTip">(wprowadź email, aby sprawdzić czy użytkownik istnieje)</span>
                                                 </label>
                                                 <form:input onkeyup="this.value.charCount('notifierCounter', 128)" onblur="$('notifierCounter').hide()" path="notifier" cssErrorClass="w90p fieldError" cssClass="w90p" maxlength="128"/>
@@ -39,6 +39,9 @@
                                                 <form:errors path="notifier" cssClass="formError errorBottom" />
                                                 <span id="notifierCounter" class="counter"></span>
                                             </li>
+                                            <% } else { %>
+                                            <form:hidden path="notifier"/>
+                                            <% } %>
                                             <li class="floatLeft w75p">
                                                 <label>Kategoria</label>
                                                 <form:select cssClass="w98p" path="ticketCategory" items="${categories}"
@@ -101,7 +104,6 @@
         </tr>
     </table>
 </div>
-
 <div id="help" style="display: none;">
 Hello world!
 </div>

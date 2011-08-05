@@ -1,9 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@page import="de.berlios.jhelpdesk.model.User"%>
-<%@page import="de.berlios.jhelpdesk.model.Role"%>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="de.berlios.jhelpdesk.model.User"%>
+<%@ page import="de.berlios.jhelpdesk.model.Role"%>
+
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="showuser" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
@@ -14,9 +14,8 @@
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <c:url value="/manage/users/save.html" var="formUrl"/>
-                        <form:form action="${formUrl}" commandName="user">
-                            <c:if test="${user.userId != null}">
+                            <form:form action="" commandName="userForm">
+                            <c:if test="${userForm.userId != null}">
                                 <form:hidden path="userId"/>
                             </c:if>
                             <table cellspacing="0" class="standardtable">
@@ -82,7 +81,7 @@
                                             <li class="clearFloat floatLeft w45p">
                                                 <label>Rola</label>
                                                 <select id="userRole" name="userRole" class="w95p">
-                                                <% User u = (User)session.getAttribute("user"); %>
+                                                <% User u = (User)request.getAttribute("userForm"); %>
                                                 <c:forEach items="${roles}" var="role">
                                                     <% Role r = (Role)pageContext.getAttribute("role"); %>
                                                     <option value="<c:out value="${role.roleCode}"/>"
@@ -92,7 +91,6 @@
                                                 </c:forEach>
                                                 </select>
                                             </li>
-
                                             <li class="floatRight w45p chk">
                                                 <form:checkbox id="active1" cssClass="chk floatLeft" path="active"/><label>Aktywny</label>
                                             </li>

@@ -203,19 +203,19 @@
     </definition>
 
     <!-- zarzadzanie -->
-    <definition name="manager/users/showAll" extends="baseLayout">
+    <definition name="/users/showAll" extends="baseLayout">
         <put-attribute name="title" value="show all manager"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/admin/users/showAll.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/users/showAll.jsp"/>
     </definition>
 
-    <definition name="manager/users/show" extends="baseLayout">
+    <definition name="/users/show" extends="baseLayout">
         <put-attribute name="title" value="Szcegoly uzytkownika"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/admin/users/show.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/users/show.jsp"/>
     </definition>
 
-    <definition name="manager/users/edit" extends="baseLayout">
+    <definition name="/users/edit" extends="baseLayout">
         <put-attribute name="title" value="Edycja uzytkownika"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/admin/users/edit.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/users/edit.jsp"/>
     </definition>
 
     <definition name="manager/category/showAll" extends="baseLayout">

@@ -15,9 +15,6 @@
  */
 package de.berlios.jhelpdesk.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -64,31 +61,6 @@ public enum Role {
      * Nazwa roli.
      */
     private final String roleName;
-
-    /**
-     * Lista wszystkich dostępnych ról.
-     */
-    private final static List<Role> roles;
-
-    static {
-        // początkowa inicjalizacja listy wszystkich ról w systemie
-        roles = new ArrayList<Role>();
-        roles.add(CLIENT);
-        roles.add(TICKETKILLER);
-        roles.add(MANAGER);
-    }
-
-    /**
-     * Zwraca listę wszystkich ról w systemie. Zwrócona lista jest niemodyfikowalna.
-     * 
-     * @return lista (niemodyfikowalna) wszystkich ról w systemie
-     *
-     * @see #roles
-     * @see Collections#unmodifiableList(java.util.List)
-     */
-    public static List<Role> getRoles() {
-        return Collections.unmodifiableList(roles);
-    }
 
     /**
      * <p>

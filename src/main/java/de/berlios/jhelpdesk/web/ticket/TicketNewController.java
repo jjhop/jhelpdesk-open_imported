@@ -103,6 +103,9 @@ public class TicketNewController {
         User u = (User) session.getAttribute("user");
         t.setTicketstamp(StampUtils.craeteStampFromObjects(u, u.getUserId()));
         t.setInputer(u);
+        if (u.isPlain()) {
+            t.setNotifier(u);
+        }
         map.addAttribute("ticket", t);
         return NEW_TICKET_VIEW;
     }
