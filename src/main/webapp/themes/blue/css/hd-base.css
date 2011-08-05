@@ -1528,7 +1528,7 @@ td.artnumber {
     color: #666;
     padding-bottom: 2px;
 }
-#desktop .entryMeta, #panel_comments .entryMeta, #selectedItemInfo .entryMeta {
+#desktop .entryMeta, #panel_comments .entryMeta, #selectedItemInfo .entryMeta, #panel_articles .entryMeta {
     padding: 2px 5px;
     background: #eaeaea;
     border-top: 1px solid #eee;
@@ -1537,7 +1537,7 @@ td.artnumber {
     display: block;
     padding: 2px 0 2px 5px;
 }
-#desktop .standardtable td, #panel_comments .standardtable td, #selectedItem .standardtable td  {
+#desktop .standardtable td, #panel_comments .standardtable td, #selectedItem .standardtable td, #panel_articles .standardtable td  {
      padding: 0;
 }
 
@@ -1574,7 +1574,13 @@ td.artnumber {
     padding: 1px 5px 2px 25px;
     position: relative;
 }
-
+.lightPassView .ticketPriority {
+    float: none;
+    display: inline-block;
+    width: 1px;
+    padding-left: 20px;
+    background-color: transparent;
+}
 .tpLOW {
     background-position: 0 2px;
 }
@@ -1909,6 +1915,9 @@ ul.formContainer li {
 }
 ul.formContainer li.single {
     padding: 0 10px;
+}
+ul.formContainer li.plain {
+    min-height: 20px;
 }
 .lightPassView ul.formContainer li.chk {
     min-height: 15px;

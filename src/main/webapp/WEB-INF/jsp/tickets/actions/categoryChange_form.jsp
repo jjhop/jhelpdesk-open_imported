@@ -11,7 +11,7 @@
             <tr>
                 <td>
                     <ul class="formContainer">
-                        <li>
+                        <li class="plain">
                             <label>Bieżąca kategoria:</label>
                             <span>${currentCategory}</span>
                         </li>

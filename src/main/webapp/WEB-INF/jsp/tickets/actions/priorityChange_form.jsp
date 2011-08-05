@@ -18,9 +18,9 @@
             <tr>
                 <td>
                     <ul class="formContainer">
-                        <li>
+                        <li class="plain">
                             <label>Bieżący priorytet:</label>
-                            <span>
+                            <span class="ticketPriority tpLOW">
                                 <%
                                     TicketPriority currentPriority = (TicketPriority)request.getAttribute("currentPriority");
                                     out.print(currentPriority.getPriorityName(currentUser.getPreferredLocale()));
