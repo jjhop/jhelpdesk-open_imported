@@ -49,7 +49,7 @@ public class AuthenticationController {
     public String setupLoginForm(ModelMap map, HttpSession session) {
         User loggedUser = null;
         boolean isLooged = session.getAttribute("logged") != null && (Boolean) session.getAttribute("logged");
-        if (isLooged && (loggedUser = (User) session.getAttribute("user")) != null) {
+        if (isLooged && (loggedUser = (User) session.getAttribute("currentUser")) != null) {
             return "redirect:" + loggedUser.getWelcomePage();
         }
         map.addAttribute("user", new User());
@@ -73,7 +73,7 @@ public class AuthenticationController {
         boolean isAuthenticated = userDAO.authenticate(user.getEmail(), user.getPassword());
         if (isAuthenticated) {
             User loggedUser = userDAO.getByEmailFetchFilters(user.getEmail());
-            session.setAttribute("user", loggedUser);
+            session.setAttribute("currentUser", loggedUser);
             session.setAttribute("logged", Boolean.TRUE);
             String requestURI = (String) session.getAttribute("requestURI");
             session.removeAttribute("requestURI");
