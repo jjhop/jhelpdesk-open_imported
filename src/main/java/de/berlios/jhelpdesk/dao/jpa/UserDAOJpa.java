@@ -22,6 +22,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import de.berlios.jhelpdesk.model.Preferences;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.JpaTemplate;
@@ -133,6 +134,11 @@ public class UserDAOJpa implements UserDAO {
         try {
             if (user.getUserId() == null) {
                 this.jpaTemplate.persist(user);
+                Preferences p = Preferences.getDefault();
+                p.setUser(user);
+                p.setId(user.getUserId());
+                jpaTemplate.persist(p);
+                user.setPreferences(p);
             } else {
                 this.jpaTemplate.execute(new JpaCallback<Object>() {
                     public Object doInJpa(EntityManager em) throws PersistenceException {

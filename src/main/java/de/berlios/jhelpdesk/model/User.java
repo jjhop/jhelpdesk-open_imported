@@ -27,13 +27,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -143,7 +143,7 @@ public class User implements Serializable {
     private boolean isActive;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_preferences_id")
+    @PrimaryKeyJoinColumn
     private Preferences preferences;
 
     /**
@@ -533,9 +533,6 @@ public class User implements Serializable {
     @PrePersist
     protected void populateRoleDB() {
         this.roleAsInt = this.userRole.toInt();
-        Preferences p = Preferences.getDefault();
-        p.setUser(this);
-        this.setPreferences(Preferences.getDefault());
     }
 
     @PostLoad

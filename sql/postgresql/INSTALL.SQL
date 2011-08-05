@@ -60,6 +60,22 @@ CREATE TABLE users (
 ) WITH (OIDS=FALSE)
 ;
 
+CREATE TABLE user_preferences (
+  id integer NOT NULL,
+  welcome_page character varying(128) NOT NULL,
+  locale character varying(32) NOT NULL,
+  filter_id integer,
+  new_ticket_form_view character varying(16),
+  tickets_list_size integer NOT NULL DEFAULT 10,
+  announcements_list_size integer NOT NULL DEFAULT 10,
+  users_list_size integer NOT NULL DEFAULT 10,
+  filters_list_size integer NOT NULL DEFAULT 10,
+  articles_list_size integer NOT NULL DEFAULT 10,
+  search_result_limit integer NOT NULL DEFAULT 10,
+  CONSTRAINT laf_preferences_pkey PRIMARY KEY (id)
+) WITH (OIDS=FALSE)
+;
+
 --- ### kategorie zgłoszeń
 
 CREATE SEQUENCE ticket_category_id_seq

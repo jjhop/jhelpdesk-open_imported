@@ -7,8 +7,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3>Zarządzanie filtrami
-                    </h3>
+                    <h3>Zarządzanie filtrami</h3>
                 </div>
                 <div id="content">
                     <div class="contenttop"></div>

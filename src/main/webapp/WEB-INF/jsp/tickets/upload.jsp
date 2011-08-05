@@ -1,14 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="pagecontentsubheader">
     <h3>Załaczniki do zgłoszenia</h3>
 </div>
 
 <div class="contentmiddle">
-
     <c:if test="${ticket != null && not empty ticket.addFilesList}">
     <h3>Załączniki aktualne</h3>
     <ol class="attachList">
@@ -25,7 +22,6 @@
         </c:forEach>
     </ol>
     </c:if>
-
     <h3>Nowe załączniki</h3>
     <ol class="attachList">
         <c:forEach items="${currentFiles}" var="f">
@@ -35,7 +31,6 @@
         </li>
         </c:forEach>
     </ol>
-
     <form:form commandName="fileBean" enctype="multipart/form-data">
         <spring:bind path="fileBean.file">
             <input type="file" name="file"/>
