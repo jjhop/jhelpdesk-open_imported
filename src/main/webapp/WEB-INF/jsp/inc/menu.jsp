@@ -7,8 +7,8 @@
         <ul class="level2">
             <li class="first"><a href="<c:url value="/tickets/new.html"/>"><span><fmt:message key="main.menu.tickets.new"/></span></a></li>
             <li class="first border"><a href="<c:url value="/tickets/wizzard.html"/>"><span><fmt:message key="main.menu.tickets.wizzard"/></span></a></li>
-            <c:if test="${not empty sessionScope.user.filters}">
-                <c:forEach var="f" items="${sessionScope.user.filters}" varStatus="i">
+            <c:if test="${not empty sessionScope.currentUser.filters}">
+                <c:forEach var="f" items="${sessionScope.currentUser.filters}" varStatus="i">
                     <li <c:if test="${i.last}">class="border"</c:if>><a href="<c:url value="/tickets/byFilter/${f.id}/list.html"/>"><span><c:out value="${f.name}"/></span></a></li>
                 </c:forEach>
             </c:if>

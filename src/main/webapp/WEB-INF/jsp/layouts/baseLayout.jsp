@@ -18,13 +18,13 @@
             <div id="pageheader"><a href="<c:url value="/"/>"><img src="<c:url value="/themes/blue/i/logo_jhd_beta.png"/>" alt="jHelpDesk (beta)" /></a>
                 <ul id="loggedUser">
                     <li>
-                        <img src="${user.avatarURL}" alt="${user.fullName}" />
-                        <span class="userInfo userName">${user.fullName}</span>
+                        <img src="${currentUser.avatarURL}" alt="${currentUser.fullName}" />
+                        <span class="userInfo userName">${currentUser.fullName}</span>
                         <span class="userInfo userRole"><%
-                            User u = (User) session.getAttribute("user");
+                            User u = (User) session.getAttribute("currentUser");
                             out.print(u.getUserRole().getRoleName(u.getPreferredLocale()));
                         %></span>
-                        <span class="userInfo">${user.email}</span>
+                        <span class="userInfo">${currentUser.email}</span>
                     </li>
                 </ul>
             </div>
