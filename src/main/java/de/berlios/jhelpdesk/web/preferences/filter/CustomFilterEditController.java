@@ -118,7 +118,7 @@ public class CustomFilterEditController {
 
     @RequestMapping(value = "/preferences/filters/{filterId}/edit.html", method = GET)
     public String prepareEditForm(@PathVariable("filterId") Long filterId,
-                                  ModelMap map, HttpSession session) throws Exception {
+                                  ModelMap map) throws Exception {
         map.addAttribute("filter", ticketFilterDAO.getById(filterId));
         return "preferences/filters/edit";
     }

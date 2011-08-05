@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<% User user = (User) session.getAttribute("user"); %>
+
+<% User user = (User) session.getAttribute("loggedUser"); %>
 
 <div id="editcategory" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
