@@ -76,7 +76,7 @@ public class UserController {
     @RequestMapping("/manage/users/list.html")
     public String showAllUsers(HttpServletRequest request, HttpSession session, ModelMap map) {
 
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         int pageSize = currentUser.getUsersListSize();
         PagingParamsEncoder enc = new PagingParamsEncoder("user", null, request, pageSize);
         int offset = enc.getOffset();

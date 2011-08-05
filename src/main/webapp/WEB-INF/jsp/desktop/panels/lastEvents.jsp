@@ -5,7 +5,7 @@
 
 <c:if test="${not empty lastEvents}">
     <table cellspacing="0" class="standardtable">
-        <% User user = (User)session.getAttribute("currentUser"); %>
+        <% User user = (User)session.getAttribute("loggedUser"); %>
         <c:forEach var="event" items="${lastEvents}">
             <tr>
                 <td class="lastcol">

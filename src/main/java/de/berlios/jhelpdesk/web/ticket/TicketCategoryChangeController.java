@@ -98,7 +98,7 @@ public class TicketCategoryChangeController {
         }
 
         currentTicket.setTicketCategory(form.getCategory());
-        ticketDAO.changeCategoryWithComment(currentTicket, form.getCategory(), form.getCommentText(), (User) session.getAttribute("user"));
+        ticketDAO.changeCategoryWithComment(currentTicket, form.getCategory(), form.getCommentText(), (User) session.getAttribute("loggedUser"));
 
         // tutaj zapis mail itd
         return "/tickets/categoryChange/result";

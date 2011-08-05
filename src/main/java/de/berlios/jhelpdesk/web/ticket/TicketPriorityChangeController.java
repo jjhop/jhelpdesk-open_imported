@@ -96,7 +96,7 @@ public class TicketPriorityChangeController {
         }
 
         currentTicket.setTicketPriority(form.getPriority());
-        ticketDAO.changePriorityWithComment(currentTicket, form.getPriority(), form.getCommentText(), (User) session.getAttribute("user"));
+        ticketDAO.changePriorityWithComment(currentTicket, form.getPriority(), form.getCommentText(), (User) session.getAttribute("loggedUser"));
 
         // tutaj zapis mail itd
         return "/tickets/priorityChange/result";

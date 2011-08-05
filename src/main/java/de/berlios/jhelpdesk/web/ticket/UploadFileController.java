@@ -128,7 +128,7 @@ public class UploadFileController {
             if (mf != null && !mf.isEmpty()) {
                 String digest = repository.store(mf.getInputStream(), addFile.getHashedFileName()); // na próbę
                 addFile.setDigest(digest);
-                addFile.setCreator((User) session.getAttribute("user"));
+                addFile.setCreator((User) session.getAttribute("loggedUser"));
                 ticketDAO.saveAdditionalFile(addFile);
             }
         } catch (Exception ex) {

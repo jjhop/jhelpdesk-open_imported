@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
-
 <div class="pagecontentsubheader">
     <h3>Prośba o potwierdzenie</h3>
 </div>
@@ -16,8 +15,8 @@
                         Czy jesteś pewien?
                     </p>
                     <p>
-                            <input class="btn" type="submit" value="Tak, przypisz do mnie"/>
-                            <a href="javascript:window.parent.eval('Lightview.hide()');">Nie, jednak rezygnuję</a>
+                        <input class="btn" type="submit" value="Tak, przypisz do mnie"/>
+                        <a href="javascript:window.parent.eval('Lightview.hide()');">Nie, jednak rezygnuję</a>
                     </p>
                 </td>
             </tr>

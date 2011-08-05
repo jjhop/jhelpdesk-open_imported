@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <c:if test="${not empty kbArticles}">
     <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
         <c:forEach var="article" items="${kbArticles}" varStatus="status">

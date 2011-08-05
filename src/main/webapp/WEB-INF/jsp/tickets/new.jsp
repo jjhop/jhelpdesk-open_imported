@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <%
-    User currentUser = (User) session.getAttribute("user");
+    User currentUser = (User) session.getAttribute("loggedUser");
 %>
 
 <div id="editcategory" class="management">

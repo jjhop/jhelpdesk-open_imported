@@ -100,7 +100,7 @@ public class TicketNewController {
     @RequestMapping(value = "/tickets/new.html", method = RequestMethod.GET)
     public String prepareForm(ModelMap map, HttpSession session) {
         Ticket t = new Ticket();
-        User u = (User) session.getAttribute("user");
+        User u = (User) session.getAttribute("loggedUser");
         t.setTicketstamp(StampUtils.craeteStampFromObjects(u, u.getUserId()));
         t.setInputer(u);
         if (u.isPlain()) {
@@ -123,7 +123,7 @@ public class TicketNewController {
         if (!result.hasErrors()) {
             attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
-                (User) session.getAttribute("user"),
+                (User) session.getAttribute("loggedUser"),
                 (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
             ticketDAO.save(ticket);
             // tutaj ustalamy pojedynczą ścieżkę

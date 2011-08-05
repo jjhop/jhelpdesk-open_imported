@@ -9,7 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
-    User current = (User) session.getAttribute("user");
+    User current = (User) session.getAttribute("loggedUser");
 %>
 
 <c:if test="${not empty message}">

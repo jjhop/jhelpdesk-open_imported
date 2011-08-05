@@ -120,7 +120,7 @@ public class KBViewController {
     public String kBSearch(@RequestParam("query") String query, ModelMap map,
                            HttpSession session, Locale currentLocale) throws Exception {
         try {
-            User currentUser = (User) session.getAttribute("user");
+            User currentUser = (User) session.getAttribute("loggedUser");
             List<Article> result = luceneIndexer.search(query, currentUser.getSearchResultLimit());
             map.addAttribute("result", result);
             if (result.size() < 1) {
@@ -142,7 +142,7 @@ public class KBViewController {
     public String kBCategoryView(@RequestParam(value="p",required=false,defaultValue="1") int page,
                                  @PathVariable("id") Long cId,  ModelMap map,
                                  HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         int pageSize = currentUser.getArticlesListSize();
         int articlesInSection = articleDAO.countForSection(cId);
 

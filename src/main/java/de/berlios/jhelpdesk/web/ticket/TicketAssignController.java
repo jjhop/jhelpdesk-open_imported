@@ -67,14 +67,14 @@ public class TicketAssignController {
     @RequestMapping(value = "/tickets/{tId}/assignToMe.html", method = RequestMethod.GET)
     public String assignTicketToMeAsk(@PathVariable("tId") Long ticketId,
                                       HttpSession session) {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         return "/tickets/assigntome/form";
     }
 
     @RequestMapping(value = "/tickets/{tId}/assignToMe.html", method = RequestMethod.POST)
     public String assignTicketToMe(@PathVariable("tId") Long ticketId,
                                    HttpSession session) throws Exception {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         ticketDAO.assignTicket(ticketId, currentUser.getUserId());
         mailer.sendNotificationForTicketAssignEvent(ticketId);
         return "/tickets/assigntome/result";
@@ -83,7 +83,7 @@ public class TicketAssignController {
     @RequestMapping(value = "/tickets/{tId}/assignTo.html", method = RequestMethod.GET)
     public String assignTo(@PathVariable("tId") Long ticketId, ModelMap map,
                            HttpSession session) throws Exception {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         if (currentUser.isManager()) {
             map.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
             map.addAttribute("assignForm", new TicketActionForm());
@@ -99,7 +99,7 @@ public class TicketAssignController {
                                   @ModelAttribute("assignForm") TicketActionForm form,
                                   BindingResult result, ModelMap map,
                                   HttpSession session) throws Exception {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         if (currentUser.isManager()) {
             validator.validate(form, result);
             if (result.hasErrors()) {

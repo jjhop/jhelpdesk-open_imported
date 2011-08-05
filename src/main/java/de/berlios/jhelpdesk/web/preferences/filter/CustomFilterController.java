@@ -54,7 +54,7 @@ public class CustomFilterController {
     @RequestMapping(value = "/preferences/filters/list.html", method = RequestMethod.GET)
     public String showAllFilters(ModelMap map, HttpServletRequest request,
                                  HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         int pageSize = currentUser.getFiltersListSize();
         int filtersCount = currentUser.getFilters().size();
         PagingParamsEncoder enc =
@@ -71,7 +71,7 @@ public class CustomFilterController {
     @RequestMapping(value = "/preferences/filters/{filterId}/details.html", method = RequestMethod.GET)
     public String showFilter(@PathVariable("filterId") Long filterId, ModelMap map,
                              Locale currentLocale, HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         TicketFilter filter = ticketFilterDAO.getById(filterId);
         if (filter != null && filter.isOwnedBy(currentUser)) {
             map.addAttribute("filter", filter);
@@ -86,12 +86,12 @@ public class CustomFilterController {
     @RequestMapping(value = "/preferences/filters/{filterId}/delete.html", method = RequestMethod.GET)
     public String deleteFilter(@PathVariable("filterId") Long filterId,
                                HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUsers");
         TicketFilter filter = ticketFilterDAO.getById(filterId);
         if (filter != null && filter.isOwnedBy(currentUser)) {
             try {
                 ticketFilterDAO.delete(filter);
-                session.setAttribute("user", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
+                session.setAttribute("loggedUser", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
             } catch (DAOException ex) {
                 throw new RuntimeException(ex);
             }

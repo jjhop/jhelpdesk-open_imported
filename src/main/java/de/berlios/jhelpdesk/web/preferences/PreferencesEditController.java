@@ -56,7 +56,7 @@ public class PreferencesEditController {
 
     @RequestMapping(value = "/preferences/lookAndFeel.html", method = RequestMethod.GET)
     public String prepareForm(ModelMap map, HttpSession session) {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         map.addAttribute("preferences", currentUser.getPreferences());
         return LAF_FROM_VIEW;
     }
@@ -65,13 +65,13 @@ public class PreferencesEditController {
     public String processForm(@ModelAttribute("preferences") Preferences preferences,
                               HttpServletRequest request, HttpServletResponse respone,
                               ModelMap map, HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         if (isPrefsOwnedByUser(preferences, currentUser)) {
             preferences.setUser(currentUser);
             currentUser.setPreferences(preferences);
             this.userPreferencesDAO.save(preferences);
             respone.addCookie(createCookie(request, preferences.getPreferredLocale()));
-            session.setAttribute("user", currentUser);
+            session.setAttribute("loggedUser", currentUser);
             map.addAttribute("preferences", preferences);
         }
         return LAF_FROM_VIEW;

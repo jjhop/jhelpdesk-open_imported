@@ -1,10 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="de.berlios.jhelpdesk.model.Article" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-
-
-
-
 
 <div class="pagecontentsubheader">
     <h3>Powiąż zgłoszenie z artykułem</h3>
