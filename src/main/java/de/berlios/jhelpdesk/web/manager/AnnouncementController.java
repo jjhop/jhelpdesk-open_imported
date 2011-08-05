@@ -85,7 +85,7 @@ public class AnnouncementController {
     @RequestMapping("/announcements/list.html")
     public String showAllAnnouncements(HttpServletRequest request, HttpSession session,
                                        ModelMap map) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         int pageSize = currentUser.getAnnouncementsListSize();
 
         PagingParamsEncoder enc =

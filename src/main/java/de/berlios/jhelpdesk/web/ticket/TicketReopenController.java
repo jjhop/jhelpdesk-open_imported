@@ -68,7 +68,7 @@ public class TicketReopenController {
         comment.setTicket(ticketDAO.getTicketById(ticketId));
         comment.setCommentType(CommentType.REOPEN);
         comment.setNotForPlainUser(false);
-        comment.setCommentAuthor((User) session.getAttribute("user"));
+        comment.setCommentAuthor((User) session.getAttribute("loggedUser"));
 
         ticketDAO.reopenWithComment(comment);
 

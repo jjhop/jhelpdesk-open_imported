@@ -4,7 +4,6 @@
 <div class="pagecontentsubheader">
     <h3>Komentarz do zlecenia</h3>
 </div>
-
 <div class="contentmiddle">
     <c:url value="/tickets/${ticketId}/assignTo.html" var="formURL"/>
     <form:form commandName="assignForm" action="${formURL}" method="post">

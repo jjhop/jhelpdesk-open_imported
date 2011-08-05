@@ -69,7 +69,7 @@ public class TicketResolveController {
         comment.setTicket(ticketDAO.getTicketById(ticketId));
         comment.setCommentType(CommentType.REJECT);
         comment.setNotForPlainUser(false);
-        comment.setCommentAuthor((User) session.getAttribute("user"));
+        comment.setCommentAuthor((User) session.getAttribute("loggedUser"));
 
         ticketDAO.resolveWithComment(comment);
 

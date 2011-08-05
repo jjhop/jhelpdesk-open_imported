@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <table width="100%" cellspacing="12" cellpadding="4">
     <tr>

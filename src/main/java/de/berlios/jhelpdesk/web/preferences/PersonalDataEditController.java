@@ -103,7 +103,7 @@ public class PersonalDataEditController {
 
     private User getUserFromSession(HttpSession session) {
         try {
-            return userDAO.getById(((User) session.getAttribute("user")).getUserId());
+            return userDAO.getById(((User) session.getAttribute("loggedUser")).getUserId());
         } catch (DAOException ex) {
             throw new RuntimeException(ex);
         }

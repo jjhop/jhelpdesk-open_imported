@@ -1,6 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="evennotify" class="preferences">
     <div id="pagecontentheader"><h2>Preferencje</h2></div>

@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%
-    User currentUser = (User) session.getAttribute("user");
+    User currentUser = (User) session.getAttribute("loggedUser");
     Ticket ticket = (Ticket) request.getAttribute("ticket");
 %>
 

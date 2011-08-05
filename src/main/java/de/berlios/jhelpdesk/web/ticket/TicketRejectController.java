@@ -71,7 +71,7 @@ public class TicketRejectController {
             return FORM_VIEW;
         }
 
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         
         comment.setTicket(ticketDAO.getTicketById(ticketId));
         comment.setCommentType(CommentType.REOPEN);

@@ -5,7 +5,7 @@
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%
-    User currentUser = (User) session.getAttribute("user");
+    User currentUser = (User) session.getAttribute("loggedUser");
 %>
 
 <div class="pagecontentsubheader">
@@ -32,7 +32,6 @@
                                 Nowy priorytet
                                 <span class="lblTip">(wybierz nowy priorytet z poniższej listy)</span>
                             </label>
-
                             <select id="ddlUser" name="priority" class="w20">
                             <c:forEach var="priority" items="${priorities}">
                                 <option value="${priority.priorityId}" <c:if test="${priority == form.priority}">selected="selected"</c:if>>

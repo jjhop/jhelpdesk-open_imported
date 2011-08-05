@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:url value="/tickets/${ticketId}/comments/save.html" var="formURL"/>
 <div class="contentmiddle">

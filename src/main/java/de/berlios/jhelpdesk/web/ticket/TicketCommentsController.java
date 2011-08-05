@@ -56,7 +56,7 @@ public class TicketCommentsController {
 
         Ticket ticket = ticketDAO.getTicketById(ticketId);
         comment.setTicket(ticket);
-        comment.setCommentAuthor((User) session.getAttribute("user"));
+        comment.setCommentAuthor((User) session.getAttribute("loggedUser"));
         comment.setCommentType(CommentType.NORMAL);
         ticket.addComment(comment);
         ticketDAO.addComment(comment);

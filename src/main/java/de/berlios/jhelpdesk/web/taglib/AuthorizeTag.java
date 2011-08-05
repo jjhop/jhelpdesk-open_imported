@@ -32,7 +32,7 @@ public class AuthorizeTag extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
-        User user = (User) pageContext.getSession().getAttribute("currentUser");
+        User user = (User) pageContext.getSession().getAttribute("loggedUser");
         if (user == null) {
             return SKIP_BODY;
         }

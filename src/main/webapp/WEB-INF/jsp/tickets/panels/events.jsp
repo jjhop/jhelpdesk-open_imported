@@ -14,7 +14,7 @@
                         <th>Zdarzenie</th>
                         <th width="100" class="lastcol">Data</th>
                     </tr>
-                    <% User user = (User) session.getAttribute("user");%>
+                    <% User user = (User) session.getAttribute("loggedUser");%>
                     <c:forEach var="event" items="${events}" varStatus="status">
                     <tr>
                         <td>

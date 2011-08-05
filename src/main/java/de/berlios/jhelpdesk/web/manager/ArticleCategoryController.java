@@ -54,7 +54,7 @@ public class ArticleCategoryController {
     @RequestMapping("/manage/kb/categories/list.html")
     public String showAll(HttpServletRequest request, HttpSession session,
                           ModelMap map) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         int pageSize = currentUser.getDefaultListSize();
 
         PagingParamsEncoder enc =

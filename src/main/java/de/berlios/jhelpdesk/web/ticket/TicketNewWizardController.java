@@ -119,13 +119,13 @@ public class TicketNewWizardController {
 
     @ModelAttribute("readOnly")
     public Boolean testReadOnly(HttpSession session) {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         return currentUser.getUserRole().equals(Role.CLIENT);
     }
 
     @RequestMapping(value="/tickets/wizzard.html")
     public String prepareWizzard(ModelMap map, HttpServletRequest request, HttpSession session) {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         Ticket ticket = new Ticket();
         ticket.setTicketstamp(
             StampUtils.craeteStampFromObjects(currentUser, currentUser.getUserId()));

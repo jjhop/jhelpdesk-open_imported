@@ -39,7 +39,7 @@ public class TicketkillerFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession sess = req.getSession();
-        User user = (User) sess.getAttribute("user");
+        User user = (User) sess.getAttribute("loggedUser");
         if (user == null) {
             throw new NotAuthorizedAccessException("not authorized access!");
         }

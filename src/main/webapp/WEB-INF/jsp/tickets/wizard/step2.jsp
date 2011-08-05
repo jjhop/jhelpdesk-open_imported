@@ -3,11 +3,8 @@
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 
-<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%
-    User currentUser = (User) session.getAttribute("user");
+    User currentUser = (User) session.getAttribute("loggedUser");
 %>
 
 <div id="alltickets" class="ticketslist">

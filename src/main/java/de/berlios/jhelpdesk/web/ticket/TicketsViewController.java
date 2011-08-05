@@ -127,7 +127,7 @@ public class TicketsViewController {
                                  @RequestParam(value = "cf", defaultValue = "false",
                                                required = false) boolean cf,
                                  ModelMap map, HttpServletRequest request, HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
 
         Integer listSize = currentUser.getPreferedTicketsListSize();
 

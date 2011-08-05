@@ -1,9 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<%@page import="de.berlios.jhelpdesk.model.TicketEvent"%>
-<%@page import="de.berlios.jhelpdesk.model.User"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:choose>
 <c:when test="${not empty attachments}">

@@ -88,7 +88,7 @@ public class ArticleController {
     @RequestMapping("/manage/kb/category/{id}/articles.html")
     public String showAllArticles(@PathVariable("id") Long categoryId, ModelMap map,
                                   HttpServletRequest request, HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
 
         int pageSize = currentUser.getArticlesListSize();
         PagingParamsEncoder enc = new PagingParamsEncoder("a", null, request, pageSize);
@@ -125,7 +125,7 @@ public class ArticleController {
         if (articleId == null) {
             article = new Article();
             article.setCategory(articleCategoryDAO.getById(categoryId));
-            article.setAuthor((User) session.getAttribute("user"));
+            article.setAuthor((User) session.getAttribute("loggedUser"));
         } else {
             article = articleDAO.getById(articleId);
         }
@@ -142,7 +142,7 @@ public class ArticleController {
                                     HttpSession session, ModelMap map) throws Exception {
         Article article = new Article();
         article.setCategory(articleCategoryDAO.getById(categoryId));
-        article.setAuthor((User) session.getAttribute("user"));
+        article.setAuthor((User) session.getAttribute("loggedUser"));
         map.addAttribute("article", article);
         map.addAttribute("formAction", "save");
         return MANAGE_KB_ARTICLE_EDIT;

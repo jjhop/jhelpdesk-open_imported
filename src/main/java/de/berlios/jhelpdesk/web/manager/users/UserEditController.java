@@ -96,7 +96,7 @@ public class UserEditController {
      */
     @RequestMapping(value = "/manage/users/{userId}/edit.html", method = RequestMethod.GET)
     public String prepareForm(@PathVariable("userId") Long userId, ModelMap map, HttpSession session) {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         try {
             map.addAttribute("userForm", userDAO.getById(userId));
             map.addAttribute("roles", getRolesForModel(currentUser));
@@ -109,7 +109,7 @@ public class UserEditController {
 
     @RequestMapping(value = "/manage/users/new.html", method = RequestMethod.GET)
     public String prepareForm(ModelMap map, HttpSession session) {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         map.addAttribute("userForm", new User());
         map.addAttribute("roles", getRolesForModel(currentUser));
         return "/users/edit";
@@ -128,7 +128,7 @@ public class UserEditController {
                     method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("userForm") User user, BindingResult result,
                                 ModelMap map, HttpSession session) {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         validator.validate(user, result);
         if (result.hasErrors()) {
             map.addAttribute("roles", getRolesForModel(currentUser));

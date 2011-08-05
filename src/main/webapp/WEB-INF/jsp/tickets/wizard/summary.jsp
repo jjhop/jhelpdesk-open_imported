@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="alltickets" class="ticketslist">
     <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>

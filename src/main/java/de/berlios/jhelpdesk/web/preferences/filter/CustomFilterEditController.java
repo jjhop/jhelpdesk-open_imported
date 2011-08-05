@@ -125,7 +125,7 @@ public class CustomFilterEditController {
 
     @RequestMapping(value = "/preferences/filters/new.html", method = GET)
     public String prepareNewForm(ModelMap map, HttpSession session) {
-        User currentUser = (User)session.getAttribute("user");
+        User currentUser = (User)session.getAttribute("loggedUser");
         TicketFilter filter = new TicketFilter();
         filter.setOwner(currentUser);
         map.addAttribute("filter", filter);
@@ -141,14 +141,14 @@ public class CustomFilterEditController {
     public String processForm(@ModelAttribute("filter") TicketFilter filter,
                               BindingResult result, ModelMap map,
                               HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         ticketFilterValidator.validate(filter, result);
         if (result.hasErrors()) {
             map.addAttribute(filter);
             return "preferences/filters/edit";
         }
         ticketFilterDAO.saveOrUpdate(filter);
-        session.setAttribute("user", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
+        session.setAttribute("loggedUser", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
         session.setAttribute("message", "Filtr został zapisany."); // ms.get
         map.clear();
         return "redirect:/preferences/filters/" + filter.getId() + "/edit.html";
