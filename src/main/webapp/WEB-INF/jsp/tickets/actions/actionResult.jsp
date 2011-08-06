@@ -4,19 +4,12 @@
 <div class="pagecontentsubheader">
     <h3>Dziękujemy</h3>
 </div>
-<div class="contentmiddle h335">
+<div class="contentmiddle">
     <table class="standardtable" cellspacing="0">
         <tr>
             <td>
-                <p>
-                    <c:choose>
-                        <c:when test="${success}">
-                            Artykuł zostało powiązane.
-                        </c:when>
-                        <c:otherwise>
-                            Nie można powiązać zgłoszenia ze wskazanych artykułem.
-                        </c:otherwise>
-                    </c:choose>
+                <p id="actionMailConfirm">
+                    dzieki itd... wysłaliśmy maile.. tararara... zamknij...
                 </p>
             </td>
         </tr>

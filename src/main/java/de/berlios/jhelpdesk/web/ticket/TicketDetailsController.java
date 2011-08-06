@@ -74,7 +74,7 @@ public class TicketDetailsController {
         mav.addAllAttributes(processAttachments(ticketId, 1));
         mav.addAllAttributes(processAssignedArticles(ticketId, 1));
 
-        return "ticketDetails";
+        return "/tickets/view";
     }
 
     @RequestMapping(value = "/tickets/{ticketId}/articles/new.html", method = RequestMethod.GET)

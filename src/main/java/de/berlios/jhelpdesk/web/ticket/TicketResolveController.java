@@ -39,7 +39,7 @@ import de.berlios.jhelpdesk.web.tools.TicketCommentValidator;
 public class TicketResolveController {
 
     private static final String FORM_VIEW = "/tickets/resolve/form";
-    private static final String RESULT_VIEW = "/tickets/resolve/result";
+    private static final String RESULT_VIEW = "/tickets/action/result";
 
     @Autowired
     private TicketCommentValidator validator;

@@ -40,7 +40,7 @@ import de.berlios.jhelpdesk.mail.MailerService;
 public class TicketRejectController {
 
     private static final String FORM_VIEW = "/tickets/reject/form";
-    private static final String RESULT_VIEW = "/tickets/reject/result";
+    private static final String RESULT_VIEW = "/tickets/action/result";
 
     @Autowired
     private TicketCommentValidator validator;
