@@ -28,8 +28,7 @@
     <definition name="/desktop/lastTickets" template="/WEB-INF/jsp/desktop/panels/lastTickets.jsp"/>
     <definition name="/desktop/lastArticles" template="/WEB-INF/jsp/desktop/panels/lastArticles.jsp"/>
     <definition name="/desktop/lastAnnouncements" template="/WEB-INF/jsp/desktop/panels/lastAnnouncements.jsp"/>
-    
-    
+
     <!-- Kreator zgłoszenia -->
     <definition name="ticketWizard/step1" extends="baseLayout">
         <put-attribute name="title" value="Dodawanie zgloszenia - krok 1..."/>
@@ -58,7 +57,7 @@
 
     <!-- koniec kreatora  -->
 
-    <definition name="tickets/list" extends="baseLayout">
+    <definition name="/tickets/list" extends="baseLayout">
         <put-attribute name="title" value="Lista błedów"/>
         <put-attribute name="displayFilterLink" value="block"/>
         <put-attribute name="filterForm" value="/WEB-INF/jsp/tickets/filterForm.jsp"/>
@@ -77,78 +76,39 @@
     <definition name="/tickets/resolve/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/resolve_form.jsp"/>
     </definition>
-
-    <definition name="/tickets/resolve/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/resolve_result.jsp"/>
-    </definition>
-
     <definition name="/tickets/reject/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/reject_form.jsp"/>
     </definition>
-
-    <definition name="/tickets/reject/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/reject_result.jsp"/>
-    </definition>
-
     <definition name="/tickets/reopen/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/reopen_form.jsp"/>
     </definition>
-
-    <definition name="/tickets/reopen/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/reopen_result.jsp"/>
-    </definition>
-
     <definition name="/tickets/assignto/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assignto_form.jsp"/>
     </definition>
-    <definition name="/tickets/assignto/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assignto_result.jsp"/>
-    </definition>
-
     <definition name="/tickets/assigntome/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_form.jsp"/>
     </definition>
-    <definition name="/tickets/assigntome/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_result.jsp"/>
-    </definition>
-
     <definition name="/ticket/articles/assign/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/articleAssign_form.jsp"/>
     </definition>
-    <definition name="/ticket/articles/assign/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/articleAssign_result.jsp"/>
-    </definition>
-    <definition name="/tickets/articles/searchArticles"
-                template="/WEB-INF/jsp/tickets/actions/searchArticles.jsp"/>
-
     <definition name="/tickets/categoryChange/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/categoryChange_form.jsp"/>
     </definition>
-    <definition name="/tickets/categoryChange/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/categoryChange_result.jsp"/>
-    </definition>
-
     <definition name="/tickets/priorityChange/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/priorityChange_form.jsp"/>
     </definition>
-    <definition name="/tickets/priorityChange/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/priorityChange_result.jsp"/>
-    </definition>
-
     <definition name="tickets/commentForm" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/commentForm.jsp"/>
     </definition>
-
-    <definition name="tickets/commentThanks" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/commentThanks.jsp"/>
+    <!-- wspólny dla wszystkich akcji widok z potwierdzeniem -->
+    <definition name="/tickets/action/result" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/actionResult.jsp"/>
     </definition>
 
-    <definition name="editTicket" extends="baseLayout">
-        <put-attribute name="title" value="Dodawanie/edycja zgłoszenia"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/edit.jsp"/>
-    </definition>
+    <definition name="/tickets/articles/searchArticles"
+    template="/WEB-INF/jsp/tickets/actions/searchArticles.jsp"/>
 
-    <definition name="ticketDetails" extends="baseLayout">
+    <definition name="/tickets/view" extends="baseLayout">
         <put-attribute name="title" value="Szczegóły zgłoszenia"/>
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/view.jsp"/>
     </definition>

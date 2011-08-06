@@ -57,7 +57,7 @@ import de.berlios.jhelpdesk.web.tools.UserEditor;
 @Controller
 public class TicketsViewController {
 
-    private static final String TICKETS_LIST_VIEW = "tickets/list";
+    private static final String TICKETS_LIST_VIEW = "/tickets/list";
 
     @Autowired
     private TicketFilterDAO ticketFilterDAO;
@@ -128,9 +128,7 @@ public class TicketsViewController {
                                                required = false) boolean cf,
                                  ModelMap map, HttpServletRequest request, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("loggedUser");
-
         Integer listSize = currentUser.getPreferedTicketsListSize();
-
         TicketFilter currentFilter = null;
 
         if (formSent) { // nowy filtr
@@ -147,7 +145,6 @@ public class TicketsViewController {
                 currentFilter = dbFilter;
             }
         }
-
 
         if(currentFilter != null) {
             PagingParamsEncoder enc =

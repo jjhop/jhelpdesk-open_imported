@@ -17,6 +17,7 @@ package de.berlios.jhelpdesk.web.ticket;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,6 @@ public class TicketPriorityChangeController {
         ticketDAO.changePriorityWithComment(currentTicket, form.getPriority(), form.getCommentText(), (User) session.getAttribute("loggedUser"));
 
         // tutaj zapis mail itd
-        return "/tickets/priorityChange/result";
+        return "/tickets/action/result";
     }
 }

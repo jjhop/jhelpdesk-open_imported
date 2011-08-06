@@ -77,7 +77,7 @@ public class TicketAssignController {
         User currentUser = (User)session.getAttribute("loggedUser");
         ticketDAO.assignTicket(ticketId, currentUser.getUserId());
         mailer.sendNotificationForTicketAssignEvent(ticketId);
-        return "/tickets/assigntome/result";
+        return "/tickets/action/result";
     }
 
     @RequestMapping(value = "/tickets/{tId}/assignTo.html", method = RequestMethod.GET)
@@ -109,7 +109,7 @@ public class TicketAssignController {
             }
             ticketDAO.assignTicket(ticketId, form.getUser().getUserId(), currentUser.getUserId());
             mailer.sendNotificationForTicketAssignEvent(ticketId);
-            return "/tickets/assignto/result";
+            return "/tickets/action/result";
         } else {
             throw new RuntimeException("Niewystarczające uprawnienia!");
         }

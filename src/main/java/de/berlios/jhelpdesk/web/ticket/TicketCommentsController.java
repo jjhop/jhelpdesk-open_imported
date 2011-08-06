@@ -60,7 +60,7 @@ public class TicketCommentsController {
         comment.setCommentType(CommentType.NORMAL);
         ticket.addComment(comment);
         ticketDAO.addComment(comment);
-        return "tickets/commentThanks";
+        return "/tickets/action/result";
     }
 
     @RequestMapping(value = "/tickets/{ticketId}/comments/new.html", method = RequestMethod.GET)

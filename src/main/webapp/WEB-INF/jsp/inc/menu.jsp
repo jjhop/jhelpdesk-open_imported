@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8"%>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp"%>
 
 <ul class="level1">
     <li class="submenu first"><a href="<c:url value="/desktop/main.html"/>"><span><fmt:message key="main.menu.desktop"/></span></a>
@@ -7,8 +7,8 @@
         <ul class="level2">
             <li class="first"><a href="<c:url value="/tickets/new.html"/>"><span><fmt:message key="main.menu.tickets.new"/></span></a></li>
             <li class="first border"><a href="<c:url value="/tickets/wizzard.html"/>"><span><fmt:message key="main.menu.tickets.wizzard"/></span></a></li>
-            <c:if test="${not empty sessionScope.currentUser.filters}">
-                <c:forEach var="f" items="${sessionScope.currentUser.filters}" varStatus="i">
+            <c:if test="${not empty sessionScope.loggedUser.filters}">
+                <c:forEach var="f" items="${sessionScope.loggedUser.filters}" varStatus="i">
                     <li <c:if test="${i.last}">class="border"</c:if>><a href="<c:url value="/tickets/byFilter/${f.id}/list.html"/>"><span><c:out value="${f.name}"/></span></a></li>
                 </c:forEach>
             </c:if>
@@ -34,7 +34,6 @@
     </auth:check>
     <li class="submenu"><a href="javascript:none();"><span><fmt:message key="main.menu.help"/></span></a>
         <ul class="level2">
-            <%--<li class="first"><a href="<c:url value="/help/index.html"/>"><span><fmt:message key="main.menu.help.toc"/></span></a></li>--%>
             <li><a href="<c:url value="/help/kb/index.html"/>"><span><fmt:message key="main.menu.help.kb"/></span></a></li>
             <li class="last"><a href="<c:url value="/help/about.html"/>"><span><fmt:message key="main.menu.help.about"/></span></a></li>
         </ul>

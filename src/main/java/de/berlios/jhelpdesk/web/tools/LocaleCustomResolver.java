@@ -40,7 +40,7 @@ public class LocaleCustomResolver extends AbstractLocaleResolver {
             return raLocale;
         }
         HttpSession session = request.getSession();
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("loggedUser");
         if (currentUser != null && currentUser.getUserId() != null) {
             request.setAttribute("jhd_locale", currentUser.getPreferredLocale());
             return currentUser.getPreferredLocale();
