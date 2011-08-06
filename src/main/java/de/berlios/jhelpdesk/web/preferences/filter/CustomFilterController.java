@@ -86,7 +86,7 @@ public class CustomFilterController {
     @RequestMapping(value = "/preferences/filters/{filterId}/delete.html", method = RequestMethod.GET)
     public String deleteFilter(@PathVariable("filterId") Long filterId,
                                HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("loggedUsers");
+        User currentUser = (User) session.getAttribute("loggedUser");
         TicketFilter filter = ticketFilterDAO.getById(filterId);
         if (filter != null && filter.isOwnedBy(currentUser)) {
             try {
