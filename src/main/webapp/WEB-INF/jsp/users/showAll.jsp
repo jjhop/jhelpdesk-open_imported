@@ -6,15 +6,10 @@
     <table cellspacing="0" class="w100p">
         <tr>
             <td class="">
-                <div class="pagecontentsubheader"><h3>Użytkownicy</h3></div>
+                <div class="pagecontentsubheader"><h3>Użytkownicy</h3><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></td>
-                            </tr>
-                        </table>
                         <c:url value="/manage/users/list.html" var="requestURI"/>
                         <display:table id="user" name="users" class="standardtable" cellspacing="0" export="false"
                                        partialList="true"

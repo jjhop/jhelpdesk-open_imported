@@ -39,14 +39,15 @@ textarea {
 width: 340px;
 }
 .btn {
+    display: inline-block;
     min-width: auto;
     padding: 2px 15px 5px 15px;
     background: url("../i/buttonBgNavy.png") -10px -10px no-repeat;
     color: #FFFFFF;
     border: 2px solid #59709a;
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    border-radius: 7px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
@@ -70,9 +71,13 @@ width: 340px;
     border: 2px solid #8a8a8a;
 }
 
-a.btn {padding: 4px 15px;color: #FFFFFF;text-decoration: none;}
+a.btn {padding: 3px 15px 5px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
-
+.pagecontentsubheader a.btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
 .btnDisabled, .btnDisabled:hover {
     background: url("../i/buttonBgGray.png") -10px -10px no-repeat;
     color: #666;
@@ -119,6 +124,15 @@ table a.btn {
 
 .btnMarginTop25 {
     margin-top: 25px;
+}
+
+.inactive {
+    color: #999;
+    font-style: italic;
+}
+
+#user .inactive {
+    text-decoration: line-through;
 }
 
 /*#filterbutton {
@@ -496,7 +510,7 @@ td.rightcells {
     background: transparent url(../i/icons/gnome-help.png) no-repeat 10px 50%;
 }
 #pagination {
-    margin: 10px 0 5px 0;
+    margin: 0 0 10px 0;
 }
 #paginationinfo {
     vertical-align: middle;
