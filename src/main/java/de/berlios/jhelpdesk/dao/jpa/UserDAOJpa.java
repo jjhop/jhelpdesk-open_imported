@@ -179,12 +179,20 @@ public class UserDAOJpa implements UserDAO {
         }
     }
 
-    public void refresh(User user) throws DAOException {
+    @Transactional(readOnly = false)
+    public void deactivate(final Long userId) throws DAOException {
         try {
-            this.jpaTemplate.refresh(user);
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE users SET is_active=? WHERE user_id=?");
+                    q.setParameter(1, false);
+                    q.setParameter(2, userId);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
     }
-
 }

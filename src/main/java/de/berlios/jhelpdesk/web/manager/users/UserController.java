@@ -95,15 +95,19 @@ public class UserController {
 
     /**
      * Usuwa użytkownika z bazy danych systemu. (Lub po prostu oznacza go jako nieaktywnego).
-     * 
-     * TODO: przemysleć sens i ewentualnie sposób w jaki będziemy usuwać użytkowników
      *
      * @param userId identyfikator uzytkownika do usunięcia
      * @return identyfikator widoku do wyświetlenia po usunięciu użytkownika
      */
     @RequestMapping("/manage/users/{id}/remove.html")
-    public String removeUser(@PathVariable("id") Long userId) {
-//        userDAO.remove(userId);
+    public String removeUser(@PathVariable("id") Long userId) throws Exception {
+
+        // można usunąć użytkownika jeśli nie zgłosił żadnego ticketu,
+        // nie dodał żadnego pliku ani komentarza (do ticketu lub artykułu w DB)
+        // ani nie dodał żadnego ogłoszenia... normalnie jeśli nie zrobił nic...
+
+        // w przeciwnym wypadku tylko deaktywacja
+        userDAO.deactivate(userId);
         return "redirect:/manage/users/list.html";
     }
 }
