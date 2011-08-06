@@ -119,7 +119,7 @@ public interface UserDAO {
      */
     void saveOrUpdate(User user) throws DAOException;
 
-    void refresh(User user) throws DAOException;
-
     void updatePasswordAndSalt(User currentUser, String password) throws DAOException;
+
+    void deactivate(Long userId) throws DAOException;
 }
