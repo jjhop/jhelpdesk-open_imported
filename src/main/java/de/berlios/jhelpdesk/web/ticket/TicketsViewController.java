@@ -157,8 +157,6 @@ public class TicketsViewController {
             map.addAttribute("tickets", result);
             map.addAttribute("filter", currentFilter);
             map.addAttribute("ticketsListSize", numOfTicketsWithFilter);
-        } else {
-            map.addAttribute("message", "nie znaleziono filtra...");
         }
         return TICKETS_LIST_VIEW;
     }

@@ -6,15 +6,10 @@
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
     User current = (User) session.getAttribute("loggedUser");
 %>
-
-<c:if test="${not empty message}">
-    <c:out value="${message}"/>
-</c:if>
 
 <div id="alltickets" class="ticketslist">
     <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
