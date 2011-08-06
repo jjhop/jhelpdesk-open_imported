@@ -30,17 +30,15 @@ function charTextCount(source, counter, ml) {
     }
 }
 
-function updateDiv(triggerId, sourceUrl) {
-    var targetDiv  = triggerId.substr(0, triggerId.length-3);
-    var imgElement = $(triggerId).firstDescendant();
-    new Ajax.Updater(targetDiv, sourceUrl, {
+function updateDiv(triggerId, targetContainer, sourceUrl) {
+    new Ajax.Updater(targetContainer, sourceUrl, {
         method: 'get',
         onCreate: function() {
-            imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh_loader.gif');
+            $(triggerId).addClassName("loading");
         },
         onComplete: function() {
             setTimeout(function () {
-                imgElement.writeAttribute('src', '/jhd/themes/blue/i/btn_refresh.png');
+                $(triggerId).removeClassName("loading");
             }, 1000);
         }
     });
