@@ -1,4 +1,4 @@
-/* PODSTAWOWY UK�?AD STRONY */
+/* PODSTAWOWY UKlAD STRONY */
 
 html {margin: 0;padding: 0;}
 body {margin: 0;padding: 0;background: #D0DBFB;font-size: 12px;font-family: Tahoma, Helvetica, sans-serif;
@@ -75,7 +75,7 @@ a.btn {padding: 3px 15px 5px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
 .pagecontentsubheader a.btn {
     position: absolute;
-    top: 6px;
+    top: 7px;
     right: 6px;
 }
 .btnDisabled, .btnDisabled:hover {

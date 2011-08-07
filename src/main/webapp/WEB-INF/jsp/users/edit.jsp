@@ -86,7 +86,7 @@
                                                     <% Role r = (Role)pageContext.getAttribute("role"); %>
                                                     <option value="<c:out value="${role.roleCode}"/>"
                                                         <% if (r.equals(u.getUserRole())) {%>selected="selected"<%}%>>
-                                                        <%= r.getRoleName(u.getPreferredLocale()) %>
+                                                        <%= r.getRoleName(((User)session.getAttribute("loggedUser")).getPreferredLocale()) %>
                                                     </option>
                                                 </c:forEach>
                                                 </select>

@@ -6,15 +6,13 @@
     <table class="w100p" cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3>Kategorie zgłoszeń</h3></div>
+                <div class="pagecontentsubheader">
+                    <h3>Kategorie zgłoszeń</h3>
+                    <a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj kategorię</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td><a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj kategorię</a></td>
-                            </tr>
-                        </table>
                         <display:table id="c" name="categories" class="standardtable"
                                        pagesize="${listSize}" size="categoriesListSize" sort="external" partialList="true"
                                        requestURI="${requestURI}" excludedParams="*" cellspacing="0">

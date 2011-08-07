@@ -6,18 +6,14 @@
     <table class="w100p" cellspacing="0">
         <tr>
             <td class="">
-                <div class="pagecontentsubheader"><h3>Baza wiedzy - artykuły</h3></div>
+                <div class="pagecontentsubheader">
+                    <h3>Baza wiedzy - artykuły</h3>
+                    <a href="<c:url value="/manage/kb/category/${categoryId}/articles/new.html"/>"
+                       class="btn">Dodaj nowy artykuł</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td class="right">
-                                    <a href="<c:url value="/manage/kb/category/${categoryId}/articles/new.html"/>"
-                                       class="btn">Dodaj nowy artykuł</a>
-                                </td>
-                            </tr>
-                        </table>
                         <c:url value="/manage/kb/category/${categoryId}/articles.html" var="requestURI"/>
                         <display:table id="a" name="articles" class="standardtable"
                                        pagesize="${listSize}" size="articlesListSize" sort="external" partialList="true"
