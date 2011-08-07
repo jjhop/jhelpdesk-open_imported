@@ -6,18 +6,13 @@
     <table class="w100p" cellspacing="0">
         <tr>
             <td class="">
-                <div class="pagecontentsubheader"><h3>Baza wiedzy - sekcje</h3></div>
+                <div class="pagecontentsubheader">
+                    <h3>Baza wiedzy - sekcje</h3>
+                    <a class="btn" href="<c:url value="/manage/kb/category/new.html"/>">Dodaj nową sekcję</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td><a class="btn" href="<c:url value="/manage/kb/category/new.html"/>">Dodaj nową sekcję</a></td>
-                            </tr>
-                            <c:if test="${message != null}">
-                                <tr><td style="color: #dc143c;"><c:out value="message"/>${message}</td></tr>
-                            </c:if>
-                        </table>
                         <c:if test="${not empty categories}">
                             <display:table id="c" name="categories" class="standardtable"
                                            pagesize="${listSize}" size="categoriesListSize" sort="external" partialList="true"

@@ -6,17 +6,13 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3>Filtry zgłoszeń</h3></div>
+                <div class="pagecontentsubheader">
+                    <h3>Filtry zgłoszeń</h3>
+                    <a href="<c:url value="/preferences/filters/new.html"/>" class="btn">Dodaj nowy filtr</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td class="right">
-                                    <a href="<c:url value="/preferences/filters/new.html"/>" class="btn">Dodaj nowy filtr</a>
-                                </td>
-                            </tr>
-                        </table>
                         <display:table id="filtersIterator" name="filters" class="standardtable"
                                        pagesize="${listSize}" size="filtersListSize" sort="external" partialList="true"
                                        requestURI="" excludedParams="*" cellspacing="0">

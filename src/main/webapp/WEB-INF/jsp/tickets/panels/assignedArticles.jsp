@@ -33,6 +33,4 @@
     </ul>
     </c:if>
 </c:if>
-            <a href="<c:url value="/tickets/${ticketId}/articles/new.html"/>"
-               class="btn lightview" title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Powiąż z artykułem</a>
 <div class="clearFloat"></div>

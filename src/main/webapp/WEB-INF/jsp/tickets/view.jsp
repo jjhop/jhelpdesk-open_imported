@@ -102,12 +102,22 @@
                             </c:if>
                         </table>
                     </div>
-                    <div class="pagecontentsubheader"><h3>Powiązane artykuły w bazie wiedzy</h3></div>
+                    <div class="pagecontentsubheader">
+                        <h3>Powiązane artykuły w bazie wiedzy</h3>
+                        <a href="<c:url value="/tickets/${ticketId}/articles/new.html"/>"
+                           class="btn lightview"
+                           title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj...</a>
+                    </div>
                     <div id="panel_articles" class="contentmiddle hAuto">
                         <tiles:insertDefinition name="panelAssignedArticles"/>
                     </div>
 
-                    <div class="pagecontentsubheader"><h3>Pliki</h3></div>
+                    <div class="pagecontentsubheader">
+                        <h3>Pliki</h3>
+                        <a href="<c:url value="/tickets/${ticketId}/uploadFile.html"/>"
+                           title=":: :: closeButton: false, width: 360, height: 390"
+                           class="btn lightview">Dodaj...</a>
+                    </div>
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <tiles:insertDefinition name="panelAttachments"/>
                     </div>

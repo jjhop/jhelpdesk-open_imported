@@ -41,7 +41,4 @@
     </p>
 </c:otherwise>
 </c:choose>
-<a href="<c:url value="/tickets/${ticketId}/uploadFile.html"/>"
-   title=":: :: closeButton: false, width: 360, height: 390"
-   class="btn lightview">Dołącz plik</a>
 <div class="clearFloat"></div>

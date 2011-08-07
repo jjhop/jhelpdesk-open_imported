@@ -6,7 +6,10 @@
     <table cellspacing="0" class="w100p">
         <tr>
             <td class="">
-                <div class="pagecontentsubheader"><h3>Użytkownicy</h3><a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a></div>
+                <div class="pagecontentsubheader">
+                    <h3>Użytkownicy</h3>
+                    <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

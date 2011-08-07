@@ -6,17 +6,13 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3>Wiadomości</h3></div>
+                <div class="pagecontentsubheader">
+                    <h3>Wiadomości</h3>
+                    <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj wiadomość</a>
+                </div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
-                        <table cellspacing="0">
-                            <tr>
-                                <td class="right">
-                                    <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj wiadomość</a>
-                                </td>
-                            </tr>
-                        </table>
                         <display:table id="announcementsIterator" name="announcements" class="standardtable"
                                        pagesize="${listSize}" size="announcementsListSize" sort="external" partialList="true"
                                        requestURI="" excludedParams="*" cellspacing="0">
