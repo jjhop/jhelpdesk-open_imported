@@ -8,7 +8,7 @@
             <td class="">
                 <div class="pagecontentsubheader">
                     <h3>Użytkownicy</h3>
-                    <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj użytkownika</a>
+                    <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">
                     <div class="contenttop"></div>

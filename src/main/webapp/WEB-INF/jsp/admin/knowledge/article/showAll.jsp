@@ -9,7 +9,7 @@
                 <div class="pagecontentsubheader">
                     <h3>Baza wiedzy - artykuły</h3>
                     <a href="<c:url value="/manage/kb/category/${categoryId}/articles/new.html"/>"
-                       class="btn">Dodaj nowy artykuł</a>
+                       class="btn">Dodaj...</a>
                 </div>
                 <div id="content">
                     <div class="contenttop"></div>

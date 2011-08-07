@@ -8,7 +8,7 @@
             <td class="">
                 <div class="pagecontentsubheader">
                     <h3>Baza wiedzy - sekcje</h3>
-                    <a class="btn" href="<c:url value="/manage/kb/category/new.html"/>">Dodaj nową sekcję</a>
+                    <a class="btn" href="<c:url value="/manage/kb/category/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">
                     <div class="contenttop"></div>

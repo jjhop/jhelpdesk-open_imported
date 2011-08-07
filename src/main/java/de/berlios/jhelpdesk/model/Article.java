@@ -16,8 +16,10 @@
 package de.berlios.jhelpdesk.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,6 +35,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -107,7 +110,8 @@ public class Article implements Serializable {
      *
      */
     @OneToMany(mappedBy = "article", cascade = {CascadeType.REMOVE})
-    private Set<ArticleComment> comments;
+    @OrderBy(value = "createDate")
+    private List<ArticleComment> comments;
 
     /**
      *
@@ -125,7 +129,7 @@ public class Article implements Serializable {
      * 
      */
     public Article() {
-        this.comments = new HashSet<ArticleComment>();
+        this.comments = new ArrayList<ArticleComment>();
         this.associatedTickets = new HashSet<Ticket>();
         this.createdAt = new Date();
     }
@@ -253,14 +257,14 @@ public class Article implements Serializable {
     /**
      * @return Returns the comments.
      */
-    public Set<ArticleComment> getComments() {
+    public List<ArticleComment> getComments() {
         return comments;
     }
 
     /**
      * @param comments The comments to set.
      */
-    public void setComments(Set<ArticleComment> comments) {
+    public void setComments(List<ArticleComment> comments) {
         this.comments = comments;
     }
 
