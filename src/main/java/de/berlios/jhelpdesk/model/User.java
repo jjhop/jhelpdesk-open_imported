@@ -58,7 +58,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 @SequenceGenerator(name = "user_sequence", sequenceName = "user_id_seq", allocationSize = 1)
 @NamedQueries({
     @NamedQuery(name = "User.countAll", query = "SELECT COUNT(u) FROM User u"),
-    @NamedQuery(name = "User.byEmailAndHashedPassoword", query = "SELECT u FROM User u WHERE u.email=?1 AND u.hashedPassword=?2"),
+    @NamedQuery(name = "User.byEmailAndHashedPassword", query = "SELECT u FROM User u WHERE u.email=?1 AND u.hashedPassword=?2"),
     @NamedQuery(name = "User.byEmail", query = "SELECT u FROM User u WHERE u.email=?1"),
     @NamedQuery(name = "User.byEmailFetchFilters", query = "SELECT u FROM User u LEFT JOIN FETCH u.filters WHERE u.email=?1"),
     @NamedQuery(name = "User.allOrderByLastName", query = "SELECT u FROM User u ORDER by u.lastName ASC"),
