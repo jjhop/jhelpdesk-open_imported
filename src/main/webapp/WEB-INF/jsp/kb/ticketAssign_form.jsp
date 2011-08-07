@@ -55,7 +55,7 @@
     <div class="bottomButtons">
         <form method="post" action="<c:url value="/help/base/articles/${articleId}/tickets/new.html"/>">
             <input type="hidden" id="tId" name="tId"/>
-            <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn"/>
+            <input id="btnAssignTicket" type="submit" value="Powiąż" disabled="disabled" class="btn btnDisabled"/>
             <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
         </form>
     </div>
@@ -84,6 +84,13 @@
         if (li.hasClassName("connected")) {
             $("btnAssignTicket").writeAttribute('disabled', 'disabled').addClassName('btnDisabled');
             $("isAssigned").show();
+        }
+        else {
+            if($("btnAssignTicket").hasAttribute('disabled')) {
+                $("btnAssignTicket").removeAttribute('disabled');
+            }
+
+            $("btnAssignTicket").removeClassName('btnDisabled');
         }
         $("selectedItemInfo").innerHTML = selected;
         $("selectedItem").show();
