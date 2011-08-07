@@ -8,7 +8,7 @@
             <td class="rightcells">
                 <div class="pagecontentsubheader">
                     <h3>Wiadomości</h3>
-                    <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj wiadomość</a>
+                    <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">
                     <div class="contenttop"></div>

@@ -178,6 +178,7 @@ public class KBViewController {
     @RequestMapping(value = "/help/base/articles/{aId}/comments/new.html", method = RequestMethod.GET)
     public String prepareCommentForm(@PathVariable("aId") Long articleId, ModelMap map) {
         map.addAttribute("comment", new ArticleComment());
+        map.addAttribute("articleId", articleId);
         return HELP_KB_COMMENT_FORM;
     }
 
@@ -192,7 +193,7 @@ public class KBViewController {
         }
         comment.setCreateDate(new Date());
         comment.setArticle(articleDAO.getById(articleId));
-        comment.setAuthorId((User) session.getAttribute("user"));
+        comment.setAuthorId((User) session.getAttribute("loggedUser"));
         articleDAO.saveArticleComment(comment);
         return HELP_KB_COMMENT_RESULT;
     }
