@@ -93,9 +93,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft"/>
-                            <a href="#" class="btnPlain floatLeft">anuluj</a>
-                            <div class="clearFloat"></div>
+                            <input type="submit" value="zapisz" class="btn btnMarginTop"/>
+                            <a href="#" class="btnPlain">anuluj</a>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>

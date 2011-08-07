@@ -4,7 +4,7 @@
 <div class="pagecontentsubheader">
     <h3>Komentarz do zlecenia</h3>
 </div>
-<div class="contentmiddle">
+<div class="contentmiddle h385">
     <c:url value="/tickets/${ticketId}/assignTo.html" var="formURL"/>
     <form:form commandName="assignForm" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
@@ -35,8 +35,10 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="Zleć" class="btn btnMarginTop floatLeft"/>
-        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
+        <div class="bottomButtons">
+            <input type="submit" value="Zleć" class="btn "/>
+            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
+        </div>
     </form:form>
     <div class="clearFloat"></div>
 </div>

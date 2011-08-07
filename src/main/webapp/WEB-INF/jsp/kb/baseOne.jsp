@@ -40,7 +40,7 @@
                     <h3>Komentarze</h3>
                     <a href="<c:url value="/help/base/articles/${article.id}/comments/new.html"/>"
                        class="lightview btn"
-                       title=":: :: closeButton: false, width: 500, height: 350, keyboard: true">Dodaj...</a>
+                       title=":: :: closeButton: false, width: 500, height: 415, keyboard: true">Dodaj...</a>
                 </div>
                 <div class="content">
                     <div class="contenttop"></div>
