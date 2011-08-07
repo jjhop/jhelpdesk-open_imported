@@ -51,10 +51,6 @@
                             <strong>Markdown</strong>.
                         </p>
                         <h2 class="wizardTip">Znaczki Markdown</h2>
-                        <p class="wizardTip">
-                            Poniższa lista opisuje tylko kilka znaczników, które możesz wykorzystać
-                            w swoim tekście. Więcej znajdziesz w <a href="">Pomocy</a>.
-                        </p>
                         <dl class="wizardTip">
                             <dt>paragraf</dt>
                             <dd>paragrafy zaznaczamy linią odstępu pomiędzy wierszami</dd>
