@@ -22,7 +22,7 @@
         <div class="contenttop"></div>
         <div class="contentmiddle">
             <display:table
-                id="ticketsIterator" name="tickets"
+                id="ticketsIterator" name="tickets" class="standardtable"
                 pagesize="${listSize}" size="ticketsListSize" sort="external" partialList="true"
                 requestURI="${requestURI}" excludedParams="*" cellspacing="0">
                 <display:column title="Lp." class="rowNumber" headerClass="rowNumber">

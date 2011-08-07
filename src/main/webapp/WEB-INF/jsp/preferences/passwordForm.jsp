@@ -3,7 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="pagecontentsubheader"><h3>Zmiana hasła</h3></div>
-<div class="contentmiddle">
+<div class="contentmiddle h335">
     <c:url value="/preferences/personalData/password/change.html" var="formURL"/>
     <form:form commandName="passwordForm" action="${formURL}" method="post">
         <table cellspacing="0" class="standardtable">
@@ -30,8 +30,9 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="zmień hasło" class="btn btnMarginTop floatLeft" />
-        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain floatLeft">anuluj</a>
-        <div class="clearFloat"></div>
+        <div class="bottomButtons">
+            <input type="submit" value="zmień hasło" class="btn" />
+            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
+        </div>
     </form:form>
 </div>

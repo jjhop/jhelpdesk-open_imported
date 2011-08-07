@@ -81,7 +81,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 .pagecontentsubheader a.btn {
     position: absolute;
     top: 7px;
-    right: 6px;
+    right: 10px;
 }
 .btnDisabled, .btnDisabled:hover {
     background: url("../i/buttonBgGray.png") -10px -10px no-repeat;
@@ -537,7 +537,6 @@ td.rightcells {
     width: 100%;
     margin-top: 5px;
     font-size: 11px;
-    border: 1px solid #677498;
 }
 #ticketsIterator th {
     padding: 6px 5px 7px;
@@ -649,6 +648,7 @@ td.rightcells {
     top: 38px;
     right: 1px;
 }
+
 div.panelsBg {
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='../i/transFilter.png');
 }
@@ -672,6 +672,10 @@ div.panelsBg {
 #boxright input, #boxright select {
     border: 1px solid #D0DBFB;
     width: 100%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ #box select  { height: 65px;  }
 }
 #boxright {
     float: left;

@@ -48,16 +48,16 @@
                                             <li class="floatRight w45p">
                                                 <a href="<c:url value="/preferences/personalData/password/change.html"/>"
                                                    rel="iframe"
-                                                   title=":: :: closeButton: false, width: 320, height: 390"
+                                                   title=":: :: closeButton: false, width: 320, height: 400"
                                                    class="btn floatRight btnMarginTop25 lightview">zmień hasło</a>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zmień dane" class="btn btnMarginTop floatLeft" />
-                            <a href="#" class="btnPlain floatLeft">anuluj</a>
-                            <div class="clearFloat"></div>
+                            <input type="submit" value="zmień dane" class="btn btnMarginTop" />
+                            <a href="#" class="btnPlain btnMarginTop">anuluj</a>
+
                         </form:form>
                     </div>
                 </div>
