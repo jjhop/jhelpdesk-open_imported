@@ -2,7 +2,12 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:url value="/tickets/${ticketId}/comments/save.html" var="formURL"/>
-<div class="contentmiddle">
+
+<div class="pagecontentsubheader">
+    <h3>Dodaj komentarz</h3>
+</div>
+
+<div class="contentmiddle h335">
     <form:form commandName="comment" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
             <tr>
@@ -27,8 +32,9 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="dodaj komentarz" class="btn btnMarginTop floatLeft"/>
-        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
-        <div class="clearFloat"></div>
+        <div class="bottomButtons">
+            <input type="submit" value="dodaj komentarz" class="btn"/>
+            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
+        </div>
     </form:form>
 </div>

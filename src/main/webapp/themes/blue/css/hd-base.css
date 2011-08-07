@@ -11,9 +11,14 @@ body.lightPassView .contentmiddle {
     margin: 0;
     position: relative;
 }
-
 body.lightPassView .h335 {
     height: 335px;
+}
+body.lightPassView .h350 {
+    height: 350px;
+}
+body.lightPassView .h385 {
+    height: 385px;
 }
 
 .hAuto {
@@ -83,6 +88,17 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
     color: #666;
     border: 2px solid #bebebe;
 }
+
+.btnPlain {
+    display: inline-block;
+    /*padding: 5px 0;
+    margin: 10px 10px 0 10px;
+    */
+    padding: 2px 15px 5px 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 table a.btn {
     float:left;
 }
@@ -100,13 +116,6 @@ table a.btn {
     padding: 12px 0 10px 0;
     border: 0;
     text-align: center;
-}
-
-.btnPlain {
-    padding: 5px 0;
-    margin: 10px 10px 0 10px;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 .btnPlainBox {
@@ -2281,7 +2290,7 @@ ul.detailsView ul.nested li {
 .bottomButtons {
     height: 35px;
     position: absolute;
-    bottom: 15px;
+    bottom: 5px;
     left: 10px;
     z-index: 1;
 }
