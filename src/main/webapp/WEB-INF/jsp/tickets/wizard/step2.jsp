@@ -3,6 +3,8 @@
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+
 <%
     User currentUser = (User) session.getAttribute("loggedUser");
 %>
@@ -50,7 +52,7 @@
                                     <label>Ważność</label>
                                     <select id="ticketPriority" name="ticketPriority" class="w20">
                                     <c:forEach var="priority" items="${priorities}">
-                                        <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if>>
+                                        <option value="${priority.priorityId}" <c:if test="${priority == ticket.ticketPriority}">selected="selected"</c:if> >
                                         <%
                                             TicketPriority priority = (TicketPriority) pageContext.getAttribute("priority");
                                             out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
