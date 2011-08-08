@@ -53,9 +53,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
-                            <a href="<c:url value="/manage/kb/category/${article.category.id}/articles.html"/>" class="btnPlain floatLeft">powrót do listy</a>
-                            <div class="clearFloat"></div>
+                            <input type="submit" value="zapisz" class="btn btnMarginTop" />
+                            <a href="<c:url value="/manage/kb/category/${article.category.id}/articles.html"/>" class="btnPlain btnMarginTop">powrót do listy</a>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>
