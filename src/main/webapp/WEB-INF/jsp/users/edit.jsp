@@ -98,9 +98,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <input type="submit" value="zapisz" class="btn btnMarginTop floatLeft" />
-                            <a href="<c:url value="/manage/users/list.html"/>" class="btnPlain floatLeft">anuluj</a>
-                            <div class="clearFloat"></div>
+                            <input type="submit" value="zapisz" class="btn btnMarginTop" />
+                            <a href="<c:url value="/manage/users/list.html"/>" class="btnPlain btnMarginTop">anuluj</a>
                         </form:form>
                     </div>
                     <div class="contentbottom"></div>
