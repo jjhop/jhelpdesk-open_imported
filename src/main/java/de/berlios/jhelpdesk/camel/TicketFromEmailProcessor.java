@@ -68,9 +68,7 @@ public class TicketFromEmailProcessor implements Processor {
             }
         }
         if (existsAndActive(emailAuthor)) {
-            // TODO: kategoria powinna być albo na podstawie zawartości maila, albo
-            //       ticketCategoryDAO.getDefault() jeśli to co zostanie zwrócone nie jest null
-            Ticket ticket = Ticket.create(priority, ticketCategoryDAO.getById(1L),
+            Ticket ticket = Ticket.create(priority, ticketCategoryDAO.getDefault(),
                     in.getMessage().getSubject(), (String) in.getMessage().getContent(),
                     in.hasAttachments() ? extractAttachments(in.getAttachments()) : null,
                     emailAuthor);
@@ -96,7 +94,7 @@ public class TicketFromEmailProcessor implements Processor {
             int priorityAsInt = Integer.parseInt(priorityAsString);
             return TicketPriority.fromInt(priorityAsInt);
         } catch(Exception ex) {
-            log.debug("Nieznany znaczniki priorytetu. Ustawiam [TicketPriority.NORMAL]", ex);
+            log.info("Nieznany znaczniki priorytetu. Ustawiam [TicketPriority.NORMAL]", ex);
         }
         return TicketPriority.NORMAL;
     }

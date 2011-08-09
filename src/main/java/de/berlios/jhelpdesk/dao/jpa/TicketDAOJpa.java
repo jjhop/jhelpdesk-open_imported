@@ -15,7 +15,6 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

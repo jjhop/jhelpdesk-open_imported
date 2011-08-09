@@ -15,22 +15,20 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
-
+import de.berlios.jhelpdesk.dao.DAOException;
+import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
+import de.berlios.jhelpdesk.model.TicketCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.berlios.jhelpdesk.dao.DAOException;
-import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
-import de.berlios.jhelpdesk.model.TicketCategory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  *
@@ -193,7 +191,13 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
 
     public TicketCategory getDefault() throws DAOException {
         try {
-            return null;
+            return this.jpaTemplate.execute(new JpaCallback<TicketCategory>() {
+                public TicketCategory doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("SELECT tc FROM TicketCategory tc WHERE tc.isDefault=?1");
+                    q.setParameter(1, Boolean.TRUE);
+                    return (TicketCategory) q.getSingleResult();
+                }
+            });
         } catch (Exception ex) {
             throw new DAOException(ex);
         }
