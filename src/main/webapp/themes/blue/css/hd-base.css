@@ -78,6 +78,34 @@ width: 340px;
 
 a.btn {padding: 3px 15px 5px;color: #FFFFFF;text-decoration: none;}
 a.btn:hover {color: #FFFFFF;text-decoration: none;}
+
+.btnGreen {
+    background: url(../i/bg_ticketaction.png) right -45px no-repeat;
+    color: #fff;
+    border-color: #709345;
+}
+.btnGreen:hover {
+    background: url(../i/bg_ticketaction.png) right -10px no-repeat;
+    border-color: #5B8030;
+}
+.btnOrange {
+    background: url(../i/bg_ticketaction.png) right -115px no-repeat;
+    color: #fff;
+    border-color: #f27b42;
+}
+.btnOrange:hover {
+    background: url(../i/bg_ticketaction.png) right -80px no-repeat;
+    border-color: #df5d1f;
+}
+.btnDark {
+    background: url(../i/bg_ticketaction.png) right -255px no-repeat;
+    color: #fff;
+    border-color: #797979;
+}
+.btnDark:hover {
+    background: url(../i/bg_ticketaction.png) right -220px no-repeat;
+    border-color: #5b5b5b;
+}
 .pagecontentsubheader a.btn {
     position: absolute;
     top: 7px;
@@ -720,14 +748,14 @@ div.buttons {
     float: left;
     clear: both;
     width: 561px;
-    height: 25px;
-    background: transparent url(../i/hd-filterFooter.png) no-repeat 0 0;
+    height: 34px;
+    background: transparent url(../i/hd-filterFooter.png) bottom center no-repeat;
     border-top: 3px solid #D0DBFB;
     color: #fff;
     text-align: right;
-    padding: 3px 0 0 0;
+    padding: 5px 0 0 0;
 }
-div.buttons input {margin: 0 5px;}
+div.buttons .btn {margin: 0 5px; padding: 2px 5px 4px; }
 * html div.buttons {
     background: none;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='themes/hd/i/hd-filterFooter.png', sizingMethod='crop');

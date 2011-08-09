@@ -55,7 +55,7 @@
     <div class="bottomButtons">
         <form method="post" action="">
             <input type="hidden" name="aId" id="aId" value="${article.id}"/>
-            <input id="btnAssignTicket" type="submit" value="Powiąż" class="btn btnDisabled"/>
+            <input id="btnAssignTicket" type="submit" value="Powiąż" disabled="disabled" class="btn btnDisabled"/>
             <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
         </form>
 

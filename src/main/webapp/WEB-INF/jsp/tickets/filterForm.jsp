@@ -143,9 +143,9 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <input type="reset" value="Przywróć"/>
-                    <input type="button" onclick="clearForm('filterForm');" value="Wyczyść wszystko"/>
-                    <input type="submit" value="Zastosuj filtr"/>
+                    <input type="reset" value="Przywróć" class="btn btnDark" />
+                    <input type="button" onclick="clearForm('filterForm');" value="Wyczyść wszystko" class="btn btnDark" />
+                    <input type="submit" value="Zastosuj filtr" class="btn btnDark" />
                 </div>
             </div>
         </div>
