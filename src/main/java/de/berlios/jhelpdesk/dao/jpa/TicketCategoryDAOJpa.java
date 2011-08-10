@@ -15,20 +15,22 @@
  */
 package de.berlios.jhelpdesk.dao.jpa;
 
-import de.berlios.jhelpdesk.dao.DAOException;
-import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
-import de.berlios.jhelpdesk.model.TicketCategory;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
-import java.util.List;
+import de.berlios.jhelpdesk.dao.DAOException;
+import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
+import de.berlios.jhelpdesk.model.TicketCategory;
 
 /**
  *
@@ -205,6 +207,18 @@ public class TicketCategoryDAOJpa implements TicketCategoryDAO {
 
     @Transactional(readOnly = false)
     public void save(final TicketCategory category) {
+        // jeśli nowa kategoria ma być domyślną to dotychczasowa domyslna musi przestać nią być
+        if (category.isDefault()) {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createQuery("UPDATE TicketCategory tc SET tc.isDefault=?1 WHERE tc.isDefault=?2");
+                    q.setParameter(1, Boolean.FALSE);
+                    q.setParameter(2, Boolean.TRUE);
+                    q.executeUpdate();
+                    return null;
+                }
+            });
+        }
         if (category.getId() == null) {
             this.jpaTemplate.execute(new JpaCallback<Object>() {
                 public Object doInJpa(EntityManager em) throws PersistenceException {
