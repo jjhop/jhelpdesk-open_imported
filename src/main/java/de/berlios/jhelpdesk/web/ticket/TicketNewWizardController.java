@@ -210,7 +210,7 @@ public class TicketNewWizardController {
     private String processFinnish(Ticket ticket, SessionStatus status, HttpSession session) throws Exception {
         attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
-                (User) session.getAttribute("user"),
+                (User) session.getAttribute("loggedUser"),
                 (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
         ticketDAO.save(ticket);
         status.setComplete();
