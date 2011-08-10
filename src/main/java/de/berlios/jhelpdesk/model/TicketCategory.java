@@ -46,6 +46,9 @@ public class TicketCategory implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "is_default")
+    private boolean isDefault;
+
     /**
      *
      */
@@ -102,6 +105,14 @@ public class TicketCategory implements Serializable {
      */
     public void setId(Long ticketCategoryId) {
         this.id = ticketCategoryId;
+    }
+
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
     }
 
     /**

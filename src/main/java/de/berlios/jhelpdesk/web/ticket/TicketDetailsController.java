@@ -128,9 +128,6 @@ public class TicketDetailsController {
             if (count > result.size()) {
                 map.addAttribute("moreResultCount", count - result.size());
             }
-        } else {
-            // todo: widok z informację, ze nic nie ma...
-            // return ....
         }
         return "/tickets/articles/searchArticles";
     }
