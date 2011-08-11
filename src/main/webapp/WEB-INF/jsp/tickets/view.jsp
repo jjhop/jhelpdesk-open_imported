@@ -76,7 +76,7 @@
                                         ${ticket.ticketCategory}
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
-                                           title=":: :: closeButton: false, width: 500, height: 495, autosize: true">zmień</a>
+                                           title=":: :: closeButton: false, width: 500, height: 490, autosize: true">zmień</a>
                                     </span>
                                 </td>
                             </tr>

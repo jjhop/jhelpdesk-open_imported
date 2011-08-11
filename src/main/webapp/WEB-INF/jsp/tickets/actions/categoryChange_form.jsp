@@ -4,7 +4,7 @@
 <div class="pagecontentsubheader">
     <h3>Zmiana kategorii zgłoszenia</h3>
 </div>
-<div class="contentmiddle">
+<div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/categoryChange.html" var="formURL"/>
     <form:form commandName="form" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
@@ -39,8 +39,9 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="Zmień" class="btn btnMarginTop floatLeft"/>
-        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain btnMarginTop floatLeft">anuluj</a>
+        <div class="bottomButtons">
+            <input type="submit" value="Zmień" class="btn"/>
+            <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">anuluj</a>
+        </div>
     </form:form>
-    <div class="clearFloat"></div>
 </div>

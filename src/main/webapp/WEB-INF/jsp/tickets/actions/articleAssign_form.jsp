@@ -90,7 +90,7 @@
             if($("btnAssignTicket").hasAttribute('disabled')) {
                 $("btnAssignTicket").removeAttribute('disabled');
             }
-
+            $("isAssigned").hide();
             $("btnAssignTicket").removeClassName('btnDisabled');
         }
         $("selectedItemInfo").innerHTML = selected;
