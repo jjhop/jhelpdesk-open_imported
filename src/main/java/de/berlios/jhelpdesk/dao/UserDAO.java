@@ -67,6 +67,8 @@ public interface UserDAO {
      */
     List<User> getByRole(Role role) throws DAOException;
 
+    List<User> getActiveByRole(Role role) throws DAOException;
+
     /**
      * Zwraca użytkownika o podanym identyfikatorze lub {@code null} jeśli
      * nie zostanie odnaleziony.
