@@ -85,7 +85,7 @@ public class TicketAssignController {
                            HttpSession session) throws Exception {
         User currentUser = (User)session.getAttribute("loggedUser");
         if (currentUser.isManager()) {
-            map.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
+            map.addAttribute("saviours", userDAO.getActiveByRole(Role.TICKETKILLER));
             map.addAttribute("assignForm", new TicketActionForm());
             map.addAttribute("ticketId", ticketId);
             return "/tickets/assignto/form";
@@ -103,7 +103,7 @@ public class TicketAssignController {
         if (currentUser.isManager()) {
             validator.validate(form, result);
             if (result.hasErrors()) {
-                map.addAttribute("saviours", userDAO.getByRole(Role.TICKETKILLER));
+                map.addAttribute("saviours", userDAO.getActiveByRole(Role.TICKETKILLER));
                 map.addAttribute("ticketId", ticketId);
                 return "/tickets/assignto/form";
             }
