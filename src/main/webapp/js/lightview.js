@@ -58,11 +58,11 @@ var Lightview = {
     overlay: {                                             // Overlay
       background: '#000',                                  // Background color, Mac Firefox & Mac Safari use overlay.png
       close: true,
-      opacity: 0.75,
+      opacity: 0.25,
       display: true
     },
     preloadHover: false,                                   // Preload images on mouseover
-    radius: 12,                                            // Corner radius of the border
+    radius: 6,                                            // Corner radius of the border
     removeTitles: true,                                    // Set to false if you want to keep title attributes intact
     slideshowDelay: 5,                                     // Delay in seconds before showing the next slide
     titleSplit: '::',                                      // The characters you want to split title with
