@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
 <%@ page import="de.berlios.jhelpdesk.model.Ticket" %>
-<%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%
@@ -50,12 +50,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
-                                <td id="tdTicketPriority" class="highlight" colspan="2" style="font-weight: bold;" onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()">
+                                <td id="tdTicketPriority" colspan="2" style="font-weight: bold;"
+                                    <auth:check requiredRole="10">
+                                    class="highlight"
+                                    onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()"</auth:check>>
                                     <span class="ticketPriority tp${ticket.ticketPriority}">
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
-                                    %><a id="btnChangePr" class="lightview btn btnChange" href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>" title=":: :: closeButton: false, width: 500, height: 495">zmień</a>
+                                    %>
+                                    <auth:check requiredRole="10">
+                                    <a id="btnChangePr" class="lightview btn btnChange"
+                                       href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>"
+                                       title=":: :: closeButton: false, width: 500, height: 495">zmień</a>
+                                    </auth:check>
                                     </span>
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
@@ -71,12 +79,18 @@
                                 <th colspan="6" class="lastcol">Kategoria</th>
                             </tr>
                             <tr>
-                                <td class="highlight" colspan="6" onmouseover="$('btnChangeCat').show();" onmouseout="$('btnChangeCat').hide()">
+                                <td colspan="6"
+                                    <auth:check requiredRole="10">
+                                    class="highlight"
+                                    onmouseover="$('btnChangeCat').show();"
+                                    onmouseout="$('btnChangeCat').hide()" </auth:check>>
                                     <span class="ticketCategoryChange">
                                         ${ticket.ticketCategory}
+                                        <auth:check requiredRole="10">
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
                                            title=":: :: closeButton: false, width: 500, height: 495, autosize: true">zmień</a>
+                                        </auth:check>
                                     </span>
                                 </td>
                             </tr>
@@ -104,9 +118,11 @@
                     </div>
                     <div class="pagecontentsubheader">
                         <h3>Powiązane artykuły w bazie wiedzy</h3>
+                        <auth:check requiredRole="10">
                         <a href="<c:url value="/tickets/${ticketId}/articles/new.html"/>"
                            class="btn lightview"
                            title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj...</a>
+                        </auth:check>
                     </div>
                     <div id="panel_articles" class="contentmiddle hAuto">
                         <tiles:insertDefinition name="panelAssignedArticles"/>
