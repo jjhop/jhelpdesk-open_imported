@@ -13,7 +13,7 @@
  *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.web.preferences.filter;
+package de.berlios.jhelpdesk.web.preferences;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -56,9 +55,6 @@ import de.berlios.jhelpdesk.web.tools.UserEditor;
  */
 @Controller
 public class CustomFilterEditController {
-
-    @Autowired
-    private MessageSource ms;
 
     @Autowired
     private UserDAO userDAO;
