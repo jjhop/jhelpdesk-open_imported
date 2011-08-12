@@ -44,12 +44,12 @@
                                                           onclick="ticketsViewSelected();"/>
                                             <label for="v2">zgłoszenia</label>
                                         </span>
-                                        <c:if test='${not fn:endsWith(user.welcomePage,"list.html")}'>
+                                        <c:if test='${not fn:endsWith(currentUser.welcomePage,"list.html")}'>
                                             <c:set var="ftfstyle" value="display:none"/>
                                         </c:if>
                                         <span class="layoutOption">
                                         <form:select id="ticketsViewDD" cssStyle="${ftfstyle}"
-                                                     items="${sessionScope.user.filters}" path="filterId"
+                                                     items="${sessionScope.loggedUser.filters}" path="filterId"
                                                      itemValue="id" itemLabel="name"/>
                                         </span>
                                     </td>
@@ -59,8 +59,8 @@
                                                           onclick="newTicketSelected();"/>
                                             <label for="v3">nowe zgłoszenie</label>
                                         </span>
-                                        <c:if test='${(not fn:endsWith(user.welcomePage,"new.html"))
-                                                      and (not fn:endsWith(user.welcomePage,"wizzard.html"))}'>
+                                        <c:if test='${(not fn:endsWith(currentUser.welcomePage,"new.html"))
+                                                      and (not fn:endsWith(currentUser.welcomePage,"wizzard.html"))}'>
                                             <c:set var="ntrstyle" value="display:none;"/>
                                         </c:if>
                                         <span id="newTicketRadios" style="${ntrstyle}">
