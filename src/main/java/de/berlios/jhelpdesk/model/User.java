@@ -62,7 +62,9 @@ import org.apache.commons.codec.digest.DigestUtils;
     @NamedQuery(name = "User.byEmail", query = "SELECT u FROM User u WHERE u.email=?1"),
     @NamedQuery(name = "User.byEmailFetchFilters", query = "SELECT u FROM User u LEFT JOIN FETCH u.filters WHERE u.email=?1"),
     @NamedQuery(name = "User.allOrderByLastName", query = "SELECT u FROM User u ORDER by u.lastName ASC"),
-    @NamedQuery(name = "User.allByRoleOrderByLastName", query = "SELECT u FROM User u WHERE u.roleAsInt=?1 ORDER by u.lastName ASC")
+    @NamedQuery(name = "User.allByRoleOrderByLastName", query = "SELECT u FROM User u WHERE u.roleAsInt=?1 ORDER by u.lastName ASC"),
+    @NamedQuery(name = "User.activeByRoleOrderByLastName",
+            query = "SELECT u FROM User u WHERE u.roleAsInt=?1 AND u.isActive=true ORDER by u.lastName ASC")
 })
 public class User implements Serializable {
 
