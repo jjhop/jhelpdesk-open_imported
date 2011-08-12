@@ -1,6 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" %>
-<%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="editcategory" class="management">
     <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
