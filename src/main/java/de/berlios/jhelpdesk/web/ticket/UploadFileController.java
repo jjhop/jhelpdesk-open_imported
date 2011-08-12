@@ -18,10 +18,12 @@ package de.berlios.jhelpdesk.web.ticket;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import info.jjhop.deimos.DeimosRepository;
@@ -136,6 +138,14 @@ public class UploadFileController {
         }
         
         return TICKETS_UPLOAD_VIEW;
+    }
+    @RequestMapping(value = "/tickets/attachements/remove.html") // TODO: szczegóły
+    protected void removeUploadedFile(@RequestParam("a") String attachmentName,
+                                      @RequestParam("e") String elementId,
+                                      HttpServletResponse response) throws Exception {
+//        response.setContentType("application");
+        PrintWriter out = response.getWriter();
+        out.write("hhh");
     }
     
     private AdditionalFile createFormUploadAndTicket(MultipartFile file, Ticket ticket) {
