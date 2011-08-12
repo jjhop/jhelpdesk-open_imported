@@ -24,9 +24,11 @@
     </c:if>
     <h3>Nowe załączniki</h3>
     <ol class="attachList">
-        <c:forEach items="${currentFiles}" var="f">
-        <li>
-            <a class="attachDel" href="#">Usuń</a>
+        <c:forEach items="${currentFiles}" var="f" varStatus="i">
+        <li id="attachment_id_${i.index}">
+            <a class="attachDel" href="#"
+                onclick="new Ajax.Request('/tickets/attachments/remove.html?a=${f.filename}&amp;e=attachment_id_${i.index}', {
+                                asynchronous:true, evalScripts:true}); return false;">Usuń</a>
             <span class="attachName"><c:out value="${f.filename}"/> <span class="attachSize">(<c:out value="${f.filesize}"/>)</span></span>
         </li>
         </c:forEach>
