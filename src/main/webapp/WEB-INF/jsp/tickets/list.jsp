@@ -23,7 +23,7 @@
         <div class="contentmiddle">
             <c:choose>
                 <c:when test="${filterNotFound}">
-                    nie ma takiego filtra lub nie jestes jego wlascicielem
+                    Nie ma takiego filtra lub nie jestes jego wlascicielem
                 </c:when>
                 <c:otherwise>
                     <display:table
