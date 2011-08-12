@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 
 import de.berlios.jhelpdesk.dao.AnnouncementDAO;
 import de.berlios.jhelpdesk.model.Announcement;
@@ -144,20 +143,19 @@ public class AnnouncementController {
      * @param announcement obiekt ogłoszenia do zapisania (po poprawnym zwalidowaniu)
      *
      * @param result
-     * @param status
      * @return identyfikator widoku do wyświetlenia
      * 
      */
     @RequestMapping(value = "/announcements/save.html", method = RequestMethod.POST)
     protected String processSubmit(@ModelAttribute("announcement") Announcement announcement,
-                                   BindingResult result, SessionStatus status) throws Exception {
+                                   BindingResult result, HttpSession session) throws Exception {
 
         validator.validate(announcement, result);
         if (result.hasErrors()) {
             return "announcement/edit";
         }
+        announcement.setAuthor((User) session.getAttribute("loggedUser"));
         announcementDAO.save(announcement);
-        status.setComplete();
         return "redirect:list.html";
     }
 }

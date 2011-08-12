@@ -15,17 +15,33 @@
  */
 package de.berlios.jhelpdesk.mail;
 
+import org.springframework.stereotype.Component;
+
 import de.berlios.jhelpdesk.model.User;
 
-public interface MailerService {
+@Component
+public class MailerService {
 
-    void send(String recipient, String subject, String body);
+    public void send(String recipient, String subject, String body) {
 
-    void sendNotificationForTicketAssignEvent(Long ticketId);
+    }
 
-    void sendNotificationForTicketRejectEvent(Long ticketId, User rejector, String comment); // :)
+    public void sendNotificationForTicketAssignEvent(Long ticketId) {
+        // maile wrzucamy do kolejki może jakoś? a stamtąd będziemy je
+        // jakimś mechanizmem pobierać i wysyłać...
+        System.out.println("[assign] Wyslałem mail zwiazany z ticketem #" + ticketId);
+    }
 
-    void sendNotificationForTicketCloseEvent(Long ticketId, User user, String comment);
+    public void sendNotificationForTicketRejectEvent(Long ticketId, User rejector, String comment) {
+        // j.w.
+        System.out.println("[reject] Wyslałem mail zwiazany z ticketem #" + ticketId);
+    }
 
-    void sendNotificationForTicketResolveEvent(Long ticketId, User user, String comment);
+    public void sendNotificationForTicketCloseEvent(Long ticketId, User user, String comment) {
+        System.out.println("[close] Wyslałem mail zwiazany z ticketem #" + ticketId);
+    }
+
+    public void sendNotificationForTicketResolveEvent(Long ticketId, User user, String comment) {
+        System.out.println("[resolve] Wyslałem mail zwiazany z ticketem #" + ticketId);
+    }
 }

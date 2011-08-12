@@ -93,6 +93,14 @@ public class UserDAOJpa implements UserDAO {
         }
     }
 
+    public List<User> getActiveByRole(Role role) throws DAOException {
+        try {
+            return this.jpaTemplate.findByNamedQuery("User.activeByRoleOrderByLastName", role.toInt());
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
     public User getById(Long id) throws DAOException {
         try {
             return this.jpaTemplate.find(User.class, id);

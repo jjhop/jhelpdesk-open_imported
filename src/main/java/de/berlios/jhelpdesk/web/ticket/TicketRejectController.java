@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import de.berlios.jhelpdesk.dao.TicketDAO;
+import de.berlios.jhelpdesk.mail.MailerService;
 import de.berlios.jhelpdesk.model.CommentType;
 import de.berlios.jhelpdesk.model.User;
 import de.berlios.jhelpdesk.model.TicketComment;
 import de.berlios.jhelpdesk.web.tools.TicketCommentValidator;
-import de.berlios.jhelpdesk.mail.MailerService;
 
 /**
  * @author jjhop
