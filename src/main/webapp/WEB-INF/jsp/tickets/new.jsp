@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
@@ -87,7 +87,8 @@
                                                 <label>Załączniki</label>
                                                 <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
                                                    title=":: :: closeButton: false, width: 360, height: 390"
-                                                   class="lightview">Dołącz plik</a>
+                                                   class="lightview">Dołącz plik</a><br/>
+                                                (tutaj robimy listę załączonych plików z możliwością dodania kolejnego i usunięcia juz dodanych)
                                             </li>
                                         </ul>
                                     </td>
@@ -104,5 +105,52 @@
     </table>
 </div>
 <div id="help" style="display: none;">
-Hello world!
+    <h4>Zgłaszający</h4>
+    <p>
+        Aby sprawdzić użytkownika, wprowadź jego email do pola i kliknij lupkę.
+    </p>
+    <h4>Przyczyna zgłoszenia</h4>
+    <p>
+        Przyczyna zgłoszenia powinna być bardzo zwięzłym (maksymalnie 255 znaków)
+        oznaczeniem występującego problemu, np. <i>kserokopiarka pozostawia smugi
+        na kopiach</i>.
+    </p>
+    <h4>Kategoria problemu</h4>
+    <p>
+        Koniecznie wybierz najlepszą Twoim zdaniem kategorię, do której należy
+        zgłaszany przez Ciebie problem. Jeśli po analizie w dziale helpdesk okaże
+        się, że trzeba ją zmienić to będzie to możliwe. Zmiana taka zostanie zapisana
+        w historii zgłoszenia.
+    </p>
+    <h4>Ważność</h4>
+    <p>
+        Wybierz możliwe najdokładniej ważność problemu. <strong>Ważność</strong>
+        traktuj jako wypadkową dokuczliwości i pilności rozwiązania.
+    </p>
+    <h4>Opis zgłoszenia</h4>
+    <p>
+        W tym polu należy zwięźle opisać w jakich okolicznościach zachodzą problemy.
+        Opis może być dość długi - maksymalnie 8192 znaki (8kb).
+    </p>
+    <h4>Krok po kroku</h4>
+    <p>
+        Jeśli zgłaszany problem ma charakter powtarzalny i potrafisz opisać,
+        w jakich warunkach da się to zrobić, to opisz te warunki oraz kolejne
+        kroki, które należy wykonac, aby go wywołać. Masz na to wiele miejsca
+        (maksymalnie 16384 znaków - 16kb). Możesz używac znaczników
+        <strong>Markdown</strong>.
+    </p>
+    <h4>Znaczki Markdown</h4>
+    <dl>
+        <dt>paragraf</dt>
+        <dd>paragrafy zaznaczamy linią odstępu pomiędzy wierszami</dd>
+        <dt>emfaza</dt>
+        <dd>*tekst do oznaczenia*</dd>
+        <dt>podwójna emfaza</dt>
+        <dd>**tekst do oznaczenia**</dd>
+        <dt>lista numerowana</dt>
+        <dd>listę numerowaną tworzymy dodając na początku wiersza liczbę</dd>
+        <dt>lista nienumerowana</dt>
+        <dd>listę numerowaną tworzymy dodając na początku wiersza znak * i odstęp po niej</dd>
+    </dl>
 </div>

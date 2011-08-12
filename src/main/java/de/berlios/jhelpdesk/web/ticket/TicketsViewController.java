@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import de.berlios.jhelpdesk.dao.DAOException;
 import de.berlios.jhelpdesk.dao.TicketCategoryDAO;
 import de.berlios.jhelpdesk.dao.TicketDAO;
 import de.berlios.jhelpdesk.dao.TicketFilterDAO;
@@ -114,7 +113,7 @@ public class TicketsViewController {
     public List<User> populateNotifiers() {
         try {
             return userDAO.getAllUsers();
-        } catch (DAOException ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -143,6 +142,8 @@ public class TicketsViewController {
             TicketFilter dbFilter = ticketFilterDAO.getById(filterId);
             if (dbFilter != null && dbFilter.isOwnedBy(currentUser)) {
                 currentFilter = dbFilter;
+            } else {
+                map.addAttribute("filterNotFound", Boolean.TRUE);
             }
         }
 

@@ -13,15 +13,12 @@
  *
  * Copyright: (C) 2006 jHelpdesk Developers Team
  */
-package de.berlios.jhelpdesk.web.preferences.filter;
-
-import java.util.Locale;
+package de.berlios.jhelpdesk.web.preferences;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,9 +40,6 @@ import de.berlios.jhelpdesk.web.commons.PagingParamsEncoder;
 public class CustomFilterController {
 
     @Autowired
-    private MessageSource ms;
-    
-    @Autowired
     private TicketFilterDAO ticketFilterDAO;
 
     @Autowired
@@ -66,21 +60,6 @@ public class CustomFilterController {
         map.addAttribute("listSize", pageSize);
         map.addAttribute("filtersListSize", filtersCount);
         return "preferences/filters/showAll";
-    }
-
-    @RequestMapping(value = "/preferences/filters/{filterId}/details.html", method = RequestMethod.GET)
-    public String showFilter(@PathVariable("filterId") Long filterId, ModelMap map,
-                             Locale currentLocale, HttpSession session) throws Exception {
-        User currentUser = (User) session.getAttribute("loggedUser");
-        TicketFilter filter = ticketFilterDAO.getById(filterId);
-        if (filter != null && filter.isOwnedBy(currentUser)) {
-            map.addAttribute("filter", filter);
-        } else {
-            map.addAttribute("errorMessage",
-                             ms.getMessage("customFilterController.showFilter.404",
-                             null, currentLocale));
-        }
-        return "preferences/filters/show";
     }
 
     @RequestMapping(value = "/preferences/filters/{filterId}/delete.html", method = RequestMethod.GET)

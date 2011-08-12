@@ -1,3 +1,4 @@
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
@@ -75,9 +76,11 @@
             <td class="leftcells colNarrowRight">
                 <div class="pagecontentsubheader">
                     <h3>Powiązane zgłoszenia</h3>
+                    <auth:check requiredRole="10">
                     <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
                        class="lightview btn rndCrn5px"
                        title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj...</a>
+                    </auth:check>
                 </div>
                 <div class="contenttop"></div>
                 <div class="contentmiddle">
