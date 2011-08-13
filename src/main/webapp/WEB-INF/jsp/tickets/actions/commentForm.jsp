@@ -7,7 +7,7 @@
     <h3>Dodaj komentarz</h3>
 </div>
 
-<div class="contentmiddle h335">
+<div class="contentmiddle h425">
     <form:form commandName="comment" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
             <tr>
@@ -18,7 +18,7 @@
                                 <span class="lblTip">(!!!!!!!!!!!!!!)</span>
                             </label>
                             <form:textarea id="addComm" path="commentText"
-                                   cssClass="addComment" cssErrorClass="addComment fieldError"
+                                   cssClass="addComment h250" cssErrorClass="addComment h250 fieldError"
                                    onkeyup="charTextCount(this.form.addComm, 'commentCounter', 4096)" onblur="$('commentCounter').hide()"
                                    rows="3" cols="40"/>
                             <form:errors cssClass="formError errorBottom" path="commentText"/>

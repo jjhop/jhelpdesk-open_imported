@@ -37,7 +37,7 @@
                 </c:if>
             </c:if>
             <a href="<c:url value="/tickets/${ticketId}/comments/new.html"/>"
-               class="btn lightview" title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj komentarz</a>
+               class="btn lightview" title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Dodaj komentarz</a>
         </td>
     </tr>
 </table>
