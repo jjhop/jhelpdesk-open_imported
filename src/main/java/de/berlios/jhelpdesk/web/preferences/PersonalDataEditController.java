@@ -61,29 +61,34 @@ public class PersonalDataEditController {
     }
 
     @RequestMapping(value = "/preferences/personalData/change.html", method = RequestMethod.POST)
-    public String processPersonalDataChange(@ModelAttribute("personalData") User user,
-                                            BindingResult result, ModelMap map, 
-                                            HttpSession session) throws Exception {
+    public String processPersonalDataChange(@ModelAttribute("personalData") User user, BindingResult result,
+                                            ModelMap map, HttpSession session) throws Exception {
         User currentUser = getUserFromSession(session);
         validator.validate(user, result);
         if (result.hasErrors()) {
             map.addAttribute("user", user);
             return PD_FORM_VIEW;
         }
-        user.setUserId(currentUser.getUserId());
-        userDAO.saveOrUpdate(user);
-        return PD_FORM_VIEW;
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setPhone(user.getPhone());
+        currentUser.setMobile(user.getMobile());
+        userDAO.saveOrUpdate(currentUser);
+        session.setAttribute("loggedUser", userDAO.getById(currentUser.getUserId()));
+        map.clear();
+        return "redirect:/preferences/personalData.html";
     }
 
     @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.GET)
-    public String preparePasswordChange(HttpSession session, ModelMap map) throws Exception {
+    public String preparePasswordChange(ModelMap map) throws Exception {
         map.addAttribute("passwordForm", new PasswordForm());
         return PD_PASSWORD_FORM_VIEW;
     }
 
     @RequestMapping(value = "/preferences/personalData/password/change.html", method = RequestMethod.POST)
-    public String processPasswordChange(@ModelAttribute("passwordForm") PasswordForm form,
-                                        BindingResult result, ModelMap map, HttpSession session) throws Exception {
+    public String processPasswordChange(@ModelAttribute("passwordForm") PasswordForm form, BindingResult result,
+                                        ModelMap map, HttpSession session) throws Exception {
         User currentUser = getUserFromSession(session);
         passwordValidator.validate(form, result);
 
