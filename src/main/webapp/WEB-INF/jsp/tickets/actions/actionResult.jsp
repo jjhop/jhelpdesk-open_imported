@@ -4,7 +4,7 @@
 <div class="pagecontentsubheader">
     <h3>Dziękujemy</h3>
 </div>
-<div class="contentmiddle">
+<div class="contentmiddle h425">
     <table class="standardtable" cellspacing="0">
         <tr>
             <td>

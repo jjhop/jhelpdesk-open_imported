@@ -4,7 +4,7 @@
 <div class="pagecontentsubheader">
     <h3>Powiąż zgłoszenie z artykułem</h3>
 </div>
-<div class="contentmiddle h335">
+<div class="contentmiddle h425">
     <table class="standardtable" cellpadding="0" cellspacing="0">
         <tr>
             <td class="lastcol">
@@ -32,8 +32,13 @@
     <div id="initialInfo">
         <p>
         Skorzystaj z powyższego formularza, aby wyszukać zgłoszenie, które chcesz powiązać
-        z bieżacym artykułem. Jeśli:
+        z bieżacym artykułem.
         </p>
+
+        <p>
+            <strong>Jeśli: </strong>
+        </p>
+
         <ul>
             <li>
                 zaczniesz od znaku <strong>#</strong> wszystko co wpiszesz za nim

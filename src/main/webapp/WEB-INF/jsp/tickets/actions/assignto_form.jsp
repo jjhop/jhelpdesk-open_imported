@@ -4,7 +4,7 @@
 <div class="pagecontentsubheader">
     <h3>Komentarz do zlecenia</h3>
 </div>
-<div class="contentmiddle h385">
+<div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/assignTo.html" var="formURL"/>
     <form:form commandName="assignForm" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
@@ -24,7 +24,7 @@
                                 <span class="lblTip">(komentarz jest wymagany, jego maksymalna długość do 4096 znaków)</span>
                             </label>
                             <form:textarea id="comment" path="commentText"
-                                           cssClass="addComment" cssErrorClass="addComment fieldError"
+                                           cssClass="addComment h200" cssErrorClass="addComment h200 fieldError"
                                            onkeyup="charTextCount(this.form.comment, 'commentCounter', 4096)"
                                            onblur="$('commentCounter').hide()"
                                            rows="3" cols="40"/>

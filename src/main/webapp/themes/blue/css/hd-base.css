@@ -11,6 +11,12 @@ body.lightPassView .contentmiddle {
     margin: 0;
     position: relative;
 }
+body.lightPassView .h200 {
+    height: 200px;
+}
+body.lightPassView .h250 {
+    height: 250px;
+}
 body.lightPassView .h335 {
     height: 335px;
 }
@@ -124,10 +130,8 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 
 .btnPlain {
     display: inline-block;
-    /*padding: 5px 0;
-    margin: 10px 10px 0 10px;
-    */
-    padding: 2px 15px 5px 15px;
+    margin: 0 5px;
+    padding: 2px 1px 5px;
     font-size: 12px;
     font-weight: bold;
 }
@@ -1669,12 +1673,12 @@ td.artnumber {
     right: 0;
     padding: 0 7px 2px;
     font-size: 11px;
-    background: url("../i/bg_ticketaction.png") center -88px no-repeat;
+    background: url("../i/bg_ticketaction.png") center -123px no-repeat;
     border: 1px solid #d85a1e;
 }
 
 #ticketdetails .btnChange:hover {
-    background-position: center -123px;
+    background-position: center -88px;
 }
 
 #ticketdetails .ticketCategoryChange {
@@ -2002,7 +2006,7 @@ ul.formContainer li input.notForPlainUser {
 
 ul.formContainer li textarea.addComment {
     width: 435px;
-    height: 150px;
+    min-height: 150px;
 }
 
 ul.formContainer li.modalButtons {
@@ -2222,7 +2226,7 @@ ul.detailsView ul.nested li {
 
 .lightPassView p#actionMailConfirm {
     text-align: center;
-    padding: 270px 10px 70px;
+    padding: 287px 10px 70px;
     background: url(../i/bg_envelope.png) top center no-repeat;
     font-size: 14px;
 }

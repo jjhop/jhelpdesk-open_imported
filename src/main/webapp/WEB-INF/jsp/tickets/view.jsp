@@ -49,7 +49,7 @@
                                 <th colspan="2" class="lastcol">Status</th>
                             </tr>
                             <tr>
-                                <td colspan="2"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
+                                <td colspan="2" style="height: 35px;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                                 <td id="tdTicketPriority" colspan="2" style="font-weight: bold;"
                                     <auth:check requiredRole="10">
                                     class="highlight"
@@ -121,7 +121,7 @@
                         <auth:check requiredRole="10">
                         <a href="<c:url value="/tickets/${ticketId}/articles/new.html"/>"
                            class="btn lightview"
-                           title=":: :: closeButton: false, width: 500, height: 400, keyboard: true">Dodaj...</a>
+                           title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Dodaj...</a>
                         </auth:check>
                     </div>
                     <div id="panel_articles" class="contentmiddle hAuto">
@@ -258,11 +258,11 @@
                                 <% if (!ticket.getSaviour().equals(currentUser)) { %>
                                 <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                    href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
-                                   title=":: :: closeButton: false, width: 500, height: 430">Przypisz do mnie</a>
+                                   title=":: :: closeButton: false, width: 500, height: 165">Przypisz do mnie</a>
                                 <% } %>
                                 <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                                    href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
-                                   title=":: :: closeButton: false, width: 500, height: 450">Zleć</a>
+                                   title=":: :: closeButton: false, width: 500, height: 495">Zleć</a>
                             </div>
                             <script type="text/javascript">
                                 $('assignActions').hide();
