@@ -19,9 +19,7 @@
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${filtersIterator_rowNum + offset}"/>
                             </display:column>
-                            <display:column title="Tytuł">
-                                <a href="<c:url value="/preferences/filters/${filtersIterator.id}/details.html"/>"><c:out value="${filtersIterator.name}"/></a>
-                            </display:column>
+                            <display:column title="Tytuł">${filtersIterator.name}</display:column>
                             <display:column title="Data utworzenia" style="width: 120px;">
                                 <fmt:formatDate value="${filtersIterator.createdAt}" pattern="dd/MM/yyyy hh:mm"/>
                             </display:column>
