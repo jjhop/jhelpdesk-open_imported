@@ -16,7 +16,7 @@
                     </p>
                     <p>
                         <input class="btn" type="submit" value="Tak, przypisz do mnie"/>
-                        <a href="javascript:window.parent.eval('Lightview.hide()');">Nie, jednak rezygnuję</a>
+                        <a href="javascript:window.parent.eval('Lightview.hide()');" class="btnPlain">Nie, jednak rezygnuję</a>
                     </p>
                 </td>
             </tr>
