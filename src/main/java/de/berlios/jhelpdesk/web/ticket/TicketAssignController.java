@@ -77,7 +77,7 @@ public class TicketAssignController {
         User currentUser = (User)session.getAttribute("loggedUser");
         ticketDAO.assignTicket(ticketId, currentUser.getUserId());
         mailer.sendNotificationForTicketAssignEvent(ticketId);
-        return "/tickets/action/result";
+        return "/ticket/action/assigntome/result";
     }
 
     @RequestMapping(value = "/tickets/{tId}/assignTo.html", method = RequestMethod.GET)
