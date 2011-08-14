@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,8 +98,7 @@ public class TicketDetailsController {
     public String processTicketArticleForm(@PathVariable("ticketId") Long ticketId,
                                            @RequestParam("aId") Long articleId) throws Exception {
         articleDAO.assignWithTicket(articleId, ticketId);
-
-        return "/ticket/articles/assign/result";
+        return "/tickets/action/result";
     }
 
     @RequestMapping("/tickets/{ticketId}/articles/search.html")
@@ -158,14 +158,18 @@ public class TicketDetailsController {
         map.addAttribute("ticketId", ticketId);
         return "panelAttachments";
     }
-    
-    @RequestMapping(value = "/tickets/{ticketId}/attachments/{attachmentId}/get.html", method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/tickets/{ticketId}/attachments/{attachmentId}/get.html",
+                             "/tickets/{ticketId}/attachments/{attachmentId}/show.html"},
+                    method = RequestMethod.GET)
     public void getAttachment(@PathVariable("attachmentId") Long attachmentId,
-                              HttpServletResponse response) throws Exception {
+                              HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         AdditionalFile addFile = ticketDAO.getAdditionalFileById(attachmentId);
         response.setContentType(addFile.getContentType());
-        response.addHeader("Content-Disposition", "attachment; filename=\"" + addFile.getOriginalFileName() + "\"");
+        if (request.getRequestURI().endsWith("get.html")) {
+            response.addHeader("Content-Disposition", "attachment; filename=\"" + addFile.getOriginalFileName() + "\"");
+        }
         response.setContentLength(addFile.getFileSize().intValue());
 
         ServletOutputStream outputStream = response.getOutputStream();

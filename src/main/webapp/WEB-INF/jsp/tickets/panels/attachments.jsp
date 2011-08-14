@@ -11,8 +11,18 @@
         <c:forEach var="file" items="${attachments}" varStatus="status">
             <tr>
                 <td>
-                    <a class="fileType ft<c:out value="${file.contentTypeClass}"/>"
-                       href="<c:url value="/tickets/${ticketId}/attachments/${file.fileId}/get.html"/>">${file.originalFileName}</a>
+                    <c:choose>
+                        <c:when test="${file.contentTypeClass eq 'IMAGE'}">
+                            <a class="fileType ft<c:out value="${file.contentTypeClass}"/> lightview"
+                               href="<c:url value="/tickets/${ticketId}/attachments/${file.fileId}/show.html"/>"
+                               rel="gallery['attachments']" title=" :: :: autosize: true">${file.originalFileName}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="fileType ft<c:out value="${file.contentTypeClass}"/>"
+                               href="<c:url value="/tickets/${ticketId}/attachments/${file.fileId}/get.html"/>">
+                                    ${file.originalFileName}</a>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
                 <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
             </tr>
