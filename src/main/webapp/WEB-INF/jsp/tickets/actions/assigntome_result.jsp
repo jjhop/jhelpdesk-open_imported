@@ -16,5 +16,5 @@
     </table>
 </div>
 <script type="text/javascript">
-    //setTimeout("window.parent.eval('Lightview.hide(); window.location.reload();')", 1500);
+    setTimeout("window.parent.eval('Lightview.hide(); window.location.reload();')", 2000);
 </script>
