@@ -2230,6 +2230,10 @@ ul.detailsView ul.nested li {
     font-size: 14px;
 }
 .lightPassView p#actionMailConfirm.small {
+    margin: 5px 0;
+    height: 15px;
+    padding: 55px 10px 0 10px;
+    background: url(../i/bg_envelope_small.png) top center no-repeat;
 
 }
 #autocompleteContainer {
