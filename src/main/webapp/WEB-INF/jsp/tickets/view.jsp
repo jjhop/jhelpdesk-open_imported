@@ -49,7 +49,7 @@
                                 <th colspan="2" class="lastcol">Status</th>
                             </tr>
                             <tr>
-                                <td colspan="2" style="height: 35px;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
+                                <td colspan="2" style="height: 20px;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
                                 <td id="tdTicketPriority" colspan="2" style="font-weight: bold;"
                                     <auth:check requiredRole="10">
                                     class="highlight"
