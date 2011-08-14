@@ -2230,6 +2230,9 @@ ul.detailsView ul.nested li {
     background: url(../i/bg_envelope.png) top center no-repeat;
     font-size: 14px;
 }
+.lightPassView p#actionMailConfirm.small {
+
+}
 #autocompleteContainer {
     position: relative;
 }
