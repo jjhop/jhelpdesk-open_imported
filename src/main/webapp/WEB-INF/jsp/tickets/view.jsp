@@ -22,7 +22,7 @@
         <% if (currentUser.isTicketKiller()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignToMe.html"/>"
-               title=":: :: closeButton: false, width: 500, height: 450">Przypisz do mnie</a>
+               title=":: :: closeButton: false, width: 500, height: 165">Przypisz do mnie</a>
         <% } else if (currentUser.isManager()) { %>
             <a class="lightview btnTicketAction btnTicketResolve rndCrn5px"
                href="<c:url value="/tickets/${ticket.ticketId}/assignTo.html"/>"
@@ -53,7 +53,7 @@
                                 <td id="tdTicketPriority" colspan="2" style="font-weight: bold;"
                                     <auth:check requiredRole="10">
                                     class="highlight"
-                                    onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()"</auth:check>>
+                                    onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()"</auth:check> >
                                     <span class="ticketPriority tp${ticket.ticketPriority}">
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
@@ -89,7 +89,7 @@
                                         <auth:check requiredRole="10">
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
-                                           title=":: :: closeButton: false, width: 500, height: 490, autosize: true">zmień</a>
+                                           title=":: :: closeButton: false, width: 500, height: 495, autosize: true">zmień</a>
                                         </auth:check>
                                     </span>
                                 </td>
@@ -181,7 +181,9 @@
                                class="lightview btnTicketAction btnTicketReopen rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Otwórz ponownie</a>
 
-                            <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
+                            <a href="<c:url value="/tickets/${ticketId}/close.html"/>"
+                               class="lightview btnTicketAction btnTicketClose rndCrn5px"
+                               title=":: :: closeButton: false, width: 500, height: 165, keyboard: true">Zamknij</a>
                         <% } %>
                     </div>
                     <% } %>
