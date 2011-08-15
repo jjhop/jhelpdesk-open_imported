@@ -82,6 +82,9 @@
     <definition name="/tickets/reopen/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/reopen_form.jsp"/>
     </definition>
+    <definition name="/tickets/close/form" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/closeForm.jsp"/>
+    </definition>
     <definition name="/tickets/assignto/form" extends="liteLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assignto_form.jsp"/>
     </definition>
@@ -105,8 +108,8 @@
         <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/actionResult.jsp"/>
     </definition>
     <!-- potwierdzenie dla akcji przypisania do siebie zgłoszenia -->
-    <definition name="/ticket/action/assigntome/result" extends="liteLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/assigntome_result.jsp"/>
+    <definition name="/ticket/action/result/lite" extends="liteLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/tickets/actions/actionResultLite.jsp"/>
     </definition>
 
     <definition name="/tickets/articles/searchArticles"
