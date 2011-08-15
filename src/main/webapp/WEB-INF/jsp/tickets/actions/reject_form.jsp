@@ -5,7 +5,7 @@
     <h3>Komentarz do odrzucenia</h3>
 </div>
 
-<div class="contentmiddle h300">
+<div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/reject.html" var="formURL"/>
     <form:form commandName="comment" action="${formURL}" method="post">
         <table class="standardtable" cellspacing="0">
