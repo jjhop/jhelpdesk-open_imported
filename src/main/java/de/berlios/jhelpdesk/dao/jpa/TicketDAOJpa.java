@@ -318,6 +318,25 @@ public class TicketDAOJpa implements TicketDAO {
     }
 
     @Transactional(readOnly = false)
+    public void close(final Ticket ticket, final User user) throws DAOException {
+        try {
+            this.jpaTemplate.execute(new JpaCallback<Object>() {
+                public Object doInJpa(EntityManager em) throws PersistenceException {
+                    Query q = em.createNativeQuery("UPDATE ticket SET status=?1 WHERE id=?2");
+                    q.setParameter(1, TicketStatus.CLOSED.toInt());
+                    q.setParameter(2, ticket.getTicketId());
+                    q.executeUpdate();
+
+                    em.persist(TicketEvent.ticketClosed(ticket, user));
+                    return null;
+                };
+            });
+        } catch (Exception ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Transactional(readOnly = false)
     public void reopenWithComment(final TicketComment comment) throws DAOException {
         try {
             this.jpaTemplate.execute(new JpaCallback<Object>() {
