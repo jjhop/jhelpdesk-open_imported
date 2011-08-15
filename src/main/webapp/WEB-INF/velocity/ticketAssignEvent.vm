@@ -1,0 +1,21 @@
+Witaj ${ticket.notifier}!
+
+ ${ticket.saviour} jest teraz nowym opiekunem Twojego zgłoszenia #${ticket.ticketId}.
+Pamiętaj, że w każdej chwili możesz zalogować się na stronie http://adres.helpdeska/
+i obserwować na bieżąco zmiany związane z tym zgłoszeniem.
+Aby zrobić to teraz, kilknij poniższy link:
+http://localhost:5150/jhd/tickets/${ticket.ticketId}/details.html.
+--------------------------------------------------------------------------------------------
+Informacje o zgłoszeniu:
+
+Problem:
+ ${ticket.subject}
+Kategoria:
+ ${ticket.ticketCategory}
+Skrócony opis:
+ ${ticket.description}
+Data zgłoszenia:
+ ${ticket.createdAt}
+Ważność:
+ ${ticket.ticketPriority}
+
