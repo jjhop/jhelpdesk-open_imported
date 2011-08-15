@@ -1693,7 +1693,7 @@ td.artnumber {
     display: block;
 }
 
-#ticketdetails .highlight:hover {
+#ticketdetails .highlight:hover, .highlight:hover {
     background: #DEE2ED;
 }
 
@@ -2190,26 +2190,29 @@ ul.detailsView ul.nested li {
     background-position: 0 6px;
 }
 
-.attachList {
-    margin: 0;
+ul.formContainer .attachList, .attachList {
+    margin: 10px 0 0 0;
     padding: 0;
+    list-style-position: inside;
 }
 
-.attachList li {
-    margin: 5px 5px 10px 20px;
-    padding: 0;
-    width: 310px;
+ul.formContainer .attachList li, .attachList li {
+    margin: 0;
+    padding: 5px 2px 8px 2px;
     min-height: 15px;
     height: auto !important;
     height: 15px;
+    border-bottom: 1px solid #ccc;
 }
-
+ul.formContainer .attachList li:hover, .attachList li:hover {
+    background: #DEE2ED;
+}
 .attachList li .attachSize {
     color: #555;
 }
 
 .attachList li .attachName {
-    display: block;
+    display: inline-block;
     padding-right: 75px;
 }
 
