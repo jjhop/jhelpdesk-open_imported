@@ -58,6 +58,10 @@
           p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView"
           p:requestContextAttribute="rc"/>
 
+    <bean id="velocityEngine"
+          class="org.springframework.ui.velocity.VelocityEngineFactoryBean"
+          p:resourceLoaderPath="/WEB-INF/velocity/"/>
+
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
@@ -68,4 +72,21 @@
             <bean ref="ticketFromEmailProcessor"/>
         </route>
     </camelContext>
+
+    <bean id="mailSender"
+          class="org.springframework.mail.javamail.JavaMailSenderImpl"
+          p:host="${mail.host}"
+          p:username="${mail.user}"
+          p:password="${mail.password}">
+        <!--
+        <property name="protocol" value="smtps"/>
+        <property name="port" value="465"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtps.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+        -->
+    </bean>
 </beans>
