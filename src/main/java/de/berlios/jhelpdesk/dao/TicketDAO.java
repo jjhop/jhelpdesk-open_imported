@@ -190,8 +190,6 @@ public interface TicketDAO {
     void saveAdditionalFile(AdditionalFile file) throws DAOException;
     
     AdditionalFile getAdditionalFileById(Long id) throws DAOException;
-    
-    void removeAdditionalFile(AdditionalFile file) throws DAOException;
 
     void removeAdditionalFile(Long id) throws DAOException;
 
@@ -211,5 +209,7 @@ public interface TicketDAO {
 
     List<Ticket> searchWithQuery(String query) throws DAOException;
     
-    int countWithQuery(final String query) throws DAOException;
+    int countWithQuery(String query) throws DAOException;
+
+    void close(Ticket ticket, User user) throws DAOException;
 }
