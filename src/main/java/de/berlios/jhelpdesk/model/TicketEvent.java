@@ -172,6 +172,15 @@ public class TicketEvent implements Serializable {
         return event;
     }
 
+    public static TicketEvent ticketClosed(Ticket ticket, User user) {
+        TicketEvent event = new TicketEvent();
+        event.setEventType(EventType.CLOSE);
+        event.setEvtAuthor(user);
+        event.setEvtDate(new Date());
+        event.setTicket(ticket);
+        return event;
+    }
+
     public static TicketEvent ticketReopened(Ticket ticket, User user) {
         TicketEvent event = new TicketEvent();
         event.setEventType(EventType.REOPEN);
