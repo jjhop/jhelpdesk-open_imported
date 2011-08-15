@@ -170,16 +170,16 @@
                         <% if (ASSIGNED_TO_CURRENT_USER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/resolve.html"/>"
                                class="lightview btnTicketAction btnTicketResolve rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 365, keyboard: true">Rozwiąż</a>
+                               title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Rozwiąż</a>
 
                             <a href="<c:url value="/tickets/${ticketId}/reject.html"/>"
                                class="lightview btnTicketAction btnTicketReject rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 365, keyboard: true">Odrzuć</a>
+                               title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Odrzuć</a>
                         <% } %>
                         <% if (RESOLVED_AND_NOTIFIED_BY_CURRENT_USER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/reopen.html"/>"
                                class="lightview btnTicketAction btnTicketReopen rndCrn5px"
-                               title=":: :: closeButton: false, width: 500, height: 365, keyboard: true">Otwórz ponownie</a>
+                               title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Otwórz ponownie</a>
 
                             <a href="#" class="btnTicketAction btnTicketClose rndCrn5px">Zamknij</a>
                         <% } %>
