@@ -116,7 +116,7 @@ public class AdditionalFile implements Serializable {
      */
     @Column(name = "content_type", length = 64, nullable = false)
     private String contentType;
-    
+        
     /**
      * Zwraca identyfikator pliku.
      * 
