@@ -85,10 +85,40 @@
                                             </li>
                                             <li>
                                                 <label>Załączniki</label>
+
+
                                                 <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
                                                    title=":: :: closeButton: false, width: 360, height: 390"
                                                    class="lightview">Dołącz plik</a><br/>
-                                                (tutaj robimy listę załączonych plików z możliwością dodania kolejnego i usunięcia juz dodanych)
+
+                                                <ol class="attachList">
+
+                                                    <li class="highlight" id="">
+                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                    </li>
+
+                                                    <li id="">
+                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                    </li>
+
+                                                    <li id="">
+                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                    </li>
+
+                                                    <li id="">
+                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                    </li>
+
+                                                </ol>
+
                                             </li>
                                         </ul>
                                     </td>

@@ -39,13 +39,40 @@
                             <input type="hidden" name="currentPage" value="4"/>
                             <table id="tableWizard" cellspacing="0">
                                 <tr>
-                                    <td style="color: red; font-weight: bold; font-size: 15px">Do obczajenia jeszcze ten mechanizm!</td>
+                                    <td>
+                                        <ol class="attachList">
+
+                                            <li class="highlight" id="">
+                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                            </li>
+
+                                            <li id="">
+                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                            </li>
+
+                                            <li id="">
+                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                            </li>
+
+                                            <li id="">
+                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                            </li>
+
+                                        </ol>
+                                    </td>
                                 </tr>
                                 <tr class="buttons">
                                     <td>
-                                        <hr class="separator" />
-                                        <input class="btn" type="submit" name="_target2" value="&laquo; Cofnij"/>
-                                        <input class="btn" type="submit" name="_target4" value="Dalej &raquo;"/>
+                                        <input class="btn marginTop10p" type="submit" name="_target2" value="&laquo; Cofnij"/>
+                                        <input class="btn marginTop10p" type="submit" name="_target4" value="Dalej &raquo;"/>
                                     </td>
                                 </tr>
                             </table>
