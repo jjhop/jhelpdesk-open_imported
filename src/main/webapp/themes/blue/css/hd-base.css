@@ -17,6 +17,9 @@ body.lightPassView .h200 {
 body.lightPassView .h250 {
     height: 250px;
 }
+body.lightPassView .h270 {
+    height: 270px;
+}
 body.lightPassView .h300 {
     height: 300px;
 }
