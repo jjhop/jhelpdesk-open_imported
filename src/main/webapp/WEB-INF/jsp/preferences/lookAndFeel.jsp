@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="lookandfeel" class="preferences">
-    <div id="pagecontentheader"><h2>Preferencje</h2></div>
+    <div id="pagecontentheader" class="preferences"><h2>Preferencje</h2></div>
     <form:form modelAttribute="preferences">
         <form:hidden path="id"/>
         <script type="text/javascript">

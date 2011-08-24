@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
-<div id="pagecontentheader"><h2>Baza wiedzy</h2></div>
+<div id="pagecontentheader" class="kb"><h2>Baza wiedzy</h2></div>
 
 <div class="pagecontentsubheader"><h3>Wyniki wyszukiwania</h3></div>
 

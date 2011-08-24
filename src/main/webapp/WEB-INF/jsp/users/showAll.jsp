@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="showallusers" class="management">
-    <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
+    <div id="pagecontentheader" class="settings"><h2>Zarządzanie</h2></div>
     <table cellspacing="0" class="w100p">
         <tr>
             <td class="">

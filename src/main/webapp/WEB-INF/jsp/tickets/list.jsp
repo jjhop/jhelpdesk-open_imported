@@ -12,7 +12,7 @@
 %>
 
 <div id="alltickets" class="ticketslist">
-    <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
+    <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
     <div class="pagecontentsubheader">
         <fmt:message key="tickets.list.custom" var="custom"/>
         <h3><c:out value="${filter.name}" default="${custom}"/></h3>

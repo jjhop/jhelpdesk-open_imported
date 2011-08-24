@@ -268,7 +268,25 @@ table a.btn {
     height: 50px;
     margin-bottom: 10px;
     padding-left: 55px;
-    background: transparent url(../i/icons/gedit-icon.png) no-repeat 0 50%;
+    background: transparent url(../i/bg_main_headings.png) 0 -2px no-repeat;
+}
+#pagecontentheader.desktop {
+    background-position: 0 -2px;
+}
+#pagecontentheader.tickets {
+    background-position: 0 -62px;
+}
+#pagecontentheader.preferences {
+    background-position: 0 -122px;
+}
+#pagecontentheader.settings {
+    background-position: 0 -177px;
+}
+#pagecontentheader.kb {
+    background-position: 0 -293px;
+}
+#pagecontentheader.about {
+    background-position: 0 -237px;
 }
 #pagecontentheader h2 {
     line-height: 50px;
