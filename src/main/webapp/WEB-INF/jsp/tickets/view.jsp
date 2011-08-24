@@ -12,7 +12,7 @@
 %>
 
 <div id="ticketdetails">
-    <div id="pagecontentheader"><h2>Podgląd zgłoszenia</h2></div>
+    <div id="pagecontentheader" class="tickets"><h2>Podgląd zgłoszenia</h2></div>
 
     <% if (ticket.getTicketStatus().equals(TicketStatus.NOTIFIED)) { %>
     <div id="ticketAttention" class="contentmiddle contentAttention">

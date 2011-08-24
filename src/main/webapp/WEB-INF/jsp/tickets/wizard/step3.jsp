@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="alltickets" class="ticketslist">
-    <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
+    <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
     <div class="pagecontentsubheader"><h3>Zgłaszanie problemu</h3></div>
     <div id="content">
         <div class="contenttop"></div>

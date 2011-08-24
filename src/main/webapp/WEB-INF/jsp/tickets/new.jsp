@@ -10,7 +10,7 @@
 %>
 
 <div id="editcategory" class="management">
-    <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
+    <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
     <table cellspacing="0">
         <tr>
             <td class="rightcells">

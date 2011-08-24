@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="desktop">
-    <div id="pagecontentheader">
+    <div id="pagecontentheader" class="desktop">
         <table cellspacing="0">
             <tr>
                 <td id="pagecontentheaderleft"><h2><fmt:message key="desktop.title"/></h2></td>

@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="tableofcontent" class="management">
-    <div id="pagecontentheader"><h2>Pomoc</h2></div>
+    <div id="pagecontentheader" class="about"><h2>Pomoc</h2></div>
     <div class="pagecontentsubheader"><h3>O programie</h3></div>
     <div id="content">
         <div class="contenttop"></div>

@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <div id="editannouncement" class="management">
-    <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
+    <div id="pagecontentheader" class="settings"><h2>Zarządzanie</h2></div>
     <table cellspacing="0">
         <tr>
             <td class="rightcells">

@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="showannouncements" class="management">
-    <div id="pagecontentheader"><h2>Zarządzanie</h2></div>
+    <div id="pagecontentheader" class="settings"><h2>Zarządzanie</h2></div>
     <table cellspacing="0">
         <tr>
             <td class="rightcells">

@@ -3,7 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div id="personaldata" class="management">
-    <div id="pagecontentheader"><h2>Preferencje</h2></div>
+    <div id="pagecontentheader" class="preferences"><h2>Preferencje</h2></div>
     <table cellspacing="0">
         <tr>
             <td class="rightcells">

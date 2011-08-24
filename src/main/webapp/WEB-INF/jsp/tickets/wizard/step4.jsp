@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="alltickets" class="ticketslist">
-    <div id="pagecontentheader"><h2>Zgłoszenia</h2></div>
+    <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
     <div class="pagecontentsubheader"><h3>Zgłaszanie problemu</h3></div>
     <div id="content">
         <div class="contenttop"></div>
@@ -75,7 +75,7 @@
                                         <input class="btn marginTop10p" type="submit" name="_target4" value="Dalej &raquo;"/>
                                     </td>
                                 </tr>
-                            </table>
+                            bg_main_headings.png
                         </form>
                     </td>
                     <td id="middleright">

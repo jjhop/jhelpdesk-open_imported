@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="evennotify" class="preferences">
-    <div id="pagecontentheader"><h2>Preferencje</h2></div>
+    <div id="pagecontentheader" class="preferences"><h2>Preferencje</h2></div>
     <form:form commandName="preferences">
         <table cellspacing="0">
             <tr>
