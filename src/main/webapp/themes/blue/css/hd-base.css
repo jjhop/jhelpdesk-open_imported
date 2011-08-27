@@ -544,16 +544,16 @@ td.rightcells {
     padding-bottom: 30px;
 }
 .lastTickets h3 {
-    background: transparent url(../i/icons/gnome-help.png) no-repeat 10px 50%;
+    background: transparent url(../i/bg_sub_headings.png) 10px -26px no-repeat;
 }
 .lastInfo h3 {
-    background: transparent url(../i/icons/gnome-applications.png) no-repeat 10px 50%;
+    background: transparent url(../i/bg_sub_headings.png) 10px -94px no-repeat;
 }
 .lastEvents h3 {
-    background: transparent url(../i/icons/evolution.png) no-repeat 10px 50%;
+    background: transparent url(../i/bg_sub_headings.png) 10px 9px no-repeat;
 }
 .lastArticles h3 {
-    background: transparent url(../i/icons/gnome-graphics.png) no-repeat 10px 50%;
+    background: transparent url(../i/bg_sub_headings.png) 10px -61px no-repeat;
 }
 #desktop .contentmiddle {
     min-height: auto;
