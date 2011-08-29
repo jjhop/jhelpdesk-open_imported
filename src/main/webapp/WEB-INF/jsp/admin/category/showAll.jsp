@@ -21,12 +21,10 @@
                             </display:column>
                             <display:column title="Nazwa kategorii">
                                 <c:if test="${not c.active}"><span class="inactive"></c:if>
+                                <c:if test="${c.default}"><span class="default"></c:if>
                                     ${c.categoryName} (${c.ticketsCount} zgłoszeń)
                                 <c:if test="${not c.active}"></span></c:if>
-                            </display:column>
-                            <display:column title="Aktywna">
-                                <c:if test="${not c.active}">NIE</c:if>
-                                <c:if test="${c.active}">TAK</c:if>
+                                <c:if test="${c.default}"></span></c:if>
                             </display:column>
                             <display:column class="ticketEdit" headerClass="lastcol ticketEdit">
                                 <a href="<c:url value="/manage/category/${c.id}/show.html"/>" class="actionView">V</a>
