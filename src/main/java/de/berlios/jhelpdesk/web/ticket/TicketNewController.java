@@ -97,7 +97,7 @@ public class TicketNewController {
     }
 
     @RequestMapping(value = "/tickets/new.html", method = RequestMethod.GET)
-    public String prepareForm(ModelMap map, HttpSession session) {
+    public String prepareForm(ModelMap map, HttpSession session) throws Exception {
         Ticket t = new Ticket();
         User u = (User) session.getAttribute("loggedUser");
         t.setTicketstamp(StampUtils.craeteStampFromObjects(u, u.getUserId()));
@@ -105,6 +105,7 @@ public class TicketNewController {
         if (u.isPlain()) {
             t.setNotifier(u);
         }
+        t.setTicketCategory(ticketCategoryDao.getDefault());
         map.addAttribute("ticket", t);
         return NEW_TICKET_VIEW;
     }
