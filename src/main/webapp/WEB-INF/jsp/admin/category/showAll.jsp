@@ -19,8 +19,11 @@
                             <display:column title="Lp." class="rowNumber" headerClass="rowNumber">
                                 <c:out value="${c_rowNum + offset}"/>
                             </display:column>
-                            <display:column property="categoryName" title="Nazwa kategorii"/>
-                            <display:column property="ticketsCount" title="Ilość"/>
+                            <display:column title="Nazwa kategorii">
+                                <c:if test="${not c.active}"><span class="inactive"></c:if>
+                                    ${c.categoryName} (${c.ticketsCount} zgłoszeń)
+                                <c:if test="${not c.active}"></span></c:if>
+                            </display:column>
                             <display:column title="Aktywna">
                                 <c:if test="${not c.active}">NIE</c:if>
                                 <c:if test="${c.active}">TAK</c:if>
@@ -44,7 +47,6 @@
                                     <a href="<c:url value="/manage/category/${c.id}/down.html"/>" class="actionDown">E</a>
                                 </c:if>
                             </display:column>
-
                             <display:setProperty name="paging.banner.no_items_found">
                                 <fmt:message key="ticket.category.list.paging.banner.no_items_found"/>
                             </display:setProperty>
