@@ -124,13 +124,14 @@ public class TicketNewWizardController {
     }
 
     @RequestMapping(value="/tickets/wizzard.html")
-    public String prepareWizzard(ModelMap map, HttpServletRequest request, HttpSession session) {
+    public String prepareWizzard(ModelMap map, HttpSession session) throws Exception {
         User currentUser = (User) session.getAttribute("loggedUser");
         Ticket ticket = new Ticket();
         ticket.setTicketstamp(
             StampUtils.craeteStampFromObjects(currentUser, currentUser.getUserId()));
         ticket.setTicketStatus(TicketStatus.NOTIFIED);
         ticket.setInputer(currentUser);
+        ticket.setTicketCategory(ticketCategoryDao.getDefault());
         map.addAttribute("hdticket", ticket);
         if (currentUser.getUserRole().equals(Role.CLIENT)) {
             ticket.setNotifier(currentUser);
