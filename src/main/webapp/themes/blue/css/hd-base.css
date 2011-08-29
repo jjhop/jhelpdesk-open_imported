@@ -182,11 +182,14 @@ table a.btn {
     color: #999;
     font-style: italic;
 }
-
 #user .inactive {
     text-decoration: line-through;
 }
-
+.default {
+    padding: 0 20px 0 0;
+    background: url(../i/tick.png) no-repeat right 1px;
+    font-weight: bold;
+}
 /*#filterbutton {
     position: absolute;
     top: 187px;
