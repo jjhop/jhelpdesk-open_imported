@@ -56,7 +56,7 @@ public class TicketCategoryController {
         map.addAttribute("offset", offset);
         map.addAttribute("categories", categoryDAO.getCategories(pageSize, offset));
         map.addAttribute("categoriesListSize", categoryDAO.countAll());
-        return "manager/category/showAll";
+        return "/manager/category/showAll";
     }
 
     /**
@@ -68,7 +68,7 @@ public class TicketCategoryController {
     @RequestMapping("/manage/category/{id}/show.html")
     public String showOneCategory(@PathVariable("id") Long id, ModelMap map) throws Exception {
         map.addAttribute("category", categoryDAO.getById(id));
-        return "manager/categor/show";
+        return "/manager/categor/show";
     }
 
     /**

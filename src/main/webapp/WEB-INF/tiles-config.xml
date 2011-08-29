@@ -185,17 +185,17 @@
         <put-attribute name="content" value="/WEB-INF/jsp/users/edit.jsp"/>
     </definition>
 
-    <definition name="manager/category/showAll" extends="baseLayout">
+    <definition name="/manager/category/showAll" extends="baseLayout">
         <put-attribute name="title" value="Lista kategorii"/>
         <put-attribute name="content" value="/WEB-INF/jsp/admin/category/showAll.jsp"/>
     </definition>
 
-    <definition name="manager/category/edit" extends="baseLayout">
+    <definition name="/manager/category/edit" extends="baseLayout">
         <put-attribute name="title" value="edycja..."/>
         <put-attribute name="content" value="/WEB-INF/jsp/admin/category/edit.jsp"/>
     </definition>
 
-    <definition name="manager/categor/show" extends="baseLayout">
+    <definition name="/manager/categor/show" extends="baseLayout">
         <put-attribute name="title" value="edycja..."/>
         <put-attribute name="content" value="/WEB-INF/jsp/admin/category/show.jsp"/>
     </definition>

@@ -38,7 +38,7 @@ import de.berlios.jhelpdesk.web.tools.TicketCategoryValidator;
 @Controller
 public class TicketCategoryEditController {
 
-    private final static String MANAGE_TICKET_CATEGORY_EDIT = "manager/category/edit";
+    private final static String MANAGE_TICKET_CATEGORY_EDIT = "/manager/category/edit";
 
     @Autowired
     private TicketCategoryDAO categoryDAO;
@@ -55,8 +55,7 @@ public class TicketCategoryEditController {
 
     @RequestMapping(value = "/manage/category/update.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("category") TicketCategory category,
-                                BindingResult result, SessionStatus status,
-                                ModelMap map) throws Exception {
+                                BindingResult result, SessionStatus status) throws Exception {
         validator.validate(category, result);
         if (result.hasErrors()) {
             return MANAGE_TICKET_CATEGORY_EDIT;
