@@ -251,9 +251,14 @@ public class TicketFilter implements Serializable {
         this.saviours = saviours;
     }
 
-    @PrePersist
     @PreUpdate
+    protected void preUpdate() {
+        this.tfStamp = createUniqueStamp();
+    }
+
+    @PrePersist
     protected void prePersist() {
+        this.createdAt = new Date();
         this.tfStamp = createUniqueStamp();
     }
 
@@ -265,24 +270,5 @@ public class TicketFilter implements Serializable {
 
     private String createUniqueStamp() {
         return StampUtils.craeteStampFromObjects(owner.getUserId(), owner.toString(), name);
-    }
-
-    public boolean sameAs(TicketFilter other) {
-        boolean sameBeginDates =
-            this.beginDate == null && other.beginDate == null
-            || (this.beginDate != null && other.beginDate != null
-                && this.beginDate.equals(other.beginDate));
-        boolean sameEndDates =
-            this.endDate == null && other.endDate == null
-            || (this.endDate != null && other.endDate != null
-                && this.endDate.equals(other.endDate));
-
-        // todo: porównać listy rozwiązujących
-        // todo: porównać listy zgłaszających
-        // todo: porównać listy kategorii
-        // todo: porównać listy statusów
-        // todo: porównać listy ważności
-
-        return sameBeginDates && sameEndDates;
     }
 }
