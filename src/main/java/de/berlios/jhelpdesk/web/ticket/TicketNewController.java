@@ -113,8 +113,10 @@ public class TicketNewController {
     @RequestMapping(value = "/tickets/new.html", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("ticket") Ticket ticket, BindingResult result,
                                 HttpServletRequest request, SessionStatus status, 
-                                HttpSession session) throws Exception {
-        
+                                HttpSession session, ModelMap map) throws Exception {
+
+        map.addAttribute("currentFiles", session.getAttribute(ticket.getTicketstamp() + "_files"));
+
         if (isCheckLoginRequest(request)) { // only checkUser
             validator.validateNotifier(ticket, result);
             return NEW_TICKET_VIEW;
@@ -124,7 +126,7 @@ public class TicketNewController {
             attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
                 (User) session.getAttribute("loggedUser"),
-                (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
+                (List<FileInfo>) session.getAttribute("currentUploadedFiles")); // wtf?
             ticketDAO.save(ticket);
             // tutaj ustalamy pojedynczą ścieżkę
             Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
