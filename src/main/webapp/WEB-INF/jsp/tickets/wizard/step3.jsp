@@ -30,7 +30,7 @@
                                 <li>
                                     <label>Kroki by powtórzyć</label>
                                         <spring:bind path="hdticket.stepByStep">
-                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="15" cols="40"><c:out value="${status.value}" /></textarea>
+                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="21" cols="40"><c:out value="${status.value}" /></textarea>
                                         </spring:bind>
                                 </li>
                                 <li>

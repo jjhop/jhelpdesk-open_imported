@@ -2231,7 +2231,10 @@ ul.formContainer .attachList li:hover, .attachList li:hover {
 .attachList li .attachSize {
     color: #555;
 }
-
+ul.formContainer .attachList li:last-child, .attachList li:last-child {
+    border-bottom: 0;
+}
+}
 .attachList li .attachName {
     display: inline-block;
     padding-right: 75px;

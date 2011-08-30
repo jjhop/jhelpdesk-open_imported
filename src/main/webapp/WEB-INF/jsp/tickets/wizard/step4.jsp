@@ -40,39 +40,43 @@
                             <table id="tableWizard" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <ol class="attachList">
 
-                                            <li class="highlight" id="">
-                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                        <ul class="formContainer">
+                                            <li class="single">
+                                               <ol class="attachList">
+
+                                                        <li class="highlight" id="">
+                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                        </li>
+
+                                                        <li id="">
+                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                        </li>
+
+                                                        <li id="">
+                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                        </li>
+
+                                                        <li id="">
+                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
+                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
+                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                        </li>
+
+                                                    </ol>
                                             </li>
-
-                                            <li id="">
-                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                            <li>
+                                                <hr class="separator" />
+                                                <input class="btn floatLeft" type="submit" name="_target2" value="&laquo; Cofnij"/>
+                                                <input class="btn floatRight" type="submit" name="_target4" value="Dalej &raquo;"/>
                                             </li>
-
-                                            <li id="">
-                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                            </li>
-
-                                            <li id="">
-                                                <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                    asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                            </li>
-
-                                        </ol>
-                                    </td>
-                                </tr>
-                                <tr class="buttons">
-                                    <td>
-                                        <input class="btn marginTop10p" type="submit" name="_target2" value="&laquo; Cofnij"/>
-                                        <input class="btn marginTop10p" type="submit" name="_target4" value="Dalej &raquo;"/>
+                                        </ul>
                                     </td>
                                 </tr>
                             </table>
