@@ -85,40 +85,19 @@
                                             </li>
                                             <li>
                                                 <label>Załączniki</label>
-
-
                                                 <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
                                                    title=":: :: closeButton: false, width: 360, height: 390"
                                                    class="lightview">Dołącz plik</a><br/>
-
                                                 <ol class="attachList">
-
-                                                    <li class="highlight" id="">
-                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
+                                                    <c:forEach items="${currentFiles}" var="f" varStatus="i">
+                                                    <li id="attachment_id_${i.index}">
+                                                        <a class="attachDel" href="#"
+                                                            onclick="new Ajax.Request('<c:url value="/tickets/attachments/remove.html?t=${ticket.ticketstamp}&amp;a=${f.filename}&amp;e=attachment_id_${i.index}"/>', {
+                                                                            asynchronous:true, evalScripts:true}); return false;">Usuń</a>
+                                                        <span class="attachName"><c:out value="${f.filename}"/> <span class="attachSize">(<c:out value="${f.filesize}"/>)</span></span>
                                                     </li>
-
-                                                    <li id="">
-                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                    </li>
-
-                                                    <li id="">
-                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                    </li>
-
-                                                    <li id="">
-                                                        <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                            asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                        <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                    </li>
-
+                                                    </c:forEach>
                                                 </ol>
-
                                             </li>
                                         </ul>
                                     </td>

@@ -98,7 +98,7 @@ public class UploadFileController {
             copyUploadedToTemp(uploadedFile, targetFile);
         }
         List<FileInfo> currentFiles = getFilesForTicketFromSession(ticketstamp, session);
-        session.setAttribute("currentUploadedFiles", currentFiles);
+//        session.setAttribute("currentUploadedFiles", currentFiles);
         map.addAttribute("currentFiles", currentFiles);
         map.addAttribute("uploaded", Boolean.TRUE);
         return TICKETS_UPLOAD_VIEW;
@@ -139,13 +139,25 @@ public class UploadFileController {
         
         return TICKETS_UPLOAD_VIEW;
     }
-    @RequestMapping(value = "/tickets/attachements/remove.html") // TODO: szczegóły
-    protected void removeUploadedFile(@RequestParam("a") String attachmentName,
+    @RequestMapping(value = "/tickets/attachments/remove.html") // TODO: szczegóły
+    protected void removeUploadedFile(@RequestParam("t") String ticketstamp,
+                                      @RequestParam("a") String attachmentName,
                                       @RequestParam("e") String elementId,
-                                      HttpServletResponse response) throws Exception {
-//        response.setContentType("application");
+                                      HttpSession session, HttpServletResponse response) throws Exception {
+
+        List<FileInfo> files = getFilesForTicketFromSession(ticketstamp, session);
+        for (FileInfo fileInfo : files) {
+            System.out.println(" => " + fileInfo.getFilename());
+            if (fileInfo.getFilename().equalsIgnoreCase(attachmentName)) {
+                fileInfo.getFile().delete();
+                files.remove(fileInfo);
+                break;
+            }
+        }
+
+        response.setContentType("application/x-javascript");
         PrintWriter out = response.getWriter();
-        out.write("hhh");
+        out.write("Effect.DropOut('" + elementId + "');");
     }
     
     private AdditionalFile createFormUploadAndTicket(MultipartFile file, Ticket ticket) {
