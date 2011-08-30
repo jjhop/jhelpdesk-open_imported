@@ -75,8 +75,9 @@
                                         <input class="btn marginTop10p" type="submit" name="_target4" value="Dalej &raquo;"/>
                                     </td>
                                 </tr>
-                            bg_main_headings.png
+                            </table>
                         </form>
+                        <br />
                     </td>
                     <td id="middleright">
                         help
