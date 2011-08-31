@@ -45,5 +45,5 @@
         </script>
     </c:if>
     <br/>
-    <a href="javascript:window.parent.eval('Lightview.hide()');" class="">zamknij</a>
+    <a href="javascript:window.parent.eval('refreshFiles();Lightview.hide()');" class="">zamknij</a>
 </div>

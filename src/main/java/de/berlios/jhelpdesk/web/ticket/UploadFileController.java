@@ -139,7 +139,7 @@ public class UploadFileController {
         
         return TICKETS_UPLOAD_VIEW;
     }
-    @RequestMapping(value = "/tickets/attachments/remove.html") // TODO: szczegóły
+    @RequestMapping(value = "/tickets/attachments/remove.html")
     protected void removeUploadedFile(@RequestParam("t") String ticketstamp,
                                       @RequestParam("a") String attachmentName,
                                       @RequestParam("e") String elementId,
@@ -147,17 +147,24 @@ public class UploadFileController {
 
         List<FileInfo> files = getFilesForTicketFromSession(ticketstamp, session);
         for (FileInfo fileInfo : files) {
-            System.out.println(" => " + fileInfo.getFilename());
             if (fileInfo.getFilename().equalsIgnoreCase(attachmentName)) {
                 fileInfo.getFile().delete();
                 files.remove(fileInfo);
                 break;
             }
         }
-
         response.setContentType("application/x-javascript");
         PrintWriter out = response.getWriter();
         out.write("Effect.DropOut('" + elementId + "');");
+    }
+
+    @RequestMapping(value = "/tickets/attachments/refresh.html")
+    public String refreshUploadedAttachments(@RequestParam("ticketstamp") String ticketstamp,
+                                             HttpSession session, ModelMap map) throws Exception {
+        List<FileInfo> files = getFilesForTicketFromSession(ticketstamp, session);
+        map.addAttribute("files", files);
+        map.addAttribute("ticketstamp", ticketstamp);
+        return "/tickets/new/attachments";
     }
     
     private AdditionalFile createFormUploadAndTicket(MultipartFile file, Ticket ticket) {

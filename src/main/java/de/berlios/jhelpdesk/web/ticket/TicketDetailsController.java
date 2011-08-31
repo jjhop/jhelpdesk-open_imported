@@ -150,7 +150,7 @@ public class TicketDetailsController {
         return "panelEvents";
     }
     
-    @RequestMapping(value = "/tickets/{ticketId}/attachments.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/tickets/{ticketId}/attachments.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showAttachments(@PathVariable("ticketId") Long ticketId, 
                                   @RequestParam("page") Integer currentPage,
                                   ModelMap map) throws Exception {

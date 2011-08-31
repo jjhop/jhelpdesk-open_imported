@@ -52,3 +52,10 @@
 </c:otherwise>
 </c:choose>
 <div class="clearFloat"></div>
+<script type="text/javascript">
+    function refreshFiles() {
+        new Ajax.Updater('ticketPanelFiles','<c:url value="/tickets/${ticket.ticketId}/attachments.html"/>', {
+          parameters: { page: 1}
+        });
+    }
+</script>
