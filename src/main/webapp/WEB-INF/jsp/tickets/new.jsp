@@ -84,11 +84,11 @@
                                                 <span id="stepByStepCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <label>Załączniki</label>
-                                                <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
-                                                   title=":: :: closeButton: false, width: 360, height: 390"
-                                                   class="lightview">Dołącz plik</a><br/>
+                                                <label class="dark">Załączniki <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
+                                                   title=":: :: closeButton: false, width: 360, height: 390" class="lightview floatRight">Dołącz plik</a></label>
+
                                                 <ol class="attachList" id="attachList">
+
                                                     <c:forEach items="${currentFiles}" var="f" varStatus="i">
                                                     <li id="attachment_id_${i.index}">
                                                         <a class="attachDel" href="#"
