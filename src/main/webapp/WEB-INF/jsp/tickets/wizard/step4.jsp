@@ -24,11 +24,16 @@
                         </div>
                     </td>
                     <td id="middlecenter">
-                        <span>
+                        <ul class="formContainer">
+                            <li>
+                                <label class="dark rndCrn5px">
+                                    Załączniki
                             <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
                                rel="iframe" title=":: :: closeButton: false, width: 380, height: 390"
-                               class="lightview">Załącz plik(i)</a>
-                        </span>
+                               class="lightview floatRight">Załącz plik(i)</a>
+                                </label>
+                            </li>
+                        </ul>
                         <ul>
                             <c:forEach var="file" items="${currentUploadedFiles}" varStatus="status">
                             <li><c:out value="${file.filename}"/> <c:out value="${file.filesize}"/>
