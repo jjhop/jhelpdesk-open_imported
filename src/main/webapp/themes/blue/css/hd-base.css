@@ -2097,8 +2097,8 @@ ul.formContainer li label {
     font-weight: bold;
 }
 ul.formContainer li label.dark {
-    background: #E8E8E8;
-    padding: 5px 2px;
+    background: #DDDDDD;
+    padding: 5px;
 }
 ul.formContainer li label.relative {
 

@@ -84,7 +84,7 @@
                                                 <span id="stepByStepCounter" class="counter"></span>
                                             </li>
                                             <li>
-                                                <label class="dark">Załączniki <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
+                                                <label class="dark rndCrn5px">Załączniki <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
                                                    title=":: :: closeButton: false, width: 360, height: 390" class="lightview floatRight">Dołącz plik</a></label>
 
                                                 <ol class="attachList" id="attachList">
