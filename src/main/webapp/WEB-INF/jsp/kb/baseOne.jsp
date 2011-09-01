@@ -8,7 +8,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3>
+                    <h3 id="headKBArticle">
                         <c:choose>
                             <c:when test="${article != null}">
                                 ${article.title}
@@ -38,7 +38,7 @@
                     <div class="contentbottom"></div>
                 </div>
                 <div class="pagecontentsubheader">
-                    <h3>Komentarze</h3>
+                    <h3 id="headKBComment">Komentarze</h3>
                     <a href="<c:url value="/help/base/articles/${article.id}/comments/new.html"/>"
                        class="lightview btn"
                        title=":: :: closeButton: false, width: 500, height: 415, keyboard: true">Dodaj...</a>
@@ -75,7 +75,7 @@
             </td>
             <td class="leftcells colNarrowRight">
                 <div class="pagecontentsubheader">
-                    <h3>Powiązane zgłoszenia</h3>
+                    <h3 id="headKBTickets">Powiązane zgłoszenia</h3>
                     <auth:check requiredRole="10">
                     <a href="<c:url value="/help/base/articles/${article.id}/tickets/new.html"/>"
                        class="lightview btn rndCrn5px"

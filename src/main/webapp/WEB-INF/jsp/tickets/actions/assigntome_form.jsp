@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3>Prośba o potwierdzenie</h3>
+    <h3 id="headTicketSolvedBy">Prośba o potwierdzenie</h3>
 </div>
 
 <div class="contentmiddle hAuto">

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3>Powiąż zgłoszenie z artykułem</h3>
+    <h3 id="headTicketArticles">Powiąż zgłoszenie z artykułem</h3>
 </div>
 <div class="contentmiddle h425">
     <table class="standardtable" cellpadding="0" cellspacing="0">

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3>Komentarz do odrzucenia</h3>
+    <h3 id="headTicketChange">Komentarz do odrzucenia</h3>
 </div>
 
 <div class="contentmiddle h425">

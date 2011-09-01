@@ -36,11 +36,10 @@
         <% } %>
     </div>
     <% } %>
-    <div id="desktoppanels">
         <table id="desktoppanelstable" cellspacing="0">
             <tr class="desktoppanelstableheader">
                 <td class="rightcells lastTickets">
-                    <div class="pagecontentsubheader"><h3>Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
+                    <div class="pagecontentsubheader"><h3 id="headTicketDesc">Opis problemu #<c:out value="${ticket.ticketId}"/></h3></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -117,7 +116,7 @@
                         </table>
                     </div>
                     <div class="pagecontentsubheader">
-                        <h3>Powiązane artykuły w bazie wiedzy</h3>
+                        <h3 id="headTicketArticles">Powiązane artykuły w bazie wiedzy</h3>
                         <auth:check requiredRole="10">
                         <a href="<c:url value="/tickets/${ticketId}/articles/new.html"/>"
                            class="btn lightview"
@@ -129,7 +128,7 @@
                     </div>
 
                     <div class="pagecontentsubheader">
-                        <h3>Pliki</h3>
+                        <h3 id="headTicketFiles">Pliki</h3>
                         <a href="<c:url value="/tickets/${ticketId}/uploadFile.html"/>"
                            title=":: :: closeButton: false, width: 360, height: 390"
                            class="btn lightview">Dodaj...</a>
@@ -187,7 +186,7 @@
                         <% } %>
                     </div>
                     <% } %>
-                    <div class="pagecontentsubheader"><h3>Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
+                    <div class="pagecontentsubheader"><h3 id="headTicketAddedBy">Wprowadził <img src="${ticket.inputer.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -206,7 +205,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="pagecontentsubheader"><h3>Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
+                    <div class="pagecontentsubheader"><h3 id="headTicketRaisedBy">Zgłosił <img src="${ticket.notifier.avatarURL}" alt="avatar" class="avatar" /></h3></div>
                     <div class="contentmiddle">
                         <table cellspacing="0" class="standardtable">
                             <tr>
@@ -227,7 +226,7 @@
                     </div>
                     <c:if test="${ticket.assigned}">
                     <div class="pagecontentsubheader">
-                        <h3>Rozwiązuje
+                        <h3 id="headTicketSolvedBy">Rozwiązuje
                             <c:if test="${ticket.saviour != null}">
                                 <img src="${ticket.saviour.avatarURL}" alt="avatar" class="avatar" />
                             </c:if>
@@ -275,6 +274,5 @@
                 </td>
             </tr>
         </table>
-    </div>
 </div>
 <script type="text/javascript" src="<c:url value="/js/ticket.js"/>"></script>
