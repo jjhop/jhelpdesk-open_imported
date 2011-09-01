@@ -3,7 +3,7 @@
 
 <div id="tableofcontent" class="management">
     <div id="pagecontentheader" class="about"><h2>Pomoc</h2></div>
-    <div class="pagecontentsubheader"><h3>O programie</h3></div>
+    <div class="pagecontentsubheader"><h3 id="headAbout">O programie</h3></div>
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
@@ -33,8 +33,8 @@
                                     znajdują się pod adresem: <a href="http://www.jhelpdesk-online.com/licensing" target="_blank">jhelpdesk-online.com/licensing</a>
                                 </p>
                                 <div class="bottomLogos">
-                                    <a id="logoJHD" href="http://www.jhelpdesk-online.com" target="_blank">&nbsp;</a>
-                                    <a id="logoBuzz" href="http://www.buzzlers.com" target="_blank">&nbsp;</a>
+                                    <a id="logoJHD" href="http://www.jhelpdesk-online.com" target="_blank"></a>
+                                    <a id="logoBuzz" href="http://www.buzzlers.com" target="_blank"></a>
                                 </div>
                             </div>
                         </td>

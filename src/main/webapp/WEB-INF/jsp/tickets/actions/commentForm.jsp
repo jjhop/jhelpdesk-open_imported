@@ -4,7 +4,7 @@
 <c:url value="/tickets/${ticketId}/comments/save.html" var="formURL"/>
 
 <div class="pagecontentsubheader">
-    <h3>Dodaj komentarz</h3>
+    <h3 id="headTicketChange">Dodaj komentarz</h3>
 </div>
 
 <div class="contentmiddle h425">

@@ -546,16 +546,16 @@ td.rightcells {
 .desktoppanelstabledata td.rightcells {
     padding-bottom: 30px;
 }
-.lastTickets h3 {
+#desktoppanels .lastTickets h3 {
     background: transparent url(../i/bg_sub_headings.png) 10px -26px no-repeat;
 }
-.lastInfo h3 {
+#desktoppanels .lastInfo h3 {
     background: transparent url(../i/bg_sub_headings.png) 10px -94px no-repeat;
 }
-.lastEvents h3 {
+#desktoppanels .lastEvents h3 {
     background: transparent url(../i/bg_sub_headings.png) 10px 9px no-repeat;
 }
-.lastArticles h3 {
+#desktoppanels .lastArticles h3 {
     background: transparent url(../i/bg_sub_headings.png) 10px -61px no-repeat;
 }
 #desktop .contentmiddle {
