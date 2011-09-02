@@ -30,7 +30,7 @@
                                 <li>
                                     <label>Kroki by powtórzyć</label>
                                         <spring:bind path="hdticket.stepByStep">
-                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="21" cols="40"><c:out value="${status.value}" /></textarea>
+                                            <textarea class="w99p mceEditor" name="<c:out value="${status.expression}"/>" rows="25" cols="40"><c:out value="${status.value}" /></textarea>
                                         </spring:bind>
                                 </li>
                                 <li>
@@ -38,7 +38,6 @@
                                     <input class="btn floatLeft" type="submit" name="_target1" value="&laquo; Cofnij"/> <input class="btn floatRight" type="submit" name="_target3" value="Dalej &raquo;"/>
                                 </li>
                             </ul>
-
                         </form>
                     </td>
                     <td id="middleright">

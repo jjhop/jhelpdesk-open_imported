@@ -126,7 +126,7 @@ public class TicketNewController {
             attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
                 (User) session.getAttribute("loggedUser"),
-                (List<FileInfo>) session.getAttribute("currentUploadedFiles")); // wtf?
+                (List<FileInfo>) session.getAttribute(ticket.getTicketstamp() + "_files"));
             ticketDAO.save(ticket);
             // tutaj ustalamy pojedynczą ścieżkę
             Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
