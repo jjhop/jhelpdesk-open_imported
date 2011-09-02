@@ -28,53 +28,36 @@
                             <li>
                                 <label class="dark rndCrn5px">
                                     Załączniki
-                            <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
+                            <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${hdticket.ticketstamp}"/>"
                                rel="iframe" title=":: :: closeButton: false, width: 380, height: 390"
                                class="lightview floatRight">Załącz plik(i)</a>
                                 </label>
                             </li>
-                        </ul>
-                        <ul>
-                            <c:forEach var="file" items="${currentUploadedFiles}" varStatus="status">
-                            <li><c:out value="${file.filename}"/> <c:out value="${file.filesize}"/>
-                                <input type="image" name="x" src="<c:url value="/themes/blue/i/delete.gif"/>" /></li>
-                            </c:forEach>
                         </ul>
                         <form action="<c:url value="${formURL}"/>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="currentPage" value="4"/>
                             <table id="tableWizard" cellspacing="0">
                                 <tr>
                                     <td>
-
                                         <ul class="formContainer">
                                             <li class="single">
-                                               <ol class="attachList">
-
-                                                        <li class="highlight" id="">
-                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                        </li>
-
-                                                        <li id="">
-                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                        </li>
-
-                                                        <li id="">
-                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                        </li>
-
-                                                        <li id="">
-                                                            <a onclick="new Ajax.Request('/tickets/attachments/remove.html?a=gestalt #2.pdf&amp;e=attachment_id_0', {
-                                                                                asynchronous:true, evalScripts:true}); return false;" href="#" class="attachDel">Usuń</a>
-                                                            <span class="attachName">gestalt #2.pdf <span class="attachSize">(461 KB)</span></span>
-                                                        </li>
-
-                                                    </ol>
+                                                <ol class="attachList" id="attachList">
+                                                    <c:forEach items="${currentFiles}" var="f" varStatus="i">
+                                                    <li id="attachment_id_${i.index}">
+                                                        <a class="attachDel" href="#"
+                                                            onclick="new Ajax.Request('<c:url value="/tickets/attachments/remove.html?t=${hdticket.ticketstamp}&amp;a=${f.filename}&amp;e=attachment_id_${i.index}"/>', {
+                                                                            asynchronous:true, evalScripts:true}); return false;">Usuń</a>
+                                                        <span class="attachName"><c:out value="${f.filename}"/> <span class="attachSize">(<c:out value="${f.filesize}"/>)</span></span>
+                                                    </li>
+                                                    </c:forEach>
+                                                </ol>
+                                                <script type="text/javascript">
+                                                    function refreshFiles() {
+                                                        new Ajax.Updater('attachList','<c:url value="/tickets/attachments/refresh.html"/>', {
+                                                          parameters: { ticketstamp: '${hdticket.ticketstamp}'}
+                                                        });
+                                                    }
+                                                </script>
                                             </li>
                                             <li>
                                                 <hr class="separator" />
@@ -86,7 +69,6 @@
                                 </tr>
                             </table>
                         </form>
-                        <br />
                     </td>
                     <td id="middleright">
                         help

@@ -141,9 +141,10 @@ public class TicketNewWizardController {
 
     @RequestMapping(value = "/tickets/wizzard.html", method = RequestMethod.POST)
     public String processRequest(@ModelAttribute("hdticket") Ticket ticket,
-                                 BindingResult result, SessionStatus status,
+                                 BindingResult result, SessionStatus status, ModelMap map,
                                  HttpServletRequest request, HttpSession session) throws Exception {
 
+        map.addAttribute("currentFiles", session.getAttribute(ticket.getTicketstamp() + "_files"));
         int currentPage = getCurrentPage(request);
         int targetPage = getTarget(request, currentPage);
         this.validatePage(ticket, request, result, currentPage);
@@ -212,7 +213,7 @@ public class TicketNewWizardController {
         attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
                 (User) session.getAttribute("loggedUser"),
-                (List<FileInfo>) session.getAttribute("currentUploadedFiles"));
+                (List<FileInfo>) session.getAttribute(ticket.getTicketstamp() + "_files"));
         ticketDAO.save(ticket);
         status.setComplete();
         Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
