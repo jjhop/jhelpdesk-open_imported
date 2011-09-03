@@ -143,16 +143,15 @@ public class TicketNewWizardController {
     public String processRequest(@ModelAttribute("hdticket") Ticket ticket,
                                  BindingResult result, SessionStatus status, ModelMap map,
                                  HttpServletRequest request, HttpSession session) throws Exception {
-
-        map.addAttribute("currentFiles", session.getAttribute(ticket.getTicketstamp() + "_files"));
         int currentPage = getCurrentPage(request);
         int targetPage = getTarget(request, currentPage);
         this.validatePage(ticket, request, result, currentPage);
         if (isFinish(request)) {
-            return this.processFinnish(ticket, status, session);
+            return this.processFinnish(ticket, status, map, session);
         }
         int viewIndex = !result.hasErrors() || targetPage <= currentPage
                 ? targetPage : currentPage;
+        map.addAttribute("currentFiles", session.getAttribute(ticket.getTicketstamp() + "_files"));
         return views[viewIndex];
     }
 
@@ -209,7 +208,7 @@ public class TicketNewWizardController {
         return false;
     }
     
-    private String processFinnish(Ticket ticket, SessionStatus status, HttpSession session) throws Exception {
+    private String processFinnish(Ticket ticket, SessionStatus status, ModelMap map, HttpSession session) throws Exception {
         attachmentUtils.storeToRepositoryAndBindWithTicket(
                 ticket,
                 (User) session.getAttribute("loggedUser"),
@@ -218,6 +217,7 @@ public class TicketNewWizardController {
         status.setComplete();
         Collection<String> paths =  (Collection<String>) session.getAttribute("paths");
         FileUtils.cleanPathsForTicketstamp(paths, ticket.getTicketstamp());
+        map.clear();
         return "redirect:/tickets/" + ticket.getTicketId() + "/details.html";
     }
 }

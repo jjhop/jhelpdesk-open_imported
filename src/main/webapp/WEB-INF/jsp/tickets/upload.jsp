@@ -6,22 +6,19 @@
 </div>
 
 <div class="contentmiddle">
-    <c:if test="${ticket != null && not empty ticket.addFilesList}">
+    <c:if test="${not empty attachments}">
     <h3>Załączniki aktualne</h3>
     <ol class="attachList">
-        <c:forEach items="${ticket.addFilesList}" var="a">
+        <c:forEach items="${attachments}" var="a">
         <li>
             <span class="attachName">${a.originalFileName} 
                 <span class="attachSize">(${a.humanReadableFileSize})</span></span>
             <span class="attachMeta">(dodany: 20.10.2010 przez: Rafał Kotusiewicz)</span>
         </li>
-        <li>
-            <span class="attachName">Nazwa pliku <span class="attachSize">(8kb)</span></span>
-            <span class="attachMeta">(dodany: 20.10.2010 przez: Rafał Kotusiewicz)</span>
-        </li>
         </c:forEach>
     </ol>
     </c:if>
+    <c:if test="${not empty currentFiles}">
     <h3>Nowe załączniki</h3>
     <ol class="attachList">
         <c:forEach items="${currentFiles}" var="f" varStatus="i">
@@ -33,6 +30,7 @@
         </li>
         </c:forEach>
     </ol>
+    </c:if>
     <form:form commandName="fileBean" enctype="multipart/form-data">
         <spring:bind path="fileBean.file">
             <input type="file" name="file"/>

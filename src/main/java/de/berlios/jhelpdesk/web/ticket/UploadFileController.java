@@ -120,11 +120,11 @@ public class UploadFileController {
      */
     @RequestMapping(value="/tickets/{ticketId}/uploadFile.html", method = RequestMethod.POST)
     protected String processSubmitForTicket(@ModelAttribute("fileBean") FileUploadBean uploadedFile,
-                                            @PathVariable("ticketId") Long ticketId,
+                                            @PathVariable("ticketId") Long ticketId, ModelMap map,
                                             HttpSession session) throws Exception {
 
-        AdditionalFile addFile = createFormUploadAndTicket(uploadedFile.getFile(),
-                                                          ticketDAO.getTicketById(ticketId));
+        Ticket ticket = ticketDAO.getTicketById(ticketId);
+        AdditionalFile addFile = createFormUploadAndTicket(uploadedFile.getFile(), ticket);
         try {
             MultipartFile mf = uploadedFile.getFile();
             if (mf != null && !mf.isEmpty()) {
@@ -136,7 +136,8 @@ public class UploadFileController {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
-        
+        map.addAttribute("attachments", ticket.getAddFilesList());
+        map.addAttribute("fileBean", new FileUploadBean());
         return TICKETS_UPLOAD_VIEW;
     }
     @RequestMapping(value = "/tickets/attachments/remove.html")
