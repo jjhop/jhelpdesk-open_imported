@@ -7,7 +7,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3><c:out value="${announcement.title}"/></h3>
+                    <h3 id="headAdminAnnouce"><c:out value="${announcement.title}"/></h3>
                 </div>
                 <div class="content">
                     <div class="contenttop"></div>
