@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3>Edycja wiadomości</h3></div>
+                <div class="pagecontentsubheader"><h3 id="headAdminAnnouce">Edycja wiadomości</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

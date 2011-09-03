@@ -7,7 +7,7 @@
     <table cellspacing="0">
         <tr>
             <td class="leftcells">
-                <div class="pagecontentsubheader"><h3>Szczegóły kategorii</h3></div>
+                <div class="pagecontentsubheader"><h3 id="headAdminCat">Szczegóły kategorii</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">
