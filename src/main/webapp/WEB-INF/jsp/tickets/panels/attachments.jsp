@@ -23,6 +23,7 @@
                                     ${file.originalFileName}</a>
                         </c:otherwise>
                     </c:choose>
+                    <span class="attachMeta">(dodany: ${file.createdAt} przez: ${file.creator})</span>
                 </td>
                 <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
             </tr>
