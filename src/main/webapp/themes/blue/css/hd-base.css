@@ -125,7 +125,7 @@ a.btn:hover {color: #FFFFFF;text-decoration: none;}
 }
 .pagecontentsubheader a.btn {
     position: absolute;
-    top: 7px;
+    top: 5px;
     right: 10px;
 }
 .btnDisabled, .btnDisabled:hover {
@@ -307,20 +307,20 @@ table a.btn {
     border-radius: 10px;
 }
 .pagecontentsubheader h3 {
-    padding: 10px 50px 12px;
-    background: url("../i/bg_sub_headings.png") 10px 9px no-repeat;
+    padding: 9px 45px 11px;
+    background: url("../i/bg_sub_headings.png") 10px 8px no-repeat;
     font-weight: bold;
     font-size: 18px;
     position: relative;
 }
 #headTicketsAdd {
-    background-position: 10px -129px;
+    background-position: 10px -130px;
 }
 #headTicketsAll {
     background-position: 10px -167px;
 }
 #headTicketDesc {
-    background-position: 10px -203px;
+    background-position: 10px -204px;
 }
 #headTicketConfirm {
     background-position: 10px -236px;
@@ -338,10 +338,64 @@ table a.btn {
     background-position: 10px -336px;
 }
 #headTicketArticles {
-    background-position: 10px -368px;
+    background-position: 10px -369px;
 }
 #headTicketFiles {
-    background-position: 10px -400px;
+    background-position: 10px -402px;
+}
+#headTicketComment {
+    background-position: 10px -432px;
+}
+#headPrefData {
+    background-position: 10px -536px;
+}
+#headPrefLook {
+    background-position: 10px -468px;
+}
+#headPrefFilter {
+    background-position: 10px -503px;
+}
+#headPrefPass {
+    background-position: 10px -569px;
+}
+#headAdminAnnoucement {
+   background-position: 10px -602px;
+}
+#headAdminAnnoucementEdit {
+   background-position: 10px -635px;
+}
+#headAdminAnnoucementView {
+   background-position: 10px -204px;
+}
+#headAdminUserEdit {
+    background-position: 10px -668px;
+}
+#headAdminUser {
+    background-position: 10px -734px;
+}
+#headAdminUserList {
+    background-position: 10px -701px;
+}
+#headAdminCatEdit {
+    background-position: 10px -832px;
+}
+#headAdminCat {
+    background-position: 10px -768px;
+}
+#headAdminCatList {
+    background-position: 10px -798px;
+}
+#headAdminKbCatList {
+    background-position: 10px -942px;
+}
+#headAdminKbCatList {
+    background-position: 10px -943px;
+}
+#headAdminKbCatEdit {
+    background-position: 10px -905px;
+}
+#headAdminKbArtList {
+    background-position: 10px -867px;
 }
 .pagecontentsubheader h3 .refresh {
     display: block;
@@ -576,16 +630,16 @@ td.rightcells {
     padding-bottom: 30px;
 }
 #desktoppanels .lastTickets h3 {
-    background: transparent url(../i/bg_sub_headings.png) 10px -26px no-repeat;
+    background: transparent url(../i/bg_sub_headings.png) 10px -27px no-repeat;
 }
 #desktoppanels .lastInfo h3 {
-    background: transparent url(../i/bg_sub_headings.png) 10px -94px no-repeat;
+    background: transparent url(../i/bg_sub_headings.png) 10px -95px no-repeat;
 }
 #desktoppanels .lastEvents h3 {
-    background: transparent url(../i/bg_sub_headings.png) 10px 9px no-repeat;
+    background: transparent url(../i/bg_sub_headings.png) 10px 8px no-repeat;
 }
 #desktoppanels .lastArticles h3 {
-    background: transparent url(../i/bg_sub_headings.png) 10px -61px no-repeat;
+    background: transparent url(../i/bg_sub_headings.png) 10px -62px no-repeat;
 }
 #desktop .contentmiddle {
     min-height: auto;

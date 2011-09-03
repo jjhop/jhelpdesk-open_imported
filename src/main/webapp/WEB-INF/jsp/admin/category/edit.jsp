@@ -6,7 +6,7 @@
     <table cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3 id="headAdminCat">Dodawanie/edycja kategorii zgłoszeń</h3></div>
+                <div class="pagecontentsubheader"><h3 id="headAdminCatEdit">Dodawanie/edycja kategorii zgłoszeń</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

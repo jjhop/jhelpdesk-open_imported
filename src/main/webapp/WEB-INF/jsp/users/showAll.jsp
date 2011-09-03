@@ -7,7 +7,7 @@
         <tr>
             <td class="">
                 <div class="pagecontentsubheader">
-                    <h3 id="headAdminUser">Użytkownicy</h3>
+                    <h3 id="headAdminUserList">Użytkownicy</h3>
                     <a class="btn" href="<c:url value="/manage/users/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">
