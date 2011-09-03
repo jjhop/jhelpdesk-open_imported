@@ -7,7 +7,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3 id="headAdminCat">Kategorie zgłoszeń</h3>
+                    <h3 id="headAdminCatList">Kategorie zgłoszeń</h3>
                     <a class="btn" href="<c:url value="/manage/category/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">

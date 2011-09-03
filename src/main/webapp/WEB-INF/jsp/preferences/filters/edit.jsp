@@ -14,7 +14,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3>Zarządzanie filtrami
+                    <h3 id="headPrefFilter">Zarządzanie filtrami
                         <a href="#filtersHelp"
                            class="lightview" title=":: :: width: 400, height: 300, keyboard: true"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a>
                     </h3>

@@ -7,7 +7,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3>Filtry zgłoszeń</h3>
+                    <h3 id="headPrefFilter">Filtry zgłoszeń</h3>
                     <a href="<c:url value="/preferences/filters/new.html"/>" class="btn">Dodaj...</a>
                 </div>
                 <div id="content">

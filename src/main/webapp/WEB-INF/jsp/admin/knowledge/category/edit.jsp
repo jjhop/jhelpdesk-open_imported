@@ -7,7 +7,7 @@
     <table class="" cellspacing="0">
         <tr>
             <td class="rightcells">
-                <div class="pagecontentsubheader"><h3 id="headAdminKbCat">Edycja sekcji</h3></div>
+                <div class="pagecontentsubheader"><h3 id="headAdminKbCatEdit">Edycja sekcji</h3></div>
                 <div id="content">
                     <div class="contenttop"></div>
                     <div class="contentmiddle">

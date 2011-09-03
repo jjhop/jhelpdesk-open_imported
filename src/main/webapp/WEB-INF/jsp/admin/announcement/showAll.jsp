@@ -7,7 +7,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3 id="headAdminAnnouce">Wiadomości</h3>
+                    <h3 id="headAdminAnnoucement">Wiadomości</h3>
                     <a class="btn" href="<c:url value="/announcements/new.html"/>">Dodaj...</a>
                 </div>
                 <div id="content">
