@@ -11,7 +11,7 @@
 
 <div id="alltickets" class="ticketslist">
     <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
-    <div class="pagecontentsubheader"><h3>Zgłaszanie problemu</h3></div>
+    <div class="pagecontentsubheader"><h3 id="headTicketsAdd">Zgłaszanie problemu</h3></div>
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">

@@ -15,7 +15,7 @@
         <tr>
             <td class="rightcells">
                 <div class="pagecontentsubheader">
-                    <h3>Zgłaszanie problemu
+                    <h3 id="headTicketsAdd">Zgłaszanie problemu
                         <a href="#help"
                            class="lightview" title=":: :: width: 400, height: 300, keyboard: true"><img src="<c:url value="/themes/blue/i/btn_help.png"/>" class="refresh" alt="" /></a>
                     </h3>
