@@ -12,8 +12,9 @@
         <c:forEach items="${attachments}" var="a">
         <li>
             <span class="attachName">${a.originalFileName} 
-                <span class="attachSize">(${a.humanReadableFileSize})</span></span>
-            <span class="attachMeta">(dodany: 20.10.2010 przez: Rafał Kotusiewicz)</span>
+                <span class="attachSize">(${a.humanReadableFileSize})</span>
+            </span>
+            <span class="attachMeta">(dodany: ${a.createdAt} przez: ${a.creator})</span>
         </li>
         </c:forEach>
     </ol>
@@ -24,7 +25,7 @@
         <c:forEach items="${currentFiles}" var="f" varStatus="i">
         <li id="attachment_id_${i.index}">
             <a class="attachDel" href="#"
-                onclick="new Ajax.Request('/tickets/attachments/remove.html?a=${f.filename}&amp;e=attachment_id_${i.index}', {
+                onclick="new Ajax.Request('<c:url value="/tickets/attachments/remove.html?t=${ticket.ticketstamp}&amp;a=${f.filename}&amp;e=attachment_id_${i.index}"/>', {
                                 asynchronous:true, evalScripts:true}); return false;">Usuń</a>
             <span class="attachName"><c:out value="${f.filename}"/> <span class="attachSize">(<c:out value="${f.filesize}"/>)</span></span>
         </li>
