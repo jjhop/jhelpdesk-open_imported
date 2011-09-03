@@ -308,12 +308,41 @@ table a.btn {
 }
 .pagecontentsubheader h3 {
     padding: 10px 50px 12px;
-    background: transparent url(../i/icons/gnome-graphics.png) no-repeat 10px 50%;
+    background: url("../i/bg_sub_headings.png") 10px 9px no-repeat;
     font-weight: bold;
     font-size: 18px;
     position: relative;
 }
-
+#headTicketsAdd {
+    background-position: 10px -129px;
+}
+#headTicketsAll {
+    background-position: 10px -167px;
+}
+#headTicketDesc {
+    background-position: 10px -203px;
+}
+#headTicketConfirm {
+    background-position: 10px -236px;
+}
+#headTicketChange {
+    background-position: 10px -236px;
+}
+#headTicketAddedBy {
+    background-position: 10px -270px;
+}
+#headTicketRaisedBy {
+    background-position: 10px -303px;
+}
+#headTicketSolvedBy {
+    background-position: 10px -336px;
+}
+#headTicketArticles {
+    background-position: 10px -368px;
+}
+#headTicketFiles {
+    background-position: 10px -400px;
+}
 .pagecontentsubheader h3 .refresh {
     display: block;
     position: absolute;

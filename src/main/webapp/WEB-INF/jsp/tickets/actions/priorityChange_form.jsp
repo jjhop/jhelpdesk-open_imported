@@ -9,7 +9,7 @@
 %>
 
 <div class="pagecontentsubheader">
-    <h3 id="headTicketChange">Zmiana priorytetu zgłoszenia</h3>
+    <h3 id="headTicketConfirm">Zmiana priorytetu zgłoszenia</h3>
 </div>
 <div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/priorityChange.html" var="formURL"/>

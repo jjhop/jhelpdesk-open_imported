@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3 id="headTicketSolvedBy">Komentarz do zlecenia</h3>
+    <h3 id="headTicketConfirm">Komentarz do zlecenia</h3>
 </div>
 <div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/assignTo.html" var="formURL"/>

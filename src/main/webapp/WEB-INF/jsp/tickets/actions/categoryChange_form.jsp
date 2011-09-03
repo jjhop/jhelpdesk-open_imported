@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3 id="headTicketChange">Zmiana kategorii zgłoszenia</h3>
+    <h3 id="headTicketConfirm">Zmiana kategorii zgłoszenia</h3>
 </div>
 <div class="contentmiddle h425">
     <c:url value="/tickets/${ticketId}/categoryChange.html" var="formURL"/>

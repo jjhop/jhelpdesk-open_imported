@@ -15,7 +15,7 @@
     <div id="pagecontentheader" class="tickets"><h2>Zgłoszenia</h2></div>
     <div class="pagecontentsubheader">
         <fmt:message key="tickets.list.custom" var="custom"/>
-        <h3><c:out value="${filter.name}" default="${custom}"/></h3>
+        <h3 id="headTicketsAll"><c:out value="${filter.name}" default="${custom}"/></h3>
         <a id="filterbutton" class="btn" href="javascript:toggleForm();">Filtr</a>
     </div>
 
