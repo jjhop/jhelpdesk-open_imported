@@ -3,7 +3,7 @@
 
 <div id="pagecontentheader" class="kb"><h2>Baza wiedzy</h2></div>
 
-<div class="pagecontentsubheader"><h3>Wyniki wyszukiwania</h3></div>
+<div class="pagecontentsubheader"><h3 id="headKBList">Wyniki wyszukiwania</h3></div>
 
 <c:forEach var="a" items="${result}">
     <div class="kbSearchItem">
