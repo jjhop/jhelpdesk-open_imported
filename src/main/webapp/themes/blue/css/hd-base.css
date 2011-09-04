@@ -289,7 +289,7 @@ table a.btn {
     background-position: 0 -293px;
 }
 #pagecontentheader.about {
-    background-position: 0 -237px;
+    background-position: 0 -354px;
 }
 #pagecontentheader h2 {
     line-height: 50px;
@@ -343,7 +343,7 @@ table a.btn {
 #headTicketFiles {
     background-position: 10px -402px;
 }
-#headTicketComment {
+#headTicketComment, #headKBCommentAnd {
     background-position: 10px -432px;
 }
 #headPrefData {
