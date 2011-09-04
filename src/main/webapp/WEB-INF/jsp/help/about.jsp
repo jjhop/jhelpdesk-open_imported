@@ -3,7 +3,6 @@
 
 <div id="tableofcontent" class="management">
     <div id="pagecontentheader" class="about"><h2>Pomoc</h2></div>
-    <div class="pagecontentsubheader"><h3 id="headAbout">O programie</h3></div>
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
