@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div class="pagecontentsubheader">
-    <h3 id="headKBComment">Dodaj komentarz</h3>
+    <h3 id="headCommentList">Dodaj komentarz</h3>
 </div>
 
 <div class="contentmiddle h350">

@@ -397,6 +397,24 @@ table a.btn {
 #headAdminKbArtList {
     background-position: 10px -867px;
 }
+#headAdminKbArtEdit {
+    background-position: 10px -1047px;
+}
+#headKBArticle {
+    background-position: 10px -62px;
+}
+#headKBList {
+    background-position: 10px -1078px;
+}
+#headKBCatList {
+    background-position: 10px -943px;
+}
+#headKBArtCatList {
+    background-position: 10px -867px;
+}
+#headCommentList {
+    background-position: 10px -1113px;
+}
 .pagecontentsubheader h3 .refresh {
     display: block;
     position: absolute;
