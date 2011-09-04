@@ -1747,7 +1747,16 @@ td.artnumber {
 #desktop .standardtable td, #panel_comments .standardtable td, #selectedItem .standardtable td, #panel_articles .standardtable td  {
      padding: 0;
 }
-
+#desktop #btnDeskNewTicket, #desktop #btnDeskKB {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin: 0 0 0 10px;
+    background: url(../i/bg_main_headings.png) 0 -409px no-repeat;
+}
+#desktop #btnDeskKB {
+    background-position: 0 -295px;
+}
 .ticketPriority, .ticketCategory {
     float: left;
     display: block;

@@ -7,8 +7,8 @@
             <tr>
                 <td id="pagecontentheaderleft"><h2><fmt:message key="desktop.title"/></h2></td>
                 <td id="pagecontentheaderright">
-                    <a href="<c:url value="/tickets/new.html"/>"><img src="<c:url value="/themes/blue/i/icons/48/evolution.png"/>" alt="s1" width="48" height="48"/></a>
-                    <a href="<c:url value="/help/kb/index.html"/>"><img src="<c:url value="/themes/blue/i/icons/48/gnome-help.png"/>" alt="s5" width="48" height="48"/></a>
+                    <a id="btnDeskNewTicket" href="<c:url value="/tickets/new.html"/>"></a>
+                    <a id="btnDeskKB" href="<c:url value="/help/kb/index.html"/>"></a>
                 </td>
             </tr>
         </table>
