@@ -48,7 +48,7 @@
                     <div class="contentmiddle">
                             <table cellspacing="0" class="standardtable marginBot10p">
                                 <tr>
-                                    <td class="lastcol">
+                                    <td class="lastcol noSpacing">
                                         <c:choose>
                                         <c:when test="${fn:length(article.comments) > 0}">
                                             <dl class="kbComments">

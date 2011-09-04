@@ -530,6 +530,10 @@ table a.btn {
     border-bottom: 1px solid #CCCCCC;
 }
 
+.standardtable td.noSpacing {
+    padding: 0;
+}
+
 .standardtable td .entryBlock {
     display: block;
     padding: 5px;
@@ -1714,9 +1718,16 @@ td.artnumber {
 .kbComments dt {
     font-weight: bold;
     margin: 0;
-    padding: 0 0 10px 0;
+    padding: 5px 5px 10px 5px;
 }
-
+.kbComments dd {
+    margin: 0;
+    padding: 0 5px 10px 5px;
+    border-bottom: 1px solid #ccc;
+}
+.kbComments dd:last-child {
+    border: 0;
+}
 .kbComments dt .kbCommentsMeta, .entryMeta {
     display: block;
     font-size: 11px;
@@ -1872,12 +1883,6 @@ td.artnumber {
 .desktopAnchor:hover {
     background: #DEE2ED;
 }
-
-.kbComments dd {
-    margin: 0;
-    padding: 0 0 20px 0;
-}
-
 #ticketsIterator td a {
 }
 #ticketsIterator td .linker {
