@@ -164,7 +164,7 @@
                                     status == TicketStatus.RESOLVED && ticket.getNotifier().equals(currentUser);
                     %>
                     <% if (ASSIGNED_TO_CURRENT_USER || RESOLVED_AND_NOTIFIED_BY_CURRENT_USER) { %>
-                    <div id="headTicketActions" class="pagecontentsubheader"><h3>Dostępne akcje</h3></div>
+                    <div id="headTicketActions" class="pagecontentsubheader"><h3 id="headTicketActions">Dostępne akcje</h3></div>
                     <div id="pnlTicketActions" class="contentmiddle">
                         <% if (ASSIGNED_TO_CURRENT_USER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/resolve.html"/>"

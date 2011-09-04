@@ -415,6 +415,9 @@ table a.btn {
 #headCommentList {
     background-position: 10px -1113px;
 }
+#headTicketActions {
+    background-position: 10px -1146px;
+}
 .pagecontentsubheader h3 .refresh {
     display: block;
     position: absolute;
