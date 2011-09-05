@@ -115,6 +115,13 @@
                             </c:if>
                         </table>
                     </div>
+                    <%
+                        boolean showPanels =
+                                currentUser.getUserRole().toInt() > 1 || currentUser.equals(ticket.getNotifier());
+                        pageContext.setAttribute("showPanels", showPanels);
+                    %>
+
+                    <c:if test="${not empty kbArticles or showPanels}">
                     <div class="pagecontentsubheader">
                         <h3 id="headTicketArticles">Powiązane artykuły w bazie wiedzy</h3>
                         <auth:check requiredRole="10">
@@ -126,7 +133,9 @@
                     <div id="panel_articles" class="contentmiddle hAuto">
                         <tiles:insertDefinition name="panelAssignedArticles"/>
                     </div>
-
+                    </c:if>
+                    
+                    <c:if test="${not empty attachments or showPanels}">
                     <div class="pagecontentsubheader">
                         <h3 id="headTicketFiles">Pliki</h3>
                         <a href="<c:url value="/tickets/${ticketId}/uploadFile.html"/>"
@@ -136,6 +145,8 @@
                     <div id="ticketPanelFiles" class="contentmiddle">
                         <tiles:insertDefinition name="panelAttachments"/>
                     </div>
+                    </c:if>
+
                     <div class="chartcontainer">
                         <div class="chartbox">
                             <div class="TabView" id="currentWeekTabView">
