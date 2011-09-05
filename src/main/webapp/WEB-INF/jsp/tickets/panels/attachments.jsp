@@ -3,14 +3,15 @@
 
 <c:choose>
 <c:when test="${not empty attachments}">
-    <table cellspacing="0" class="standardtable marginBot10p">
+    <table id="ticketFiles" cellspacing="0" class="standardtable marginBot10p">
         <tr>
-            <th>Nazwa</th>
-            <th class="w75 right lastcol">Rozmiar</th>
+            <th class="lastcol">Nazwa</th>
         </tr>
         <c:forEach var="file" items="${attachments}" varStatus="status">
             <tr>
                 <td>
+                    <span class="entryMeta">${file.creator}, ${file.createdAt}; Rozmiar <c:out value="${file.humanReadableFileSize}"/></span>
+                    <span class="entryBlock">
                     <c:choose>
                         <c:when test="${file.contentTypeClass eq 'IMAGE'}">
                             <a class="fileType ft<c:out value="${file.contentTypeClass}"/> lightview"
@@ -23,9 +24,8 @@
                                     ${file.originalFileName}</a>
                         </c:otherwise>
                     </c:choose>
-                    <span class="attachMeta">(dodany: ${file.createdAt} przez: ${file.creator})</span>
+                    </span>
                 </td>
-                <td class="right lastcol"><c:out value="${file.humanReadableFileSize}"/></td>
             </tr>
         </c:forEach>
     </table>
