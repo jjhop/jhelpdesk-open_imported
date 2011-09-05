@@ -1907,6 +1907,13 @@ td.artnumber {
 #ticketFiles.standardtable td {
     padding: 0;
 }
+#ticketComments .nfp td {
+
+}
+#ticketComments .nfp .entryMeta {
+    background: #eee url(../i/lock.png) right 2px no-repeat;
+    padding: 3px 5px;
+}
 #hint {
     position: absolute;
     width: 213px;
