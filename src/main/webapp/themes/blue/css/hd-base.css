@@ -11,6 +11,9 @@ body.lightPassView .contentmiddle {
     margin: 0;
     position: relative;
 }
+body.lightPassView .h190 {
+    height: 190px;
+}
 body.lightPassView .h200 {
     height: 200px;
 }
@@ -42,7 +45,10 @@ body.lightPassView .h430 {
     height: auto;
     min-height: 30px;
 }
-
+.scrollable {
+    overflow: auto;
+    overflow-x: hidden;
+}
 body.lightPassView .hAuto {
     min-height: 100px;
     height: auto;

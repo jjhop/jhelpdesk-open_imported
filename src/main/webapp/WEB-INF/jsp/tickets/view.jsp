@@ -148,7 +148,7 @@
                     <div class="pagecontentsubheader">
                         <h3 id="headTicketFiles">Pliki</h3>
                         <a href="<c:url value="/tickets/${ticketId}/uploadFile.html"/>"
-                           title=":: :: closeButton: false, width: 360, height: 390"
+                           title=":: :: closeButton: false, width: 500, height: 397"
                            class="btn lightview">Dodaj...</a>
                     </div>
                     <div id="ticketPanelFiles" class="contentmiddle">
