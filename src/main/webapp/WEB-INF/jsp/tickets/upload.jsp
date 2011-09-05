@@ -38,11 +38,6 @@
         </spring:bind>
         <input type="submit" value="Dodaj"/>
     </form:form>
-    <c:if test="${uploaded}">
-        <script type="text/javascript">
-            // window.parent.eval('Lightview.hide()');
-        </script>
-    </c:if>
     <br/>
     <a href="javascript:window.parent.eval('refreshFiles();Lightview.hide()');" class="">zamknij</a>
 </div>
