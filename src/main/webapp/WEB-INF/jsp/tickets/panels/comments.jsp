@@ -7,7 +7,7 @@
             <c:if test="${not empty comments}">
                 <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
                     <c:forEach var="comment" items="${comments}" varStatus="status">
-                    <tr>
+                    <tr <c:if test="${comment.notForPlainUser}">class="nfp"</c:if>>
                         <td>
                             <span class="entryMeta">
                                 <c:out value="${comment.commentAuthor}"/>, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
