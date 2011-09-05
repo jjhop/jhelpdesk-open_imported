@@ -85,7 +85,7 @@
                                             </li>
                                             <li>
                                                 <label class="dark rndCrn5px">Załączniki <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${ticket.ticketstamp}"/>"
-                                                   title=":: :: closeButton: false, width: 360, height: 390" class="lightview floatRight">Dołącz plik</a></label>
+                                                   title=":: :: closeButton: false, width: 500, height: 397" class="lightview floatRight">Dołącz plik</a></label>
                                                 <ol class="attachList" id="attachList">
                                                     <c:forEach items="${currentFiles}" var="f" varStatus="i">
                                                     <li id="attachment_id_${i.index}">

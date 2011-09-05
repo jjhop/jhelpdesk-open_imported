@@ -12,14 +12,14 @@
             <td class="lastcol">
                 <form:form commandName="fileBean" enctype="multipart/form-data">
                     <spring:bind path="fileBean.file">
-                        <input type="file" name="file"/>
+                        <input type="file" name="file" size="36" />
                     </spring:bind>
-                    <input type="submit" value="Dodaj"/>
+                    <input type="submit" class="btn floatRight" value="Dodaj"/>
                 </form:form>
             </td>
         </tr>
     </table>
-
+    <c:if test="${not empty attachments or not empty currentFiles}">
     <table class="standardtable" cellpadding="0" cellspacing="0">
         <tr>
             <td class="lastcol">
@@ -56,9 +56,7 @@
             </td>
         </tr>
     </table>
-
-
-
+    </c:if>
     <div class="bottomButtons">
         <a href="javascript:window.parent.eval('refreshFiles();Lightview.hide()');" class="btnPlain">zamknij</a>
     </div>

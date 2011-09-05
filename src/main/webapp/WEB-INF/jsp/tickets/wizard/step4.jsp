@@ -29,7 +29,7 @@
                                 <label class="dark rndCrn5px">
                                     Załączniki
                             <a href="<c:url value="/tickets/uploadFile.html?ticketstamp=${hdticket.ticketstamp}"/>"
-                               rel="iframe" title=":: :: closeButton: false, width: 380, height: 390"
+                               rel="iframe" title=":: :: closeButton: false, width: 500, height: 397"
                                class="lightview floatRight">Załącz plik(i)</a>
                                 </label>
                             </li>
