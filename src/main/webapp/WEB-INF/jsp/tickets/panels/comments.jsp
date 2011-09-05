@@ -5,7 +5,7 @@
     <tr>
         <td>
             <c:if test="${not empty comments}">
-                <table cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
+                <table id="ticketComments" cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
                     <c:forEach var="comment" items="${comments}" varStatus="status">
                     <tr <c:if test="${comment.notForPlainUser}">class="nfp"</c:if>>
                         <td>
