@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <div id="tableofcontent" class="management">
-    <div id="pagecontentheader" class="about"><h2>Pomoc</h2></div>
+    <div id="pagecontentheader" class="about"><h2>O programie</h2></div>
     <div id="content">
         <div class="contenttop"></div>
         <div class="contentmiddle">
@@ -13,7 +13,8 @@
                             <div id="aboutJHD">
                                 <h1>jHelpDesk <span>wersja 1.0.0-OSE.GA</span></h1>
                                 <p>
-                                    Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus.
+                                    jHelpDesk to program wspomagający zarządzanie dziełem wsparcia w organizacjach
+                                    małej i średniej wielkości.
                                 </p>
                                 <h4>Ważne adresy:</h4>
                                 <ul>

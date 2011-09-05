@@ -28,9 +28,10 @@ public class DateUtil {
     private Date target;
     private Calendar cal = Calendar.getInstance();
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private static long MILLIS_IN_WEEK = 60480000;
 
     public DateUtil() {
-        target = new Date(System.currentTimeMillis());
+        target = new Date();
     }
 
     public DateUtil(String dateToParse) {
@@ -43,6 +44,11 @@ public class DateUtil {
 
     public DateUtil(Date date) {
         target = date;
+    }
+
+    public static boolean isOlderThankWeek(Date date) {
+        long millisFromDate = System.currentTimeMillis() - date.getTime();
+        return millisFromDate > MILLIS_IN_WEEK;
     }
 
     public String getWeekStartDate() {

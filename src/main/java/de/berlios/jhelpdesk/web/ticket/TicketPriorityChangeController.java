@@ -37,6 +37,7 @@ import de.berlios.jhelpdesk.model.Ticket;
 import de.berlios.jhelpdesk.model.TicketPriorityChangeForm;
 import de.berlios.jhelpdesk.model.TicketPriority;
 import de.berlios.jhelpdesk.model.User;
+import de.berlios.jhelpdesk.web.NotAuthorizedAccessException;
 import de.berlios.jhelpdesk.web.tools.TicketPriorityChangeFormValidator;
 import de.berlios.jhelpdesk.web.tools.TicketPriorityEditor;
 
@@ -67,39 +68,52 @@ public class TicketPriorityChangeController {
     @RequestMapping(value = "/tickets/{tId}/priorityChange.html", method = RequestMethod.GET)
     public String prepareForm(@PathVariable("tId") Long ticketId, ModelMap map, HttpSession session) throws Exception {
         Ticket currentTicket = ticketDAO.getTicketById(ticketId);
-        
-        List<TicketPriority> priorities = new ArrayList<TicketPriority>(TicketPriority.getPriorities());
-        priorities.remove(currentTicket.getTicketPriority());
+        User loggedUser = (User)session.getAttribute("loggedUser");
 
-        map.addAttribute("priorities", priorities);
-        map.addAttribute("currentPriority", currentTicket.getTicketPriority());
-        map.addAttribute("form", new TicketPriorityChangeForm());
-        map.addAttribute("ticketId", ticketId);
-        return "/tickets/priorityChange/form";
+        if (userCanChangePriority(loggedUser, currentTicket)) {
+            List<TicketPriority> priorities = new ArrayList<TicketPriority>(TicketPriority.getPriorities());
+            priorities.remove(currentTicket.getTicketPriority());
+            map.addAttribute("priorities", priorities);
+            map.addAttribute("currentPriority", currentTicket.getTicketPriority());
+            map.addAttribute("form", new TicketPriorityChangeForm());
+            map.addAttribute("ticketId", ticketId);
+            return "/tickets/priorityChange/form";
+        } else {
+            throw new NotAuthorizedAccessException();
+        }
     }
 
     @RequestMapping(value = "/tickets/{tId}/priorityChange.html", method = RequestMethod.POST)
     public String processCategoryChange(@PathVariable("tId") Long ticketId,
                                         @ModelAttribute("form") TicketPriorityChangeForm form,
                                         BindingResult result, ModelMap map, HttpSession session) throws Exception {
-
         validator.validate(form, result);
         Ticket currentTicket = ticketDAO.getTicketById(ticketId);
-        if (result.hasErrors()) {
-            List<TicketPriority> priorities = new ArrayList<TicketPriority>(TicketPriority.getPriorities());
-            priorities.remove(currentTicket.getTicketPriority());
+        User loggedUser = (User)session.getAttribute("loggedUser");
+        if (userCanChangePriority(loggedUser, currentTicket)) {
+            if (result.hasErrors()) {
+                List<TicketPriority> priorities = new ArrayList<TicketPriority>(TicketPriority.getPriorities());
+                priorities.remove(currentTicket.getTicketPriority());
 
-            map.addAttribute("priorities", priorities);
-            map.addAttribute("currentPriority", currentTicket.getTicketPriority());
-            map.addAttribute("form", form);
-            map.addAttribute("ticketId", ticketId);
-            return "/tickets/priorityChange/form";
+                map.addAttribute("priorities", priorities);
+                map.addAttribute("currentPriority", currentTicket.getTicketPriority());
+                map.addAttribute("form", form);
+                map.addAttribute("ticketId", ticketId);
+                return "/tickets/priorityChange/form";
+            }
+            currentTicket.setTicketPriority(form.getPriority());
+            ticketDAO.changePriorityWithComment(currentTicket, form.getPriority(), form.getCommentText(), (User) session.getAttribute("loggedUser"));
+
+            // tutaj zapis mail itd
+            return "/tickets/action/result";
+        } else {
+            throw new NotAuthorizedAccessException();
         }
+    }
 
-        currentTicket.setTicketPriority(form.getPriority());
-        ticketDAO.changePriorityWithComment(currentTicket, form.getPriority(), form.getCommentText(), (User) session.getAttribute("loggedUser"));
-
-        // tutaj zapis mail itd
-        return "/tickets/action/result";
+    private boolean userCanChangePriority(User user, Ticket ticket) {
+        return (user.isManager() && !ticket.isAssigned())
+            || user.equals(ticket.getNotifier())
+            || (ticket.isAssigned() && user.equals(ticket.getSaviour()));
     }
 }

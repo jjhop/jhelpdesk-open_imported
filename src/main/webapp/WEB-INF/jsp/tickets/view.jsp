@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<%@ page import="de.berlios.jhelpdesk.model.EventType" %>
 <%@ page import="de.berlios.jhelpdesk.model.Ticket" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketEvent" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
-<%@ page import="de.berlios.jhelpdesk.model.TicketEvent" %>
-<%@ page import="de.berlios.jhelpdesk.model.EventType" %>
 <%@ page import="de.berlios.jhelpdesk.utils.DateUtil" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
@@ -52,20 +52,24 @@
                             </tr>
                             <tr>
                                 <td colspan="2" style="height: 20px;"><fmt:formatDate value="${ticket.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
+                                <%
+                                    boolean userCanChangePriority = (currentUser.isManager() && !ticket.isAssigned())
+                                            || (currentUser.equals(ticket.getNotifier()))
+                                            || (ticket.isAssigned() && currentUser.equals(ticket.getSaviour()));
+                                %>
                                 <td id="tdTicketPriority" colspan="2" style="font-weight: bold;"
-                                    <auth:check requiredRole="10">
+                                    <% if (userCanChangePriority) { %>
                                     class="highlight"
-                                    onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()"</auth:check> >
+                                    onmouseover="$('btnChangePr').show();" onmouseout="$('btnChangePr').hide()"<%}%>>
                                     <span class="ticketPriority tp${ticket.ticketPriority}">
                                     <%
                                         TicketPriority priority = ticket.getTicketPriority();
                                         out.print(priority.getPriorityName(currentUser.getPreferredLocale()));
                                     %>
-                                    <auth:check requiredRole="10">
+                                    <% if (userCanChangePriority) { %>
                                     <a id="btnChangePr" class="lightview btn btnChange"
                                        href="<c:url value="/tickets/${ticket.ticketId}/priorityChange.html"/>"
-                                       title=":: :: closeButton: false, width: 500, height: 495">zmień</a>
-                                    </auth:check>
+                                       title=":: :: closeButton: false, width: 500, height: 495">zmień</a><%}%>
                                     </span>
                                 </td>
                                 <td colspan="2" class="lastcol" style="font-weight: bold;">
@@ -82,17 +86,19 @@
                             </tr>
                             <tr>
                                 <td colspan="6"
-                                    <auth:check requiredRole="10">
+                                    <%if ((ticket.getSaviour() == null && currentUser.isManager())
+                                            || currentUser.equals(ticket.getSaviour())) {%>
                                     class="highlight"
                                     onmouseover="$('btnChangeCat').show();"
-                                    onmouseout="$('btnChangeCat').hide()" </auth:check>>
+                                    onmouseout="$('btnChangeCat').hide()" <%}%>>
                                     <span class="ticketCategoryChange">
                                         ${ticket.ticketCategory}
-                                        <auth:check requiredRole="10">
+                                        <%if ((ticket.getSaviour() == null && currentUser.isManager())
+                                                || currentUser.equals(ticket.getSaviour())) {%>
                                         <a id="btnChangeCat" class="lightview btn btnChange"
                                            href="<c:url value="/tickets/${ticket.ticketId}/categoryChange.html"/>"
                                            title=":: :: closeButton: false, width: 500, height: 495, autosize: true">zmień</a>
-                                        </auth:check>
+                                        <%}%>
                                     </span>
                                 </td>
                             </tr>
