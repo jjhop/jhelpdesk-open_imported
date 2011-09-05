@@ -135,6 +135,7 @@ public class TicketNewController {
         } else {
             return NEW_TICKET_VIEW;
         }
+        map.clear();
         return "redirect:/tickets/" + ticket.getTicketId() + "/details.html";
     }
     
