@@ -4,6 +4,10 @@
 <%@ page import="de.berlios.jhelpdesk.model.TicketPriority" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketStatus" %>
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
+<%@ page import="de.berlios.jhelpdesk.model.TicketEvent" %>
+<%@ page import="de.berlios.jhelpdesk.model.EventType" %>
+<%@ page import="org.apache.commons.lang.time.DateUtils" %>
+<%@ page import="de.berlios.jhelpdesk.utils.DateUtil" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 <%
@@ -170,9 +174,20 @@
                 <td class="leftcells">
                     <%
                         boolean ASSIGNED_TO_CURRENT_USER =
-                                    status == TicketStatus.ASSIGNED && ticket.getSaviour().equals(currentUser);
+                            status == TicketStatus.ASSIGNED && ticket.getSaviour().equals(currentUser);
                         boolean RESOLVED_AND_NOTIFIED_BY_CURRENT_USER =
-                                    status == TicketStatus.RESOLVED && ticket.getNotifier().equals(currentUser);
+                            status == TicketStatus.RESOLVED && ticket.getNotifier().equals(currentUser);
+                        boolean isOlderThanWeek = false;
+                        endFor: for (TicketEvent e : ticket.getEvents()) {
+                            if(EventType.RESOLVE.equals(e.getEventType())
+                                    || EventType.REJECT.equals(e.getEventType())) {
+                                isOlderThanWeek = DateUtil.isOlderThankWeek(e.getEvtDate());
+                                break endFor;
+                            }
+                        }
+                        boolean RESOLEVED_AND_OLDER_THAN_7_DAYS_AND_CURRENT_USER_IS_MANAGER =
+                            (status == TicketStatus.RESOLVED || status == TicketStatus.REJECTED)
+                                    && isOlderThanWeek && currentUser.isManager();
                     %>
                     <% if (ASSIGNED_TO_CURRENT_USER || RESOLVED_AND_NOTIFIED_BY_CURRENT_USER) { %>
                     <div id="headTicketActions" class="pagecontentsubheader"><h3 id="headTicketActions">Dostępne akcje</h3></div>
@@ -190,7 +205,10 @@
                             <a href="<c:url value="/tickets/${ticketId}/reopen.html"/>"
                                class="lightview btnTicketAction btnTicketReopen rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 495, keyboard: true">Otwórz ponownie</a>
+                        <% } %>
 
+                        <% if (RESOLVED_AND_NOTIFIED_BY_CURRENT_USER
+                                || RESOLEVED_AND_OLDER_THAN_7_DAYS_AND_CURRENT_USER_IS_MANAGER) { %>
                             <a href="<c:url value="/tickets/${ticketId}/close.html"/>"
                                class="lightview btnTicketAction btnTicketClose rndCrn5px"
                                title=":: :: closeButton: false, width: 500, height: 165, keyboard: true">Zamknij</a>
