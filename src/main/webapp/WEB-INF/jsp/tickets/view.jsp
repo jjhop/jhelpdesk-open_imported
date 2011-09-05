@@ -6,7 +6,6 @@
 <%@ page import="de.berlios.jhelpdesk.model.User" %>
 <%@ page import="de.berlios.jhelpdesk.model.TicketEvent" %>
 <%@ page import="de.berlios.jhelpdesk.model.EventType" %>
-<%@ page import="org.apache.commons.lang.time.DateUtils" %>
 <%@ page import="de.berlios.jhelpdesk.utils.DateUtil" %>
 
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
