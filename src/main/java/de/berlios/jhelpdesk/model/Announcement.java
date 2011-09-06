@@ -67,7 +67,7 @@ public class Announcement implements Serializable {
     private Date createdAt;
     
     @ManyToOne(optional = false)
-    @JoinColumn(name = "author", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User author;
 
     /**

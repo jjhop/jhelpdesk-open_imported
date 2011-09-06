@@ -110,7 +110,7 @@ public class Article implements Serializable {
      *
      */
     @OneToMany(mappedBy = "article", cascade = {CascadeType.REMOVE})
-    @OrderBy(value = "createDate")
+    @OrderBy(value = "createdAt")
     private List<ArticleComment> comments;
 
     /**

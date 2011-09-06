@@ -36,5 +36,7 @@ public class ArticleCommentValidator implements Validator {
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "errors.kbase.articleCommentTitle");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "body", "errors.kbase.articleCommentBody");
+
+        // TODO: odrzucić zbyt długie wartości i zrobić info w widoku...
     }
 }

@@ -30,7 +30,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
  * @author jjhop
  */
 @Entity
@@ -39,9 +38,6 @@ public class ArticleComment implements Serializable {
 
     private static final long serialVersionUID = 79900385694404381L;
 
-	/**
-     *
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -51,125 +47,64 @@ public class ArticleComment implements Serializable {
     @JoinColumn(name = "article_id")
     private Article article;
 
-    /**
-     *
-     */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "author", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User authorId;
 
-    /**
-     *
-     */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
-    private Date createDate;
+    @Column(name = "created_at")
+    private Date createdAt;
 
-    /**
-     *
-     */
     @Column(name = "title", length = 255)
     private String title;
 
-    /**
-     * 
-     */
-    @Column(name = "body")
+    @Column(name = "body", length = 4096)
     private String body;
 
-    /**
-     *
-     * @return
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     */
     public void setArticleCommentId(Long id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
     public Article getArticle() {
         return article;
     }
 
-    /**
-     * 
-     * @param article
-     */
     public void setArticle(Article article) {
         this.article = article;
     }
 
-    /**
-     *
-     * @return
-     */
     public User getAuthorId() {
         return authorId;
     }
 
-    /**
-     * 
-     * @param authorId
-     */
     public void setAuthorId(User authorId) {
         this.authorId = authorId;
     }
 
-    /**
-     * 
-     * @return
-     */
     public Date getCreateDate() {
-        return createDate;
+        return createdAt;
     }
 
-    /**
-     *
-     * @param createDate
-     */
     public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+        this.createdAt = createDate;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getTitle() {
         return title;
     }
 
-    /**
-     *
-     * @param title
-     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /**
-     * Zwraca zawartość pola body artykułu.
-     * 
-     * @return zawartość pola body artykułu
-     */
     public String getBody() {
         return body;
     }
 
-    /**
-     * 
-     * @param body
-     */
     public void setBody(String body) {
         this.body = body;
     }
