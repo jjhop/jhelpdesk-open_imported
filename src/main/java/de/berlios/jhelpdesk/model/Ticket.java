@@ -95,7 +95,7 @@ public class Ticket implements Serializable {
      * Użytkownik, który zgłosił problem.
      */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "notifyier", referencedColumnName = "user_id")
+    @JoinColumn(name = "notifier", referencedColumnName = "user_id")
     private User notifier;
 
     /**
