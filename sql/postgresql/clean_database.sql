@@ -1,29 +1,46 @@
-DROP FUNCTION drop_announcement_body;
-
-DROP TABLE bug;
-DROP TABLE bug_category;
-DROP TABLE bug_comment;
-DROP TABLE bug_desc;
-DROP TABLE bug_event;
-DROP TABLE bug_article;
-DROP TABLE bug_priority;
-DROP TABLE announcement;
 DROP TABLE announcement_body;
-DROP TABLE article;
-DROP TABLE article_body;
-DROP TABLE article_comment;
-DROP TABLE article_category;
-DROP TABLE users;
-DROP TABLE user_preferences;
+DROP TABLE announcement;
 
-DROP SEQUENCE bug_category_id_seq;
-DROP SEQUENCE bug_comment_id_seq;
-DROP SEQUENCE bug_event_id_seq;
-DROP SEQUENCE bug_id_seq;
-DROP SEQUENCE bug_priority_id_seq;
+DROP TABLE article_category;
+DROP TABLE article_comment;
+DROP TABLE article_ticket;
+DROP TABLE article;
+
+DROP TABLE ticket_filters_notifiers;
+DROP TABLE ticket_filters_saviours;
+DROP TABLE ticket_filters_ticket_categories;
+DROP TABLE ticket_filters;
+
+DROP TABLE ticket_additional_files;
+DROP TABLE ticket_comment;
+DROP TABLE ticket_event;
+DROP TABLE ticket;
+DROP TABLE ticket_category;
+
+DROP TABLE user_preferences;
+DROP TABLE users;
+
 DROP SEQUENCE announcement_id_seq;
-DROP SEQUENCE article_comment_id_seq;
+
 DROP SEQUENCE article_category_id_seq;
-DROP SEQUENCE knownledge_id_seq;
+DROP SEQUENCE article_comment_id_seq;
+DROP SEQUENCE article_id_seq;
+
+DROP SEQUENCE ticket_filters_notifiers_id_seq;
+DROP SEQUENCE ticket_filters_saviours_id_seq;
+DROP SEQUENCE ticket_filters_ticket_categories_id_seq;
+DROP SEQUENCE ticket_filter_id_seq;
+
+DROP SEQUENCE ticket_add_files_id_seq;
+DROP SEQUENCE ticket_comment_id_seq;
+DROP SEQUENCE ticket_event_id_seq;
+DROP SEQUENCE ticket_id_seq;
+DROP SEQUENCE ticket_category_id_seq;
+
 DROP SEQUENCE user_id_seq;
-DROP SEQUENCE user_preferences_id_seq;
+
+DROP DOMAIN comment_type;
+DROP DOMAIN event_type;
+DROP DOMAIN ticket_priority;
+DROP DOMAIN ticket_status;
+DROP DOMAIN user_role;
