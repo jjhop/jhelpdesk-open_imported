@@ -11,6 +11,12 @@ body.lightPassView .contentmiddle {
     margin: 0;
     position: relative;
 }
+body.lightPassView .h90 {
+    height: 90px;
+}
+body.lightPassView .h95 {
+    height: 95px;
+}
 body.lightPassView .h190 {
     height: 190px;
 }
@@ -25,6 +31,9 @@ body.lightPassView .h270 {
 }
 body.lightPassView .h300 {
     height: 300px;
+}
+body.lightPassView .h330 {
+    height: 330px;
 }
 body.lightPassView .h335 {
     height: 335px;
@@ -48,6 +57,9 @@ body.lightPassView .h430 {
 .scrollable {
     overflow: auto;
     overflow-x: hidden;
+}
+.vAlignTop {
+    vertical-align: top;
 }
 body.lightPassView .hAuto {
     min-height: 100px;
@@ -2143,6 +2155,10 @@ ul.formContainer li:last-child {
 ul.formContainer li.single {
     padding: 0 10px;
 }
+ul.formContainer li.singleChk {
+    padding: 0 10px 5px;
+    min-height: 20px;
+}
 ul.formContainer li.plain {
     min-height: 20px;
 }
@@ -2392,21 +2408,22 @@ ul.formContainer .attachList li:last-child, .attachList li:last-child {
     text-decoration: none;
     padding: 1px 0 1px 11px;
     background: url(../i/btn_del_file.gif) 0px 5px no-repeat;
-
 }
-
-.lightPassView p#actionMailConfirm {
+.lightPassView p#confirmText {
     text-align: center;
-    padding: 287px 10px 70px;
-    background: url(../i/bg_envelope.png) top center no-repeat;
+    margin: 0;
+    padding: 230px 10px 0 10px;
     font-size: 14px;
 }
-.lightPassView p#actionMailConfirm.small {
-    margin: 5px 0;
-    height: 15px;
-    padding: 55px 10px 0 10px;
-    background: url(../i/bg_envelope_small.png) top center no-repeat;
-
+.lightPassView p#confirmText.small {
+    margin: 0;
+    padding: 50px 10px 0 10px;
+}
+.standardtable td.bgEnvelope {
+    background: #F3F3F3 url(../i/bg_envelope.png) center -10px no-repeat;
+}
+.standardtable td.bgEnvelopeSmall {
+    background: #F3F3F3 url(../i/bg_envelope_small.png) center 5px no-repeat;
 }
 #autocompleteContainer {
     position: relative;
