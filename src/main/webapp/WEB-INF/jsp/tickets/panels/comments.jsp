@@ -1,5 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ page import="de.berlios.jhelpdesk.model.TicketComment" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+
 <%@include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
+
+<%
+    User loggedUser = (User) session.getAttribute("loggedUser");
+%>
 
 <table width="100%" cellspacing="12" cellpadding="4">
     <tr>
@@ -8,14 +16,28 @@
                 <table id="ticketComments" cellspacing="0" class="standardtable" style="margin-bottom: 10px;">
                     <c:forEach var="comment" items="${comments}" varStatus="status">
                     <tr <c:if test="${comment.notForPlainUser}">class="nfp"</c:if>>
+                        <%
+                            TicketComment c = (TicketComment) pageContext.getAttribute("comment");
+                                if (c.isNotForPlainUser() && loggedUser.isPlain()) {
+                        %>
                         <td>
                             <span class="entryMeta">
-                                <c:out value="${comment.commentAuthor}"/>, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
+                                ${comment.commentAuthor}, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
                             </span>
                             <span class="entryBlock">
-                                <c:out value="${comment.commentText}" escapeXml="false"/>
+                                ************
                             </span>
                         </td>
+                        <% } else { %>
+                        <td>
+                            <span class="entryMeta">
+                                ${comment.commentAuthor}, <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>
+                            </span>
+                            <span class="entryBlock">
+                                <c:out value="${comment.commentText}" escapeXml="true"/>
+                            </span>
+                        </td>
+                        <% } %>
                     </tr>
                     </c:forEach>
                 </table>
