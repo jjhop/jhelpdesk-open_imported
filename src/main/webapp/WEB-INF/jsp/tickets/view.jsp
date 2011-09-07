@@ -129,7 +129,6 @@
                                 currentUser.getUserRole().toInt() > 1 || currentUser.equals(ticket.getNotifier());
                         pageContext.setAttribute("showPanels", showPanels);
                     %>
-
                     <c:if test="${not empty kbArticles or showPanels}">
                     <div class="pagecontentsubheader">
                         <h3 id="headTicketArticles">Powiązane artykuły w bazie wiedzy</h3>
