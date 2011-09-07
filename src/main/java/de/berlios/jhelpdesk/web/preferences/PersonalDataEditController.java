@@ -75,7 +75,7 @@ public class PersonalDataEditController {
         currentUser.setPhone(user.getPhone());
         currentUser.setMobile(user.getMobile());
         userDAO.saveOrUpdate(currentUser);
-        session.setAttribute("loggedUser", userDAO.getById(currentUser.getUserId()));
+        session.setAttribute("loggedUser", userDAO.getByEmailFetchFilters(currentUser.getEmail()));
         map.clear();
         return "redirect:/preferences/personalData.html";
     }
