@@ -37,11 +37,11 @@
                                                 <form:errors cssClass="formError errorBottom" path="categoryDesc"/>
                                                 <span id="descCounter" class="counter"></span>
                                             </li>
-                                            <li>
+                                            <li class="singleChk">
                                                 <form:checkbox cssClass="floatLeft chk" path="default"/>
                                                 <form:label path="default">Domyślna kategoria</form:label>
                                             </li>
-                                            <li>
+                                            <li class="singleChk">
                                                 <form:checkbox cssClass="floatLeft chk" path="active"/>
                                                 <form:label path="active">Aktywna</form:label>
                                             </li>

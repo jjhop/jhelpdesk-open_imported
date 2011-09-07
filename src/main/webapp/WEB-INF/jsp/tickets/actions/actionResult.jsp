@@ -4,11 +4,11 @@
 <div class="pagecontentsubheader">
     <h3 id="headTicketConfirm">Dziękujemy</h3>
 </div>
-<div class="contentmiddle h425">
+<div class="contentmiddle">
     <table class="standardtable" cellspacing="0">
         <tr>
-            <td>
-                <p id="actionMailConfirm">
+            <td class="h425 bgEnvelope vAlignTop">
+                <p id="confirmText">
                     dzieki itd... wysłaliśmy maile.. tararara... zamknij...
                 </p>
             </td>

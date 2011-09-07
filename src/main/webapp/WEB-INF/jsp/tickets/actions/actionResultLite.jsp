@@ -7,8 +7,8 @@
 <div class="contentmiddle hAuto">
     <table class="standardtable" cellspacing="0">
         <tr>
-            <td>
-                <p id="actionMailConfirm" class="small">
+            <td class="h95 bgEnvelopeSmall vAlignTop">
+                <p id="confirmText" class="small">
                     dzieki itd... wysłaliśmy maile.. tararara... zamknij (wersja mini)...
                 </p>
             </td>
@@ -16,5 +16,5 @@
     </table>
 </div>
 <script type="text/javascript">
-    setTimeout("window.parent.eval('Lightview.hide(); window.location.reload();')", 2000);
+    //setTimeout("window.parent.eval('Lightview.hide(); window.location.reload();')", 2000);
 </script>
