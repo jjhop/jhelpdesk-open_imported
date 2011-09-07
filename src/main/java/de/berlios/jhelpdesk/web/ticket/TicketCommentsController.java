@@ -54,10 +54,15 @@ public class TicketCommentsController {
             return "tickets/commentForm";
         }
 
+        User loggedUser = (User) session.getAttribute("loggedUser");
+
         Ticket ticket = ticketDAO.getTicketById(ticketId);
         comment.setTicket(ticket);
-        comment.setCommentAuthor((User) session.getAttribute("loggedUser"));
+        comment.setCommentAuthor(loggedUser);
         comment.setCommentType(CommentType.NORMAL);
+        if (loggedUser.isPlain()) {
+            comment.setNotForPlainUser(false);
+        }
         ticket.addComment(comment);
         ticketDAO.addComment(comment);
         return "/tickets/action/result";
