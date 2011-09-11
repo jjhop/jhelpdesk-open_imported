@@ -31,9 +31,9 @@
                                 <tr>
                                     <td>
                                         <c:if test="${not empty message}">
-                                            <p id="msg2Hide">${message}</p>
+                                            <p id="msg2Hide" class="greenMsg">${message}</p>
                                             <script type="text/javascript">
-                                                hideMe('msg2Hide');
+                                                hideMeSuccess('msg2Hide');
                                             </script>
                                         </c:if>
                                         <ul class="formContainer">

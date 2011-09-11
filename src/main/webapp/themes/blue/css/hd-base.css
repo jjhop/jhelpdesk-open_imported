@@ -574,6 +574,18 @@ table a.btn {
     color: #fff;
     
 }
+.contentmiddle .greenMsg {
+    position: relative;
+    height: 17px;
+    overflow: hidden;
+    padding: 5px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    border: 3px solid #43b96f;
+    background: #279d52;
+}
 .lightPassView p.question {
     font-size: 14px;
     font-weight: bold;
