@@ -63,6 +63,11 @@ function  hideMe(element2Hide) {
     new Effect.Fade(element2Hide, {queue: 'end'});
 }
 
+function  hideMeSuccess(element2Hide) {
+    new Effect.Highlight(element2Hide, { startcolor: '#43B96F', endcolor: '#279D52' });
+    new Effect.Fade(element2Hide, {queue: 'end'});
+}
+
 // stare funkcje
 function clearForm(formId) {
     var form = $(formId);
