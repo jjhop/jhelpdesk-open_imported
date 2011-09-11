@@ -139,7 +139,7 @@ public class ArticleDAOJpa implements ArticleDAO {
             throw new DAOException(ex);
         }
     }
-
+    // SELECT COALESCE ((SELECT MAX(ord) FROM article_category), 1)
     @Transactional(readOnly = false)
     public void saveOrUpdate(final Article article) throws DAOException {
         try {
@@ -147,7 +147,7 @@ public class ArticleDAOJpa implements ArticleDAO {
                 this.jpaTemplate.execute(new JpaCallback<Object>() {
                     public Object doInJpa(EntityManager em) throws PersistenceException {
                         Query q = em.createNativeQuery(
-                            "SELECT MAX(ord) FROM article WHERE category_id=?");
+                            "SELECT COALESCE((SELECT MAX(ord) FROM article WHERE category_id=?), 0)");
                         q.setParameter(1, article.getCategory().getId());
                         Integer maxOrder = (Integer)q.getSingleResult();
                         long currentMax = maxOrder != null ? maxOrder.longValue() : 0;
