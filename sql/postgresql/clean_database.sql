@@ -44,3 +44,6 @@ DROP DOMAIN event_type;
 DROP DOMAIN ticket_priority;
 DROP DOMAIN ticket_status;
 DROP DOMAIN user_role;
+
+DROP TRIGGER reset_tcategory_defaults_trg ON ticket_category;
+DROP FUNCTION reset_tcategory_defaults();

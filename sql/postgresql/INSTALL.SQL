@@ -413,3 +413,39 @@ INSERT INTO user_preferences(id, welcome_page, locale, new_ticket_form_view,
 -- DOMYSLNA KATEGORIA DLA NOWYCH ZGLOSZEN
 INSERT INTO ticket_category (id, category_name, is_active, ord, tickets_count, is_default)
     VALUES (1, 'Default category', true, 0, 0, true);
+
+
+
+--- TRIGGERY
+CREATE OR REPLACE FUNCTION reset_tcategory_defaults()
+  RETURNS trigger AS $RTD$
+BEGIN
+  IF NEW.is_default=TRUE THEN
+    UPDATE ticket_category SET is_default=false;
+  END IF;
+  RETURN NEW;
+END
+$RTD$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER reset_tcategory_defaults_trg
+  BEFORE INSERT OR UPDATE ON ticket_category
+  FOR EACH ROW
+  EXECUTE PROCEDURE reset_tcategory_defaults();
+
+
+CREATE OR REPLACE FUNCTION update_ticket_count_in_category()
+  RETURNS trigger AS $UTCIC$
+BEGIN
+  IF (TG_OP='INSERT') THEN
+    UPDATE ticket_category SET tickets_count=tickets_count+1 WHERE id=NEW.ticket_category;
+  ELSIF (TG_OP='DELETE') THEN
+    UPDATE ticket_category SET tickets_count=tickets_count-1 WHERE id=NEW.ticket_category;
+  END IF;
+  RETURN NEW;
+END;
+$UTCIC$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER update_tickets_in_category_trg
+  AFTER INSERT OR DELETE ON ticket
+  FOR EACH ROW
+  EXECUTE PROCEDURE update_ticket_count_in_category();
