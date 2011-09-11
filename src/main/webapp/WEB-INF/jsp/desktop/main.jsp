@@ -8,8 +8,8 @@
             <tr>
                 <td id="pagecontentheaderleft"><h2><fmt:message key="desktop.title"/></h2></td>
                 <td id="pagecontentheaderright">
-                    <a id="btnDeskNewTicket" href="<c:url value="/tickets/new.html"/>"></a>
-                    <a id="btnDeskKB" href="<c:url value="/help/kb/index.html"/>"></a>
+                    <a class="desktopBtn" id="btnDeskNewTicket" href="<c:url value="/tickets/new.html"/>"></a>
+                    <a class="desktopBtn" id="btnDeskKB" href="<c:url value="/help/kb/index.html"/>"></a>
                 </td>
             </tr>
         </table>
