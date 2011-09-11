@@ -166,7 +166,7 @@ public class ArticleCategoryDAOJpa implements ArticleCategoryDAO {
             if (category.getId() == null) {
                 this.jpaTemplate.execute(new JpaCallback<Object>() {
                     public Object doInJpa(EntityManager em) throws PersistenceException {
-                        Query q = em.createNativeQuery("SELECT MAX(ord) FROM article_category");
+                        Query q = em.createNativeQuery("SELECT COALESCE ((SELECT MAX(ord) FROM article_category), 1)");
                         Integer maxOrder = (Integer)q.getSingleResult();
                         category.setOrder(maxOrder.longValue()+1);
                         category.setArticlesCount(0);

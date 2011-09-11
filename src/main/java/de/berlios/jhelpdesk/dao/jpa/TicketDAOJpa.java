@@ -200,6 +200,10 @@ public class TicketDAOJpa implements TicketDAO {
         }
     }
 
+    /*
+     * Uaktualnienie liczby zgłoszeń w danej kategorii realizowane
+     * na poziomie bazy danych za pomocą trigerów
+     */
     @Transactional(readOnly = false)
     public void save(final Ticket ticket) throws DAOException {
         try {
