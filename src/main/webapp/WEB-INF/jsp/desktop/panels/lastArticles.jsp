@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+
+<%@ page import="java.util.Locale" %>
+<%@ page import="de.berlios.jhelpdesk.model.User" %>
+
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
 <c:choose>
@@ -15,6 +19,15 @@
         </table>
     </c:when>
     <c:otherwise>
+        <%
+            Locale currenUserLocale =
+                ((User)session.getAttribute("loggedUser")).getPreferredLocale();
+            if (currenUserLocale.equals(new Locale("pl"))) {
+
+        %>
         <img src="<c:url value="/themes/blue/desktop/sample_kb.png"/>" alt=""/>
+        <% } else { %>
+        <img src="<c:url value="/themes/blue/desktop/sample_kb_en.png"/>" alt=""/>
+        <% } %>
     </c:otherwise>
 </c:choose>
