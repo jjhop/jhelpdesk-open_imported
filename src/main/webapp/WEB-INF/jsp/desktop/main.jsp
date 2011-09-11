@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/inc/taglibs.jsp" %>
 
@@ -64,7 +65,14 @@
                 <td class="rightcells lastInfo">
                     <div class="contenttop"></div>
                     <div id="lastAnnouncements" class="contentmiddle">
-                        <tiles:insertDefinition name="/desktop/lastAnnouncements" flush="true"/>
+                        <c:choose>
+                            <c:when test="${not empty lastAnnouncements}">
+                                <tiles:insertDefinition name="/desktop/lastAnnouncements" flush="true"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<c:url value="/themes/blue/desktop/sample_ann.png"/>" alt=""/>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </td>
             </tr>
